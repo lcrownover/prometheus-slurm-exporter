@@ -25,15 +25,15 @@ import (
 
 func init() {
 	// Metrics have to be registered to be exposed
-	prometheus.MustRegister(NewAccountsCollector())       // from accounts.go
-	prometheus.MustRegister(NewCPUsCollector())           // from cpus.go
-	prometheus.MustRegister(NewNodesCollector())          // from nodes.go
-	prometheus.MustRegister(NewNodeCollector())           // from node.go
-	prometheus.MustRegister(NewPartitionsCollector())     // from partitions.go
-	prometheus.MustRegister(NewQueueCollector())          // from queue.go
-	prometheus.MustRegister(NewSchedulerCollector())      // from scheduler.go
-	prometheus.MustRegister(NewFairShareCollector())      // from sshare.go
-	prometheus.MustRegister(NewUsersCollector())          // from users.go
+	prometheus.MustRegister(NewAccountsCollector())   // from accounts.go
+	prometheus.MustRegister(NewCPUsCollector())       // from cpus.go
+	prometheus.MustRegister(NewNodesCollector())      // from nodes.go
+	prometheus.MustRegister(NewNodeCollector())       // from node.go
+	prometheus.MustRegister(NewPartitionsCollector()) // from partitions.go
+	prometheus.MustRegister(NewQueueCollector())      // from queue.go
+	prometheus.MustRegister(NewSchedulerCollector())  // from scheduler.go
+	prometheus.MustRegister(NewFairShareCollector())  // from sshare.go
+	prometheus.MustRegister(NewUsersCollector())      // from users.go
 }
 
 var listenAddress = flag.String(
@@ -51,7 +51,7 @@ func main() {
 
 	// Turn on GPUs accounting only if the corresponding command line option is set to true.
 	if *gpuAcct {
-		prometheus.MustRegister(NewGPUsCollector())   // from gpus.go
+		prometheus.MustRegister(NewGPUsCollector()) // from gpus.go
 	}
 
 	// The Handler function provides a default handler to expose metrics
