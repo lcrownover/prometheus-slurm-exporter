@@ -1,4 +1,4 @@
-/* Copyright 2022 Joeri Hermans, Victor Penso, Matteo Dessalvi, Iztok Lebar Bajec
+/* Copyright 2022-2022 Lucas Crownover, Joeri Hermans, Victor Penso, Matteo Dessalvi, Iztok Lebar Bajec
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,16 +13,16 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-package main
+package slurm
 
 import (
+	"log"
 	"os/exec"
 	"regexp"
 	"strconv"
 	"strings"
 
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/common/log"
 )
 
 type GPUsMetrics struct {

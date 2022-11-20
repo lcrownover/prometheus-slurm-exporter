@@ -1,4 +1,4 @@
-/* Copyright 2017 Victor Penso, Matteo Dessalvi
+/* Copyright 2017-2022 Lucas Crownover, Victor Penso, Matteo Dessalvi
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,7 +13,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-package main
+package slurm
 
 import (
 	"io/ioutil"
@@ -21,16 +21,16 @@ import (
 	"testing"
 )
 
-func TestCPUsMetrics(t *testing.T) {
+func TestSchedulerMetrics(t *testing.T) {
 	// Read the input data from a file
-	file, err := os.Open("test_data/sinfo_cpus.txt")
+	file, err := os.Open("test_data/sdiag.txt")
 	if err != nil {
 		t.Fatalf("Can not open test data: %v", err)
 	}
 	data, err := ioutil.ReadAll(file)
-	t.Logf("%+v", ParseCPUsMetrics(data))
+	t.Logf("%+v", ParseSchedulerMetrics(data))
 }
 
-func TestCPUssGetMetrics(t *testing.T) {
-	t.Logf("%+v", CPUsGetMetrics())
+func TestSchedulerGetMetrics(t *testing.T) {
+	t.Logf("%+v", SchedulerGetMetrics())
 }

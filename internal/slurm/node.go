@@ -1,4 +1,4 @@
-/* Copyright 2021 Chris Read
+/* Copyright 2021-2022 Lucas Crownover, Chris Read
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,7 +13,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-package main
+package slurm
 
 import (
 	"log"
