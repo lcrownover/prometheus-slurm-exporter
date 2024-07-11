@@ -36,10 +36,11 @@ func main() {
 	if !found {
 		lvl = slog.LevelDebug
 	}
-	l := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
+	l := slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
 		Level: lvl,
 	}))
 	slog.SetDefault(l)
+	slog.Debug("debug logging enabled")
 
 	listenAddress, found := os.LookupEnv("SLURM_EXPORTER_LISTEN_ADDRESS")
 	if !found {
