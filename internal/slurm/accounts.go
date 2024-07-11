@@ -36,14 +36,14 @@ type SlurmJobsResponse struct {
 	Jobs []SlurmJobResponse `json:"jobs"`
 }
 
-type SlurmJobResourcesResponse struct {
-	AllocatedCores int `json:"allocated_cores"`
+type SlurmJobCPUsResponse struct {
+	Number int `json:"number"`
 }
 
 type SlurmJobResponse struct {
-	Account      string                    `json:"account"`
-	JobStates    []string                  `json:"job_state"`
-	JobResources SlurmJobResourcesResponse `json:"job_resources"`
+	Account   string               `json:"account"`
+	JobStates []string             `json:"job_state"`
+	CPUs      SlurmJobCPUsResponse `json:"cpus"`
 }
 
 // AccountsData performs the GET request against the SLURM API and returns
@@ -89,7 +89,7 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 		}
 		state := j.JobStates[0]
 		state = strings.ToLower(state)
-		cpus := float64(j.JobResources.AllocatedCores)
+		cpus := float64(j.CPUs.Number)
 		slog.Debug("cpus", "cpus", cpus)
 		pending := regexp.MustCompile(`^pending`)
 		running := regexp.MustCompile(`^running`)
