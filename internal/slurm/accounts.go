@@ -120,7 +120,7 @@ func NewAccountsCollector(ctx context.Context) *AccountsCollector {
 	return &AccountsCollector{
 		ctx:          ctx,
 		pending:      prometheus.NewDesc("slurm_account_jobs_pending", "Pending jobs for account", labels, nil),
-		pending_cpus: prometheus.NewDesc("slurm_account_cpus_pending", "Pending jobs for account", labels, nil),
+		pending_cpus: prometheus.NewDesc("slurm_account_cpus_pending", "Pending cpus for account", labels, nil),
 		running:      prometheus.NewDesc("slurm_account_jobs_running", "Running jobs for account", labels, nil),
 		running_cpus: prometheus.NewDesc("slurm_account_cpus_running", "Running cpus for account", labels, nil),
 		suspended:    prometheus.NewDesc("slurm_account_jobs_suspended", "Suspended jobs for account", labels, nil),
@@ -215,7 +215,7 @@ func NewOldAccountsCollector() *OldAccountsCollector {
 	labels := []string{"account"}
 	return &OldAccountsCollector{
 		pending:      prometheus.NewDesc("slurm_old_account_jobs_pending", "OLD Pending jobs for account", labels, nil),
-		pending_cpus: prometheus.NewDesc("slurm_old_account_cpus_pending", "OLD Pending jobs for account", labels, nil),
+		pending_cpus: prometheus.NewDesc("slurm_old_account_cpus_pending", "OLD Pending cpus for account", labels, nil),
 		running:      prometheus.NewDesc("slurm_old_account_jobs_running", "OLD Running jobs for account", labels, nil),
 		running_cpus: prometheus.NewDesc("slurm_old_account_cpus_running", "OLD Running cpus for account", labels, nil),
 		suspended:    prometheus.NewDesc("slurm_old_account_jobs_suspended", "OLD Suspended jobs for account", labels, nil),
