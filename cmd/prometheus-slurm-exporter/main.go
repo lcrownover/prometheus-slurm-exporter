@@ -33,7 +33,7 @@ func main() {
 	// set up logging
 	lvl := slog.LevelInfo
 	_, found := os.LookupEnv("SLURM_EXPORTER_DEBUG")
-	if !found {
+	if found {
 		lvl = slog.LevelDebug
 	}
 	l := slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
