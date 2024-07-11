@@ -101,7 +101,7 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 			accounts[account].suspended++
 		}
 	}
-	slog.Debug("metrics", "metrics", fmt.Sprintf("%v", accounts))
+	slog.Debug("metrics", "metrics", fmt.Sprintf("%+v", accounts))
 	return accounts
 }
 
