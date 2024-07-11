@@ -31,18 +31,18 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-type SlurmJobs struct {
-	Jobs []SlurmJob `json:"jobs"`
+type SlurmJobsResponse struct {
+	Jobs []SlurmJobResponse `json:"jobs"`
 }
 
-type SlurmJobResources struct {
+type SlurmJobResourcesResponse struct {
 	AllocatedCores float64 `json:"allocated_cores"`
 }
 
-type SlurmJob struct {
-	Account      string            `json:"account"`
-	JobState     string            `json:"job_state"`
-	JobResources SlurmJobResources `json:"job_resources"`
+type SlurmJobResponse struct {
+	Account      string                    `json:"account"`
+	JobStates    []string                  `json:"job_state"`
+	JobResources SlurmJobResourcesResponse `json:"job_resources"`
 }
 
 // AccountsData performs the GET request against the SLURM API and returns
@@ -71,7 +71,7 @@ type JobMetrics struct {
 // parses it into a map of "accountName": *JobMetrics
 func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 	accounts := make(map[string]*JobMetrics)
-	var sj SlurmJobs
+	var sj SlurmJobsResponse
 	err := json.Unmarshal(jsonResponseBytes, &sj)
 	if err != nil {
 		slog.Error("failed to unmarshall job response data", "error", err)
@@ -82,7 +82,7 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 		if !key {
 			accounts[account] = &JobMetrics{0, 0, 0, 0, 0}
 		}
-		state := j.JobState
+		state := j.JobStates[0]
 		state = strings.ToLower(state)
 		cpus := j.JobResources.AllocatedCores
 		pending := regexp.MustCompile(`^pending`)
