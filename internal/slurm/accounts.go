@@ -95,6 +95,9 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 		suspended := regexp.MustCompile(`^suspended`)
 		switch {
 		case pending.MatchString(state):
+			if account == "uonlp" {
+				slog.Debug("adding cpus to pending cpus", "current cpus", accounts[account].pending_cpus, "adding", cpus)
+			}
 			accounts[account].pending++
 			accounts[account].pending_cpus += cpus
 		case running.MatchString(state):
