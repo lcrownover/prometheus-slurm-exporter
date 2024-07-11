@@ -58,24 +58,27 @@ func main() {
 	ctx = context.WithValue(ctx, util.ApiTokenKey, apiToken)
 	ctx = context.WithValue(ctx, util.ApiURLKey, apiURL)
 
-	prometheus.MustRegister(slurm.NewAccountsCollector(ctx)) // from accounts.go
-	prometheus.MustRegister(slurm.NewOldAccountsCollector()) // from accounts.go
-	// prometheus.MustRegister(slurm.NewCPUsCollector())       // from cpus.go
-	// prometheus.MustRegister(slurm.NewNodesCollector())      // from nodes.go
-	// prometheus.MustRegister(slurm.NewNodeCollector())       // from node.go
-	// prometheus.MustRegister(slurm.NewPartitionsCollector()) // from partitions.go
-	// prometheus.MustRegister(slurm.NewQueueCollector())      // from queue.go
-	// prometheus.MustRegister(slurm.NewSchedulerCollector())  // from scheduler.go
-	// prometheus.MustRegister(slurm.NewFairShareCollector())  // from sshare.go
-	// prometheus.MustRegister(slurm.NewUsersCollector())      // from users.go
+	r := prometheus.NewRegistry()
+
+	r.MustRegister(slurm.NewAccountsCollector(ctx)) // from accounts.go
+	r.MustRegister(slurm.NewOldAccountsCollector()) // from accounts.go
+	// r.MustRegister(slurm.NewCPUsCollector())       // from cpus.go
+	// r.MustRegister(slurm.NewNodesCollector())      // from nodes.go
+	// r.MustRegister(slurm.NewNodeCollector())       // from node.go
+	// r.MustRegister(slurm.NewPartitionsCollector()) // from partitions.go
+	// r.MustRegister(slurm.NewQueueCollector())      // from queue.go
+	// r.MustRegister(slurm.NewSchedulerCollector())  // from scheduler.go
+	// r.MustRegister(slurm.NewFairShareCollector())  // from sshare.go
+	// r.MustRegister(slurm.NewUsersCollector())      // from users.go
 
 	// gpuAcctString := os.Getenv("SLURM_EXPORTER_GPU_ACCOUNTING")
 	// if gpuAcctString == "true" || gpuAcctString == "1" {
-	// 	prometheus.MustRegister(slurm.NewGPUsCollector())
+	// 	r.MustRegister(slurm.NewGPUsCollector())
 	// 	log.Println("GPUs Accounting ON")
 	// }
+	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 
 	log.Printf("Starting Server: %s\n", listenAddress)
-	http.Handle("/metrics", promhttp.Handler())
+	http.Handle("/metrics", handler)
 	log.Fatal(http.ListenAndServe(listenAddress, nil))
 }
