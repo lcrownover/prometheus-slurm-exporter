@@ -68,6 +68,10 @@ type JobMetrics struct {
 	suspended    float64
 }
 
+func NewJobMetrics() *JobMetrics {
+	return &JobMetrics{}
+}
+
 // ParseAccountsMetrics receives the response body of jobs from SLURM and
 // parses it into a map of "accountName": *JobMetrics
 func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
@@ -81,7 +85,7 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 		account := j.Account
 		_, key := accounts[account]
 		if !key {
-			accounts[account] = &JobMetrics{0, 0, 0, 0, 0}
+			accounts[account] = NewJobMetrics()
 		}
 		state := j.JobStates[0]
 		state = strings.ToLower(state)
@@ -93,7 +97,7 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 		case pending.MatchString(state):
 			accounts[account].pending++
 			accounts[account].pending_cpus += cpus
-			slog.Debug("adding pending cpus")
+			slog.Debug("adding pending cpus", "account", fmt.Sprintf("%+v", account))
 		case running.MatchString(state):
 			accounts[account].running++
 			accounts[account].running_cpus += cpus
