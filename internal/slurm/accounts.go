@@ -37,7 +37,7 @@ type SlurmJobsResponse struct {
 }
 
 type SlurmJobResourcesResponse struct {
-	AllocatedCores float64 `json:"allocated_cores"`
+	AllocatedCores int `json:"allocated_cores"`
 }
 
 type SlurmJobResponse struct {
@@ -89,7 +89,8 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 		}
 		state := j.JobStates[0]
 		state = strings.ToLower(state)
-		cpus := j.JobResources.AllocatedCores
+		cpus := float64(j.JobResources.AllocatedCores)
+		slog.Debug("cpus", "cpus", cpus)
 		pending := regexp.MustCompile(`^pending`)
 		running := regexp.MustCompile(`^running`)
 		suspended := regexp.MustCompile(`^suspended`)
