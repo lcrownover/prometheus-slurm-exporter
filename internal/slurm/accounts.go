@@ -18,6 +18,7 @@ package slurm
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"log"
 	"log/slog"
 	"os/exec"
@@ -92,6 +93,7 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 		case pending.MatchString(state):
 			accounts[account].pending++
 			accounts[account].pending_cpus += cpus
+			slog.Debug("adding pending cpus")
 		case running.MatchString(state):
 			accounts[account].running++
 			accounts[account].running_cpus += cpus
@@ -99,6 +101,7 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 			accounts[account].suspended++
 		}
 	}
+	slog.Debug("metrics", "metrics", fmt.Sprintf("%v", accounts))
 	return accounts
 }
 
