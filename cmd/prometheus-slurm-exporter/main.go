@@ -19,6 +19,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"log/slog"
 	"net/http"
 	"os"
 
@@ -29,6 +30,17 @@ import (
 )
 
 func main() {
+	// set up logging
+	lvl := slog.LevelInfo
+	_, found := os.LookupEnv("SLURM_EXPORTER_DEBUG")
+	if !found {
+		lvl = slog.LevelDebug
+	}
+	l := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
+		Level: lvl,
+	}))
+	slog.SetDefault(l)
+
 	listenAddress, found := os.LookupEnv("SLURM_EXPORTER_LISTEN_ADDRESS")
 	if !found {
 		listenAddress = ":8080"
