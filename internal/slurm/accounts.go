@@ -18,7 +18,6 @@ package slurm
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
 	"log/slog"
 	"os/exec"
