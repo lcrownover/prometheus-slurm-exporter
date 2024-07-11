@@ -90,7 +90,6 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 		state := j.JobStates[0]
 		state = strings.ToLower(state)
 		cpus := float64(j.CPUs.Number)
-		slog.Debug("cpus", "cpus", cpus)
 		pending := regexp.MustCompile(`^pending`)
 		running := regexp.MustCompile(`^running`)
 		suspended := regexp.MustCompile(`^suspended`)
@@ -98,7 +97,6 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 		case pending.MatchString(state):
 			accounts[account].pending++
 			accounts[account].pending_cpus += cpus
-			slog.Debug("adding pending cpus", "account", fmt.Sprintf("%+v", accounts[account]))
 		case running.MatchString(state):
 			accounts[account].running++
 			accounts[account].running_cpus += cpus
@@ -106,7 +104,6 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 			accounts[account].suspended++
 		}
 	}
-	slog.Debug("metrics", "metrics", fmt.Sprintf("%+v", accounts))
 	return accounts
 }
 
