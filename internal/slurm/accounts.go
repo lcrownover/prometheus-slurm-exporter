@@ -97,7 +97,7 @@ func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
 		case pending.MatchString(state):
 			accounts[account].pending++
 			accounts[account].pending_cpus += cpus
-			slog.Debug("adding pending cpus", "account", fmt.Sprintf("%+v", account))
+			slog.Debug("adding pending cpus", "account", fmt.Sprintf("%+v", accounts[account]))
 		case running.MatchString(state):
 			accounts[account].running++
 			accounts[account].running_cpus += cpus
