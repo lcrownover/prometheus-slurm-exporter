@@ -48,7 +48,7 @@ func NewJobMetrics() *JobMetrics {
 func ParseAccountsMetrics(ctx context.Context) map[string]*JobMetrics {
 	accounts := make(map[string]*JobMetrics)
 	jc := cache.GetResponseCache(ctx).JobsCache()
-	for _, j := range jc.Data.Jobs {
+	for _, j := range jc.Jobs() {
 		// get the account name
 		account, err := GetJobAccountName(j)
 		if err != nil {

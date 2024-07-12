@@ -13,45 +13,48 @@ import (
 
 // Accessor for the job cache
 func (rc responseCache) JobsCache() *jobsCache {
-	rc.jobs.Get()
-	return rc.jobs
+	return rc.jobsCache
 }
 
 type jobsCache struct {
 	ctx            context.Context
-	Data           *types.V0040OpenapiJobInfoResp
+	data           *types.V0040OpenapiJobInfoResp
 	expiration     int64
 	lock           *sync.Mutex
 	timeoutSeconds int
 }
 
 func newJobsCache(ctx context.Context, timeoutSeconds int) *jobsCache {
-	return &jobsCache{ctx: ctx, Data: nil, expiration: util.NowEpoch(), lock: &sync.Mutex{}, timeoutSeconds: timeoutSeconds}
+	return &jobsCache{ctx: ctx, data: nil, expiration: util.NowEpoch(), lock: &sync.Mutex{}, timeoutSeconds: timeoutSeconds}
 }
 
-func (ji jobsCache) Expiration() int64 {
-	return ji.expiration
+func (jc *jobsCache) Jobs() []types.V0040JobInfo {
+	jc.Refresh()
+	return jc.data.Jobs
 }
 
-func (ji jobsCache) Get() (*types.V0040OpenapiJobInfoResp, error) {
-	// return cached data if it's still good
-	if !IsExpired(ji, ji.timeoutSeconds) {
-		return ji.Data, nil
+func (jc *jobsCache) Expiration() int64 {
+	return jc.expiration
+}
+
+func (jc *jobsCache) Refresh() error {
+	if !IsExpired(jc, jc.timeoutSeconds) {
+		return nil
 	}
-	resp, err := util.NewSlurmGETRequest(ji.ctx, types.ApiJobsEndpointKey)
+	resp, err := util.NewSlurmGETRequest(jc.ctx, types.ApiJobsEndpointKey)
 	if err != nil {
-		return nil, fmt.Errorf("failed to perform get request for job data: %v", err)
+		return fmt.Errorf("failed to perform get request for job data: %v", err)
 	}
 	if resp.StatusCode != 200 {
 		slog.Debug("incorrect status code for job data", "code", resp.StatusCode, "body", string(resp.Body))
-		return nil, fmt.Errorf("received incorrect status code for job data")
+		return fmt.Errorf("received incorrect status code for job data")
 	}
-	var sj types.V0040OpenapiJobInfoResp
-	err = json.Unmarshal(resp.Body, &sj)
+	var jobsResp types.V0040OpenapiJobInfoResp
+	err = json.Unmarshal(resp.Body, &jobsResp)
 	if err != nil {
-		return nil, fmt.Errorf("failed to unmarshall job response data: %v", err)
+		return fmt.Errorf("failed to unmarshall job response data: %v", err)
 	}
-	ji.Data = &sj
-	ji.expiration = util.NowEpoch()
-	return ji.Data, nil
+	jc.data = &jobsResp
+	jc.expiration = util.NowEpoch()
+	return nil
 }

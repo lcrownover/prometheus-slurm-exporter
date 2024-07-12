@@ -40,14 +40,14 @@ func GetResponseCache(ctx context.Context) *responseCache {
 type responseCache struct {
 	ctx            context.Context
 	timeoutSeconds int
-	jobs           *jobsCache
+	jobsCache      *jobsCache
 }
 
 func newResponseCache(ctx context.Context, timeoutSeconds int) *responseCache {
 	return &responseCache{
 		ctx:            ctx,
 		timeoutSeconds: timeoutSeconds,
-		jobs:           newJobsCache(ctx, timeoutSeconds),
+		jobsCache:      newJobsCache(ctx, timeoutSeconds),
 	}
 }
 

@@ -17,7 +17,6 @@ package slurm
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"log"
 	"log/slog"
@@ -48,11 +47,9 @@ func (cm *cpusMetrics) AddAlloc(n float64) {
 func ParseCPUsMetrics(ctx context.Context) *cpusMetrics {
 	cm := NewCPUsMetrics()
 
-	jcr := cache.GetResponseCache(ctx)
-	fmt.Printf("%+v\n", jcr)
+	jc := cache.GetResponseCache(ctx).JobsCache()
 
-	jc := jcr.JobsCache()
-	for _, j := range jc.Data.Jobs {
+	for _, j := range jc.Jobs() {
 		state, err := GetJobState(j)
 		if err != nil {
 			slog.Error("failed to get job state", "error", err)
