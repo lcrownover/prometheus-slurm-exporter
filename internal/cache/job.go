@@ -40,8 +40,12 @@ func (jc *jobsCache) Expiration() int64 {
 	return jc.expiration
 }
 
+func (jc *jobsCache) TimeoutSeconds() int64 {
+	return int64(jc.timeoutSeconds)
+}
+
 func (jc *jobsCache) Refresh() error {
-	if !IsExpired(jc, jc.timeoutSeconds) {
+	if !IsExpired(jc) {
 		slog.Debug("returning cached job response")
 		return nil
 	}

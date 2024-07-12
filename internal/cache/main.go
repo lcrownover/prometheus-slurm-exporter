@@ -53,8 +53,9 @@ func newResponseCache(ctx context.Context, timeoutSeconds int) *responseCache {
 
 type Expirable interface {
 	Expiration() int64
+	TimeoutSeconds() int64
 }
 
-func IsExpired[T Expirable](item T, timeoutSeconds int) bool {
-	return time.Now().Unix() > item.Expiration()+int64(timeoutSeconds)
+func IsExpired[T Expirable](item T) bool {
+	return time.Now().Unix() > item.Expiration()+item.TimeoutSeconds()
 }
