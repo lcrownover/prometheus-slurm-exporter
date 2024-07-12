@@ -17,7 +17,6 @@ package slurm
 
 import (
 	"context"
-	"encoding/json"
 	"log"
 	"log/slog"
 	"os/exec"
@@ -27,37 +26,10 @@ import (
 
 	"io"
 
-	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/cache"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
-
-type SlurmJobsResponse struct {
-	Jobs []SlurmJobResponse `json:"jobs"`
-}
-
-type SlurmJobCPUsResponse struct {
-	Number int `json:"number"`
-}
-
-type SlurmJobResponse struct {
-	Account   string               `json:"account"`
-	JobStates []string             `json:"job_state"`
-	CPUs      SlurmJobCPUsResponse `json:"cpus"`
-}
-
-// AccountsData performs the GET request against the SLURM API and returns
-// the response body converted to string.
-func AccountsData(ctx context.Context) []byte {
-	resp, err := util.NewSlurmGETRequest(ctx, util.ApiAccountsEndpointKey)
-	if err != nil {
-		slog.Error("failed to perform get request for accounts data", "error", err)
-	}
-	if resp.StatusCode != 200 {
-		slog.Error("received incorrect status code for accounts data")
-		slog.Debug("debug", "code", resp.StatusCode, "body", string(resp.Body))
-	}
-	return resp.Body
-}
 
 type JobMetrics struct {
 	pending      float64
@@ -71,39 +43,51 @@ func NewJobMetrics() *JobMetrics {
 	return &JobMetrics{}
 }
 
-// ParseAccountsMetrics receives the response body of jobs from SLURM and
+// ParseAccountsMetrics gets the response body of jobs from SLURM and
 // parses it into a map of "accountName": *JobMetrics
-func ParseAccountsMetrics(jsonResponseBytes []byte) map[string]*JobMetrics {
+func ParseAccountsMetrics(ctx context.Context) map[string]*JobMetrics {
 	accounts := make(map[string]*JobMetrics)
-	var sj SlurmJobsResponse
-	err := json.Unmarshal(jsonResponseBytes, &sj)
-	if err != nil {
-		slog.Error("failed to unmarshall job response data", "error", err)
-	}
-	for _, j := range sj.Jobs {
-		account := j.Account
-		_, key := accounts[account]
-		if !key {
-			accounts[account] = NewJobMetrics()
+	jc := cache.GetResponseCache(ctx).JobsCache()
+	for _, j := range jc.Data.Jobs {
+		// get the account name
+		account, err := GetJobAccountName(j)
+		if err != nil {
+			slog.Error("failed to find account name in job", "error", err)
+			continue
 		}
-		state := j.JobStates[0]
-		state = strings.ToLower(state)
-		cpus := float64(j.CPUs.Number)
+		// build the map with the account name as the key and job metrics as the value
+		_, key := accounts[*account]
+		if !key {
+			// initialize a new metrics object if the key isnt found
+			accounts[*account] = NewJobMetrics()
+		}
+		// get the job state
+		state, err := GetJobState(j)
+		if err != nil {
+			slog.Error("failed to parse job state", "error", err)
+			continue
+		}
+		// get the cpus for the job
+		cpus, err := GetJobCPUs(j)
+		if err != nil {
+			slog.Error("failed to parse job cpus", "error", err)
+			continue
+		}
+		// these should never fail
 		pending := regexp.MustCompile(`^pending`)
 		running := regexp.MustCompile(`^running`)
 		suspended := regexp.MustCompile(`^suspended`)
+		// for each of the jobs, depending on the state,
+		// tally up the cpu count and increment the count of jobs for that state
 		switch {
-		case pending.MatchString(state):
-			if account == "uonlp" {
-				slog.Debug("adding cpus to pending cpus", "current cpus", accounts[account].pending_cpus, "adding", cpus)
-			}
-			accounts[account].pending++
-			accounts[account].pending_cpus += cpus
-		case running.MatchString(state):
-			accounts[account].running++
-			accounts[account].running_cpus += cpus
-		case suspended.MatchString(state):
-			accounts[account].suspended++
+		case pending.MatchString(*state):
+			accounts[*account].pending++
+			accounts[*account].pending_cpus += *cpus
+		case running.MatchString(*state):
+			accounts[*account].running++
+			accounts[*account].running_cpus += *cpus
+		case suspended.MatchString(*state):
+			accounts[*account].suspended++
 		}
 	}
 	return accounts
@@ -120,7 +104,7 @@ type AccountsCollector struct {
 
 func NewAccountsCollector(ctx context.Context) *AccountsCollector {
 	labels := []string{"account"}
-	ctx = context.WithValue(ctx, util.ApiAccountsEndpointKey, "/slurm/v0.0.40/jobs")
+	ctx = context.WithValue(ctx, types.ApiJobsEndpointKey, "/slurm/v0.0.40/jobs")
 	return &AccountsCollector{
 		ctx:          ctx,
 		pending:      prometheus.NewDesc("slurm_account_jobs_pending", "Pending jobs for account", labels, nil),
@@ -140,7 +124,7 @@ func (ac *AccountsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
-	am := ParseAccountsMetrics(AccountsData(ac.ctx))
+	am := ParseAccountsMetrics(ac.ctx)
 	for a := range am {
 		if am[a].pending > 0 {
 			ch <- prometheus.MustNewConstMetric(ac.pending, prometheus.GaugeValue, am[a].pending, a)

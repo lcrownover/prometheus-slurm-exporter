@@ -22,14 +22,19 @@ import (
 	"log/slog"
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/slurm"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
+var err error
+
 func main() {
+
 	// set up logging
 	lvl := slog.LevelInfo
 	_, found := os.LookupEnv("SLURM_EXPORTER_DEBUG")
@@ -45,6 +50,19 @@ func main() {
 	listenAddress, found := os.LookupEnv("SLURM_EXPORTER_LISTEN_ADDRESS")
 	if !found {
 		listenAddress = ":8080"
+	}
+
+	// Time in seconds for the cache to return a cached response
+	timeoutSecondsVal, found := os.LookupEnv("SLURM_EXPORTER_CACHE_TIMEOUT_SECONDS")
+	var timeoutSeconds int
+	if found {
+		timeoutSeconds, err = strconv.Atoi(timeoutSecondsVal)
+		if err != nil {
+			fmt.Println("SLURM_EXPORTER_CACHE_TIMEOUT_SECONDS must be a valid integer")
+			os.Exit(1)
+		}
+	} else {
+		timeoutSeconds = 5
 	}
 
 	apiUser, found := os.LookupEnv("SLURM_EXPORTER_API_USER")
@@ -67,15 +85,19 @@ func main() {
 	apiURL = util.CleanseBaseURL(apiURL)
 
 	ctx := context.Background()
-	ctx = context.WithValue(ctx, util.ApiUserKey, apiUser)
-	ctx = context.WithValue(ctx, util.ApiTokenKey, apiToken)
-	ctx = context.WithValue(ctx, util.ApiURLKey, apiURL)
+	ctx = context.WithValue(ctx, types.ApiUserKey, apiUser)
+	ctx = context.WithValue(ctx, types.ApiTokenKey, apiToken)
+	ctx = context.WithValue(ctx, types.ApiURLKey, apiURL)
+	ctx = context.WithValue(ctx, types.CacheTimeoutSeconds, timeoutSeconds)
 
 	r := prometheus.NewRegistry()
 
-	r.MustRegister(slurm.NewAccountsCollector(ctx)) // from accounts.go
-	r.MustRegister(slurm.NewOldAccountsCollector()) // from accounts.go
-	// r.MustRegister(slurm.NewCPUsCollector())       // from cpus.go
+	// r.MustRegister(slurm.NewAccountsCollector(ctx)) // from accounts.go
+	// r.MustRegister(slurm.NewOldAccountsCollector()) // from accounts.go
+
+	r.MustRegister(slurm.NewCPUsCollector(ctx)) // from cpus.go
+	r.MustRegister(slurm.NewCPUsCollectorOld()) // from cpus.go
+
 	// r.MustRegister(slurm.NewNodesCollector())      // from nodes.go
 	// r.MustRegister(slurm.NewNodeCollector())       // from node.go
 	// r.MustRegister(slurm.NewPartitionsCollector()) // from partitions.go

@@ -16,7 +16,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 package slurm
 
 import (
-	"io/ioutil"
+	"context"
+	"io"
 	"log"
 	"os/exec"
 	"strconv"
@@ -25,44 +26,26 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-type CPUsMetrics struct {
+type cpusMetrics struct {
 	alloc float64
 	idle  float64
 	other float64
 	total float64
 }
 
-func CPUsGetMetrics() *CPUsMetrics {
-	return ParseCPUsMetrics(CPUsData())
+func NewCPUsMetrics() *cpusMetrics {
+	return &cpusMetrics{}
 }
 
-func ParseCPUsMetrics(input []byte) *CPUsMetrics {
-	var cm CPUsMetrics
-	if strings.Contains(string(input), "/") {
-		splitted := strings.Split(strings.TrimSpace(string(input)), "/")
-		cm.alloc, _ = strconv.ParseFloat(splitted[0], 64)
-		cm.idle, _ = strconv.ParseFloat(splitted[1], 64)
-		cm.other, _ = strconv.ParseFloat(splitted[2], 64)
-		cm.total, _ = strconv.ParseFloat(splitted[3], 64)
-	}
-	return &cm
+func (cm *cpusMetrics) AddAlloc(n float64) {
+	cm.alloc += n
 }
 
-// Execute the sinfo command and return its output
-func CPUsData() []byte {
-	cmd := exec.Command("sinfo", "-h", "-o %C")
-	stdout, err := cmd.StdoutPipe()
-	if err != nil {
-		log.Fatal(err)
-	}
-	if err := cmd.Start(); err != nil {
-		log.Fatal(err)
-	}
-	out, _ := ioutil.ReadAll(stdout)
-	if err := cmd.Wait(); err != nil {
-		log.Fatal(err)
-	}
-	return out
+func ParseCPUsMetrics(ctx context.Context) *cpusMetrics {
+	cm := NewCPUsMetrics()
+	// jc := cache.GetResponseCache(ctx).JobsCache()
+
+	return cm
 }
 
 /*
@@ -70,9 +53,9 @@ func CPUsData() []byte {
  * Slurm scheduler metrics into it.
  * https://godoc.org/github.com/prometheus/client_golang/prometheus#Collector
  */
-
-func NewCPUsCollector() *CPUsCollector {
+func NewCPUsCollector(ctx context.Context) *CPUsCollector {
 	return &CPUsCollector{
+		ctx:   ctx,
 		alloc: prometheus.NewDesc("slurm_cpus_alloc", "Allocated CPUs", nil, nil),
 		idle:  prometheus.NewDesc("slurm_cpus_idle", "Idle CPUs", nil, nil),
 		other: prometheus.NewDesc("slurm_cpus_other", "Mix CPUs", nil, nil),
@@ -81,6 +64,7 @@ func NewCPUsCollector() *CPUsCollector {
 }
 
 type CPUsCollector struct {
+	ctx   context.Context
 	alloc *prometheus.Desc
 	idle  *prometheus.Desc
 	other *prometheus.Desc
@@ -94,8 +78,79 @@ func (cc *CPUsCollector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- cc.other
 	ch <- cc.total
 }
+
 func (cc *CPUsCollector) Collect(ch chan<- prometheus.Metric) {
-	cm := CPUsGetMetrics()
+	cm := ParseCPUsMetrics(cc.ctx)
+	ch <- prometheus.MustNewConstMetric(cc.alloc, prometheus.GaugeValue, cm.alloc)
+	ch <- prometheus.MustNewConstMetric(cc.idle, prometheus.GaugeValue, cm.idle)
+	ch <- prometheus.MustNewConstMetric(cc.other, prometheus.GaugeValue, cm.other)
+	ch <- prometheus.MustNewConstMetric(cc.total, prometheus.GaugeValue, cm.total)
+}
+
+//
+//
+// all the old stuff below
+//
+//
+
+// Execute the sinfo command and return its output
+func CPUsDataOld() []byte {
+	cmd := exec.Command("sinfo", "-h", "-o %C")
+	stdout, err := cmd.StdoutPipe()
+	if err != nil {
+		log.Fatal(err)
+	}
+	if err := cmd.Start(); err != nil {
+		log.Fatal(err)
+	}
+	out, _ := io.ReadAll(stdout)
+	if err := cmd.Wait(); err != nil {
+		log.Fatal(err)
+	}
+	return out
+}
+
+func CPUsGetMetricsOld() *cpusMetrics {
+	return ParseCPUsMetricsOld(CPUsDataOld())
+}
+
+func ParseCPUsMetricsOld(input []byte) *cpusMetrics {
+	var cm cpusMetrics
+	if strings.Contains(string(input), "/") {
+		splitted := strings.Split(strings.TrimSpace(string(input)), "/")
+		cm.alloc, _ = strconv.ParseFloat(splitted[0], 64)
+		cm.idle, _ = strconv.ParseFloat(splitted[1], 64)
+		cm.other, _ = strconv.ParseFloat(splitted[2], 64)
+		cm.total, _ = strconv.ParseFloat(splitted[3], 64)
+	}
+	return &cm
+}
+
+func NewCPUsCollectorOld() *CPUsCollector {
+	return &CPUsCollector{
+		alloc: prometheus.NewDesc("slurm_cpus_alloc", "Allocated CPUs", nil, nil),
+		idle:  prometheus.NewDesc("slurm_cpus_idle", "Idle CPUs", nil, nil),
+		other: prometheus.NewDesc("slurm_cpus_other", "Mix CPUs", nil, nil),
+		total: prometheus.NewDesc("slurm_cpus_total", "Total CPUs", nil, nil),
+	}
+}
+
+type CPUsCollectorOld struct {
+	alloc *prometheus.Desc
+	idle  *prometheus.Desc
+	other *prometheus.Desc
+	total *prometheus.Desc
+}
+
+// Send all metric descriptions
+func (cc *CPUsCollectorOld) Describe(ch chan<- *prometheus.Desc) {
+	ch <- cc.alloc
+	ch <- cc.idle
+	ch <- cc.other
+	ch <- cc.total
+}
+func (cc *CPUsCollectorOld) Collect(ch chan<- prometheus.Metric) {
+	cm := CPUsGetMetricsOld()
 	ch <- prometheus.MustNewConstMetric(cc.alloc, prometheus.GaugeValue, cm.alloc)
 	ch <- prometheus.MustNewConstMetric(cc.idle, prometheus.GaugeValue, cm.idle)
 	ch <- prometheus.MustNewConstMetric(cc.other, prometheus.GaugeValue, cm.other)

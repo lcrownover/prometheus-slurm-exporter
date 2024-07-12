@@ -6,6 +6,8 @@ import (
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 )
 
 // CleanseBaseURL removes any unneccessary elements from the provided url,
@@ -26,10 +28,10 @@ type SlurmRestResponse struct {
 	Body       []byte
 }
 
-func newSlurmRestRequest(ctx context.Context, k key) (*slurmRestRequest, error) {
-	apiUser := ctx.Value(ApiUserKey).(string)
-	apiToken := ctx.Value(ApiTokenKey).(string)
-	apiURL := ctx.Value(ApiURLKey).(string)
+func newSlurmRestRequest(ctx context.Context, k types.Key) (*slurmRestRequest, error) {
+	apiUser := ctx.Value(types.ApiUserKey).(string)
+	apiToken := ctx.Value(types.ApiTokenKey).(string)
+	apiURL := ctx.Value(types.ApiURLKey).(string)
 	apiEndpoint := ctx.Value(k).(string)
 
 	url := fmt.Sprintf("http://%s/%s", apiURL, apiEndpoint)
@@ -68,7 +70,7 @@ func (sr slurmRestRequest) Send() (*SlurmRestResponse, error) {
 
 // NewGETRequest is a wrapper for net/http NewRequest so you only have to pass
 // the endpoint. This packages the headers and client.
-func NewSlurmGETRequest(ctx context.Context, endpointCtxKey key) (*SlurmRestResponse, error) {
+func NewSlurmGETRequest(ctx context.Context, endpointCtxKey types.Key) (*SlurmRestResponse, error) {
 	nr, err := newSlurmRestRequest(ctx, endpointCtxKey)
 	if err != nil {
 		return nil, fmt.Errorf("failed to generate new slurm rest request: %v", err)
