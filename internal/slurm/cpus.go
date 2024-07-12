@@ -52,9 +52,17 @@ func ParseCPUsMetrics(ctx context.Context) *cpusMetrics {
 		state, err := GetJobState(j)
 		if err != nil {
 			slog.Error("failed to get job state", "error", err)
+			continue
+		}
+		cpus, err := GetJobCPUs(j)
+		if err != nil {
+			slog.Error("failed to get job cpus", "error", err)
+			continue
+		}
+		if *state == JobStateRunning {
+			cm.AddAlloc(*cpus)
 		}
 	}
-
 	return cm
 }
 
