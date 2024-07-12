@@ -17,15 +17,14 @@ func (rc responseCache) JobsCache() *jobsCache {
 }
 
 type jobsCache struct {
-	ctx            context.Context
-	data           *types.V0040OpenapiJobInfoResp
-	expiration     int64
-	lock           *sync.Mutex
-	timeoutSeconds int
+	ctx        context.Context
+	data       *types.V0040OpenapiJobInfoResp
+	expiration int64
+	lock       *sync.Mutex
 }
 
-func newJobsCache(ctx context.Context, timeoutSeconds int) *jobsCache {
-	return &jobsCache{ctx: ctx, data: nil, expiration: util.NowEpoch(), lock: &sync.Mutex{}, timeoutSeconds: timeoutSeconds}
+func newJobsCache(ctx context.Context) *jobsCache {
+	return &jobsCache{ctx: ctx, data: nil, expiration: util.NowEpoch(), lock: &sync.Mutex{}}
 }
 
 func (jc *jobsCache) Jobs() (*[]types.V0040JobInfo, error) {
@@ -40,8 +39,8 @@ func (jc *jobsCache) Expiration() int64 {
 	return jc.expiration
 }
 
-func (jc *jobsCache) TimeoutSeconds() int64 {
-	return int64(jc.timeoutSeconds)
+func (jc *jobsCache) Ctx() context.Context {
+	return jc.ctx
 }
 
 func (jc *jobsCache) Refresh() error {

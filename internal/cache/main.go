@@ -17,13 +17,6 @@ var lock = &sync.Mutex{}
 // Many of the slurm module functions need to share requests, so we cache the
 // responses and share in a singleton
 func GetResponseCache(ctx context.Context) *responseCache {
-	var timeoutSeconds int
-	timeoutSecondsVal := ctx.Value(types.CacheTimeoutSeconds)
-	if timeoutSecondsVal == nil {
-		slog.Error("timeoutSeconds should have been set in ctx. report to developer.")
-		timeoutSeconds = 5
-	}
-	timeoutSeconds = timeoutSecondsVal.(int)
 	lock.Lock()
 	defer lock.Unlock()
 	// cache exists, return it
@@ -31,31 +24,42 @@ func GetResponseCache(ctx context.Context) *responseCache {
 		return singleResponseCache
 	}
 	// create a new cache if there's not a global one
-	return newResponseCache(ctx, timeoutSeconds)
+	return newResponseCache(ctx)
 }
 
 // For each type of slurmrestd request, we add a pointer to the request cache
 // This cache object is a singleton shared across all the slurm module code
 // so we don't make multiple requests to the same endpoint for different metrics
 type responseCache struct {
-	ctx            context.Context
-	timeoutSeconds int
-	jobsCache      *jobsCache
+	ctx       context.Context
+	jobsCache *jobsCache
 }
 
-func newResponseCache(ctx context.Context, timeoutSeconds int) *responseCache {
+func newResponseCache(ctx context.Context) *responseCache {
 	return &responseCache{
-		ctx:            ctx,
-		timeoutSeconds: timeoutSeconds,
-		jobsCache:      newJobsCache(ctx, timeoutSeconds),
+		ctx:       ctx,
+		jobsCache: newJobsCache(ctx),
 	}
 }
 
-type Expirable interface {
+type RefreshableCache interface {
 	Expiration() int64
-	TimeoutSeconds() int64
+	Ctx() context.Context
+	Refresh() error
 }
 
-func IsExpired[T Expirable](item T) bool {
-	return time.Now().Unix() > item.Expiration()+item.TimeoutSeconds()
+func TimeoutSeconds(ctx context.Context) int64 {
+	var timeoutSeconds int64
+	timeoutSecondsVal := ctx.Value(types.CacheTimeoutSecondsKey)
+	if timeoutSecondsVal == nil {
+		slog.Error("timeout seconds should not be nil. report to developer")
+		timeoutSeconds = 5
+	} else {
+		timeoutSeconds = timeoutSecondsVal.(int64)
+	}
+	return int64(timeoutSeconds)
+}
+
+func IsExpired[T RefreshableCache](item T) bool {
+	return time.Now().Unix() > item.Expiration()+TimeoutSeconds(item.Ctx())
 }

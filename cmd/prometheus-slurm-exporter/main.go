@@ -88,7 +88,7 @@ func main() {
 	ctx = context.WithValue(ctx, types.ApiUserKey, apiUser)
 	ctx = context.WithValue(ctx, types.ApiTokenKey, apiToken)
 	ctx = context.WithValue(ctx, types.ApiURLKey, apiURL)
-	ctx = context.WithValue(ctx, types.CacheTimeoutSeconds, timeoutSeconds)
+	ctx = context.WithValue(ctx, types.CacheTimeoutSecondsKey, timeoutSeconds)
 
 	r := prometheus.NewRegistry()
 
