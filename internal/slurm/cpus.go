@@ -126,12 +126,12 @@ func ParseCPUsMetricsOld(input []byte) *cpusMetrics {
 	return &cm
 }
 
-func NewCPUsCollectorOld() *CPUsCollector {
-	return &CPUsCollector{
-		alloc: prometheus.NewDesc("slurm_cpus_alloc", "Allocated CPUs", nil, nil),
-		idle:  prometheus.NewDesc("slurm_cpus_idle", "Idle CPUs", nil, nil),
-		other: prometheus.NewDesc("slurm_cpus_other", "Mix CPUs", nil, nil),
-		total: prometheus.NewDesc("slurm_cpus_total", "Total CPUs", nil, nil),
+func NewCPUsCollectorOld() *CPUsCollectorOld {
+	return &CPUsCollectorOld{
+		alloc: prometheus.NewDesc("OLD slurm_cpus_alloc", "Allocated CPUs", nil, nil),
+		idle:  prometheus.NewDesc("OLD slurm_cpus_idle", "Idle CPUs", nil, nil),
+		other: prometheus.NewDesc("OLD slurm_cpus_other", "Mix CPUs", nil, nil),
+		total: prometheus.NewDesc("OLD slurm_cpus_total", "Total CPUs", nil, nil),
 	}
 }
 
