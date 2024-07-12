@@ -73,20 +73,16 @@ func ParseAccountsMetrics(ctx context.Context) map[string]*JobMetrics {
 			slog.Error("failed to parse job cpus", "error", err)
 			continue
 		}
-		// these should never fail
-		pending := regexp.MustCompile(`^pending`)
-		running := regexp.MustCompile(`^running`)
-		suspended := regexp.MustCompile(`^suspended`)
 		// for each of the jobs, depending on the state,
 		// tally up the cpu count and increment the count of jobs for that state
 		switch {
-		case pending.MatchString(*state):
+		case *state == JobStatePending:
 			accounts[*account].pending++
 			accounts[*account].pending_cpus += *cpus
-		case running.MatchString(*state):
+		case *state == JobStateRunning:
 			accounts[*account].running++
 			accounts[*account].running_cpus += *cpus
-		case suspended.MatchString(*state):
+		case *state == JobStateSuspended:
 			accounts[*account].suspended++
 		}
 	}

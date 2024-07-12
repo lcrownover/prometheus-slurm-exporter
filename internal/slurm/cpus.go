@@ -19,10 +19,12 @@ import (
 	"context"
 	"io"
 	"log"
+	"log/slog"
 	"os/exec"
 	"strconv"
 	"strings"
 
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/cache"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -41,9 +43,17 @@ func (cm *cpusMetrics) AddAlloc(n float64) {
 	cm.alloc += n
 }
 
+// ParseCPUMetrics pulls out total cluster cpu states of alloc,idle,other,total
 func ParseCPUsMetrics(ctx context.Context) *cpusMetrics {
 	cm := NewCPUsMetrics()
-	// jc := cache.GetResponseCache(ctx).JobsCache()
+
+	jc := cache.GetResponseCache(ctx).JobsCache()
+	for _, j := range jc.Data.Jobs {
+		state, err := GetJobState(j)
+		if err != nil {
+			slog.Error("failed to get job state", "error", err)
+		}
+	}
 
 	return cm
 }
