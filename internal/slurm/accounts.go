@@ -17,6 +17,7 @@ package slurm
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"log/slog"
 	"os/exec"
@@ -45,10 +46,14 @@ func NewJobMetrics() *JobMetrics {
 
 // ParseAccountsMetrics gets the response body of jobs from SLURM and
 // parses it into a map of "accountName": *JobMetrics
-func ParseAccountsMetrics(ctx context.Context) map[string]*JobMetrics {
+func ParseAccountsMetrics(ctx context.Context) (map[string]*JobMetrics, error) {
 	accounts := make(map[string]*JobMetrics)
 	jc := cache.GetResponseCache(ctx).JobsCache()
-	for _, j := range jc.Jobs() {
+	jobs, err := jc.Jobs()
+	if err != nil {
+		return nil, fmt.Errorf("failed to get jobs for accounts metrics: %v", err)
+	}
+	for _, j := range *jobs {
 		// get the account name
 		account, err := GetJobAccountName(j)
 		if err != nil {
@@ -86,7 +91,7 @@ func ParseAccountsMetrics(ctx context.Context) map[string]*JobMetrics {
 			accounts[*account].suspended++
 		}
 	}
-	return accounts
+	return accounts, nil
 }
 
 type AccountsCollector struct {
@@ -120,7 +125,11 @@ func (ac *AccountsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
-	am := ParseAccountsMetrics(ac.ctx)
+	am, err := ParseAccountsMetrics(ac.ctx)
+	if err != nil {
+		slog.Error("failed to collect accounts metrics", "error", err)
+		return
+	}
 	for a := range am {
 		if am[a].pending > 0 {
 			ch <- prometheus.MustNewConstMetric(ac.pending, prometheus.GaugeValue, am[a].pending, a)

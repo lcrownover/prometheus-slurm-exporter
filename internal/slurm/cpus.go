@@ -17,6 +17,7 @@ package slurm
 
 import (
 	"context"
+	"fmt"
 	"io"
 	"log"
 	"log/slog"
@@ -44,12 +45,15 @@ func (cm *cpusMetrics) AddAlloc(n float64) {
 }
 
 // ParseCPUMetrics pulls out total cluster cpu states of alloc,idle,other,total
-func ParseCPUsMetrics(ctx context.Context) *cpusMetrics {
+func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
 	cm := NewCPUsMetrics()
 
 	jc := cache.GetResponseCache(ctx).JobsCache()
-
-	for _, j := range jc.Jobs() {
+	jobs, err := jc.Jobs()
+	if err != nil {
+		return nil, fmt.Errorf("failed to get jobs for cpu metrics: %v", err)
+	}
+	for _, j := range *jobs {
 		state, err := GetJobState(j)
 		if err != nil {
 			slog.Error("failed to get job state", "error", err)
@@ -64,7 +68,7 @@ func ParseCPUsMetrics(ctx context.Context) *cpusMetrics {
 			cm.AddAlloc(*cpus)
 		}
 	}
-	return cm
+	return cm, nil
 }
 
 /*
@@ -99,7 +103,11 @@ func (cc *CPUsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (cc *CPUsCollector) Collect(ch chan<- prometheus.Metric) {
-	cm := ParseCPUsMetrics(cc.ctx)
+	cm, err := ParseCPUsMetrics(cc.ctx)
+	if err != nil {
+		slog.Error("failed to collect cpus metrics", "error", err)
+		return
+	}
 	ch <- prometheus.MustNewConstMetric(cc.alloc, prometheus.GaugeValue, cm.alloc)
 	ch <- prometheus.MustNewConstMetric(cc.idle, prometheus.GaugeValue, cm.idle)
 	ch <- prometheus.MustNewConstMetric(cc.other, prometheus.GaugeValue, cm.other)

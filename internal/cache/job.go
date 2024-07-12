@@ -28,9 +28,12 @@ func newJobsCache(ctx context.Context, timeoutSeconds int) *jobsCache {
 	return &jobsCache{ctx: ctx, data: nil, expiration: util.NowEpoch(), lock: &sync.Mutex{}, timeoutSeconds: timeoutSeconds}
 }
 
-func (jc *jobsCache) Jobs() []types.V0040JobInfo {
-	jc.Refresh()
-	return jc.data.Jobs
+func (jc *jobsCache) Jobs() (*[]types.V0040JobInfo, error) {
+	err := jc.Refresh()
+	if err != nil {
+		return nil, fmt.Errorf("failed to refresh jobs cache: %v", err)
+	}
+	return &jc.data.Jobs, nil
 }
 
 func (jc *jobsCache) Expiration() int64 {
@@ -39,6 +42,7 @@ func (jc *jobsCache) Expiration() int64 {
 
 func (jc *jobsCache) Refresh() error {
 	if !IsExpired(jc, jc.timeoutSeconds) {
+		slog.Debug("returning cached job response")
 		return nil
 	}
 	resp, err := util.NewSlurmGETRequest(jc.ctx, types.ApiJobsEndpointKey)
