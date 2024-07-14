@@ -1,5 +1,8 @@
 # Prometheus Slurm Exporter
 
+> [!Warning]
+> This repository is under transition from the previous maintainers. Here's a link to the Trello board for progress: https://trello.com/b/6sUTWm7z/prometheus-slurm-exporter
+
 Prometheus collector and exporter for metrics extracted from the [Slurm](https://slurm.schedmd.com/overview.html) resource scheduling system.
 
 ## Exported Metrics
