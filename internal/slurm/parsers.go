@@ -12,6 +12,9 @@ type JobState int
 
 const (
 	JobStatePending JobState = iota
+	JobStateCompleted
+	JobStateFailed
+	JobStateOutOfMemory
 	JobStateRunning
 	JobStateSuspended
 	JobStateUnknown
@@ -51,19 +54,28 @@ func GetJobState(job types.V0040JobInfo) (*JobState, error) {
 	state := (*states)[0].(string)
 	state = strings.ToLower(state)
 
+	completed := regexp.MustCompile(`^completed`)
 	pending := regexp.MustCompile(`^pending`)
+	failed := regexp.MustCompile(`^failed`)
 	running := regexp.MustCompile(`^running`)
 	suspended := regexp.MustCompile(`^suspended`)
+	out_of_memory := regexp.MustCompile(`^out_of_memory`)
 
 	var stateUnit JobState
 
 	switch {
+	case completed.MatchString(state):
+		stateUnit = JobStateCompleted
 	case pending.MatchString(state):
 		stateUnit = JobStatePending
+	case failed.MatchString(state):
+		stateUnit = JobStateFailed
 	case running.MatchString(state):
 		stateUnit = JobStateRunning
 	case suspended.MatchString(state):
 		stateUnit = JobStateSuspended
+	case out_of_memory.MatchString(state):
+		stateUnit = JobStateOutOfMemory
 	default:
 		return nil, fmt.Errorf("failed to match job state against known states: %v", state)
 	}
