@@ -19,12 +19,12 @@ func (rc responseCache) JobsCache() *jobsCache {
 type jobsCache struct {
 	ctx        context.Context
 	data       *types.V0040OpenapiJobInfoResp
-	expiration int64
+	lastRefresh int64
 	lock       *sync.Mutex
 }
 
 func newJobsCache(ctx context.Context) *jobsCache {
-	return &jobsCache{ctx: ctx, data: nil, expiration: util.NowEpoch(), lock: &sync.Mutex{}}
+	return &jobsCache{ctx: ctx, data: nil, lastRefresh: util.NowEpoch(), lock: &sync.Mutex{}}
 }
 
 func (jc *jobsCache) Jobs() (*[]types.V0040JobInfo, error) {
@@ -35,8 +35,8 @@ func (jc *jobsCache) Jobs() (*[]types.V0040JobInfo, error) {
 	return &jc.data.Jobs, nil
 }
 
-func (jc *jobsCache) Expiration() int64 {
-	return jc.expiration
+func (jc *jobsCache) LastRefresh() int64 {
+	return jc.lastRefresh
 }
 
 func (jc *jobsCache) Ctx() context.Context {
@@ -62,6 +62,6 @@ func (jc *jobsCache) Refresh() error {
 		return fmt.Errorf("failed to unmarshall job response data: %v", err)
 	}
 	jc.data = &jobsResp
-	jc.expiration = util.NowEpoch()
+	jc.lastRefresh = util.NowEpoch()
 	return nil
 }

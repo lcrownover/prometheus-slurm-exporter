@@ -43,7 +43,7 @@ func newResponseCache(ctx context.Context) *responseCache {
 }
 
 type RefreshableCache interface {
-	Expiration() int64
+	LastRefresh() int64
 	Ctx() context.Context
 	Refresh() error
 }
@@ -57,9 +57,10 @@ func TimeoutSeconds(ctx context.Context) int64 {
 	} else {
 		timeoutSeconds = int64(timeoutSecondsVal.(int))
 	}
+	slog.Debug("timeout seconds", "value", timeoutSeconds)
 	return int64(timeoutSeconds)
 }
 
 func IsExpired[T RefreshableCache](item T) bool {
-	return time.Now().Unix() > item.Expiration()+TimeoutSeconds(item.Ctx())
+	return time.Now().Unix() > item.LastRefresh()+TimeoutSeconds(item.Ctx())
 }
