@@ -126,7 +126,7 @@ func GetNodeState(node types.V0040Node) (*NodeState, error) {
 	case resv.MatchString(state):
 		stateUnit = NodeStateResv
 	default:
-		return nil, fmt.Errorf("failed to match job state against known states: %v", state)
+		return nil, fmt.Errorf("failed to match cpu state against known states: %v", state)
 	}
 
 	return &stateUnit, nil
