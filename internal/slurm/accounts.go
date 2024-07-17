@@ -27,7 +27,6 @@ import (
 
 	"io"
 
-	"github.com/lcrownover/prometheus-slurm-exporter/internal/cache"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -48,12 +47,11 @@ func NewJobMetrics() *JobMetrics {
 // parses it into a map of "accountName": *JobMetrics
 func ParseAccountsMetrics(ctx context.Context) (map[string]*JobMetrics, error) {
 	accounts := make(map[string]*JobMetrics)
-	jc := cache.GetResponseCache(ctx).JobsCache()
-	jobs, err := jc.Jobs()
+	jobs, err := GetSlurmRestJobs(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get jobs for accounts metrics: %v", err)
 	}
-	for _, j := range *jobs {
+	for _, j := range jobs {
 		// get the account name
 		account, err := GetJobAccountName(j)
 		if err != nil {
