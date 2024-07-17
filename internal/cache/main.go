@@ -55,7 +55,7 @@ func TimeoutSeconds(ctx context.Context) int64 {
 		slog.Error("timeout seconds should not be nil. report to developer")
 		timeoutSeconds = 5
 	} else {
-		timeoutSeconds = timeoutSecondsVal.(int64)
+		timeoutSeconds = int64(timeoutSecondsVal.(int))
 	}
 	return int64(timeoutSeconds)
 }

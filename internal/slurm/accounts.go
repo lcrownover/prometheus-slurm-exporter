@@ -80,14 +80,14 @@ func ParseAccountsMetrics(ctx context.Context) (map[string]*JobMetrics, error) {
 		}
 		// for each of the jobs, depending on the state,
 		// tally up the cpu count and increment the count of jobs for that state
-		switch {
-		case *state == JobStatePending:
+		switch *state {
+		case JobStatePending:
 			accounts[*account].pending++
 			accounts[*account].pending_cpus += *cpus
-		case *state == JobStateRunning:
+		case JobStateRunning:
 			accounts[*account].running++
 			accounts[*account].running_cpus += *cpus
-		case *state == JobStateSuspended:
+		case JobStateSuspended:
 			accounts[*account].suspended++
 		}
 	}
