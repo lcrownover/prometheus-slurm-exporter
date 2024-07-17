@@ -26,7 +26,6 @@ import (
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/slurm"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
-	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
@@ -82,7 +81,7 @@ func main() {
 		fmt.Println("You must set SLURM_EXPORTER_API_URL. Example: localhost:6820")
 		os.Exit(1)
 	}
-	apiURL = util.CleanseBaseURL(apiURL)
+	apiURL = slurm.CleanseBaseURL(apiURL)
 
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, types.ApiUserKey, apiUser)
