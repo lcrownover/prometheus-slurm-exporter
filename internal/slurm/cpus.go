@@ -25,6 +25,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -74,6 +75,7 @@ func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
  * https://godoc.org/github.com/prometheus/client_golang/prometheus#Collector
  */
 func NewCPUsCollector(ctx context.Context) *CPUsCollector {
+	ctx = context.WithValue(ctx, types.ApiJobsEndpointKey, "/slurm/v0.0.40/jobs")
 	return &CPUsCollector{
 		ctx:   ctx,
 		alloc: prometheus.NewDesc("slurm_cpus_alloc", "Allocated CPUs", nil, nil),
