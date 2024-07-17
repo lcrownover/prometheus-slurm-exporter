@@ -57,10 +57,12 @@ func TimeoutSeconds(ctx context.Context) int64 {
 	} else {
 		timeoutSeconds = int64(timeoutSecondsVal.(int))
 	}
-	slog.Debug("timeout seconds", "value", timeoutSeconds)
 	return int64(timeoutSeconds)
 }
 
 func IsExpired[T RefreshableCache](item T) bool {
+	slog.Debug("timeout seconds", "value", TimeoutSeconds(item.Ctx()))
+	slog.Debug("last refresh", "value", item.LastRefresh())
+	slog.Debug("time now unix", "value", time.Now().Unix())
 	return time.Now().Unix() > item.LastRefresh()+TimeoutSeconds(item.Ctx())
 }
