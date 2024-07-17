@@ -24,7 +24,7 @@ type jobsCache struct {
 }
 
 func newJobsCache(ctx context.Context) *jobsCache {
-	return &jobsCache{ctx: ctx, data: nil, lastRefresh: util.NowEpoch(), lock: &sync.Mutex{}}
+	return &jobsCache{ctx: ctx, data: nil, lastRefresh: 0, lock: &sync.Mutex{}}
 }
 
 func (jc *jobsCache) Jobs() (*[]types.V0040JobInfo, error) {
