@@ -46,13 +46,11 @@ func (cm *cpusMetrics) AddAlloc(n float64) {
 // ParseCPUMetrics pulls out total cluster cpu states of alloc,idle,other,total
 func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
 	cm := NewCPUsMetrics()
-
-	jc := cache.GetResponseCache(ctx).JobsCache()
-	jobs, err := jc.Jobs()
+	jobs, err := GetSlurmRestJobs(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get jobs for cpu metrics: %v", err)
 	}
-	for _, j := range *jobs {
+	for _, j := range jobs {
 		state, err := GetJobState(j)
 		if err != nil {
 			slog.Error("failed to get job state", "error", err)
