@@ -18,6 +18,7 @@ const (
 	JobStateRunning
 	JobStateSuspended
 	JobStateUnknown
+	JobStateTimeout
 )
 
 type NodeState int
@@ -60,6 +61,7 @@ func GetJobState(job types.V0040JobInfo) (*JobState, error) {
 	running := regexp.MustCompile(`^running`)
 	suspended := regexp.MustCompile(`^suspended`)
 	out_of_memory := regexp.MustCompile(`^out_of_memory`)
+	timeout := regexp.MustCompile(`^timeout`)
 
 	var stateUnit JobState
 
@@ -76,6 +78,8 @@ func GetJobState(job types.V0040JobInfo) (*JobState, error) {
 		stateUnit = JobStateSuspended
 	case out_of_memory.MatchString(state):
 		stateUnit = JobStateOutOfMemory
+	case timeout.MatchString(state):
+		stateUnit = JobStateTimeout
 	default:
 		return nil, fmt.Errorf("failed to match job state against known states: %v", state)
 	}
