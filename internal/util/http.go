@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"log/slog"
 	"net/http"
 	"strings"
 
@@ -29,9 +30,11 @@ type SlurmRestResponse struct {
 }
 
 func newSlurmRestRequest(ctx context.Context, k types.Key) (*slurmRestRequest, error) {
+	slog.Debug("newSlurmRestRequest k", "value", k)
 	apiUser := ctx.Value(types.ApiUserKey).(string)
 	apiToken := ctx.Value(types.ApiTokenKey).(string)
 	apiURL := ctx.Value(types.ApiURLKey).(string)
+	slog.Debug("value of that k", "value", ctx.Value(k))
 	apiEndpoint := ctx.Value(k).(string)
 
 	url := fmt.Sprintf("http://%s/%s", apiURL, apiEndpoint)
