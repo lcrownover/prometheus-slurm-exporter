@@ -25,6 +25,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -40,12 +41,9 @@ func NewCPUsMetrics() *cpusMetrics {
 }
 
 // ParseCPUMetrics pulls out total cluster cpu states of alloc,idle,other,total
-func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
+func ParseCPUsMetrics(nodesResp types.V0040OpenapiNodesResp, jobsResp types.V0040OpenapiJobInfoResp) (*cpusMetrics, error) {
 	cm := NewCPUsMetrics()
-	jobs, err := GetSlurmRestJobs(ctx)
-	if err != nil {
-		return nil, fmt.Errorf("failed to get jobs for cpu metrics: %v", err)
-	}
+	jobs := jobsResp.Jobs
 	for _, j := range jobs {
 		state, err := GetJobState(j)
 		if err != nil {
@@ -63,10 +61,7 @@ func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
 		}
 	}
 	// total is just the total number of cpus in the cluster
-	nodes, err := GetSlurmRestNodes(ctx)
-	if err != nil {
-		return nil, fmt.Errorf("failed to get nodes for cpu metrics: %v", err)
-	}
+	nodes := nodesResp.Nodes
 	for _, n := range nodes {
 		if *n.Cpus == 1 {
 			// TODO: This probably needs to be a call to partitions to get all nodes
@@ -129,7 +124,27 @@ func (cc *CPUsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (cc *CPUsCollector) Collect(ch chan<- prometheus.Metric) {
-	cm, err := ParseCPUsMetrics(cc.ctx)
+	jobsRespBytes, err := GetSlurmRestJobsResponse(cc.ctx)
+	if err != nil {
+		slog.Error("failed to get jobs response for cpu metrics", "error", err)
+		return
+	}
+	jobsResp, err := UnmarshalJobsResponse(jobsRespBytes)
+	if err != nil {
+		slog.Error("failed to unmarshal jobs response for cpu metrics", "error", err)
+		return
+	}
+	nodeRespBytes, err := GetSlurmRestNodesResponse(cc.ctx)
+	if err != nil {
+		slog.Error("failed to get nodes response for cpu metrics", "error", err)
+		return
+	}
+	nodesResp, err := UnmarshalNodesResponse(nodeRespBytes)
+	if err != nil {
+		slog.Error("failed to unmarshal nodes response for cpu metrics", "error", err)
+		return
+	}
+	cm, err := ParseCPUsMetrics(*nodesResp, *jobsResp)
 	if err != nil {
 		slog.Error("failed to collect cpus metrics", "error", err)
 		return

@@ -84,8 +84,8 @@ func newSlurmGETRequest(ctx context.Context, endpointCtxKey types.Key) (*SlurmRe
 	return resp, nil
 }
 
-// GetSlurmRestJobs retrieves the list of jobs in the slurm queue
-func GetSlurmRestJobs(ctx context.Context) ([]types.V0040JobInfo, error) {
+// GetSlurmRestJobResponse retrieves response bytes from slurm REST api
+func GetSlurmRestJobResponse(ctx context.Context) ([]byte, error) {
 	resp, err := newSlurmGETRequest(ctx, types.ApiJobsEndpointKey)
 	if err != nil {
 		return nil, fmt.Errorf("failed to perform get request for job data: %v", err)
@@ -94,16 +94,21 @@ func GetSlurmRestJobs(ctx context.Context) ([]types.V0040JobInfo, error) {
 		slog.Debug("incorrect status code for job data", "code", resp.StatusCode, "body", string(resp.Body))
 		return nil, fmt.Errorf("received incorrect status code for job data")
 	}
+	return resp.Body, nil
+}
+
+// UnmarshalJobResponse converts the response bytes into a slurm type
+func UnmarshalJobResponse(b []byte) (*types.V0040OpenapiJobInfoResp, error) {
 	var jobsResp types.V0040OpenapiJobInfoResp
-	err = json.Unmarshal(resp.Body, &jobsResp)
+	err := json.Unmarshal(b, &jobsResp)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshall job response data: %v", err)
 	}
-	return jobsResp.Jobs, nil
+	return &jobsResp, nil
 }
 
-// GetSlurmRestNodes retrieves the list of nodes registered to slurm
-func GetSlurmRestNodes(ctx context.Context) ([]types.V0040Node, error) {
+// GetSlurmRestNodesResponse retrieves the list of nodes registered to slurm
+func GetSlurmRestNodesResponse(ctx context.Context) ([]byte, error) {
 	resp, err := newSlurmGETRequest(ctx, types.ApiNodesEndpointKey)
 	if err != nil {
 		return nil, fmt.Errorf("failed to perform get request for node data: %v", err)
@@ -112,10 +117,15 @@ func GetSlurmRestNodes(ctx context.Context) ([]types.V0040Node, error) {
 		slog.Debug("incorrect status code for node data", "code", resp.StatusCode, "body", string(resp.Body))
 		return nil, fmt.Errorf("received incorrect status code for node data")
 	}
+	return resp.Body, nil
+}
+
+// UnmarshalNodesResponse converts the response bytes into a slurm type
+func UnmarshalNodesResponse(b []byte) (*types.V0040OpenapiNodesResp, error) {
 	var nodesResp types.V0040OpenapiNodesResp
-	err = json.Unmarshal(resp.Body, &nodesResp)
+	err := json.Unmarshal(b, &nodesResp)
 	if err != nil {
-		return nil, fmt.Errorf("failed to unmarshall node response data: %v", err)
+		return nil, fmt.Errorf("failed to unmarshall nodes response data: %v", err)
 	}
-	return nodesResp.Nodes, nil
+	return &nodesResp, nil
 }

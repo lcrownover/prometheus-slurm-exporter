@@ -27,6 +27,7 @@ import (
 
 	"io"
 
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -44,12 +45,8 @@ func NewJobMetrics() *JobMetrics {
 
 // ParseAccountsMetrics gets the response body of jobs from SLURM and
 // parses it into a map of "accountName": *JobMetrics
-func ParseAccountsMetrics(ctx context.Context) (map[string]*JobMetrics, error) {
+func ParseAccountsMetrics(jobs []types.V0040JobInfo) (map[string]*JobMetrics, error) {
 	accounts := make(map[string]*JobMetrics)
-	jobs, err := GetSlurmRestJobs(ctx)
-	if err != nil {
-		return nil, fmt.Errorf("failed to get jobs for accounts metrics: %v", err)
-	}
 	for _, j := range jobs {
 		// get the account name
 		account, err := GetJobAccountName(j)
@@ -121,9 +118,19 @@ func (ac *AccountsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
-	am, err := ParseAccountsMetrics(ac.ctx)
+	resp, err := GetSlurmRestJobResponse(ac.ctx)
 	if err != nil {
-		slog.Error("failed to collect accounts metrics", "error", err)
+		slog.Error("failed to get jobs response for accounts metrics", "error", err)
+		return
+	}
+	jobResp, err := UnmarshalJobResponse(resp)
+	if err != nil {
+		slog.Error("failed to unmarshal jobs response for accounts metrics", "error", err)
+		return
+	}
+	am, err := ParseAccountsMetrics(jobResp.Jobs)
+	if err != nil {
+		slog.Error("failed to parse accounts metrics", "error", err)
 		return
 	}
 	for a := range am {
