@@ -68,7 +68,7 @@ func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
 		return nil, fmt.Errorf("failed to get nodes for cpu metrics: %v", err)
 	}
 	for _, n := range nodes {
-		cpus := float64(*n.Cores)
+		cpus := float64(*n.Cpus)
 		cm.total += cpus
 	}
 	// simply subtract
