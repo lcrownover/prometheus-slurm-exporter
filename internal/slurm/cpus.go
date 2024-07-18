@@ -84,7 +84,7 @@ func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
 		if err != nil {
 			return nil, fmt.Errorf("failed to get node state for cpu metrics: %v", err)
 		}
-		if *nodeState == NodeStateMix || *nodeState == NodeStateAlloc || *nodeState == NodeStateIdle {
+		if *nodeState == NodeStateAlloc || *nodeState == NodeStateIdle {
 			idle_cpus := float64(*n.AllocIdleCpus)
 			cm.idle += idle_cpus
 		}
