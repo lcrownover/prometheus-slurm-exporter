@@ -40,10 +40,6 @@ func NewCPUsMetrics() *cpusMetrics {
 	return &cpusMetrics{}
 }
 
-func (cm *cpusMetrics) AddAlloc(n float64) {
-	cm.alloc += n
-}
-
 // ParseCPUMetrics pulls out total cluster cpu states of alloc,idle,other,total
 func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
 	cm := NewCPUsMetrics()
@@ -62,10 +58,21 @@ func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
 			slog.Error("failed to get job cpus", "error", err)
 			continue
 		}
+		// alloc is easy, we just add up all the cpus in the "Running" job state
 		if *state == JobStateRunning {
-			cm.AddAlloc(*cpus)
+			cm.alloc += *cpus
 		}
 	}
+	// total is just the total number of cpus in the cluster
+	nodes, err := GetSlurmRestNodes(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get nodes for cpu metrics: %v", err)
+	}
+	for _, n := range nodes {
+		cpus := float64(*n.Cores)
+		cm.total += cpus
+	}
+	// simply subtract
 	return cm, nil
 }
 
@@ -75,7 +82,6 @@ func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
  * https://godoc.org/github.com/prometheus/client_golang/prometheus#Collector
  */
 func NewCPUsCollector(ctx context.Context) *CPUsCollector {
-	ctx = context.WithValue(ctx, types.ApiJobsEndpointKey, "/slurm/v0.0.40/jobs")
 	return &CPUsCollector{
 		ctx:   ctx,
 		alloc: prometheus.NewDesc("slurm_cpus_alloc", "Allocated CPUs", nil, nil),

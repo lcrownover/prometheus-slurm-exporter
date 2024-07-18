@@ -8,4 +8,5 @@ const (
 	ApiTokenKey
 	ApiURLKey
 	ApiJobsEndpointKey
+	ApiNodesEndpointKey
 )

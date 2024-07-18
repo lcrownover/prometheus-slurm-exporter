@@ -27,7 +27,6 @@ import (
 
 	"io"
 
-	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -103,7 +102,6 @@ type AccountsCollector struct {
 
 func NewAccountsCollector(ctx context.Context) *AccountsCollector {
 	labels := []string{"account"}
-	ctx = context.WithValue(ctx, types.ApiJobsEndpointKey, "/slurm/v0.0.40/jobs")
 	return &AccountsCollector{
 		ctx:          ctx,
 		pending:      prometheus.NewDesc("slurm_account_jobs_pending", "Pending jobs for account", labels, nil),

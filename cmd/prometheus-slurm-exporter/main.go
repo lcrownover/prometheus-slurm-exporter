@@ -51,19 +51,6 @@ func main() {
 		listenAddress = ":8080"
 	}
 
-	// Time in seconds for the cache to return a cached response
-	timeoutSecondsVal, found := os.LookupEnv("SLURM_EXPORTER_CACHE_TIMEOUT_SECONDS")
-	var timeoutSeconds int
-	if found {
-		timeoutSeconds, err = strconv.Atoi(timeoutSecondsVal)
-		if err != nil {
-			fmt.Println("SLURM_EXPORTER_CACHE_TIMEOUT_SECONDS must be a valid integer")
-			os.Exit(1)
-		}
-	} else {
-		timeoutSeconds = 5
-	}
-
 	apiUser, found := os.LookupEnv("SLURM_EXPORTER_API_USER")
 	if !found {
 		fmt.Println("You must set SLURM_EXPORTER_API_USER")
@@ -83,11 +70,15 @@ func main() {
 	}
 	apiURL = slurm.CleanseBaseURL(apiURL)
 
+	// Set up the context to pass around
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, types.ApiUserKey, apiUser)
 	ctx = context.WithValue(ctx, types.ApiTokenKey, apiToken)
 	ctx = context.WithValue(ctx, types.ApiURLKey, apiURL)
-	ctx = context.WithValue(ctx, types.CacheTimeoutSecondsKey, timeoutSeconds)
+
+	// Register all the endpoints
+	ctx = context.WithValue(ctx, types.ApiJobsEndpointKey, "/slurm/v0.0.40/jobs")
+	ctx = context.WithValue(ctx, types.ApiNodesEndpointKey, "/slurm/v0.0.40/nodes")
 
 	r := prometheus.NewRegistry()
 
