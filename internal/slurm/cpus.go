@@ -25,7 +25,6 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

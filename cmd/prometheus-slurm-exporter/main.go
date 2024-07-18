@@ -22,7 +22,6 @@ import (
 	"log/slog"
 	"net/http"
 	"os"
-	"strconv"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/slurm"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
