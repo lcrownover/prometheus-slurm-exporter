@@ -84,12 +84,16 @@ func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
 		if err != nil {
 			return nil, fmt.Errorf("failed to get node state for cpu metrics: %v", err)
 		}
-		if *nodeState == NodeStateAlloc || *nodeState == NodeStateIdle {
+		if *nodeState == NodeStateMix || *nodeState == NodeStateAlloc || *nodeState == NodeStateIdle {
+			// TODO: This calculate is scuffed. In our 17k core environment, it's 
+			// reporting ~400 more than the `sinfo -h -o '%C'` command.
+			// Gotta figure this one out.
 			idle_cpus := float64(*n.AllocIdleCpus)
 			cm.idle += idle_cpus
 		}
 	}
-	// simply subtract
+	// Assumedly, this should be fine.
+	cm.other = cm.total - cm.idle - cm.alloc
 	return cm, nil
 }
 
