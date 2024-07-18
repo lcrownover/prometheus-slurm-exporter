@@ -70,9 +70,9 @@ func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
 	for _, n := range nodes {
 		if *n.Cpus == 1 {
 			// TODO: This probably needs to be a call to partitions to get all nodes
-			// in a partition, then add the nodes CPU values up for this field. 
-			// In our environment, nodes that exist (need slurm commands) get 
-			// put into slurm without being assigned a partition, but slurm 
+			// in a partition, then add the nodes CPU values up for this field.
+			// In our environment, nodes that exist (need slurm commands) get
+			// put into slurm without being assigned a partition, but slurm
 			// seems to track these systems with cpus=1.
 			// This isn't a problem unless your site has nodes with a single CPU.
 			continue
@@ -80,8 +80,14 @@ func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
 		cpus := float64(*n.Cpus)
 		cm.total += cpus
 
-		idle_cpus := float64(*n.AllocIdleCpus)
-		cm.idle += idle_cpus
+		nodeState, err := GetNodeState(n)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get node state for cpu metrics: %v", err)
+		}
+		if *nodeState == NodeStateMix || *nodeState == NodeStateAlloc || *nodeState == NodeStateIdle {
+			idle_cpus := float64(*n.AllocIdleCpus)
+			cm.idle += idle_cpus
+		}
 	}
 	// simply subtract
 	return cm, nil
