@@ -79,6 +79,9 @@ func ParseCPUsMetrics(ctx context.Context) (*cpusMetrics, error) {
 		}
 		cpus := float64(*n.Cpus)
 		cm.total += cpus
+
+		idle_cpus := float64(*n.AllocIdleCpus)
+		cm.idle += idle_cpus
 	}
 	// simply subtract
 	return cm, nil
