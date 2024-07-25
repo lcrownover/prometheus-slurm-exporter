@@ -17,7 +17,6 @@ package slurm
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"log/slog"
 	"os/exec"
@@ -118,12 +117,12 @@ func (ac *AccountsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
-	resp, err := GetSlurmRestJobResponse(ac.ctx)
+	resp, err := GetSlurmRestJobsResponse(ac.ctx)
 	if err != nil {
 		slog.Error("failed to get jobs response for accounts metrics", "error", err)
 		return
 	}
-	jobResp, err := UnmarshalJobResponse(resp)
+	jobResp, err := UnmarshalJobsResponse(resp)
 	if err != nil {
 		slog.Error("failed to unmarshal jobs response for accounts metrics", "error", err)
 		return

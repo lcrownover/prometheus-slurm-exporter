@@ -80,7 +80,7 @@ func ParseCPUsMetrics(nodesResp types.V0040OpenapiNodesResp, jobsResp types.V004
 			return nil, fmt.Errorf("failed to get node state for cpu metrics: %v", err)
 		}
 		if *nodeState == NodeStateMix || *nodeState == NodeStateAlloc || *nodeState == NodeStateIdle {
-			// TODO: This calculate is scuffed. In our 17k core environment, it's 
+			// TODO: This calculate is scuffed. In our 17k core environment, it's
 			// reporting ~400 more than the `sinfo -h -o '%C'` command.
 			// Gotta figure this one out.
 			idle_cpus := float64(*n.AllocIdleCpus)
