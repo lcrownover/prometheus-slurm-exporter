@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 package slurm
 
 import (
+  "context"
+  "log/slog"
 	"io/ioutil"
 	"log"
 	"os/exec"
@@ -26,9 +28,92 @@ import (
 	"strings"
 
 	"github.com/prometheus/client_golang/prometheus"
+  "github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 )
 
-func UsersData() []byte {
+
+type UserJobMetrics struct {
+	pending      float64
+	pending_cpus float64
+	running      float64
+	running_cpus float64
+	suspended    float64
+}
+
+func NewJobMetrics() *JobMetrics {
+  return &JobMetrics{}
+}
+
+func ParseAccountsMetrics(jobs []types.V0040JobInfo) (map[string]*JobMetrics, error) {
+	accounts := make(map[string]*JobMetrics)
+	for _, j := range jobs {
+		// get the account name
+		account, err := GetJobAccountName(j)
+		if err != nil {
+			slog.Error("failed to find account name in job", "error", err)
+			continue
+		}
+		// build the map with the account name as the key and job metrics as the value
+		_, key := accounts[*account]
+		if !key {
+			// initialize a new metrics object if the key isnt found
+			accounts[*account] = NewJobMetrics()
+		}
+		// get the job state
+		state, err := GetJobState(j)
+		if err != nil {
+			slog.Error("failed to parse job state", "error", err)
+			continue
+		}
+		// get the cpus for the job
+		cpus, err := GetJobCPUs(j)
+		if err != nil {
+			slog.Error("failed to parse job cpus", "error", err)
+			continue
+		}
+		// for each of the jobs, depending on the state,
+		// tally up the cpu count and increment the count of jobs for that state
+		switch *state {
+		case JobStatePending:
+			accounts[*account].pending++
+			accounts[*account].pending_cpus += *cpus
+		case JobStateRunning:
+			accounts[*account].running++
+			accounts[*account].running_cpus += *cpus
+		case JobStateSuspended:
+			accounts[*account].suspended++
+		}
+	}
+	return accounts, nil
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func oldUsersData() []byte {
 	cmd := exec.Command("squeue", "-a", "-r", "-h", "-o %A|%u|%T|%C")
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
@@ -44,15 +129,7 @@ func UsersData() []byte {
 	return out
 }
 
-type UserJobMetrics struct {
-	pending      float64
-	pending_cpus float64
-	running      float64
-	running_cpus float64
-	suspended    float64
-}
-
-func ParseUsersMetrics(input []byte) map[string]*UserJobMetrics {
+func oldParseUsersMetrics(input []byte) map[string]*UserJobMetrics {
 	users := make(map[string]*UserJobMetrics)
 	lines := strings.Split(string(input), "\n")
 	for _, line := range lines {
@@ -83,7 +160,7 @@ func ParseUsersMetrics(input []byte) map[string]*UserJobMetrics {
 	return users
 }
 
-type UsersCollector struct {
+type oldUsersCollector struct {
 	pending      *prometheus.Desc
 	pending_cpus *prometheus.Desc
 	running      *prometheus.Desc
@@ -91,7 +168,7 @@ type UsersCollector struct {
 	suspended    *prometheus.Desc
 }
 
-func NewUsersCollector() *UsersCollector {
+func oldNewUsersCollector() *oldUsersCollector {
 	labels := []string{"user"}
 	return &UsersCollector{
 		pending:      prometheus.NewDesc("slurm_user_jobs_pending", "Pending jobs for user", labels, nil),
@@ -102,7 +179,7 @@ func NewUsersCollector() *UsersCollector {
 	}
 }
 
-func (uc *UsersCollector) Describe(ch chan<- *prometheus.Desc) {
+func (uc *oldUsersCollector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- uc.pending
 	ch <- uc.pending_cpus
 	ch <- uc.running
@@ -110,7 +187,7 @@ func (uc *UsersCollector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- uc.suspended
 }
 
-func (uc *UsersCollector) Collect(ch chan<- prometheus.Metric) {
+func (uc *oldUsersCollector) Collect(ch chan<- prometheus.Metric) {
 	um := ParseUsersMetrics(UsersData())
 	for u := range um {
 		if um[u].pending > 0 {
