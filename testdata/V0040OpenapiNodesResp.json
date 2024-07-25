@@ -1,0 +1,235 @@
+{
+  "nodes" : [ {
+    "reason" : "reason",
+    "gpu_spec" : "gpu_spec",
+    "slurmd_start_time" : {
+      "number" : 9,
+      "set" : true,
+      "infinite" : true
+    },
+    "features" : [ "features", "features" ],
+    "hostname" : "hostname",
+    "cores" : 6,
+    "reason_changed_at" : {
+      "number" : 9,
+      "set" : true,
+      "infinite" : true
+    },
+    "reservation" : "reservation",
+    "tres" : "tres",
+    "cpu_binding" : 5,
+    "state" : [ "INVALID", "INVALID" ],
+    "sockets" : 9,
+    "energy" : {
+      "current_watts" : {
+        "number" : 5,
+        "set" : true,
+        "infinite" : true
+      },
+      "base_consumed_energy" : 3,
+      "last_collected" : 7,
+      "consumed_energy" : 2,
+      "previous_consumed_energy" : 4,
+      "average_watts" : 9
+    },
+    "partitions" : [ "partitions", "partitions" ],
+    "gres_drained" : "gres_drained",
+    "weight" : 8,
+    "version" : "version",
+    "gres_used" : "gres_used",
+    "mcs_label" : "mcs_label",
+    "real_memory" : 1,
+    "instance_id" : "instance_id",
+    "burstbuffer_network_address" : "burstbuffer_network_address",
+    "port" : 1,
+    "name" : "name",
+    "resume_after" : {
+      "number" : 9,
+      "set" : true,
+      "infinite" : true
+    },
+    "temporary_disk" : 6,
+    "tres_used" : "tres_used",
+    "effective_cpus" : 7,
+    "instance_type" : "instance_type",
+    "external_sensors" : "{}",
+    "res_cores_per_gpu" : 6,
+    "boards" : 0,
+    "alloc_cpus" : 1,
+    "active_features" : [ "active_features", "active_features" ],
+    "reason_set_by_user" : "reason_set_by_user",
+    "free_mem" : {
+      "number" : 9,
+      "set" : true,
+      "infinite" : true
+    },
+    "alloc_idle_cpus" : 4,
+    "extra" : "extra",
+    "operating_system" : "operating_system",
+    "power" : "{}",
+    "architecture" : "architecture",
+    "owner" : "owner",
+    "cluster_name" : "cluster_name",
+    "address" : "address",
+    "cpus" : 2,
+    "tres_weighted" : 5.025004791520295,
+    "gres" : "gres",
+    "threads" : 9,
+    "boot_time" : {
+      "number" : 9,
+      "set" : true,
+      "infinite" : true
+    },
+    "alloc_memory" : 7,
+    "specialized_memory" : 1,
+    "specialized_cpus" : "specialized_cpus",
+    "specialized_cores" : 1,
+    "last_busy" : {
+      "number" : 9,
+      "set" : true,
+      "infinite" : true
+    },
+    "comment" : "comment",
+    "next_state_after_reboot" : [ "INVALID", "INVALID" ],
+    "cpu_load" : 5
+  }, {
+    "reason" : "reason",
+    "gpu_spec" : "gpu_spec",
+    "slurmd_start_time" : {
+      "number" : 9,
+      "set" : true,
+      "infinite" : true
+    },
+    "features" : [ "features", "features" ],
+    "hostname" : "hostname",
+    "cores" : 6,
+    "reason_changed_at" : {
+      "number" : 9,
+      "set" : true,
+      "infinite" : true
+    },
+    "reservation" : "reservation",
+    "tres" : "tres",
+    "cpu_binding" : 5,
+    "state" : [ "INVALID", "INVALID" ],
+    "sockets" : 9,
+    "energy" : {
+      "current_watts" : {
+        "number" : 5,
+        "set" : true,
+        "infinite" : true
+      },
+      "base_consumed_energy" : 3,
+      "last_collected" : 7,
+      "consumed_energy" : 2,
+      "previous_consumed_energy" : 4,
+      "average_watts" : 9
+    },
+    "partitions" : [ "partitions", "partitions" ],
+    "gres_drained" : "gres_drained",
+    "weight" : 8,
+    "version" : "version",
+    "gres_used" : "gres_used",
+    "mcs_label" : "mcs_label",
+    "real_memory" : 1,
+    "instance_id" : "instance_id",
+    "burstbuffer_network_address" : "burstbuffer_network_address",
+    "port" : 1,
+    "name" : "name",
+    "resume_after" : {
+      "number" : 9,
+      "set" : true,
+      "infinite" : true
+    },
+    "temporary_disk" : 6,
+    "tres_used" : "tres_used",
+    "effective_cpus" : 7,
+    "instance_type" : "instance_type",
+    "external_sensors" : "{}",
+    "res_cores_per_gpu" : 6,
+    "boards" : 0,
+    "alloc_cpus" : 1,
+    "active_features" : [ "active_features", "active_features" ],
+    "reason_set_by_user" : "reason_set_by_user",
+    "free_mem" : {
+      "number" : 9,
+      "set" : true,
+      "infinite" : true
+    },
+    "alloc_idle_cpus" : 4,
+    "extra" : "extra",
+    "operating_system" : "operating_system",
+    "power" : "{}",
+    "architecture" : "architecture",
+    "owner" : "owner",
+    "cluster_name" : "cluster_name",
+    "address" : "address",
+    "cpus" : 2,
+    "tres_weighted" : 5.025004791520295,
+    "gres" : "gres",
+    "threads" : 9,
+    "boot_time" : {
+      "number" : 9,
+      "set" : true,
+      "infinite" : true
+    },
+    "alloc_memory" : 7,
+    "specialized_memory" : 1,
+    "specialized_cpus" : "specialized_cpus",
+    "specialized_cores" : 1,
+    "last_busy" : {
+      "number" : 9,
+      "set" : true,
+      "infinite" : true
+    },
+    "comment" : "comment",
+    "next_state_after_reboot" : [ "INVALID", "INVALID" ],
+    "cpu_load" : 5
+  } ],
+  "meta" : {
+    "slurm" : {
+      "cluster" : "cluster",
+      "release" : "release",
+      "version" : {
+        "major" : "major",
+        "minor" : "minor",
+        "micro" : "micro"
+      }
+    },
+    "plugin" : {
+      "accounting_storage" : "accounting_storage",
+      "name" : "name",
+      "type" : "type",
+      "data_parser" : "data_parser"
+    },
+    "client" : {
+      "source" : "source",
+      "user" : "user",
+      "group" : "group"
+    },
+    "command" : [ "command", "command" ]
+  },
+  "last_update" : {
+    "number" : 9,
+    "set" : true,
+    "infinite" : true
+  },
+  "warnings" : [ {
+    "description" : "description",
+    "source" : "source"
+  }, {
+    "description" : "description",
+    "source" : "source"
+  } ],
+  "errors" : [ {
+    "description" : "description",
+    "source" : "source",
+    "error" : "error",
+    "error_number" : 6
+  }, {
+    "description" : "description",
+    "source" : "source",
+    "error" : "error",
+    "error_number" : 6
+  } ]
+}

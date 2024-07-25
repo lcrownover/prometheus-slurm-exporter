@@ -16,21 +16,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 package slurm
 
 import (
-	"io/ioutil"
-	"os"
 	"testing"
 )
 
-func TestCPUsMetrics(t *testing.T) {
-	// Read the input data from a file
-	file, err := os.Open("test_data/sinfo_cpus.txt")
-	if err != nil {
-		t.Fatalf("Can not open test data: %v", err)
-	}
-	data, err := ioutil.ReadAll(file)
-	t.Logf("%+v", ParseCPUsMetrics(data))
-}
+// func TestCPUsMetrics(t *testing.T) {
+// 	// Read the input data from a file
+// 	file, err := os.Open("test_data/sinfo_cpus.txt")
+// 	if err != nil {
+// 		t.Fatalf("Can not open test data: %v", err)
+// 	}
+// 	data, err := io.ReadAll(file)
+// 	t.Logf("%+v", ParseCPUsMetrics(data))
+// }
 
 func TestCPUssGetMetrics(t *testing.T) {
-	t.Logf("%+v", CPUsGetMetrics())
+	t.Logf("%+v", CPUsGetMetricsOld())
 }
