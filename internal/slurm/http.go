@@ -30,6 +30,9 @@ type SlurmRestResponse struct {
 	Body       []byte
 }
 
+// newSlurmRestRequest returns a new slurmRestRequest object which is used to perform
+// http interactions with the slurmrest server. It configures everything up until 
+// the request is actually sent to get data.
 func newSlurmRestRequest(ctx context.Context, k types.Key) (*slurmRestRequest, error) {
 	apiUser := ctx.Value(types.ApiUserKey).(string)
 	apiToken := ctx.Value(types.ApiTokenKey).(string)
@@ -51,6 +54,9 @@ func newSlurmRestRequest(ctx context.Context, k types.Key) (*slurmRestRequest, e
 	}, nil
 }
 
+// slurmRestRequest.Send is used to perform the request against the slurmrest
+// server. It returns a *SlurmRestResponse which is a struct containing the 
+// response status code and the bytes of the response body.
 func (sr slurmRestRequest) Send() (*SlurmRestResponse, error) {
 	resp, err := sr.client.Do(sr.req)
 	if err != nil {
