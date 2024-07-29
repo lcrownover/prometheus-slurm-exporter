@@ -1,36 +1,18 @@
-/* Copyright 2017-2022 Lucas Crownover, Victor Penso, Matteo Dessalvi
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>. */
-
 package slurm
 
 import (
-	"io/ioutil"
-	"os"
 	"testing"
+
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
 )
 
-func TestCPUsMetrics(t *testing.T) {
-	// Read the input data from a file
-	file, err := os.Open("test_data/sinfo_cpus.txt")
+func TestParseCPUsMetrics(t *testing.T) {
+	jobsBytes := util.ReadTestDataBytes("V0040OpenapiJobInfoResp.json")
+	nodesBytes := util.ReadTestDataBytes("V0040OpenapiNodesResp.json")
+	jobsResp, _ := UnmarshalJobsResponse(jobsBytes)
+	nodesResp, _ := UnmarshalNodesResponse(nodesBytes)
+	_, err := ParseCPUsMetrics(*nodesResp, *jobsResp)
 	if err != nil {
-		t.Fatalf("Can not open test data: %v", err)
+		t.Fatalf("failed to parse cpu metrics: %v\n", err)
 	}
-	data, err := ioutil.ReadAll(file)
-	t.Logf("%+v", ParseCPUsMetrics(data))
-}
-
-func TestCPUssGetMetrics(t *testing.T) {
-	t.Logf("%+v", CPUsGetMetrics())
 }
