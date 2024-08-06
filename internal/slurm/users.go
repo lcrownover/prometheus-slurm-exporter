@@ -1,20 +1,3 @@
-/* Copyright 2020-2022 Lucas Crownover, Victor Penso
-
-
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>. */
-
 package slurm
 
 import (
@@ -32,7 +15,9 @@ import (
 )
 
 
-type UserJobMetrics struct {
+
+
+type UserMetrics struct {
 	pending      float64
 	pending_cpus float64
 	running      float64
@@ -44,123 +29,46 @@ func NewJobMetrics() *JobMetrics {
   return &JobMetrics{}
 }
 
-func ParseAccountsMetrics(jobs []types.V0040JobInfo) (map[string]*JobMetrics, error) {
-	accounts := make(map[string]*JobMetrics)
+func ParseUserMetrics(jobs []types.V0040JobInfo) (map[string]*JobMetrics, error) {
+	users := make(map[string]*JobMetrics)
 	for _, j := range jobs {
-		// get the account name
-		account, err := GetJobAccountName(j)
+		userName, err := GetJobAccountName(j)
 		if err != nil {
-			slog.Error("failed to find account name in job", "error", err)
+			slog.Error("failed to find user name in job", "error", err)
 			continue
 		}
-		// build the map with the account name as the key and job metrics as the value
-		_, key := accounts[*account]
-		if !key {
-			// initialize a new metrics object if the key isnt found
-			accounts[*account] = NewJobMetrics()
+		if _, key := users[*userName]; !key {
+			users[*userName] = NewJobMetrics()
 		}
-		// get the job state
+
 		state, err := GetJobState(j)
 		if err != nil {
 			slog.Error("failed to parse job state", "error", err)
 			continue
 		}
-		// get the cpus for the job
+
 		cpus, err := GetJobCPUs(j)
 		if err != nil {
 			slog.Error("failed to parse job cpus", "error", err)
 			continue
 		}
-		// for each of the jobs, depending on the state,
-		// tally up the cpu count and increment the count of jobs for that state
 		switch *state {
 		case JobStatePending:
-			accounts[*account].pending++
-			accounts[*account].pending_cpus += *cpus
+			users[*userName].pending++
+			users[*userName].pending_cpus += *cpus
 		case JobStateRunning:
-			accounts[*account].running++
-			accounts[*account].running_cpus += *cpus
+			users[*userName].running++
+			users[*userName].running_cpus += *cpus
 		case JobStateSuspended:
-			accounts[*account].suspended++
+			users[*userName].suspended++
 		}
 	}
-	return accounts, nil
+	return users, nil
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-func oldUsersData() []byte {
-	cmd := exec.Command("squeue", "-a", "-r", "-h", "-o %A|%u|%T|%C")
-	stdout, err := cmd.StdoutPipe()
-	if err != nil {
-		log.Fatal(err)
-	}
-	if err := cmd.Start(); err != nil {
-		log.Fatal(err)
-	}
-	out, _ := ioutil.ReadAll(stdout)
-	if err := cmd.Wait(); err != nil {
-		log.Fatal(err)
-	}
-	return out
-}
-
-func oldParseUsersMetrics(input []byte) map[string]*UserJobMetrics {
-	users := make(map[string]*UserJobMetrics)
-	lines := strings.Split(string(input), "\n")
-	for _, line := range lines {
-		if strings.Contains(line, "|") {
-			user := strings.Split(line, "|")[1]
-			_, key := users[user]
-			if !key {
-				users[user] = &UserJobMetrics{0, 0, 0, 0, 0}
-			}
-			state := strings.Split(line, "|")[2]
-			state = strings.ToLower(state)
-			cpus, _ := strconv.ParseFloat(strings.Split(line, "|")[3], 64)
-			pending := regexp.MustCompile(`^pending`)
-			running := regexp.MustCompile(`^running`)
-			suspended := regexp.MustCompile(`^suspended`)
-			switch {
-			case pending.MatchString(state) == true:
-				users[user].pending++
-				users[user].pending_cpus += cpus
-			case running.MatchString(state) == true:
-				users[user].running++
-				users[user].running_cpus += cpus
-			case suspended.MatchString(state) == true:
-				users[user].suspended++
-			}
-		}
-	}
-	return users
-}
-
-type oldUsersCollector struct {
+type UsersCollector struct {
+  ctx           context.Context
 	pending      *prometheus.Desc
 	pending_cpus *prometheus.Desc
 	running      *prometheus.Desc
@@ -168,7 +76,8 @@ type oldUsersCollector struct {
 	suspended    *prometheus.Desc
 }
 
-func oldNewUsersCollector() *oldUsersCollector {
+
+func NewUsersCollector() *UsersCollector {
 	labels := []string{"user"}
 	return &UsersCollector{
 		pending:      prometheus.NewDesc("slurm_user_jobs_pending", "Pending jobs for user", labels, nil),
@@ -179,7 +88,7 @@ func oldNewUsersCollector() *oldUsersCollector {
 	}
 }
 
-func (uc *oldUsersCollector) Describe(ch chan<- *prometheus.Desc) {
+func (uc *UsersCollector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- uc.pending
 	ch <- uc.pending_cpus
 	ch <- uc.running
@@ -187,9 +96,34 @@ func (uc *oldUsersCollector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- uc.suspended
 }
 
-func (uc *oldUsersCollector) Collect(ch chan<- prometheus.Metric) {
-	um := ParseUsersMetrics(UsersData())
+func (uc *UsersCollector) Collect(ch chan<- prometheus.Metric) {
+	resp, err := getSlurmRestJobsResponse()
+	if err != nil {
+		slog.Error("failed to get jobs response for user metrics", "error", err)
+		return
+	}
+
+	var dataMap map[string]interface{}
+	err = json.Unmarshal(resp, &dataMap)
+	if err != nil {
+		slog.Error("failed to unmarshal jobs response for user metrics", "error", err)
+		return
+	}
+
+	jobs, ok := dataMap["jobs"].([]interface{})
+	if !ok {
+		slog.Error("\"jobs\" key not found or not an array")
+		return
+	}
+
+	um, err := ParseUserMetrics(jobs)
+	if err != nil {
+		slog.Error("failed to parse user metrics", "error", err)
+		return
+	}
+
 	for u := range um {
+
 		if um[u].pending > 0 {
 			ch <- prometheus.MustNewConstMetric(uc.pending, prometheus.GaugeValue, um[u].pending, u)
 		}
@@ -207,3 +141,5 @@ func (uc *oldUsersCollector) Collect(ch chan<- prometheus.Metric) {
 		}
 	}
 }
+
+
