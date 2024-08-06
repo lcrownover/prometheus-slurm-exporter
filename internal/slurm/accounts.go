@@ -57,7 +57,7 @@ func ParseAccountsMetrics(jobs []types.V0040JobInfo) (map[string]*AccountsJobMet
 		_, key := accounts[*account]
 		if !key {
 			// initialize a new metrics object if the key isnt found
-			accounts[*account] = NewJobMetrics()
+			accounts[*account] = NewAccountsJobMetrics()
 		}
 		// get the job state
 		state, err := GetJobState(j)
