@@ -81,11 +81,11 @@ func main() {
 
 	r := prometheus.NewRegistry()
 
-	// r.MustRegister(slurm.NewAccountsCollector(ctx)) // from accounts.go
-	// r.MustRegister(slurm.NewOldAccountsCollector()) // from accounts.go
+	r.MustRegister(slurm.NewAccountsCollector(ctx)) // from accounts.go
+	r.MustRegister(slurm.NewOldAccountsCollector()) // from accounts.go
 
-	r.MustRegister(slurm.NewCPUsCollector(ctx)) // from cpus.go
-	r.MustRegister(slurm.NewCPUsCollectorOld()) // from cpus.go
+	// r.MustRegister(slurm.NewCPUsCollector(ctx)) // from cpus.go
+	// r.MustRegister(slurm.NewCPUsCollectorOld()) // from cpus.go
 
 	// r.MustRegister(slurm.NewNodesCollector())      // from nodes.go
 	// r.MustRegister(slurm.NewNodeCollector())       // from node.go

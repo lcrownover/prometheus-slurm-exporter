@@ -152,6 +152,8 @@ func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
 	}
 }
 
+// old code can be deleted below after feature parity
+
 func AccountsDataOld() []byte {
 	cmd := exec.Command("squeue", "-a", "-r", "-h", "-o %A|%a|%T|%C")
 	stdout, err := cmd.StdoutPipe()
@@ -198,6 +200,7 @@ func ParseAccountsMetricsOld(input []byte) map[string]*JobMetrics {
 	}
 	return accounts
 }
+
 
 type OldAccountsCollector struct {
 	pending      *prometheus.Desc
