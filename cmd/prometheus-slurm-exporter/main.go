@@ -81,8 +81,8 @@ func main() {
 
 	r := prometheus.NewRegistry()
 
-	r.MustRegister(slurm.NewAccountsCollector(ctx)) // from accounts.go
-	r.MustRegister(slurm.NewOldAccountsCollector()) // from accounts.go
+	// r.MustRegister(slurm.NewAccountsCollector(ctx)) // from accounts.go
+	// r.MustRegister(slurm.NewOldAccountsCollector()) // from accounts.go
 
 	// r.MustRegister(slurm.NewCPUsCollector(ctx)) // from cpus.go
 	// r.MustRegister(slurm.NewCPUsCollectorOld()) // from cpus.go
@@ -93,6 +93,7 @@ func main() {
 	// r.MustRegister(slurm.NewQueueCollector())      // from queue.go
 	// r.MustRegister(slurm.NewSchedulerCollector())  // from scheduler.go
 	// r.MustRegister(slurm.NewFairShareCollector())  // from sshare.go
+
 	// r.MustRegister(slurm.NewUsersCollector())      // from users.go
 
 	// gpuAcctString := os.Getenv("SLURM_EXPORTER_GPU_ACCOUNTING")
