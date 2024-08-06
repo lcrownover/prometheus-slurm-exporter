@@ -84,8 +84,8 @@ func newSlurmGETRequest(ctx context.Context, endpointCtxKey types.Key) (*SlurmRe
 	return resp, nil
 }
 
-// GetSlurmRestJobResponse retrieves response bytes from slurm REST api
-func GetSlurmRestJobResponse(ctx context.Context) ([]byte, error) {
+// GetSlurmRestJobsResponse retrieves response bytes from slurm REST api
+func GetSlurmRestJobsResponse(ctx context.Context) ([]byte, error) {
 	resp, err := newSlurmGETRequest(ctx, types.ApiJobsEndpointKey)
 	if err != nil {
 		return nil, fmt.Errorf("failed to perform get request for job data: %v", err)
@@ -97,8 +97,8 @@ func GetSlurmRestJobResponse(ctx context.Context) ([]byte, error) {
 	return resp.Body, nil
 }
 
-// UnmarshalJobResponse converts the response bytes into a slurm type
-func UnmarshalJobResponse(b []byte) (*types.V0040OpenapiJobInfoResp, error) {
+// UnmarshalJobsResponse converts the response bytes into a slurm type
+func UnmarshalJobsResponse(b []byte) (*types.V0040OpenapiJobInfoResp, error) {
 	var jobsResp types.V0040OpenapiJobInfoResp
 	err := json.Unmarshal(b, &jobsResp)
 	if err != nil {

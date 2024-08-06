@@ -17,7 +17,6 @@ package slurm
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"log/slog"
 	"os/exec"
@@ -31,7 +30,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-type JobMetrics struct {
+type AccountsJobMetrics struct {
 	pending      float64
 	pending_cpus float64
 	running      float64
@@ -39,14 +38,14 @@ type JobMetrics struct {
 	suspended    float64
 }
 
-func NewJobMetrics() *JobMetrics {
-	return &JobMetrics{}
+func NewAccountsJobMetrics() *AccountsJobMetrics {
+	return &AccountsJobMetrics{}
 }
 
 // ParseAccountsMetrics gets the response body of jobs from SLURM and
 // parses it into a map of "accountName": *JobMetrics
-func ParseAccountsMetrics(jobs []types.V0040JobInfo) (map[string]*JobMetrics, error) {
-	accounts := make(map[string]*JobMetrics)
+func ParseAccountsMetrics(jobs []types.V0040JobInfo) (map[string]*AccountsJobMetrics, error) {
+	accounts := make(map[string]*AccountsJobMetrics)
 	for _, j := range jobs {
 		// get the account name
 		account, err := GetJobAccountName(j)
@@ -118,12 +117,12 @@ func (ac *AccountsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
-	resp, err := GetSlurmRestJobResponse(ac.ctx)
+	resp, err := GetSlurmRestJobsResponse(ac.ctx)
 	if err != nil {
 		slog.Error("failed to get jobs response for accounts metrics", "error", err)
 		return
 	}
-	jobResp, err := UnmarshalJobResponse(resp)
+	jobResp, err := UnmarshalJobsResponse(resp)
 	if err != nil {
 		slog.Error("failed to unmarshal jobs response for accounts metrics", "error", err)
 		return
@@ -170,15 +169,15 @@ func AccountsDataOld() []byte {
 	return out
 }
 
-func ParseAccountsMetricsOld(input []byte) map[string]*JobMetrics {
-	accounts := make(map[string]*JobMetrics)
+func ParseAccountsMetricsOld(input []byte) map[string]*AccountsJobMetrics {
+	accounts := make(map[string]*AccountsJobMetrics)
 	lines := strings.Split(string(input), "\n")
 	for _, line := range lines {
 		if strings.Contains(line, "|") {
 			account := strings.Split(line, "|")[1]
 			_, key := accounts[account]
 			if !key {
-				accounts[account] = &JobMetrics{0, 0, 0, 0, 0}
+				accounts[account] = &AccountsJobMetrics{0, 0, 0, 0, 0}
 			}
 			state := strings.Split(line, "|")[2]
 			state = strings.ToLower(state)
