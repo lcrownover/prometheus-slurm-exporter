@@ -1,6 +1,7 @@
 package slurm
 
 import (
+	"context"
 	"log"
 	"os/exec"
 	"regexp"
@@ -188,7 +189,6 @@ func IdleGPUsData() []byte {
 	return Execute("sinfo", args)
 }
 
-
 // Execute the sinfo command and return its output
 func Execute(command string, arguments []string) []byte {
 	cmd := exec.Command(command, arguments...)
@@ -205,8 +205,9 @@ func Execute(command string, arguments []string) []byte {
  * https://godoc.org/github.com/prometheus/client_golang/prometheus#Collector
  */
 
-func NewGPUsCollector() *GPUsCollector {
+func NewGPUsCollector(ctx context.Context) *GPUsCollector {
 	return &GPUsCollector{
+		ctx:         ctx,
 		alloc:       prometheus.NewDesc("slurm_gpus_alloc", "Allocated GPUs", nil, nil),
 		idle:        prometheus.NewDesc("slurm_gpus_idle", "Idle GPUs", nil, nil),
 		other:       prometheus.NewDesc("slurm_gpus_other", "Other GPUs", nil, nil),
@@ -216,6 +217,7 @@ func NewGPUsCollector() *GPUsCollector {
 }
 
 type GPUsCollector struct {
+	ctx         context.Context
 	alloc       *prometheus.Desc
 	idle        *prometheus.Desc
 	other       *prometheus.Desc
