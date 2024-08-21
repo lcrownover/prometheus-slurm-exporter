@@ -1,5 +1,18 @@
 package types
 
+type JobState int
+
+const (
+	JobStatePending JobState = iota
+	JobStateCompleted
+	JobStateFailed
+	JobStateOutOfMemory
+	JobStateRunning
+	JobStateSuspended
+	JobStateUnknown
+	JobStateTimeout
+)
+
 type SlurmJobsResponse struct {
 	Jobs []slurmJob `json:"jobs"`
 }

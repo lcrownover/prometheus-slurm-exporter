@@ -9,34 +9,6 @@ import (
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 )
 
-type JobState int
-
-const (
-	JobStatePending JobState = iota
-	JobStateCompleted
-	JobStateFailed
-	JobStateOutOfMemory
-	JobStateRunning
-	JobStateSuspended
-	JobStateUnknown
-	JobStateTimeout
-)
-
-type NodeState int
-
-const (
-	NodeStateAlloc NodeState = iota
-	NodeStateComp
-	NodeStateDown
-	NodeStateDrain
-	NodeStateFail
-	NodeStateErr
-	NodeStateIdle
-	NodeStateMaint
-	NodeStateMix
-	NodeStateResv
-)
-
 // GetJobAccountName retrieves the account name string from the JobInfo object or returns error
 func GetJobAccountName(job types.V0040JobInfo) (*string, error) {
 	name := job.Account
@@ -47,7 +19,7 @@ func GetJobAccountName(job types.V0040JobInfo) (*string, error) {
 }
 
 // GetJobState returns a JobState unit or returns an error
-func GetJobState(job types.V0040JobInfo) (*JobState, error) {
+func GetJobState(job types.V0040JobInfo) (*types.JobState, error) {
 	states := job.JobState
 	if states == nil {
 		// job state is not found in the job response
@@ -64,23 +36,23 @@ func GetJobState(job types.V0040JobInfo) (*JobState, error) {
 	out_of_memory := regexp.MustCompile(`^out_of_memory`)
 	timeout := regexp.MustCompile(`^timeout`)
 
-	var stateUnit JobState
+	var stateUnit types.JobState
 
 	switch {
 	case completed.MatchString(state):
-		stateUnit = JobStateCompleted
+		stateUnit = types.JobStateCompleted
 	case pending.MatchString(state):
-		stateUnit = JobStatePending
+		stateUnit = types.JobStatePending
 	case failed.MatchString(state):
-		stateUnit = JobStateFailed
+		stateUnit = types.JobStateFailed
 	case running.MatchString(state):
-		stateUnit = JobStateRunning
+		stateUnit = types.JobStateRunning
 	case suspended.MatchString(state):
-		stateUnit = JobStateSuspended
+		stateUnit = types.JobStateSuspended
 	case out_of_memory.MatchString(state):
-		stateUnit = JobStateOutOfMemory
+		stateUnit = types.JobStateOutOfMemory
 	case timeout.MatchString(state):
-		stateUnit = JobStateTimeout
+		stateUnit = types.JobStateTimeout
 	default:
 		return nil, fmt.Errorf("failed to match job state against known states: %v", state)
 	}
@@ -99,7 +71,7 @@ func GetJobCPUs(job types.V0040JobInfo) (*float64, error) {
 }
 
 // GetNodeState returns a NodeState unit or returns an error
-func GetNodeState(node types.V0040Node) (*NodeState, error) {
+func GetNodeState(node types.V0040Node) (*types.NodeState, error) {
 	states := node.State
 	if states == nil {
 		// node state is not found in the node response
@@ -119,29 +91,29 @@ func GetNodeState(node types.V0040Node) (*NodeState, error) {
 	mix := regexp.MustCompile(`^mix`)
 	resv := regexp.MustCompile(`^res`)
 
-	var stateUnit NodeState
+	var stateUnit types.NodeState
 
 	switch {
 	case alloc.MatchString(state):
-		stateUnit = NodeStateAlloc
+		stateUnit = types.NodeStateAlloc
 	case comp.MatchString(state):
-		stateUnit = NodeStateComp
+		stateUnit = types.NodeStateComp
 	case down.MatchString(state):
-		stateUnit = NodeStateDown
+		stateUnit = types.NodeStateDown
 	case drain.MatchString(state):
-		stateUnit = NodeStateDrain
+		stateUnit = types.NodeStateDrain
 	case fail.MatchString(state):
-		stateUnit = NodeStateFail
+		stateUnit = types.NodeStateFail
 	case err.MatchString(state):
-		stateUnit = NodeStateErr
+		stateUnit = types.NodeStateErr
 	case idle.MatchString(state):
-		stateUnit = NodeStateIdle
+		stateUnit = types.NodeStateIdle
 	case maint.MatchString(state):
-		stateUnit = NodeStateMaint
+		stateUnit = types.NodeStateMaint
 	case mix.MatchString(state):
-		stateUnit = NodeStateMix
+		stateUnit = types.NodeStateMix
 	case resv.MatchString(state):
-		stateUnit = NodeStateResv
+		stateUnit = types.NodeStateResv
 	default:
 		return nil, fmt.Errorf("failed to match cpu state against known states: %v", state)
 	}

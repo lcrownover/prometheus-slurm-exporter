@@ -1,18 +1,16 @@
 package slurm
 
 import (
-	"io"
-	"log"
-	"os/exec"
-	"regexp"
-	"sort"
-	"strconv"
-	"strings"
+	"context"
+	"fmt"
+	"log/slog"
 
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-type NodesMetrics struct {
+type nodesMetrics struct {
 	alloc float64
 	comp  float64
 	down  float64
@@ -25,92 +23,46 @@ type NodesMetrics struct {
 	resv  float64
 }
 
-func NodesGetMetrics() *NodesMetrics {
-	return ParseNodesMetrics(NodesData())
+func NewNodesMetrics() *nodesMetrics {
+	return &nodesMetrics{}
 }
 
-func RemoveDuplicates(s []string) []string {
-	m := map[string]bool{}
-	t := []string{}
+// ParseNodesMetrics iterates through node response objects and tallies up
+// nodes based on their state
+func ParseNodesMetrics(nodesResp types.V0040OpenapiNodesResp) (*nodesMetrics, error) {
+	nm := NewNodesMetrics()
 
-	// Walk through the slice 's' and for each value we haven't seen so far, append it to 't'.
-	for _, v := range s {
-		if _, seen := m[v]; !seen {
-			if len(v) > 0 {
-				t = append(t, v)
-				m[v] = true
-			}
+	for _, n := range nodesResp.Nodes {
+		nodeState, err := GetNodeState(n)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get node state for nodes metrics: %v", err)
+		}
+
+		switch *nodeState {
+		case types.NodeStateAlloc:
+			nm.alloc += 1
+		case types.NodeStateComp:
+			nm.comp += 1
+		case types.NodeStateDown:
+			nm.down += 1
+		case types.NodeStateDrain:
+			nm.drain += 1
+		case types.NodeStateErr:
+			nm.err += 1
+		case types.NodeStateFail:
+			nm.fail += 1
+		case types.NodeStateIdle:
+			nm.idle += 1
+		case types.NodeStateMaint:
+			nm.maint += 1
+		case types.NodeStateMix:
+			nm.mix += 1
+		case types.NodeStateResv:
+			nm.resv += 1
 		}
 	}
 
-	return t
-}
-
-func ParseNodesMetrics(input []byte) *NodesMetrics {
-	var nm NodesMetrics
-	lines := strings.Split(string(input), "\n")
-
-	// Sort and remove all the duplicates from the 'sinfo' output
-	sort.Strings(lines)
-	lines_uniq := RemoveDuplicates(lines)
-
-	for _, line := range lines_uniq {
-		if strings.Contains(line, ",") {
-			split := strings.Split(line, ",")
-			count, _ := strconv.ParseFloat(strings.TrimSpace(split[0]), 64)
-			state := split[1]
-			alloc := regexp.MustCompile(`^alloc`)
-			comp := regexp.MustCompile(`^comp`)
-			down := regexp.MustCompile(`^down`)
-			drain := regexp.MustCompile(`^drain`)
-			fail := regexp.MustCompile(`^fail`)
-			err := regexp.MustCompile(`^err`)
-			idle := regexp.MustCompile(`^idle`)
-			maint := regexp.MustCompile(`^maint`)
-			mix := regexp.MustCompile(`^mix`)
-			resv := regexp.MustCompile(`^res`)
-			switch {
-			case alloc.MatchString(state) == true:
-				nm.alloc += count
-			case comp.MatchString(state) == true:
-				nm.comp += count
-			case down.MatchString(state) == true:
-				nm.down += count
-			case drain.MatchString(state) == true:
-				nm.drain += count
-			case fail.MatchString(state) == true:
-				nm.fail += count
-			case err.MatchString(state) == true:
-				nm.err += count
-			case idle.MatchString(state) == true:
-				nm.idle += count
-			case maint.MatchString(state) == true:
-				nm.maint += count
-			case mix.MatchString(state) == true:
-				nm.mix += count
-			case resv.MatchString(state) == true:
-				nm.resv += count
-			}
-		}
-	}
-	return &nm
-}
-
-// Execute the sinfo command and return its output
-func NodesData() []byte {
-	cmd := exec.Command("sinfo", "-h", "-o %D,%T")
-	stdout, err := cmd.StdoutPipe()
-	if err != nil {
-		log.Fatal(err)
-	}
-	if err := cmd.Start(); err != nil {
-		log.Fatal(err)
-	}
-	out, _ := io.ReadAll(stdout)
-	if err := cmd.Wait(); err != nil {
-		log.Fatal(err)
-	}
-	return out
+	return nm, nil
 }
 
 /*
@@ -119,8 +71,9 @@ func NodesData() []byte {
  * https://godoc.org/github.com/prometheus/client_golang/prometheus#Collector
  */
 
-func NewNodesCollector() *NodesCollector {
+func NewNodesCollector(ctx context.Context) *NodesCollector {
 	return &NodesCollector{
+		ctx:   ctx,
 		alloc: prometheus.NewDesc("slurm_nodes_alloc", "Allocated nodes", nil, nil),
 		comp:  prometheus.NewDesc("slurm_nodes_comp", "Completing nodes", nil, nil),
 		down:  prometheus.NewDesc("slurm_nodes_down", "Down nodes", nil, nil),
@@ -135,6 +88,7 @@ func NewNodesCollector() *NodesCollector {
 }
 
 type NodesCollector struct {
+	ctx   context.Context
 	alloc *prometheus.Desc
 	comp  *prometheus.Desc
 	down  *prometheus.Desc
@@ -147,7 +101,6 @@ type NodesCollector struct {
 	resv  *prometheus.Desc
 }
 
-// Send all metric descriptions
 func (nc *NodesCollector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- nc.alloc
 	ch <- nc.comp
@@ -160,8 +113,23 @@ func (nc *NodesCollector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- nc.mix
 	ch <- nc.resv
 }
+
 func (nc *NodesCollector) Collect(ch chan<- prometheus.Metric) {
-	nm := NodesGetMetrics()
+	nodeRespBytes, err := api.GetSlurmRestNodesResponse(nc.ctx)
+	if err != nil {
+		slog.Error("failed to get nodes response for cpu metrics", "error", err)
+		return
+	}
+	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes)
+	if err != nil {
+		slog.Error("failed to unmarshal nodes response for cpu metrics", "error", err)
+		return
+	}
+	nm, err := ParseNodesMetrics(*nodesResp)
+	if err != nil {
+		slog.Error("failed to collect nodes metrics", "error", err)
+		return
+	}
 	ch <- prometheus.MustNewConstMetric(nc.alloc, prometheus.GaugeValue, nm.alloc)
 	ch <- prometheus.MustNewConstMetric(nc.comp, prometheus.GaugeValue, nm.comp)
 	ch <- prometheus.MustNewConstMetric(nc.down, prometheus.GaugeValue, nm.down)

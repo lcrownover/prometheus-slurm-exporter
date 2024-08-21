@@ -53,13 +53,13 @@ func ParseAccountsMetrics(jobs []types.V0040JobInfo) (map[string]*JobMetrics, er
 		// for each of the jobs, depending on the state,
 		// tally up the cpu count and increment the count of jobs for that state
 		switch *state {
-		case JobStatePending:
+		case types.JobStatePending:
 			accounts[*account].pending++
 			accounts[*account].pending_cpus += *cpus
-		case JobStateRunning:
+		case types.JobStateRunning:
 			accounts[*account].running++
 			accounts[*account].running_cpus += *cpus
-		case JobStateSuspended:
+		case types.JobStateSuspended:
 			accounts[*account].suspended++
 		}
 	}

@@ -33,7 +33,7 @@ func ParseNodeMetrics(input []byte) map[string]*NodeMetrics {
 
 	// Sort and remove all the duplicates from the 'sinfo' output
 	sort.Strings(lines)
-	linesUniq := RemoveDuplicates(lines)
+	linesUniq := OldRemoveDuplicates(lines)
 
 	for _, line := range linesUniq {
 		node := strings.Fields(line)
