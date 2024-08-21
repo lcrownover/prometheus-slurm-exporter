@@ -2,10 +2,8 @@ package api
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"io"
-	"log/slog"
 	"net/http"
 	"strings"
 
@@ -31,7 +29,7 @@ type SlurmRestResponse struct {
 }
 
 // newSlurmRestRequest returns a new slurmRestRequest object which is used to perform
-// http interactions with the slurmrest server. It configures everything up until 
+// http interactions with the slurmrest server. It configures everything up until
 // the request is actually sent to get data.
 func newSlurmRestRequest(ctx context.Context, k types.Key) (*slurmRestRequest, error) {
 	apiUser := ctx.Value(types.ApiUserKey).(string)
@@ -55,7 +53,7 @@ func newSlurmRestRequest(ctx context.Context, k types.Key) (*slurmRestRequest, e
 }
 
 // slurmRestRequest.Send is used to perform the request against the slurmrest
-// server. It returns a *SlurmRestResponse which is a struct containing the 
+// server. It returns a *SlurmRestResponse which is a struct containing the
 // response status code and the bytes of the response body.
 func (sr slurmRestRequest) Send() (*SlurmRestResponse, error) {
 	resp, err := sr.client.Do(sr.req)
@@ -88,50 +86,4 @@ func newSlurmGETRequest(ctx context.Context, endpointCtxKey types.Key) (*SlurmRe
 		return nil, fmt.Errorf("failed to retrieve slurm rest response: %v", err)
 	}
 	return resp, nil
-}
-
-// GetSlurmRestJobsResponse retrieves response bytes from slurm REST api
-func GetSlurmRestJobsResponse(ctx context.Context) ([]byte, error) {
-	resp, err := newSlurmGETRequest(ctx, types.ApiJobsEndpointKey)
-	if err != nil {
-		return nil, fmt.Errorf("failed to perform get request for job data: %v", err)
-	}
-	if resp.StatusCode != 200 {
-		slog.Debug("incorrect status code for job data", "code", resp.StatusCode, "body", string(resp.Body))
-		return nil, fmt.Errorf("received incorrect status code for job data")
-	}
-	return resp.Body, nil
-}
-
-// UnmarshalJobsResponse converts the response bytes into a slurm type
-func UnmarshalJobsResponse(b []byte) (*types.V0040OpenapiJobInfoResp, error) {
-	var jobsResp types.V0040OpenapiJobInfoResp
-	err := json.Unmarshal(b, &jobsResp)
-	if err != nil {
-		return nil, fmt.Errorf("failed to unmarshall job response data: %v", err)
-	}
-	return &jobsResp, nil
-}
-
-// GetSlurmRestNodesResponse retrieves the list of nodes registered to slurm
-func GetSlurmRestNodesResponse(ctx context.Context) ([]byte, error) {
-	resp, err := newSlurmGETRequest(ctx, types.ApiNodesEndpointKey)
-	if err != nil {
-		return nil, fmt.Errorf("failed to perform get request for node data: %v", err)
-	}
-	if resp.StatusCode != 200 {
-		slog.Debug("incorrect status code for node data", "code", resp.StatusCode, "body", string(resp.Body))
-		return nil, fmt.Errorf("received incorrect status code for node data")
-	}
-	return resp.Body, nil
-}
-
-// UnmarshalNodesResponse converts the response bytes into a slurm type
-func UnmarshalNodesResponse(b []byte) (*types.V0040OpenapiNodesResp, error) {
-	var nodesResp types.V0040OpenapiNodesResp
-	err := json.Unmarshal(b, &nodesResp)
-	if err != nil {
-		return nil, fmt.Errorf("failed to unmarshall nodes response data: %v", err)
-	}
-	return &nodesResp, nil
 }
