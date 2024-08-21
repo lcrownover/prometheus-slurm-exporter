@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -109,22 +110,22 @@ func (cc *CPUsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (cc *CPUsCollector) Collect(ch chan<- prometheus.Metric) {
-	jobsRespBytes, err := GetSlurmRestJobsResponse(cc.ctx)
+	jobsRespBytes, err := api.GetSlurmRestJobsResponse(cc.ctx)
 	if err != nil {
 		slog.Error("failed to get jobs response for cpu metrics", "error", err)
 		return
 	}
-	jobsResp, err := UnmarshalJobsResponse(jobsRespBytes)
+	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes)
 	if err != nil {
 		slog.Error("failed to unmarshal jobs response for cpu metrics", "error", err)
 		return
 	}
-	nodeRespBytes, err := GetSlurmRestNodesResponse(cc.ctx)
+	nodeRespBytes, err := api.GetSlurmRestNodesResponse(cc.ctx)
 	if err != nil {
 		slog.Error("failed to get nodes response for cpu metrics", "error", err)
 		return
 	}
-	nodesResp, err := UnmarshalNodesResponse(nodeRespBytes)
+	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes)
 	if err != nil {
 		slog.Error("failed to unmarshal nodes response for cpu metrics", "error", err)
 		return
@@ -142,11 +143,10 @@ func (cc *CPUsCollector) Collect(ch chan<- prometheus.Metric) {
 
 //
 //
-// all the old stuff below
+// THIS IS ALL OLD DATA FOR CHECKING FEATURE PARITY AND WILL BE REMOVED IN THE FUTURE
 //
 //
 
-// Execute the sinfo command and return its output
 func CPUsDataOld() []byte {
 	cmd := exec.Command("sinfo", "-h", "-o %C")
 	stdout, err := cmd.StdoutPipe()

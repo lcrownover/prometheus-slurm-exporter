@@ -11,6 +11,7 @@ import (
 
 	"io"
 
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
@@ -102,12 +103,12 @@ func (ac *AccountsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
-	resp, err := GetSlurmRestJobsResponse(ac.ctx)
+	resp, err := api.GetSlurmRestJobsResponse(ac.ctx)
 	if err != nil {
 		slog.Error("failed to get jobs response for accounts metrics", "error", err)
 		return
 	}
-	jobResp, err := UnmarshalJobsResponse(resp)
+	jobResp, err := api.UnmarshalJobsResponse(resp)
 	if err != nil {
 		slog.Error("failed to unmarshal jobs response for accounts metrics", "error", err)
 		return
@@ -136,6 +137,11 @@ func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
 	}
 }
 
+//
+//
+// THIS IS ALL OLD DATA FOR CHECKING FEATURE PARITY AND WILL BE REMOVED IN THE FUTURE
+//
+//
 func AccountsDataOld() []byte {
 	cmd := exec.Command("squeue", "-a", "-r", "-h", "-o %A|%a|%T|%C")
 	stdout, err := cmd.StdoutPipe()

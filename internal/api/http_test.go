@@ -1,4 +1,4 @@
-package slurm
+package api
 
 import (
 	"testing"

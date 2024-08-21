@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/slurm"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
@@ -52,7 +53,7 @@ func main() {
 		fmt.Println("You must set SLURM_EXPORTER_API_URL. Example: localhost:6820")
 		os.Exit(1)
 	}
-	apiURL = slurm.CleanseBaseURL(apiURL)
+	apiURL = api.CleanseBaseURL(apiURL)
 
 	// Set up the context to pass around
 	ctx := context.Background()
@@ -69,8 +70,11 @@ func main() {
 	// r.MustRegister(slurm.NewAccountsCollector(ctx)) // from accounts.go
 	// r.MustRegister(slurm.NewOldAccountsCollector()) // from accounts.go
 
-	r.MustRegister(slurm.NewCPUsCollector(ctx)) // from cpus.go
-	r.MustRegister(slurm.NewCPUsCollectorOld()) // from cpus.go
+	// r.MustRegister(slurm.NewCPUsCollector(ctx)) // from cpus.go
+	// r.MustRegister(slurm.NewCPUsCollectorOld()) // from cpus.go
+
+	r.MustRegister(slurm.NewGPUsCollector(ctx)) // from gpus.go
+	r.MustRegister(slurm.NewOldGPUsCollector()) // from gpus.go
 
 	// r.MustRegister(slurm.NewNodesCollector())      // from nodes.go
 	// r.MustRegister(slurm.NewNodeCollector())       // from node.go
@@ -80,11 +84,6 @@ func main() {
 	// r.MustRegister(slurm.NewFairShareCollector())  // from sshare.go
 	// r.MustRegister(slurm.NewUsersCollector())      // from users.go
 
-	// gpuAcctString := os.Getenv("SLURM_EXPORTER_GPU_ACCOUNTING")
-	// if gpuAcctString == "true" || gpuAcctString == "1" {
-	// 	r.MustRegister(slurm.NewGPUsCollector())
-	// 	log.Println("GPUs Accounting ON")
-	// }
 	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 
 	log.Printf("Starting Server: %s\n", listenAddress)
