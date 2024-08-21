@@ -70,55 +70,65 @@ func GetJobCPUs(job types.V0040JobInfo) (*float64, error) {
 	return &cpus, nil
 }
 
-// GetNodeState returns a NodeState unit or returns an error
-func GetNodeState(node types.V0040Node) (*types.NodeState, error) {
+// GetNodeStates returns a slice of NodeState unit or returns an error
+func GetNodeStates(node types.V0040Node) (*[]types.NodeState, error) {
+	var nodeStates []types.NodeState
 	states := node.State
+
 	if states == nil {
 		// node state is not found in the node response
 		return nil, fmt.Errorf("node state not found in node")
 	}
-	state := (*states)[0].(string)
-	state = strings.ToLower(state)
 
-	alloc := regexp.MustCompile(`^alloc`)
-	comp := regexp.MustCompile(`^comp`)
-	down := regexp.MustCompile(`^down`)
-	drain := regexp.MustCompile(`^drain`)
-	fail := regexp.MustCompile(`^fail`)
-	err := regexp.MustCompile(`^err`)
-	idle := regexp.MustCompile(`^idle`)
-	maint := regexp.MustCompile(`^maint`)
-	mix := regexp.MustCompile(`^mix`)
-	resv := regexp.MustCompile(`^res`)
+	for _, s := range *states {
+		state := s.(string)
+		state = strings.ToLower(state)
 
-	var stateUnit types.NodeState
+		alloc := regexp.MustCompile(`^alloc`)
+		comp := regexp.MustCompile(`^comp`)
+		down := regexp.MustCompile(`^down`)
+		drain := regexp.MustCompile(`^drain`)
+		fail := regexp.MustCompile(`^fail`)
+		err := regexp.MustCompile(`^err`)
+		idle := regexp.MustCompile(`^idle`)
+		maint := regexp.MustCompile(`^maint`)
+		mix := regexp.MustCompile(`^mix`)
+		resv := regexp.MustCompile(`^res`)
+		notresp := regexp.MustCompile(`^not_responding`)
 
-	switch {
-	case alloc.MatchString(state):
-		stateUnit = types.NodeStateAlloc
-	case comp.MatchString(state):
-		stateUnit = types.NodeStateComp
-	case down.MatchString(state):
-		stateUnit = types.NodeStateDown
-	case drain.MatchString(state):
-		stateUnit = types.NodeStateDrain
-	case fail.MatchString(state):
-		stateUnit = types.NodeStateFail
-	case err.MatchString(state):
-		stateUnit = types.NodeStateErr
-	case idle.MatchString(state):
-		stateUnit = types.NodeStateIdle
-	case maint.MatchString(state):
-		stateUnit = types.NodeStateMaint
-	case mix.MatchString(state):
-		stateUnit = types.NodeStateMix
-	case resv.MatchString(state):
-		stateUnit = types.NodeStateResv
-	default:
-		return nil, fmt.Errorf("failed to match cpu state against known states: %v", state)
+		var stateUnit types.NodeState
+
+		switch {
+		case alloc.MatchString(state):
+			stateUnit = types.NodeStateAlloc
+		case comp.MatchString(state):
+			stateUnit = types.NodeStateComp
+		case down.MatchString(state):
+			stateUnit = types.NodeStateDown
+		case drain.MatchString(state):
+			stateUnit = types.NodeStateDrain
+		case fail.MatchString(state):
+			stateUnit = types.NodeStateFail
+		case err.MatchString(state):
+			stateUnit = types.NodeStateErr
+		case idle.MatchString(state):
+			stateUnit = types.NodeStateIdle
+		case maint.MatchString(state):
+			stateUnit = types.NodeStateMaint
+		case mix.MatchString(state):
+			stateUnit = types.NodeStateMix
+		case resv.MatchString(state):
+			stateUnit = types.NodeStateResv
+		case notresp.MatchString(state):
+			stateUnit = types.NodeStateNotResponding
+		default:
+			return nil, fmt.Errorf("failed to match cpu state against known states: %v", state)
+		}
+
+		nodeStates = append(nodeStates, stateUnit)
 	}
 
-	return &stateUnit, nil
+	return &nodeStates, nil
 }
 
 // GetGPUTotal returns the number of GPUs in the node

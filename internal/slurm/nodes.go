@@ -33,32 +33,34 @@ func ParseNodesMetrics(nodesResp types.V0040OpenapiNodesResp) (*nodesMetrics, er
 	nm := NewNodesMetrics()
 
 	for _, n := range nodesResp.Nodes {
-		nodeState, err := GetNodeState(n)
+		nodeStates, err := GetNodeStates(n)
 		if err != nil {
 			return nil, fmt.Errorf("failed to get node state for nodes metrics: %v", err)
 		}
 
-		switch *nodeState {
-		case types.NodeStateAlloc:
-			nm.alloc += 1
-		case types.NodeStateComp:
-			nm.comp += 1
-		case types.NodeStateDown:
-			nm.down += 1
-		case types.NodeStateDrain:
-			nm.drain += 1
-		case types.NodeStateErr:
-			nm.err += 1
-		case types.NodeStateFail:
-			nm.fail += 1
-		case types.NodeStateIdle:
-			nm.idle += 1
-		case types.NodeStateMaint:
-			nm.maint += 1
-		case types.NodeStateMix:
-			nm.mix += 1
-		case types.NodeStateResv:
-			nm.resv += 1
+		for _, ns := range *nodeStates {
+			switch ns {
+			case types.NodeStateAlloc:
+				nm.alloc += 1
+			case types.NodeStateComp:
+				nm.comp += 1
+			case types.NodeStateDown:
+				nm.down += 1
+			case types.NodeStateDrain:
+				nm.drain += 1
+			case types.NodeStateErr:
+				nm.err += 1
+			case types.NodeStateFail:
+				nm.fail += 1
+			case types.NodeStateIdle:
+				nm.idle += 1
+			case types.NodeStateMaint:
+				nm.maint += 1
+			case types.NodeStateMix:
+				nm.mix += 1
+			case types.NodeStateResv:
+				nm.resv += 1
+			}
 		}
 	}
 

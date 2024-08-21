@@ -13,4 +13,5 @@ const (
 	NodeStateMaint
 	NodeStateMix
 	NodeStateResv
+	NodeStateNotResponding
 )
