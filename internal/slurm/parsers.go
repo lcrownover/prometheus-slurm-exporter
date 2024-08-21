@@ -3,6 +3,7 @@ package slurm
 import (
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
@@ -146,4 +147,46 @@ func GetNodeState(node types.V0040Node) (*NodeState, error) {
 	}
 
 	return &stateUnit, nil
+}
+
+// GetGPUTotal returns the number of GPUs in the node
+func GetNodeGPUTotal(node types.V0040Node) (int, error) {
+	tres := node.Tres
+	parts := strings.Split(*tres, ",")
+	for _, p := range parts {
+		if strings.Contains(p, "gres/gpu=") {
+			gp := strings.Split(p, "=")
+			if len(gp) != 2 {
+				return 0, fmt.Errorf("found gpu in tres but failed to parse: %s", p)
+			}
+			ns := gp[1]
+			n, err := strconv.Atoi(ns)
+			if err != nil {
+				return 0, fmt.Errorf("failed to parse number of gpus from tres: %s", p)
+			}
+			return n, nil
+		}
+	}
+	return 0, nil
+}
+
+// GetGPUAllocated returns the number of GPUs in the node
+func GetNodeGPUAllocated(node types.V0040Node) (int, error) {
+	tres := node.TresUsed
+	parts := strings.Split(*tres, ",")
+	for _, p := range parts {
+		if strings.Contains(p, "gres/gpu=") {
+			gp := strings.Split(p, "=")
+			if len(gp) != 2 {
+				return 0, fmt.Errorf("found gpu in tres but failed to parse: %s", p)
+			}
+			ns := gp[1]
+			n, err := strconv.Atoi(ns)
+			if err != nil {
+				return 0, fmt.Errorf("failed to parse number of gpus from tres: %s", p)
+			}
+			return n, nil
+		}
+	}
+	return 0, nil
 }
