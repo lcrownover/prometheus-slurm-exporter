@@ -88,11 +88,11 @@ func main() {
 	// r.MustRegister(slurm.NewPartitionsCollector(ctx)) // from partitions.go
 	// r.MustRegister(slurm.NewPartitionsCollectorOld()) // from partitions.go
 
-	r.MustRegister(slurm.NewQueueCollector(ctx)) // from queue.go
-	r.MustRegister(slurm.NewQueueCollectorOld()) // from queue.go
-	//
-	// r.MustRegister(slurm.NewSchedulerCollector(ctx)) // from scheduler.go
-	// r.MustRegister(slurm.NewSchedulerCollectorOld()) // from scheduler.go
+	// r.MustRegister(slurm.NewQueueCollector(ctx)) // from queue.go
+	// r.MustRegister(slurm.NewQueueCollectorOld()) // from queue.go
+
+	r.MustRegister(slurm.NewSchedulerCollector(ctx)) // from scheduler.go
+	r.MustRegister(slurm.NewSchedulerCollectorOld()) // from scheduler.go
 	//
 	// r.MustRegister(slurm.NewFairShareCollector(ctx)) // from sshare.go
 	// r.MustRegister(slurm.NewFairShareCollectorOld()) // from sshare.go
