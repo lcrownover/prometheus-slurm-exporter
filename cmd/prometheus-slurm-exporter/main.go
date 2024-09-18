@@ -64,6 +64,7 @@ func main() {
 	// Register all the endpoints
 	ctx = context.WithValue(ctx, types.ApiJobsEndpointKey, "/slurm/v0.0.40/jobs")
 	ctx = context.WithValue(ctx, types.ApiNodesEndpointKey, "/slurm/v0.0.40/nodes")
+	ctx = context.WithValue(ctx, types.ApiPartitionsEndpointKey, "/slurm/v0.0.40/partitions")
 
 	r := prometheus.NewRegistry()
 
@@ -82,7 +83,9 @@ func main() {
 	r.MustRegister(slurm.NewNodeCollector(ctx))       // from node.go
 	r.MustRegister(slurm.NewNodeCollectorOld())       // from node.go
 
-	// r.MustRegister(slurm.NewPartitionsCollector()) // from partitions.go
+	r.MustRegister(slurm.NewPartitionsCollector(ctx)) // from partitions.go
+	r.MustRegister(slurm.NewPartitionsCollectorOld()) // from partitions.go
+
 	// r.MustRegister(slurm.NewQueueCollector())      // from queue.go
 	// r.MustRegister(slurm.NewSchedulerCollector())  // from scheduler.go
 	// r.MustRegister(slurm.NewFairShareCollector())  // from sshare.go
