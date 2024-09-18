@@ -69,7 +69,7 @@ func ParsePartitionsMetrics(partitionResp types.V0040OpenapiPartitionResp) (map[
 
 		states := strings.Split(line, ",")[1]
 
-		// cpu 
+		// cpu
 		allocated, _ := strconv.ParseFloat(strings.Split(states, "/")[0], 64)
 		idle, _ := strconv.ParseFloat(strings.Split(states, "/")[1], 64)
 		other, _ := strconv.ParseFloat(strings.Split(states, "/")[2], 64)
