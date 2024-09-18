@@ -85,8 +85,8 @@ func main() {
 	r.MustRegister(slurm.NewNodeCollector(ctx)) // from node.go
 	r.MustRegister(slurm.NewNodeCollectorOld()) // from node.go
 
-	r.MustRegister(slurm.NewPartitionsCollector(ctx)) // from partitions.go
-	r.MustRegister(slurm.NewPartitionsCollectorOld()) // from partitions.go
+	// r.MustRegister(slurm.NewPartitionsCollector(ctx)) // from partitions.go
+	// r.MustRegister(slurm.NewPartitionsCollectorOld()) // from partitions.go
 
 	r.MustRegister(slurm.NewQueueCollector(ctx)) // from queue.go
 	r.MustRegister(slurm.NewQueueCollectorOld()) // from queue.go

@@ -2,10 +2,12 @@ package slurm
 
 import (
 	"context"
+	"fmt"
 	"log/slog"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -33,17 +35,18 @@ func ParseSchedulerMetrics(diagResp types.V0040OpenapiDiagResp) (*schedulerMetri
 	sm := NewSchedulerMetrics()
 	s := diagResp.Statistics
 
-	sm.threads = float64(*s.ServerThreadCount)
-	sm.queue_size = float64(*s.AgentQueueSize)
-	sm.dbd_queue_size = float64(*s.DbdAgentQueueSize)
-	sm.last_cycle = float64(*s.ScheduleCycleLast)
-	sm.mean_cycle = float64(*s.ScheduleCycleMean)
-	sm.cycle_per_minute = float64(*s.ScheduleCyclePerMinute)
-	sm.backfill_depth_mean = float64(*s.BfDepthMean)
-	sm.total_backfilled_jobs_since_cycle = float64(*s.BfBackfilledJobs)
+	slog.Info("got here")
+	sm.threads = util.GetValueOrZero(s.ServerThreadCount)
+	sm.queue_size = util.GetValueOrZero(s.AgentQueueSize)
+	sm.dbd_queue_size = util.GetValueOrZero(s.DbdAgentQueueSize)
+	sm.last_cycle = util.GetValueOrZero(s.ScheduleCycleLast)
+	sm.mean_cycle = util.GetValueOrZero(s.ScheduleCycleMean)
+	sm.cycle_per_minute = util.GetValueOrZero(s.ScheduleCyclePerMinute)
+	sm.backfill_depth_mean = util.GetValueOrZero(s.BfDepthMean)
+	sm.total_backfilled_jobs_since_cycle = util.GetValueOrZero(s.BfBackfilledJobs)
 	// TODO: This is probably not correct, should revisit this number
-	sm.total_backfilled_jobs_since_start = float64(*s.BfLastBackfilledJobs)
-	sm.total_backfilled_heterogeneous = float64(*s.BfBackfilledHetJobs)
+	sm.total_backfilled_jobs_since_start = util.GetValueOrZero(s.BfLastBackfilledJobs)
+	sm.total_backfilled_heterogeneous = util.GetValueOrZero(s.BfBackfilledHetJobs)
 	return sm, nil
 }
 

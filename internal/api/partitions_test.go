@@ -7,7 +7,7 @@ import (
 )
 
 func TestUnmarshalPartitionsResponse(t *testing.T) {
-	fb := util.ReadTestDataBytes("V0040OpenapiPartitionsResp.json")
+	fb := util.ReadTestDataBytes("V0041OpenapiPartitionResp.json")
 	_, err := UnmarshalPartitionsResponse(fb)
 	if err != nil {
 		t.Fatalf("failed to unmarshal partition response: %v\n", err)

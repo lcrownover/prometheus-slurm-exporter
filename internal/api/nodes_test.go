@@ -7,7 +7,7 @@ import (
 )
 
 func TestUnmarshalNodesResponse(t *testing.T) {
-	fb := util.ReadTestDataBytes("V0040OpenapiNodesResp.json")
+	fb := util.ReadTestDataBytes("V0041OpenapiNodesResp.json")
 	_, err := UnmarshalNodesResponse(fb)
 	if err != nil {
 		t.Fatalf("failed to unmarshal nodes response: %v\n", err)
