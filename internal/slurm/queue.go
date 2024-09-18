@@ -1,15 +1,20 @@
 package slurm
 
 import (
-	"io/ioutil"
-	"log"
-	"os/exec"
-	"strings"
+	"context"
+	"fmt"
+	"log/slog"
 
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-type QueueMetrics struct {
+func NewQueueMetrics() *queueMetrics {
+	return &queueMetrics{}
+}
+
+type queueMetrics struct {
 	pending     float64
 	pending_dep float64
 	running     float64
@@ -24,65 +29,43 @@ type QueueMetrics struct {
 	node_fail   float64
 }
 
-// Returns the scheduler metrics
-func QueueGetMetrics() *QueueMetrics {
-	return ParseQueueMetrics(QueueData())
-}
-
-func ParseQueueMetrics(input []byte) *QueueMetrics {
-	var qm QueueMetrics
-	lines := strings.Split(string(input), "\n")
-	for _, line := range lines {
-		if strings.Contains(line, ",") {
-			splitted := strings.Split(line, ",")
-			state := splitted[1]
-			switch state {
-			case "PENDING":
+func ParseQueueMetrics(jobsResp types.V0040OpenapiJobInfoResp) (*queueMetrics, error) {
+	qm := NewQueueMetrics()
+	for _, j := range jobsResp.Jobs {
+		jobState, err := GetJobState(j)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get job state: %v", err)
+		}
+		switch *jobState {
+		case types.JobStatePending:
+			if *j.Dependency != "" {
+				qm.pending_dep++
+			} else {
 				qm.pending++
-				if len(splitted) > 2 && splitted[2] == "Dependency" {
-					qm.pending_dep++
-				}
-			case "RUNNING":
-				qm.running++
-			case "SUSPENDED":
-				qm.suspended++
-			case "CANCELLED":
-				qm.cancelled++
-			case "COMPLETING":
-				qm.completing++
-			case "COMPLETED":
-				qm.completed++
-			case "CONFIGURING":
-				qm.configuring++
-			case "FAILED":
-				qm.failed++
-			case "TIMEOUT":
-				qm.timeout++
-			case "PREEMPTED":
-				qm.preempted++
-			case "NODE_FAIL":
-				qm.node_fail++
 			}
+		case types.JobStateRunning:
+			qm.running++
+		case types.JobStateSuspended:
+			qm.suspended++
+		case types.JobStateCancelled:
+			qm.cancelled++
+		case types.JobStateCompleting:
+			qm.completing++
+		case types.JobStateCompleted:
+			qm.completed++
+		case types.JobStateConfiguring:
+			qm.configuring++
+		case types.JobStateFailed:
+			qm.failed++
+		case types.JobStateTimeout:
+			qm.timeout++
+		case types.JobStatePreempted:
+			qm.preempted++
+		case types.JobStateNodeFail:
+			qm.node_fail++
 		}
 	}
-	return &qm
-}
-
-// Execute the squeue command and return its output
-func QueueData() []byte {
-	cmd := exec.Command("squeue", "-a", "-r", "-h", "-o %A,%T,%r", "--states=all")
-	stdout, err := cmd.StdoutPipe()
-	if err != nil {
-		log.Fatal(err)
-	}
-	if err := cmd.Start(); err != nil {
-		log.Fatal(err)
-	}
-	out, _ := ioutil.ReadAll(stdout)
-	if err := cmd.Wait(); err != nil {
-		log.Fatal(err)
-	}
-	return out
+	return qm, nil
 }
 
 /*
@@ -91,8 +74,25 @@ func QueueData() []byte {
  * https://godoc.org/github.com/prometheus/client_golang/prometheus#Collector
  */
 
-func NewQueueCollector() *QueueCollector {
+type QueueCollector struct {
+	ctx         context.Context
+	pending     *prometheus.Desc
+	pending_dep *prometheus.Desc
+	running     *prometheus.Desc
+	suspended   *prometheus.Desc
+	cancelled   *prometheus.Desc
+	completing  *prometheus.Desc
+	completed   *prometheus.Desc
+	configuring *prometheus.Desc
+	failed      *prometheus.Desc
+	timeout     *prometheus.Desc
+	preempted   *prometheus.Desc
+	node_fail   *prometheus.Desc
+}
+
+func NewQueueCollector(ctx context.Context) *QueueCollector {
 	return &QueueCollector{
+		ctx:         ctx,
 		pending:     prometheus.NewDesc("slurm_queue_pending", "Pending jobs in queue", nil, nil),
 		pending_dep: prometheus.NewDesc("slurm_queue_pending_dependency", "Pending jobs because of dependency in queue", nil, nil),
 		running:     prometheus.NewDesc("slurm_queue_running", "Running jobs in the cluster", nil, nil),
@@ -106,21 +106,6 @@ func NewQueueCollector() *QueueCollector {
 		preempted:   prometheus.NewDesc("slurm_queue_preempted", "Number of preempted jobs", nil, nil),
 		node_fail:   prometheus.NewDesc("slurm_queue_node_fail", "Number of jobs stopped due to node fail", nil, nil),
 	}
-}
-
-type QueueCollector struct {
-	pending     *prometheus.Desc
-	pending_dep *prometheus.Desc
-	running     *prometheus.Desc
-	suspended   *prometheus.Desc
-	cancelled   *prometheus.Desc
-	completing  *prometheus.Desc
-	completed   *prometheus.Desc
-	configuring *prometheus.Desc
-	failed      *prometheus.Desc
-	timeout     *prometheus.Desc
-	preempted   *prometheus.Desc
-	node_fail   *prometheus.Desc
 }
 
 func (qc *QueueCollector) Describe(ch chan<- *prometheus.Desc) {
@@ -139,7 +124,21 @@ func (qc *QueueCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (qc *QueueCollector) Collect(ch chan<- prometheus.Metric) {
-	qm := QueueGetMetrics()
+	jobsRespBytes, err := api.GetSlurmRestJobsResponse(qc.ctx)
+	if err != nil {
+		slog.Error("failed to get jobs response for cpu metrics", "error", err)
+		return
+	}
+	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes)
+	if err != nil {
+		slog.Error("failed to unmarshal jobs response for cpu metrics", "error", err)
+		return
+	}
+	qm, err := ParseQueueMetrics(*jobsResp)
+	if err != nil {
+		slog.Error("failed to collect queue metrics", "error", err)
+		return
+	}
 	ch <- prometheus.MustNewConstMetric(qc.pending, prometheus.GaugeValue, qm.pending)
 	ch <- prometheus.MustNewConstMetric(qc.pending_dep, prometheus.GaugeValue, qm.pending_dep)
 	ch <- prometheus.MustNewConstMetric(qc.running, prometheus.GaugeValue, qm.running)

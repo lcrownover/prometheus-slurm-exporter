@@ -11,6 +11,11 @@ const (
 	JobStateSuspended   JobState = "suspended"
 	JobStateUnknown     JobState = "unknown"
 	JobStateTimeout     JobState = "timeout"
+	JobStateCancelled   JobState = "cancelled"
+	JobStateCompleting	JobState = "completing"
+	JobStateConfiguring JobState = "configuring"
+	JobStatePreempted 	JobState = "preempted"
+	JobStateNodeFail	JobState = "node_fail"
 )
 
 type SlurmJobsResponse struct {

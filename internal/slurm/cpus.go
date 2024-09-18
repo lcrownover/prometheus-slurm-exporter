@@ -24,8 +24,7 @@ func NewCPUsMetrics() *cpusMetrics {
 // ParseCPUMetrics pulls out total cluster cpu states of alloc,idle,other,total
 func ParseCPUsMetrics(nodesResp types.V0040OpenapiNodesResp, jobsResp types.V0040OpenapiJobInfoResp) (*cpusMetrics, error) {
 	cm := NewCPUsMetrics()
-	jobs := jobsResp.Jobs
-	for _, j := range jobs {
+	for _, j := range jobsResp.Jobs {
 		state, err := GetJobState(j)
 		if err != nil {
 			slog.Error("failed to get job state", "error", err)

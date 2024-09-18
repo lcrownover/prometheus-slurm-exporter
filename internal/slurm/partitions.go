@@ -124,12 +124,12 @@ func (pc *PartitionsCollector) Describe(ch chan<- *prometheus.Desc) {
 func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
 	partitionRespBytes, err := api.GetSlurmRestPartitionsResponse(pc.ctx)
 	if err != nil {
-		slog.Error("failed to get partitions response for cpu metrics", "error", err)
+		slog.Error("failed to get partitions response for partitions metrics", "error", err)
 		return
 	}
 	partitionsResp, err := api.UnmarshalPartitionsResponse(partitionRespBytes)
 	if err != nil {
-		slog.Error("failed to unmarshal partitions response for cpu metrics", "error", err)
+		slog.Error("failed to unmarshal partitions response for partitions metrics", "error", err)
 		return
 	}
 	pm, err := ParsePartitionsMetrics(*partitionsResp)
@@ -138,20 +138,20 @@ func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
 		return
 	}
 	for p := range pm {
-		if pm[p].allocated > 0 {
+		if pm[p].cpus_allocated > 0 {
 			ch <- prometheus.MustNewConstMetric(pc.allocated, prometheus.GaugeValue, pm[p].allocated, p)
 		}
-		if pm[p].idle > 0 {
+		if pm[p].cpus_idle > 0 {
 			ch <- prometheus.MustNewConstMetric(pc.idle, prometheus.GaugeValue, pm[p].idle, p)
 		}
-		if pm[p].other > 0 {
+		if pm[p].cpus_other > 0 {
 			ch <- prometheus.MustNewConstMetric(pc.other, prometheus.GaugeValue, pm[p].other, p)
 		}
-		if pm[p].pending > 0 {
-			ch <- prometheus.MustNewConstMetric(pc.pending, prometheus.GaugeValue, pm[p].pending, p)
-		}
-		if pm[p].total > 0 {
+		if pm[p].cpus_total > 0 {
 			ch <- prometheus.MustNewConstMetric(pc.total, prometheus.GaugeValue, pm[p].total, p)
+		}
+		if pm[p].jobs_pending > 0 {
+			ch <- prometheus.MustNewConstMetric(pc.pending, prometheus.GaugeValue, pm[p].pending, p)
 		}
 	}
 }

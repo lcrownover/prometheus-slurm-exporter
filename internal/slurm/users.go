@@ -1,33 +1,20 @@
 package slurm
 
 import (
-	"io/ioutil"
-	"log"
-	"os/exec"
-	"regexp"
-	"strconv"
-	"strings"
+	"context"
+	"fmt"
+	"log/slog"
 
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-func UsersData() []byte {
-	cmd := exec.Command("squeue", "-a", "-r", "-h", "-o %A|%u|%T|%C")
-	stdout, err := cmd.StdoutPipe()
-	if err != nil {
-		log.Fatal(err)
-	}
-	if err := cmd.Start(); err != nil {
-		log.Fatal(err)
-	}
-	out, _ := ioutil.ReadAll(stdout)
-	if err := cmd.Wait(); err != nil {
-		log.Fatal(err)
-	}
-	return out
+func NewUserJobMetrics() *userJobMetrics {
+	return &userJobMetrics{0, 0, 0, 0, 0}
 }
 
-type UserJobMetrics struct {
+type userJobMetrics struct {
 	pending      float64
 	pending_cpus float64
 	running      float64
@@ -35,38 +22,40 @@ type UserJobMetrics struct {
 	suspended    float64
 }
 
-func ParseUsersMetrics(input []byte) map[string]*UserJobMetrics {
-	users := make(map[string]*UserJobMetrics)
-	lines := strings.Split(string(input), "\n")
-	for _, line := range lines {
-		if strings.Contains(line, "|") {
-			user := strings.Split(line, "|")[1]
-			_, key := users[user]
-			if !key {
-				users[user] = &UserJobMetrics{0, 0, 0, 0, 0}
-			}
-			state := strings.Split(line, "|")[2]
-			state = strings.ToLower(state)
-			cpus, _ := strconv.ParseFloat(strings.Split(line, "|")[3], 64)
-			pending := regexp.MustCompile(`^pending`)
-			running := regexp.MustCompile(`^running`)
-			suspended := regexp.MustCompile(`^suspended`)
-			switch {
-			case pending.MatchString(state) == true:
-				users[user].pending++
-				users[user].pending_cpus += cpus
-			case running.MatchString(state) == true:
-				users[user].running++
-				users[user].running_cpus += cpus
-			case suspended.MatchString(state) == true:
-				users[user].suspended++
-			}
+func ParseUsersMetrics(jobsResp types.V0040OpenapiJobInfoResp) (map[string]*userJobMetrics, error) {
+	users := make(map[string]*userJobMetrics)
+	for _, j := range jobsResp.Jobs {
+		user := *j.UserName
+		if _, exists := users[user]; !exists {
+			users[user] = NewUserJobMetrics()
+		}
+
+		jobState, err := GetJobState(j)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get job state: %v", err)
+		}
+
+		jobCpus, err := GetJobCPUs(j)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get job cpus: %v", err)
+		}
+
+		switch *jobState {
+		case types.JobStatePending:
+			users[user].pending++
+			users[user].pending_cpus += *jobCpus
+		case types.JobStateRunning:
+			users[user].running++
+			users[user].running_cpus += *jobCpus
+		case types.JobStateSuspended:
+			users[user].suspended++
 		}
 	}
-	return users
+	return users, nil
 }
 
 type UsersCollector struct {
+	ctx          context.Context
 	pending      *prometheus.Desc
 	pending_cpus *prometheus.Desc
 	running      *prometheus.Desc
@@ -74,9 +63,10 @@ type UsersCollector struct {
 	suspended    *prometheus.Desc
 }
 
-func NewUsersCollector() *UsersCollector {
+func NewUsersCollector(ctx context.Context) *UsersCollector {
 	labels := []string{"user"}
 	return &UsersCollector{
+		ctx:          ctx,
 		pending:      prometheus.NewDesc("slurm_user_jobs_pending", "Pending jobs for user", labels, nil),
 		pending_cpus: prometheus.NewDesc("slurm_user_cpus_pending", "Pending jobs for user", labels, nil),
 		running:      prometheus.NewDesc("slurm_user_jobs_running", "Running jobs for user", labels, nil),
@@ -94,7 +84,17 @@ func (uc *UsersCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (uc *UsersCollector) Collect(ch chan<- prometheus.Metric) {
-	um := ParseUsersMetrics(UsersData())
+	jobsRespBytes, err := api.GetSlurmRestJobsResponse(uc.ctx)
+	if err != nil {
+		slog.Error("failed to get jobs response for users metrics", "error", err)
+		return
+	}
+	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes)
+	if err != nil {
+		slog.Error("failed to unmarshal jobs response for users metrics", "error", err)
+		return
+	}
+	um, err := ParseUsersMetrics(*jobsResp)
 	for u := range um {
 		if um[u].pending > 0 {
 			ch <- prometheus.MustNewConstMetric(uc.pending, prometheus.GaugeValue, um[u].pending, u)

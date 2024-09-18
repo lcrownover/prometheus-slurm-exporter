@@ -86,10 +86,14 @@ func main() {
 	r.MustRegister(slurm.NewPartitionsCollector(ctx)) // from partitions.go
 	r.MustRegister(slurm.NewPartitionsCollectorOld()) // from partitions.go
 
-	// r.MustRegister(slurm.NewQueueCollector())      // from queue.go
+	r.MustRegister(slurm.NewQueueCollector(ctx))      // from queue.go
+	r.MustRegister(slurm.NewQueueCollectorOld())      // from queue.go
+
 	// r.MustRegister(slurm.NewSchedulerCollector())  // from scheduler.go
 	// r.MustRegister(slurm.NewFairShareCollector())  // from sshare.go
-	// r.MustRegister(slurm.NewUsersCollector())      // from users.go
+
+	r.MustRegister(slurm.NewUsersCollector(ctx))      // from users.go
+	r.MustRegister(slurm.NewUsersCollectorOld())      // from users.go
 
 	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 

@@ -35,6 +35,11 @@ func GetJobState(job types.V0040JobInfo) (*types.JobState, error) {
 	suspended := regexp.MustCompile(`^suspended`)
 	out_of_memory := regexp.MustCompile(`^out_of_memory`)
 	timeout := regexp.MustCompile(`^timeout`)
+	cancelled := regexp.MustCompile(`^cancelled`)
+	completing := regexp.MustCompile(`^completing`)
+	configuring := regexp.MustCompile(`^configuring`)
+	node_fail := regexp.MustCompile(`^node_fail`)
+	preempted := regexp.MustCompile(`^preempted`)
 
 	var stateUnit types.JobState
 
@@ -53,6 +58,16 @@ func GetJobState(job types.V0040JobInfo) (*types.JobState, error) {
 		stateUnit = types.JobStateOutOfMemory
 	case timeout.MatchString(state):
 		stateUnit = types.JobStateTimeout
+	case cancelled.MatchString(state):
+		stateUnit = types.JobStateCancelled
+	case completing.MatchString(state):
+		stateUnit = types.JobStateCompleting
+	case configuring.MatchString(state):
+		stateUnit = types.JobStateConfiguring
+	case node_fail.MatchString(state):
+		stateUnit = types.JobStateNodeFail
+	case preempted.MatchString(state):
+		stateUnit = types.JobStatePreempted
 	default:
 		return nil, fmt.Errorf("failed to match job state against known states: %v", state)
 	}
