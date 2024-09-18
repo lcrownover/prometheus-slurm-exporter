@@ -34,7 +34,6 @@ func ParseSchedulerMetrics(diagResp types.V0040OpenapiDiagResp) (*schedulerMetri
 	sm := NewSchedulerMetrics()
 	s := diagResp.Statistics
 
-	slog.Info("got here")
 	sm.threads = util.GetValueOrZero(s.ServerThreadCount)
 	sm.queue_size = util.GetValueOrZero(s.AgentQueueSize)
 	sm.dbd_queue_size = util.GetValueOrZero(s.DbdAgentQueueSize)
@@ -42,6 +41,8 @@ func ParseSchedulerMetrics(diagResp types.V0040OpenapiDiagResp) (*schedulerMetri
 	sm.mean_cycle = util.GetValueOrZero(s.ScheduleCycleMean)
 	sm.cycle_per_minute = util.GetValueOrZero(s.ScheduleCyclePerMinute)
 	sm.backfill_depth_mean = util.GetValueOrZero(s.BfDepthMean)
+	sm.backfill_last_cycle = util.GetValueOrZero(s.BfCycleLast)
+	sm.backfill_mean_cycle = util.GetValueOrZero(s.BfCycleMean)
 	sm.total_backfilled_jobs_since_cycle = util.GetValueOrZero(s.BfBackfilledJobs)
 	// TODO: This is probably not correct, should revisit this number
 	sm.total_backfilled_jobs_since_start = util.GetValueOrZero(s.BfLastBackfilledJobs)
