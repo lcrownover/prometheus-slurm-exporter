@@ -110,6 +110,7 @@ func GetNodeStates(node types.V0040Node) (*[]types.NodeState, error) {
 		mix := regexp.MustCompile(`^mix`)
 		resv := regexp.MustCompile(`^res`)
 		notresp := regexp.MustCompile(`^not_responding`)
+		invalidreg := regexp.MustCompile(`^invalid_reg`)
 
 		var stateUnit types.NodeState
 
@@ -136,6 +137,8 @@ func GetNodeStates(node types.V0040Node) (*[]types.NodeState, error) {
 			stateUnit = types.NodeStateResv
 		case notresp.MatchString(state):
 			stateUnit = types.NodeStateNotResponding
+		case invalidreg.MatchString(state):
+			stateUnit = types.NodeStateInvalidReg
 		default:
 			return nil, fmt.Errorf("failed to match cpu state against known states: %v", state)
 		}
