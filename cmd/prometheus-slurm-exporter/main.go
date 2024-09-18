@@ -76,10 +76,12 @@ func main() {
 	// r.MustRegister(slurm.NewGPUsCollector(ctx)) // from gpus.go
 	// r.MustRegister(slurm.NewOldGPUsCollector()) // from gpus.go
 
-	r.MustRegister(slurm.NewNodesCollector(ctx))      // from nodes.go
-	r.MustRegister(slurm.NewOldNodesCollector())      // from nodes.go
+	// r.MustRegister(slurm.NewNodesCollector(ctx))      // from nodes.go
+	// r.MustRegister(slurm.NewOldNodesCollector())      // from nodes.go
 
-	// r.MustRegister(slurm.NewNodeCollector())       // from node.go
+	r.MustRegister(slurm.NewNodeCollector(ctx))       // from node.go
+	r.MustRegister(slurm.NewNodeCollectorOld())       // from node.go
+
 	// r.MustRegister(slurm.NewPartitionsCollector()) // from partitions.go
 	// r.MustRegister(slurm.NewQueueCollector())      // from queue.go
 	// r.MustRegister(slurm.NewSchedulerCollector())  // from scheduler.go

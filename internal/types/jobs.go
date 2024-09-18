@@ -1,16 +1,16 @@
 package types
 
-type JobState int
+type JobState string
 
 const (
-	JobStatePending JobState = iota
-	JobStateCompleted
-	JobStateFailed
-	JobStateOutOfMemory
-	JobStateRunning
-	JobStateSuspended
-	JobStateUnknown
-	JobStateTimeout
+	JobStatePending     JobState = "pending"
+	JobStateCompleted   JobState = "pompleted"
+	JobStateFailed      JobState = "failed"
+	JobStateOutOfMemory JobState = "out_of_memory"
+	JobStateRunning     JobState = "running"
+	JobStateSuspended   JobState = "suspended"
+	JobStateUnknown     JobState = "unknown"
+	JobStateTimeout     JobState = "timeout"
 )
 
 type SlurmJobsResponse struct {

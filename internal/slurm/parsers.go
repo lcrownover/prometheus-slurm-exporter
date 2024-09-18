@@ -131,6 +131,20 @@ func GetNodeStates(node types.V0040Node) (*[]types.NodeState, error) {
 	return &nodeStates, nil
 }
 
+// GetNodeStatesString returns a string of node states separated by delim
+func GetNodeStatesString(node types.V0040Node, delim string) (string, error) {
+	states, err := GetNodeStates(node)
+	if err != nil {
+		return "", fmt.Errorf("failed to get node states: %v", err)
+	}
+	// convert nodestates into strings
+	strStates := make([]string, len(*states))
+	for i, s := range *states {
+		strStates[i] = string(s)
+	}
+	return strings.Join(strStates, delim), nil
+}
+
 // GetGPUTotal returns the number of GPUs in the node
 func GetNodeGPUTotal(node types.V0040Node) (int, error) {
 	tres := node.Tres
@@ -171,4 +185,46 @@ func GetNodeGPUAllocated(node types.V0040Node) (int, error) {
 		}
 	}
 	return 0, nil
+}
+
+// GetNodeAllocMemory returns an unsigned 64bit integer
+// of the allocated memory on the node
+func GetNodeAllocMemory(node types.V0040Node) uint64 {
+	alloc_memory := node.AllocMemory
+	return uint64(*alloc_memory)
+}
+
+// GetNodeTotalMemory returns an unsigned 64bit integer
+// of the total memory on the node
+func GetNodeTotalMemory(node types.V0040Node) uint64 {
+	total_memory := node.RealMemory
+	return uint64(*total_memory)
+}
+
+// GetNodeAllocCPUs returns an unsigned 64bit integer
+// of the allocated cpus on the node
+func GetNodeAllocCPUs(node types.V0040Node) uint64 {
+	alloc_cpus := node.AllocCpus
+	return uint64(*alloc_cpus)
+}
+
+// GetNodeIdleCPUs returns an unsigned 64bit integer
+// of the allocated cpus on the node
+func GetNodeIdleCPUs(node types.V0040Node) uint64 {
+	idle_cpus := node.AllocIdleCpus
+	return uint64(*idle_cpus)
+}
+
+// GetNodeOtherCPUs returns an unsigned 64bit integer
+// of the "other" cpus on the node
+// since this isn't in the API, let's just return 0 for now
+func GetNodeOtherCPUs(node types.V0040Node) uint64 {
+	return 0
+}
+
+// GetNodeTotalCPUs returns an unsigned 64bit integer
+// of the total cpus on the node
+func GetNodeTotalCPUs(node types.V0040Node) uint64 {
+	total_cpus := node.Cpus
+	return uint64(*total_cpus)
 }
