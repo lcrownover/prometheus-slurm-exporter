@@ -91,12 +91,12 @@ func main() {
 	// r.MustRegister(slurm.NewQueueCollector(ctx)) // from queue.go
 	// r.MustRegister(slurm.NewQueueCollectorOld()) // from queue.go
 
-	r.MustRegister(slurm.NewSchedulerCollector(ctx)) // from scheduler.go
-	r.MustRegister(slurm.NewSchedulerCollectorOld()) // from scheduler.go
-	//
-	// r.MustRegister(slurm.NewFairShareCollector(ctx)) // from sshare.go
-	// r.MustRegister(slurm.NewFairShareCollectorOld()) // from sshare.go
-	//
+	// r.MustRegister(slurm.NewSchedulerCollector(ctx)) // from scheduler.go
+	// r.MustRegister(slurm.NewSchedulerCollectorOld()) // from scheduler.go
+
+	r.MustRegister(slurm.NewFairShareCollector(ctx)) // from sshare.go
+	r.MustRegister(slurm.NewFairShareCollectorOld()) // from sshare.go
+
 	// r.MustRegister(slurm.NewUsersCollector(ctx)) // from users.go
 	// r.MustRegister(slurm.NewUsersCollectorOld()) // from users.go
 
