@@ -19,6 +19,7 @@ func GetSlurmRestSharesResponse(ctx context.Context) ([]byte, error) {
 		slog.Debug("incorrect status code for shares data", "code", resp.StatusCode, "body", string(resp.Body))
 		return nil, fmt.Errorf("received incorrect status code for shares data")
 	}
+	slog.Info(string(resp.Body))
 	return resp.Body, nil
 }
 
