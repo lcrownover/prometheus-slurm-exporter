@@ -82,14 +82,14 @@ func main() {
 	// r.MustRegister(slurm.NewNodesCollector(ctx))      // from nodes.go
 	// r.MustRegister(slurm.NewOldNodesCollector())      // from nodes.go
 
-	r.MustRegister(slurm.NewNodeCollector(ctx)) // from node.go
-	r.MustRegister(slurm.NewNodeCollectorOld()) // from node.go
+	// r.MustRegister(slurm.NewNodeCollector(ctx)) // from node.go
+	// r.MustRegister(slurm.NewNodeCollectorOld()) // from node.go
 
 	// r.MustRegister(slurm.NewPartitionsCollector(ctx)) // from partitions.go
 	// r.MustRegister(slurm.NewPartitionsCollectorOld()) // from partitions.go
 
-	// r.MustRegister(slurm.NewQueueCollector(ctx)) // from queue.go
-	// r.MustRegister(slurm.NewQueueCollectorOld()) // from queue.go
+	r.MustRegister(slurm.NewQueueCollector(ctx)) // from queue.go
+	r.MustRegister(slurm.NewQueueCollectorOld()) // from queue.go
 	//
 	// r.MustRegister(slurm.NewSchedulerCollector(ctx)) // from scheduler.go
 	// r.MustRegister(slurm.NewSchedulerCollectorOld()) // from scheduler.go
