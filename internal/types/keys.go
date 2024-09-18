@@ -10,4 +10,6 @@ const (
 	ApiJobsEndpointKey
 	ApiNodesEndpointKey
 	ApiPartitionsEndpointKey
+	ApiDiagEndpointKey
+	ApiSharesEndpointKey
 )

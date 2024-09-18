@@ -58,16 +58,14 @@ type partitionMetrics struct {
 	jobs_pending   float64
 }
 
-func ParsePartitionsMetrics(partitionResp types.V0040OpenapiPartitionResp) (map[string]*partitionMetrics, error) {
+func ParsePartitionsMetrics(partitionResp types.V0040OpenapiPartitionResp, jobsResp types.V0040OpenapiJobInfoResp) (map[string]*partitionMetrics, error) {
 	partitions := make(map[string]*partitionMetrics)
-	for _, p := range partitionResp.Partitions {
-		pName := *p.Name
-		_, exists := partitions[pName]
+	for _, j := range jobsResp.Jobs {
+		partition := *j.Partition
+		_, exists := partitions[partition]
 		if !exists {
-			partitions[pName] = NewPartitionsMetrics()
+			partitions[partition] = NewPartitionsMetrics()
 		}
-
-		states := strings.Split(line, ",")[1]
 
 		// cpu
 		allocated, _ := strconv.ParseFloat(strings.Split(states, "/")[0], 64)
@@ -79,6 +77,7 @@ func ParsePartitionsMetrics(partitionResp types.V0040OpenapiPartitionResp) (map[
 		partitions[partition].cpus_other = other
 		partitions[partition].cpus_total = total
 	}
+
 	// get list of pending jobs by partition name
 	list := strings.Split(string(PartitionsPendingJobsData()), "\n")
 	for _, partition := range list {

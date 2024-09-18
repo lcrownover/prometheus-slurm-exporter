@@ -1,24 +1,19 @@
 package slurm
 
 import (
-	"io/ioutil"
-	"log"
-	"os/exec"
-	"regexp"
-	"strconv"
-	"strings"
+	"context"
+	"log/slog"
 
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-/*
- * Execute the Slurm sdiag command to read the current statistics
- * from the Slurm scheduler. It will be repreatedly called by the
- * collector.
- */
+func NewSchedulerMetrics() *schedulerMetrics {
+	return &schedulerMetrics{}
+}
 
-// Basic metrics for the scheduler
-type SchedulerMetrics struct {
+type schedulerMetrics struct {
 	threads                           float64
 	queue_size                        float64
 	dbd_queue_size                    float64
@@ -33,86 +28,23 @@ type SchedulerMetrics struct {
 	total_backfilled_heterogeneous    float64
 }
 
-// Execute the sdiag command and return its output
-func SchedulerData() []byte {
-	cmd := exec.Command("sdiag")
-	stdout, err := cmd.StdoutPipe()
-	if err != nil {
-		log.Fatal(err)
-	}
-	if err := cmd.Start(); err != nil {
-		log.Fatal(err)
-	}
-	out, _ := ioutil.ReadAll(stdout)
-	if err := cmd.Wait(); err != nil {
-		log.Fatal(err)
-	}
-	return out
-}
-
 // Extract the relevant metrics from the sdiag output
-func ParseSchedulerMetrics(input []byte) *SchedulerMetrics {
-	var sm SchedulerMetrics
-	lines := strings.Split(string(input), "\n")
-	// Guard variables to check for string repetitions in the output of sdiag
-	// (two occurencies of the following strings: 'Last cycle', 'Mean cycle')
-	lc_count := 0
-	mc_count := 0
-	for _, line := range lines {
-		if strings.Contains(line, ":") {
-			state := strings.Split(line, ":")[0]
-			st := regexp.MustCompile(`^Server thread`)
-			qs := regexp.MustCompile(`^Agent queue`)
-			dbd := regexp.MustCompile(`^DBD Agent`)
-			lc := regexp.MustCompile(`^[\s]+Last cycle$`)
-			mc := regexp.MustCompile(`^[\s]+Mean cycle$`)
-			cpm := regexp.MustCompile(`^[\s]+Cycles per`)
-			dpm := regexp.MustCompile(`^[\s]+Depth Mean$`)
-			tbs := regexp.MustCompile(`^[\s]+Total backfilled jobs \(since last slurm start\)`)
-			tbc := regexp.MustCompile(`^[\s]+Total backfilled jobs \(since last stats cycle start\)`)
-			tbh := regexp.MustCompile(`^[\s]+Total backfilled heterogeneous job components`)
-			switch {
-			case st.MatchString(state) == true:
-				sm.threads, _ = strconv.ParseFloat(strings.TrimSpace(strings.Split(line, ":")[1]), 64)
-			case qs.MatchString(state) == true:
-				sm.queue_size, _ = strconv.ParseFloat(strings.TrimSpace(strings.Split(line, ":")[1]), 64)
-			case dbd.MatchString(state) == true:
-				sm.dbd_queue_size, _ = strconv.ParseFloat(strings.TrimSpace(strings.Split(line, ":")[1]), 64)
-			case lc.MatchString(state) == true:
-				if lc_count == 0 {
-					sm.last_cycle, _ = strconv.ParseFloat(strings.TrimSpace(strings.Split(line, ":")[1]), 64)
-					lc_count = 1
-				}
-				if lc_count == 1 {
-					sm.backfill_last_cycle, _ = strconv.ParseFloat(strings.TrimSpace(strings.Split(line, ":")[1]), 64)
-				}
-			case mc.MatchString(state) == true:
-				if mc_count == 0 {
-					sm.mean_cycle, _ = strconv.ParseFloat(strings.TrimSpace(strings.Split(line, ":")[1]), 64)
-					mc_count = 1
-				}
-				if mc_count == 1 {
-					sm.backfill_mean_cycle, _ = strconv.ParseFloat(strings.TrimSpace(strings.Split(line, ":")[1]), 64)
-				}
-			case cpm.MatchString(state) == true:
-				sm.cycle_per_minute, _ = strconv.ParseFloat(strings.TrimSpace(strings.Split(line, ":")[1]), 64)
-			case dpm.MatchString(state) == true:
-				sm.backfill_depth_mean, _ = strconv.ParseFloat(strings.TrimSpace(strings.Split(line, ":")[1]), 64)
-			case tbs.MatchString(state) == true:
-				sm.total_backfilled_jobs_since_start, _ = strconv.ParseFloat(strings.TrimSpace(strings.Split(line, ":")[1]), 64)
-			case tbc.MatchString(state) == true:
-				sm.total_backfilled_jobs_since_cycle, _ = strconv.ParseFloat(strings.TrimSpace(strings.Split(line, ":")[1]), 64)
-			case tbh.MatchString(state) == true:
-				sm.total_backfilled_heterogeneous, _ = strconv.ParseFloat(strings.TrimSpace(strings.Split(line, ":")[1]), 64)
-			}
-		}
-	}
-	return &sm
-}
+func ParseSchedulerMetrics(diagResp types.V0040OpenapiDiagResp) (*schedulerMetrics, error) {
+	sm := NewSchedulerMetrics()
+	s := diagResp.Statistics
 
-// Returns the scheduler metrics
-func SchedulerGetMetrics() *SchedulerMetrics {
-	return ParseSchedulerMetrics(SchedulerData())
+	sm.threads = float64(*s.ServerThreadCount)
+	sm.queue_size = float64(*s.AgentQueueSize)
+	sm.dbd_queue_size = float64(*s.DbdAgentQueueSize)
+	sm.last_cycle = float64(*s.ScheduleCycleLast)
+	sm.mean_cycle = float64(*s.ScheduleCycleMean)
+	sm.cycle_per_minute = float64(*s.ScheduleCyclePerMinute)
+	sm.backfill_depth_mean = float64(*s.BfDepthMean)
+	sm.total_backfilled_jobs_since_cycle = float64(*s.BfBackfilledJobs)
+	// TODO: This is probably not correct, should revisit this number
+	sm.total_backfilled_jobs_since_start = float64(*s.BfLastBackfilledJobs)
+	sm.total_backfilled_heterogeneous = float64(*s.BfBackfilledHetJobs)
+	return sm, nil
 }
 
 /*
@@ -121,58 +53,10 @@ func SchedulerGetMetrics() *SchedulerMetrics {
  * https://godoc.org/github.com/prometheus/client_golang/prometheus#Collector
  */
 
-// Collector strcture
-type SchedulerCollector struct {
-	threads                           *prometheus.Desc
-	queue_size                        *prometheus.Desc
-	dbd_queue_size                    *prometheus.Desc
-	last_cycle                        *prometheus.Desc
-	mean_cycle                        *prometheus.Desc
-	cycle_per_minute                  *prometheus.Desc
-	backfill_last_cycle               *prometheus.Desc
-	backfill_mean_cycle               *prometheus.Desc
-	backfill_depth_mean               *prometheus.Desc
-	total_backfilled_jobs_since_start *prometheus.Desc
-	total_backfilled_jobs_since_cycle *prometheus.Desc
-	total_backfilled_heterogeneous    *prometheus.Desc
-}
-
-// Send all metric descriptions
-func (c *SchedulerCollector) Describe(ch chan<- *prometheus.Desc) {
-	ch <- c.threads
-	ch <- c.queue_size
-	ch <- c.dbd_queue_size
-	ch <- c.last_cycle
-	ch <- c.mean_cycle
-	ch <- c.cycle_per_minute
-	ch <- c.backfill_last_cycle
-	ch <- c.backfill_mean_cycle
-	ch <- c.backfill_depth_mean
-	ch <- c.total_backfilled_jobs_since_start
-	ch <- c.total_backfilled_jobs_since_cycle
-	ch <- c.total_backfilled_heterogeneous
-}
-
-// Send the values of all metrics
-func (sc *SchedulerCollector) Collect(ch chan<- prometheus.Metric) {
-	sm := SchedulerGetMetrics()
-	ch <- prometheus.MustNewConstMetric(sc.threads, prometheus.GaugeValue, sm.threads)
-	ch <- prometheus.MustNewConstMetric(sc.queue_size, prometheus.GaugeValue, sm.queue_size)
-	ch <- prometheus.MustNewConstMetric(sc.dbd_queue_size, prometheus.GaugeValue, sm.dbd_queue_size)
-	ch <- prometheus.MustNewConstMetric(sc.last_cycle, prometheus.GaugeValue, sm.last_cycle)
-	ch <- prometheus.MustNewConstMetric(sc.mean_cycle, prometheus.GaugeValue, sm.mean_cycle)
-	ch <- prometheus.MustNewConstMetric(sc.cycle_per_minute, prometheus.GaugeValue, sm.cycle_per_minute)
-	ch <- prometheus.MustNewConstMetric(sc.backfill_last_cycle, prometheus.GaugeValue, sm.backfill_last_cycle)
-	ch <- prometheus.MustNewConstMetric(sc.backfill_mean_cycle, prometheus.GaugeValue, sm.backfill_mean_cycle)
-	ch <- prometheus.MustNewConstMetric(sc.backfill_depth_mean, prometheus.GaugeValue, sm.backfill_depth_mean)
-	ch <- prometheus.MustNewConstMetric(sc.total_backfilled_jobs_since_start, prometheus.GaugeValue, sm.total_backfilled_jobs_since_start)
-	ch <- prometheus.MustNewConstMetric(sc.total_backfilled_jobs_since_cycle, prometheus.GaugeValue, sm.total_backfilled_jobs_since_cycle)
-	ch <- prometheus.MustNewConstMetric(sc.total_backfilled_heterogeneous, prometheus.GaugeValue, sm.total_backfilled_heterogeneous)
-}
-
 // Returns the Slurm scheduler collector, used to register with the prometheus client
-func NewSchedulerCollector() *SchedulerCollector {
+func NewSchedulerCollector(ctx context.Context) *SchedulerCollector {
 	return &SchedulerCollector{
+		ctx: ctx,
 		threads: prometheus.NewDesc(
 			"slurm_scheduler_threads",
 			"Information provided by the Slurm sdiag command, number of scheduler threads ",
@@ -234,4 +118,68 @@ func NewSchedulerCollector() *SchedulerCollector {
 			nil,
 			nil),
 	}
+}
+
+// Collector strcture
+type SchedulerCollector struct {
+	ctx                               context.Context
+	threads                           *prometheus.Desc
+	queue_size                        *prometheus.Desc
+	dbd_queue_size                    *prometheus.Desc
+	last_cycle                        *prometheus.Desc
+	mean_cycle                        *prometheus.Desc
+	cycle_per_minute                  *prometheus.Desc
+	backfill_last_cycle               *prometheus.Desc
+	backfill_mean_cycle               *prometheus.Desc
+	backfill_depth_mean               *prometheus.Desc
+	total_backfilled_jobs_since_start *prometheus.Desc
+	total_backfilled_jobs_since_cycle *prometheus.Desc
+	total_backfilled_heterogeneous    *prometheus.Desc
+}
+
+// Send all metric descriptions
+func (c *SchedulerCollector) Describe(ch chan<- *prometheus.Desc) {
+	ch <- c.threads
+	ch <- c.queue_size
+	ch <- c.dbd_queue_size
+	ch <- c.last_cycle
+	ch <- c.mean_cycle
+	ch <- c.cycle_per_minute
+	ch <- c.backfill_last_cycle
+	ch <- c.backfill_mean_cycle
+	ch <- c.backfill_depth_mean
+	ch <- c.total_backfilled_jobs_since_start
+	ch <- c.total_backfilled_jobs_since_cycle
+	ch <- c.total_backfilled_heterogeneous
+}
+
+// Send the values of all metrics
+func (sc *SchedulerCollector) Collect(ch chan<- prometheus.Metric) {
+	diagRespBytes, err := api.GetSlurmRestDiagResponse(sc.ctx)
+	if err != nil {
+		slog.Error("failed to get diag response for scheduler metrics", "error", err)
+		return
+	}
+	diagResp, err := api.UnmarshalDiagResponse(diagRespBytes)
+	if err != nil {
+		slog.Error("failed to unmarshal diag response for scheduler metrics", "error", err)
+		return
+	}
+	sm, err := ParseSchedulerMetrics(*diagResp)
+	if err != nil {
+		slog.Error("failed to collect scheduler metrics", "error", err)
+		return
+	}
+	ch <- prometheus.MustNewConstMetric(sc.threads, prometheus.GaugeValue, sm.threads)
+	ch <- prometheus.MustNewConstMetric(sc.queue_size, prometheus.GaugeValue, sm.queue_size)
+	ch <- prometheus.MustNewConstMetric(sc.dbd_queue_size, prometheus.GaugeValue, sm.dbd_queue_size)
+	ch <- prometheus.MustNewConstMetric(sc.last_cycle, prometheus.GaugeValue, sm.last_cycle)
+	ch <- prometheus.MustNewConstMetric(sc.mean_cycle, prometheus.GaugeValue, sm.mean_cycle)
+	ch <- prometheus.MustNewConstMetric(sc.cycle_per_minute, prometheus.GaugeValue, sm.cycle_per_minute)
+	ch <- prometheus.MustNewConstMetric(sc.backfill_last_cycle, prometheus.GaugeValue, sm.backfill_last_cycle)
+	ch <- prometheus.MustNewConstMetric(sc.backfill_mean_cycle, prometheus.GaugeValue, sm.backfill_mean_cycle)
+	ch <- prometheus.MustNewConstMetric(sc.backfill_depth_mean, prometheus.GaugeValue, sm.backfill_depth_mean)
+	ch <- prometheus.MustNewConstMetric(sc.total_backfilled_jobs_since_start, prometheus.GaugeValue, sm.total_backfilled_jobs_since_start)
+	ch <- prometheus.MustNewConstMetric(sc.total_backfilled_jobs_since_cycle, prometheus.GaugeValue, sm.total_backfilled_jobs_since_cycle)
+	ch <- prometheus.MustNewConstMetric(sc.total_backfilled_heterogeneous, prometheus.GaugeValue, sm.total_backfilled_heterogeneous)
 }

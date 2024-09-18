@@ -126,12 +126,12 @@ func (qc *QueueCollector) Describe(ch chan<- *prometheus.Desc) {
 func (qc *QueueCollector) Collect(ch chan<- prometheus.Metric) {
 	jobsRespBytes, err := api.GetSlurmRestJobsResponse(qc.ctx)
 	if err != nil {
-		slog.Error("failed to get jobs response for cpu metrics", "error", err)
+		slog.Error("failed to get jobs response for queue metrics", "error", err)
 		return
 	}
 	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes)
 	if err != nil {
-		slog.Error("failed to unmarshal jobs response for cpu metrics", "error", err)
+		slog.Error("failed to unmarshal jobs response for queue metrics", "error", err)
 		return
 	}
 	qm, err := ParseQueueMetrics(*jobsResp)

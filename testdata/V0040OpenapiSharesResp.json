@@ -1,0 +1,181 @@
+{
+  "shares" : {
+    "shares" : [ {
+      "cluster" : "cluster",
+      "parent" : "parent",
+      "shares_normalized" : {
+        "number" : 6.027456183070403,
+        "set" : true,
+        "infinite" : true
+      },
+      "usage" : 9,
+      "fairshare" : {
+        "level" : 2.027123023002322,
+        "factor" : 3.616076749251911
+      },
+      "type" : [ "USER", "USER" ],
+      "effective_usage" : 2.3021358869347655,
+      "shares" : {
+        "number" : 1,
+        "set" : true,
+        "infinite" : true
+      },
+      "partition" : "partition",
+      "usage_normalized" : {
+        "number" : 7.061401241503109,
+        "set" : true,
+        "infinite" : true
+      },
+      "name" : "name",
+      "tres" : {
+        "run_seconds" : [ {
+          "name" : "name",
+          "value" : {
+            "number" : 5,
+            "set" : true,
+            "infinite" : true
+          }
+        }, {
+          "name" : "name",
+          "value" : {
+            "number" : 5,
+            "set" : true,
+            "infinite" : true
+          }
+        } ],
+        "usage" : [ {
+          "name" : "name",
+          "value" : 5.637376656633329
+        }, {
+          "name" : "name",
+          "value" : 5.637376656633329
+        } ],
+        "group_minutes" : [ {
+          "name" : "name",
+          "value" : {
+            "number" : 5,
+            "set" : true,
+            "infinite" : true
+          }
+        }, {
+          "name" : "name",
+          "value" : {
+            "number" : 5,
+            "set" : true,
+            "infinite" : true
+          }
+        } ]
+      },
+      "id" : 0
+    }, {
+      "cluster" : "cluster",
+      "parent" : "parent",
+      "shares_normalized" : {
+        "number" : 6.027456183070403,
+        "set" : true,
+        "infinite" : true
+      },
+      "usage" : 9,
+      "fairshare" : {
+        "level" : 2.027123023002322,
+        "factor" : 3.616076749251911
+      },
+      "type" : [ "USER", "USER" ],
+      "effective_usage" : 2.3021358869347655,
+      "shares" : {
+        "number" : 1,
+        "set" : true,
+        "infinite" : true
+      },
+      "partition" : "partition",
+      "usage_normalized" : {
+        "number" : 7.061401241503109,
+        "set" : true,
+        "infinite" : true
+      },
+      "name" : "name",
+      "tres" : {
+        "run_seconds" : [ {
+          "name" : "name",
+          "value" : {
+            "number" : 5,
+            "set" : true,
+            "infinite" : true
+          }
+        }, {
+          "name" : "name",
+          "value" : {
+            "number" : 5,
+            "set" : true,
+            "infinite" : true
+          }
+        } ],
+        "usage" : [ {
+          "name" : "name",
+          "value" : 5.637376656633329
+        }, {
+          "name" : "name",
+          "value" : 5.637376656633329
+        } ],
+        "group_minutes" : [ {
+          "name" : "name",
+          "value" : {
+            "number" : 5,
+            "set" : true,
+            "infinite" : true
+          }
+        }, {
+          "name" : "name",
+          "value" : {
+            "number" : 5,
+            "set" : true,
+            "infinite" : true
+          }
+        } ]
+      },
+      "id" : 0
+    } ],
+    "total_shares" : 4
+  },
+  "meta" : {
+    "slurm" : {
+      "cluster" : "cluster",
+      "release" : "release",
+      "version" : {
+        "major" : "major",
+        "minor" : "minor",
+        "micro" : "micro"
+      }
+    },
+    "plugin" : {
+      "accounting_storage" : "accounting_storage",
+      "name" : "name",
+      "type" : "type",
+      "data_parser" : "data_parser"
+    },
+    "client" : {
+      "source" : "source",
+      "user" : "user",
+      "group" : "group"
+    },
+    "command" : [ "command", "command" ]
+  },
+  "warnings" : [ {
+    "description" : "description",
+    "source" : "source"
+  }, {
+    "description" : "description",
+    "source" : "source"
+  } ],
+  "errors" : [ {
+    "description" : "description",
+    "source" : "source",
+    "error" : "error",
+    "error_number" : 5
+  }, {
+    "description" : "description",
+    "source" : "source",
+    "error" : "error",
+    "error_number" : 5
+  } ]
+}

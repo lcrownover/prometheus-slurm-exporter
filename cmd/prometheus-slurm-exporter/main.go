@@ -65,6 +65,8 @@ func main() {
 	ctx = context.WithValue(ctx, types.ApiJobsEndpointKey, "/slurm/v0.0.40/jobs")
 	ctx = context.WithValue(ctx, types.ApiNodesEndpointKey, "/slurm/v0.0.40/nodes")
 	ctx = context.WithValue(ctx, types.ApiPartitionsEndpointKey, "/slurm/v0.0.40/partitions")
+	ctx = context.WithValue(ctx, types.ApiDiagEndpointKey, "/slurm/v0.0.40/diag")
+	ctx = context.WithValue(ctx, types.ApiSharesEndpointKey, "/slurm/v0.0.40/shares")
 
 	r := prometheus.NewRegistry()
 
@@ -80,20 +82,23 @@ func main() {
 	// r.MustRegister(slurm.NewNodesCollector(ctx))      // from nodes.go
 	// r.MustRegister(slurm.NewOldNodesCollector())      // from nodes.go
 
-	r.MustRegister(slurm.NewNodeCollector(ctx))       // from node.go
-	r.MustRegister(slurm.NewNodeCollectorOld())       // from node.go
+	r.MustRegister(slurm.NewNodeCollector(ctx)) // from node.go
+	r.MustRegister(slurm.NewNodeCollectorOld()) // from node.go
 
 	r.MustRegister(slurm.NewPartitionsCollector(ctx)) // from partitions.go
 	r.MustRegister(slurm.NewPartitionsCollectorOld()) // from partitions.go
 
-	r.MustRegister(slurm.NewQueueCollector(ctx))      // from queue.go
-	r.MustRegister(slurm.NewQueueCollectorOld())      // from queue.go
+	r.MustRegister(slurm.NewQueueCollector(ctx)) // from queue.go
+	r.MustRegister(slurm.NewQueueCollectorOld()) // from queue.go
 
-	// r.MustRegister(slurm.NewSchedulerCollector())  // from scheduler.go
-	// r.MustRegister(slurm.NewFairShareCollector())  // from sshare.go
+	r.MustRegister(slurm.NewSchedulerCollector(ctx)) // from scheduler.go
+	r.MustRegister(slurm.NewSchedulerCollectorOld()) // from scheduler.go
 
-	r.MustRegister(slurm.NewUsersCollector(ctx))      // from users.go
-	r.MustRegister(slurm.NewUsersCollectorOld())      // from users.go
+	r.MustRegister(slurm.NewFairShareCollector(ctx)) // from sshare.go
+	r.MustRegister(slurm.NewFairShareCollectorOld()) // from sshare.go
+
+	r.MustRegister(slurm.NewUsersCollector(ctx)) // from users.go
+	r.MustRegister(slurm.NewUsersCollectorOld()) // from users.go
 
 	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 
