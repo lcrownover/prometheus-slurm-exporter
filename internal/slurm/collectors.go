@@ -558,16 +558,16 @@ func (fsc *FairShareCollector) Describe(ch chan<- *prometheus.Desc) {
 
 func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
 	sharesRespBytes, err := api.GetSlurmRestSharesResponse(fsc.ctx)
-	fmt.Printf("resp bytes: %s\n", string(sharesRespBytes))
-	os.WriteFile("/tmp/shares-api.json", sharesRespBytes, 0600)
-	sharesRespString := string(sharesRespBytes)
-	newSharesResponseString := strings.ReplaceAll(sharesRespString, "Infinity", "1.7976931348623157e+308")
 	if err != nil {
 		slog.Error("failed to get shares response for fair share metrics", "error", err)
 		return
 	}
-	sharesResp, err := api.UnmarshalSharesResponse([]byte(newSharesResponseString))
-	// sharesResp, err := api.UnmarshalSharesResponse(sharesRespBytes)
+	// this is disgusting but the response has values of "Infinity" which are 
+	// not json unmarshal-able, so I manually replace all the "Infinity"s with the correct
+	// float64 value that represents Infinity.
+	sharesRespBytes = []byte(strings.ReplaceAll(string(sharesRespBytes), "Infinity", "1.7976931348623157e+308"))
+
+	sharesResp, err := api.UnmarshalSharesResponse(sharesRespBytes)
 	if err != nil {
 		slog.Error("failed to unmarshal shares response for fair share metrics", "error", err)
 		return
