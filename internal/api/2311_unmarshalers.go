@@ -5,6 +5,7 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 )
@@ -52,6 +53,8 @@ func UnmarshalPartitionsResponse(b []byte) (*types.V0040OpenapiPartitionResp, er
 // UnmarshalSharesResponse converts the response bytes into a slurm type
 func UnmarshalSharesResponse(b []byte) (*types.V0040OpenapiSharesResp, error) {
 	var sharesResp types.V0040OpenapiSharesResp
+	// TODO: remove this
+	os.WriteFile("/tmp/shares-api.json", b, 0600)
 	err := json.Unmarshal(b, &sharesResp)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshall shares response data: %v", err)
