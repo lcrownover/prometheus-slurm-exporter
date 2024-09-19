@@ -32,4 +32,28 @@ func main() {
 		fmt.Printf("failed to unmarshal json: %v\n", err)
 	}
 	fmt.Printf("%+v\n", rc)
+
+	fmt.Println("trying api>jq json")
+	b, err = os.ReadFile("/tmp/shares-api-jq.json")
+	if err != nil {
+		fmt.Printf("failed to read file: %v\n", err)
+	}
+	var raj types.V0040OpenapiSharesResp
+	err = json.Unmarshal(b, &raj)
+	if err != nil {
+		fmt.Printf("failed to unmarshal json: %v\n", err)
+	}
+	fmt.Printf("%+v\n", raj)
+
+	fmt.Println("trying copied>jq json")
+	b, err = os.ReadFile("/tmp/shares-copy-jq.json")
+	if err != nil {
+		fmt.Printf("failed to read file: %v\n", err)
+	}
+	var rcj types.V0040OpenapiSharesResp
+	err = json.Unmarshal(b, &rcj)
+	if err != nil {
+		fmt.Printf("failed to unmarshal json: %v\n", err)
+	}
+	fmt.Printf("%+v\n", rcj)
 }
