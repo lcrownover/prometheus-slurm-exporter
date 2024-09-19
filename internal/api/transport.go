@@ -65,7 +65,7 @@ func (sr slurmRestRequest) Send() (*SlurmRestResponse, error) {
 	}
 	defer resp.Body.Close()
 
-	dump, err := httputil.DumpResponse(resp, true)
+	dump, err := httputil.DumpResponse(resp, false)
 	if err != nil {
 		fmt.Printf("failed to dump response: %v", err)
 	}
