@@ -65,13 +65,16 @@ func (sr slurmRestRequest) Send() (*SlurmRestResponse, error) {
 	}
 	defer resp.Body.Close()
 
+	dump, err := httputil.DumpResponse(resp, true)
+	if err != nil {
+		fmt.Printf("failed to dump response: %v", err)
+	}
+	fmt.Printf("%+v", dump)
+
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read response body: %v", err)
 	}
-
-	dump, err := httputil.DumpResponse(resp, true)
-	fmt.Printf("%+v", dump)
 
 	sresp := SlurmRestResponse{}
 	sresp.StatusCode = resp.StatusCode
