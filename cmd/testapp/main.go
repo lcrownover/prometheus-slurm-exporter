@@ -16,7 +16,7 @@ func main() {
 	var r types.V0040OpenapiSharesResp
 	err = json.Unmarshal(b, &r)
 	if err != nil {
-		fmt.Println("failed to unmarshal json: %v\n", err)
+		fmt.Printf("failed to unmarshal json: %v\n", err)
 	}
 	fmt.Printf("%+v\n", r)
 }
