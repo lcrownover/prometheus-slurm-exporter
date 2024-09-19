@@ -8,7 +8,7 @@ import (
 )
 
 func TestParseSharesMetrics(t *testing.T) {
-	sharesBytes := util.ReadTestDataBytes("V0040OpenapiSharesResp.json")
+	sharesBytes := util.ReadTestDataBytes("V0041OpenapiSharesResp.json")
 	sharesResp, _ := api.UnmarshalSharesResponse(sharesBytes)
 	_, err := ParseFairShareMetrics(*sharesResp)
 	if err != nil {

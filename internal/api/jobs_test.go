@@ -7,7 +7,7 @@ import (
 )
 
 func TestUnmarshalJobsResponse(t *testing.T) {
-	fb := util.ReadTestDataBytes("V0041OpenapiJobInfoResp.json")
+	fb := util.ReadTestDataBytes("V0040OpenapiJobInfoResp.json")
 	_, err := UnmarshalJobsResponse(fb)
 	if err != nil {
 		t.Fatalf("failed to unmarshal jobs response: %v\n", err)
