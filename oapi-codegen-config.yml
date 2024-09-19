@@ -2,4 +2,4 @@
 package: types
 output: internal/types/openapi.gen.go
 generate:
-  types: true
+  models: true

@@ -4,2794 +4,10228 @@
 package types
 
 const (
-	TokenScopes = "token.Scopes"
-	UserScopes  = "user.Scopes"
+	BearerAuthScopes = "bearerAuth.Scopes"
+	TokenScopes      = "token.Scopes"
+	UserScopes       = "user.Scopes"
 )
 
-// Defines values for V0038JobPropertiesExclusive.
+// Defines values for V0041OpenapiAccountsRespAccountsFlags.
 const (
-	V0038JobPropertiesExclusiveFalse V0038JobPropertiesExclusive = "false"
-	V0038JobPropertiesExclusiveMcs   V0038JobPropertiesExclusive = "mcs"
-	V0038JobPropertiesExclusiveTrue  V0038JobPropertiesExclusive = "true"
-	V0038JobPropertiesExclusiveUser  V0038JobPropertiesExclusive = "user"
+	V0041OpenapiAccountsRespAccountsFlagsDELETED          V0041OpenapiAccountsRespAccountsFlags = "DELETED"
+	V0041OpenapiAccountsRespAccountsFlagsNoUsersAreCoords V0041OpenapiAccountsRespAccountsFlags = "NoUsersAreCoords"
+	V0041OpenapiAccountsRespAccountsFlagsUsersAreCoords   V0041OpenapiAccountsRespAccountsFlags = "UsersAreCoords"
+	V0041OpenapiAccountsRespAccountsFlagsWithAssociations V0041OpenapiAccountsRespAccountsFlags = "WithAssociations"
+	V0041OpenapiAccountsRespAccountsFlagsWithCoordinators V0041OpenapiAccountsRespAccountsFlags = "WithCoordinators"
 )
 
-// Defines values for V0038JobPropertiesGresFlags.
+// Defines values for V0041OpenapiAssocsRespAssociationsFlags.
 const (
-	DisableBinding V0038JobPropertiesGresFlags = "disable-binding"
-	EnforceBinding V0038JobPropertiesGresFlags = "enforce-binding"
+	V0041OpenapiAssocsRespAssociationsFlagsDELETED          V0041OpenapiAssocsRespAssociationsFlags = "DELETED"
+	V0041OpenapiAssocsRespAssociationsFlagsExact            V0041OpenapiAssocsRespAssociationsFlags = "Exact"
+	V0041OpenapiAssocsRespAssociationsFlagsNoUpdate         V0041OpenapiAssocsRespAssociationsFlags = "NoUpdate"
+	V0041OpenapiAssocsRespAssociationsFlagsNoUsersAreCoords V0041OpenapiAssocsRespAssociationsFlags = "NoUsersAreCoords"
+	V0041OpenapiAssocsRespAssociationsFlagsUsersAreCoords   V0041OpenapiAssocsRespAssociationsFlags = "UsersAreCoords"
 )
 
-// Defines values for V0038JobPropertiesOpenMode.
+// Defines values for V0041OpenapiClustersRespClustersFlags.
 const (
-	Append   V0038JobPropertiesOpenMode = "append"
-	Truncate V0038JobPropertiesOpenMode = "truncate"
+	V0041OpenapiClustersRespClustersFlagsEXTERNAL       V0041OpenapiClustersRespClustersFlags = "EXTERNAL"
+	V0041OpenapiClustersRespClustersFlagsFEDERATION     V0041OpenapiClustersRespClustersFlags = "FEDERATION"
+	V0041OpenapiClustersRespClustersFlagsFRONTEND       V0041OpenapiClustersRespClustersFlags = "FRONT_END"
+	V0041OpenapiClustersRespClustersFlagsMULTIPLESLURMD V0041OpenapiClustersRespClustersFlags = "MULTIPLE_SLURMD"
+	V0041OpenapiClustersRespClustersFlagsREGISTERING    V0041OpenapiClustersRespClustersFlags = "REGISTERING"
 )
 
-// Defines values for V0038PingPing.
+// Defines values for V0041OpenapiJobInfoRespJobsDerivedExitCodeStatus.
 const (
-	V0038PingPingDOWN V0038PingPing = "DOWN"
-	V0038PingPingUP   V0038PingPing = "UP"
+	V0041OpenapiJobInfoRespJobsDerivedExitCodeStatusCOREDUMPED V0041OpenapiJobInfoRespJobsDerivedExitCodeStatus = "CORE_DUMPED"
+	V0041OpenapiJobInfoRespJobsDerivedExitCodeStatusERROR      V0041OpenapiJobInfoRespJobsDerivedExitCodeStatus = "ERROR"
+	V0041OpenapiJobInfoRespJobsDerivedExitCodeStatusINVALID    V0041OpenapiJobInfoRespJobsDerivedExitCodeStatus = "INVALID"
+	V0041OpenapiJobInfoRespJobsDerivedExitCodeStatusPENDING    V0041OpenapiJobInfoRespJobsDerivedExitCodeStatus = "PENDING"
+	V0041OpenapiJobInfoRespJobsDerivedExitCodeStatusSIGNALED   V0041OpenapiJobInfoRespJobsDerivedExitCodeStatus = "SIGNALED"
+	V0041OpenapiJobInfoRespJobsDerivedExitCodeStatusSUCCESS    V0041OpenapiJobInfoRespJobsDerivedExitCodeStatus = "SUCCESS"
 )
 
-// Defines values for V0038Signal.
+// Defines values for V0041OpenapiJobInfoRespJobsExclusive.
 const (
-	V0038SignalABRT V0038Signal = "ABRT"
-	V0038SignalALRM V0038Signal = "ALRM"
-	V0038SignalCONT V0038Signal = "CONT"
-	V0038SignalHUP  V0038Signal = "HUP"
-	V0038SignalINT  V0038Signal = "INT"
-	V0038SignalKILL V0038Signal = "KILL"
-	V0038SignalQUIT V0038Signal = "QUIT"
-	V0038SignalSTOP V0038Signal = "STOP"
-	V0038SignalTERM V0038Signal = "TERM"
-	V0038SignalTSTP V0038Signal = "TSTP"
-	V0038SignalTTIN V0038Signal = "TTIN"
-	V0038SignalTTOU V0038Signal = "TTOU"
-	V0038SignalURG  V0038Signal = "URG"
-	V0038SignalUSR1 V0038Signal = "USR1"
-	V0038SignalUSR2 V0038Signal = "USR2"
+	V0041OpenapiJobInfoRespJobsExclusiveFalse V0041OpenapiJobInfoRespJobsExclusive = "false"
+	V0041OpenapiJobInfoRespJobsExclusiveMcs   V0041OpenapiJobInfoRespJobsExclusive = "mcs"
+	V0041OpenapiJobInfoRespJobsExclusiveTopo  V0041OpenapiJobInfoRespJobsExclusive = "topo"
+	V0041OpenapiJobInfoRespJobsExclusiveTrue  V0041OpenapiJobInfoRespJobsExclusive = "true"
+	V0041OpenapiJobInfoRespJobsExclusiveUser  V0041OpenapiJobInfoRespJobsExclusive = "user"
 )
 
-// Defines values for V0039AccountFlags.
+// Defines values for V0041OpenapiJobInfoRespJobsExitCodeStatus.
 const (
-	V0039AccountFlagsDELETED V0039AccountFlags = "DELETED"
+	V0041OpenapiJobInfoRespJobsExitCodeStatusCOREDUMPED V0041OpenapiJobInfoRespJobsExitCodeStatus = "CORE_DUMPED"
+	V0041OpenapiJobInfoRespJobsExitCodeStatusERROR      V0041OpenapiJobInfoRespJobsExitCodeStatus = "ERROR"
+	V0041OpenapiJobInfoRespJobsExitCodeStatusINVALID    V0041OpenapiJobInfoRespJobsExitCodeStatus = "INVALID"
+	V0041OpenapiJobInfoRespJobsExitCodeStatusPENDING    V0041OpenapiJobInfoRespJobsExitCodeStatus = "PENDING"
+	V0041OpenapiJobInfoRespJobsExitCodeStatusSIGNALED   V0041OpenapiJobInfoRespJobsExitCodeStatus = "SIGNALED"
+	V0041OpenapiJobInfoRespJobsExitCodeStatusSUCCESS    V0041OpenapiJobInfoRespJobsExitCodeStatus = "SUCCESS"
 )
 
-// Defines values for V0039AssocFlags.
+// Defines values for V0041OpenapiJobInfoRespJobsFlags.
 const (
-	V0039AssocFlagsDELETED V0039AssocFlags = "DELETED"
+	V0041OpenapiJobInfoRespJobsFlagsACCRUECOUNTCLEARED       V0041OpenapiJobInfoRespJobsFlags = "ACCRUE_COUNT_CLEARED"
+	V0041OpenapiJobInfoRespJobsFlagsBACKFILLATTEMPTED        V0041OpenapiJobInfoRespJobsFlags = "BACKFILL_ATTEMPTED"
+	V0041OpenapiJobInfoRespJobsFlagsCRONJOB                  V0041OpenapiJobInfoRespJobsFlags = "CRON_JOB"
+	V0041OpenapiJobInfoRespJobsFlagsDEPENDENT                V0041OpenapiJobInfoRespJobsFlags = "DEPENDENT"
+	V0041OpenapiJobInfoRespJobsFlagsEXACTCPUCOUNTREQUESTED   V0041OpenapiJobInfoRespJobsFlags = "EXACT_CPU_COUNT_REQUESTED"
+	V0041OpenapiJobInfoRespJobsFlagsEXACTMEMORYREQUESTED     V0041OpenapiJobInfoRespJobsFlags = "EXACT_MEMORY_REQUESTED"
+	V0041OpenapiJobInfoRespJobsFlagsEXACTTASKCOUNTREQUESTED  V0041OpenapiJobInfoRespJobsFlags = "EXACT_TASK_COUNT_REQUESTED"
+	V0041OpenapiJobInfoRespJobsFlagsGRESBINDINGDISABLED      V0041OpenapiJobInfoRespJobsFlags = "GRES_BINDING_DISABLED"
+	V0041OpenapiJobInfoRespJobsFlagsGRESBINDINGENFORCED      V0041OpenapiJobInfoRespJobsFlags = "GRES_BINDING_ENFORCED"
+	V0041OpenapiJobInfoRespJobsFlagsHASSTATEDIRECTORY        V0041OpenapiJobInfoRespJobsFlags = "HAS_STATE_DIRECTORY"
+	V0041OpenapiJobInfoRespJobsFlagsHETEROGENEOUSJOB         V0041OpenapiJobInfoRespJobsFlags = "HETEROGENEOUS_JOB"
+	V0041OpenapiJobInfoRespJobsFlagsJOBACCRUETIMERESET       V0041OpenapiJobInfoRespJobsFlags = "JOB_ACCRUE_TIME_RESET"
+	V0041OpenapiJobInfoRespJobsFlagsJOBKILLHURRY             V0041OpenapiJobInfoRespJobsFlags = "JOB_KILL_HURRY"
+	V0041OpenapiJobInfoRespJobsFlagsJOBWASRUNNING            V0041OpenapiJobInfoRespJobsFlags = "JOB_WAS_RUNNING"
+	V0041OpenapiJobInfoRespJobsFlagsKILLINVALIDDEPENDENCY    V0041OpenapiJobInfoRespJobsFlags = "KILL_INVALID_DEPENDENCY"
+	V0041OpenapiJobInfoRespJobsFlagsMAGNETIC                 V0041OpenapiJobInfoRespJobsFlags = "MAGNETIC"
+	V0041OpenapiJobInfoRespJobsFlagsNOKILLINVALIDDEPENDENCY  V0041OpenapiJobInfoRespJobsFlags = "NO_KILL_INVALID_DEPENDENCY"
+	V0041OpenapiJobInfoRespJobsFlagsPARTITIONASSIGNED        V0041OpenapiJobInfoRespJobsFlags = "PARTITION_ASSIGNED"
+	V0041OpenapiJobInfoRespJobsFlagsPREFERMINIMUMNODECOUNT   V0041OpenapiJobInfoRespJobsFlags = "PREFER_MINIMUM_NODE_COUNT"
+	V0041OpenapiJobInfoRespJobsFlagsSCHEDULINGATTEMPTED      V0041OpenapiJobInfoRespJobsFlags = "SCHEDULING_ATTEMPTED"
+	V0041OpenapiJobInfoRespJobsFlagsSENDJOBENVIRONMENT       V0041OpenapiJobInfoRespJobsFlags = "SEND_JOB_ENVIRONMENT"
+	V0041OpenapiJobInfoRespJobsFlagsSIBLINGCLUSTERUPDATEONLY V0041OpenapiJobInfoRespJobsFlags = "SIBLING_CLUSTER_UPDATE_ONLY"
+	V0041OpenapiJobInfoRespJobsFlagsSKIPTRESSTRINGACCOUNTING V0041OpenapiJobInfoRespJobsFlags = "SKIP_TRES_STRING_ACCOUNTING"
+	V0041OpenapiJobInfoRespJobsFlagsSPREADJOB                V0041OpenapiJobInfoRespJobsFlags = "SPREAD_JOB"
+	V0041OpenapiJobInfoRespJobsFlagsSTEPMGRENABLED           V0041OpenapiJobInfoRespJobsFlags = "STEPMGR_ENABLED"
+	V0041OpenapiJobInfoRespJobsFlagsTESTINGBACKFILL          V0041OpenapiJobInfoRespJobsFlags = "TESTING_BACKFILL"
+	V0041OpenapiJobInfoRespJobsFlagsTESTINGWHOLENODEBACKFILL V0041OpenapiJobInfoRespJobsFlags = "TESTING_WHOLE_NODE_BACKFILL"
+	V0041OpenapiJobInfoRespJobsFlagsTESTNOWONLY              V0041OpenapiJobInfoRespJobsFlags = "TEST_NOW_ONLY"
+	V0041OpenapiJobInfoRespJobsFlagsTOPPRIORITYJOB           V0041OpenapiJobInfoRespJobsFlags = "TOP_PRIORITY_JOB"
+	V0041OpenapiJobInfoRespJobsFlagsUSINGDEFAULTACCOUNT      V0041OpenapiJobInfoRespJobsFlags = "USING_DEFAULT_ACCOUNT"
+	V0041OpenapiJobInfoRespJobsFlagsUSINGDEFAULTPARTITION    V0041OpenapiJobInfoRespJobsFlags = "USING_DEFAULT_PARTITION"
+	V0041OpenapiJobInfoRespJobsFlagsUSINGDEFAULTQOS          V0041OpenapiJobInfoRespJobsFlags = "USING_DEFAULT_QOS"
+	V0041OpenapiJobInfoRespJobsFlagsUSINGDEFAULTWCKEY        V0041OpenapiJobInfoRespJobsFlags = "USING_DEFAULT_WCKEY"
 )
 
-// Defines values for V0039ClusterRecFlags.
+// Defines values for V0041OpenapiJobInfoRespJobsJobResourcesNodesAllocationSocketsCoresStatus.
 const (
-	V0039ClusterRecFlagsCRAYNATIVE     V0039ClusterRecFlags = "CRAY_NATIVE"
-	V0039ClusterRecFlagsEXTERNAL       V0039ClusterRecFlags = "EXTERNAL"
-	V0039ClusterRecFlagsFEDERATION     V0039ClusterRecFlags = "FEDERATION"
-	V0039ClusterRecFlagsFRONTEND       V0039ClusterRecFlags = "FRONT_END"
-	V0039ClusterRecFlagsMULTIPLESLURMD V0039ClusterRecFlags = "MULTIPLE_SLURMD"
-	V0039ClusterRecFlagsREGISTERING    V0039ClusterRecFlags = "REGISTERING"
+	V0041OpenapiJobInfoRespJobsJobResourcesNodesAllocationSocketsCoresStatusALLOCATED   V0041OpenapiJobInfoRespJobsJobResourcesNodesAllocationSocketsCoresStatus = "ALLOCATED"
+	V0041OpenapiJobInfoRespJobsJobResourcesNodesAllocationSocketsCoresStatusINUSE       V0041OpenapiJobInfoRespJobsJobResourcesNodesAllocationSocketsCoresStatus = "IN_USE"
+	V0041OpenapiJobInfoRespJobsJobResourcesNodesAllocationSocketsCoresStatusINVALID     V0041OpenapiJobInfoRespJobsJobResourcesNodesAllocationSocketsCoresStatus = "INVALID"
+	V0041OpenapiJobInfoRespJobsJobResourcesNodesAllocationSocketsCoresStatusUNALLOCATED V0041OpenapiJobInfoRespJobsJobResourcesNodesAllocationSocketsCoresStatus = "UNALLOCATED"
 )
 
-// Defines values for V0039CronEntryFlags.
+// Defines values for V0041OpenapiJobInfoRespJobsJobResourcesNodesSelectType.
 const (
-	WILDDAYOFMONTH V0039CronEntryFlags = "WILD_DAY_OF_MONTH"
-	WILDDAYOFWEEK  V0039CronEntryFlags = "WILD_DAY_OF_WEEK"
-	WILDHOUR       V0039CronEntryFlags = "WILD_HOUR"
-	WILDMINUTE     V0039CronEntryFlags = "WILD_MINUTE"
-	WILDMONTH      V0039CronEntryFlags = "WILD_MONTH"
+	V0041OpenapiJobInfoRespJobsJobResourcesNodesSelectTypeAVAILABLE V0041OpenapiJobInfoRespJobsJobResourcesNodesSelectType = "AVAILABLE"
+	V0041OpenapiJobInfoRespJobsJobResourcesNodesSelectTypeONEROW    V0041OpenapiJobInfoRespJobsJobResourcesNodesSelectType = "ONE_ROW"
+	V0041OpenapiJobInfoRespJobsJobResourcesNodesSelectTypeRESERVED  V0041OpenapiJobInfoRespJobsJobResourcesNodesSelectType = "RESERVED"
 )
 
-// Defines values for V0039JobFlags.
+// Defines values for V0041OpenapiJobInfoRespJobsJobResourcesSelectType.
 const (
-	V0039JobFlagsCLEARSCHEDULING   V0039JobFlags = "CLEAR_SCHEDULING"
-	V0039JobFlagsNONE              V0039JobFlags = "NONE"
-	V0039JobFlagsNOTSET            V0039JobFlags = "NOT_SET"
-	V0039JobFlagsSTARTEDONBACKFILL V0039JobFlags = "STARTED_ON_BACKFILL"
-	V0039JobFlagsSTARTEDONSCHEDULE V0039JobFlags = "STARTED_ON_SCHEDULE"
-	V0039JobFlagsSTARTEDONSUBMIT   V0039JobFlags = "STARTED_ON_SUBMIT"
-	V0039JobFlagsSTARTRECEIVED     V0039JobFlags = "START_RECEIVED"
+	V0041OpenapiJobInfoRespJobsJobResourcesSelectTypeBOARD                V0041OpenapiJobInfoRespJobsJobResourcesSelectType = "BOARD"
+	V0041OpenapiJobInfoRespJobsJobResourcesSelectTypeCORE                 V0041OpenapiJobInfoRespJobsJobResourcesSelectType = "CORE"
+	V0041OpenapiJobInfoRespJobsJobResourcesSelectTypeCOREDEFAULTDISTBLOCK V0041OpenapiJobInfoRespJobsJobResourcesSelectType = "CORE_DEFAULT_DIST_BLOCK"
+	V0041OpenapiJobInfoRespJobsJobResourcesSelectTypeCPU                  V0041OpenapiJobInfoRespJobsJobResourcesSelectType = "CPU"
+	V0041OpenapiJobInfoRespJobsJobResourcesSelectTypeLINEAR               V0041OpenapiJobInfoRespJobsJobResourcesSelectType = "LINEAR"
+	V0041OpenapiJobInfoRespJobsJobResourcesSelectTypeLLN                  V0041OpenapiJobInfoRespJobsJobResourcesSelectType = "LLN"
+	V0041OpenapiJobInfoRespJobsJobResourcesSelectTypeMEMORY               V0041OpenapiJobInfoRespJobsJobResourcesSelectType = "MEMORY"
+	V0041OpenapiJobInfoRespJobsJobResourcesSelectTypeONETASKPERCORE       V0041OpenapiJobInfoRespJobsJobResourcesSelectType = "ONE_TASK_PER_CORE"
+	V0041OpenapiJobInfoRespJobsJobResourcesSelectTypePACKNODES            V0041OpenapiJobInfoRespJobsJobResourcesSelectType = "PACK_NODES"
+	V0041OpenapiJobInfoRespJobsJobResourcesSelectTypeSOCKET               V0041OpenapiJobInfoRespJobsJobResourcesSelectType = "SOCKET"
 )
 
-// Defines values for V0039JobDescMsgCpuBindingFlags.
+// Defines values for V0041OpenapiJobInfoRespJobsJobState.
 const (
-	CPUAUTOBINDTOCORES      V0039JobDescMsgCpuBindingFlags = "CPU_AUTO_BIND_TO_CORES"
-	CPUAUTOBINDTOSOCKETS    V0039JobDescMsgCpuBindingFlags = "CPU_AUTO_BIND_TO_SOCKETS"
-	CPUAUTOBINDTOTHREADS    V0039JobDescMsgCpuBindingFlags = "CPU_AUTO_BIND_TO_THREADS"
-	CPUBINDLDMAP            V0039JobDescMsgCpuBindingFlags = "CPU_BIND_LDMAP"
-	CPUBINDLDMASK           V0039JobDescMsgCpuBindingFlags = "CPU_BIND_LDMASK"
-	CPUBINDLDRANK           V0039JobDescMsgCpuBindingFlags = "CPU_BIND_LDRANK"
-	CPUBINDMAP              V0039JobDescMsgCpuBindingFlags = "CPU_BIND_MAP"
-	CPUBINDMASK             V0039JobDescMsgCpuBindingFlags = "CPU_BIND_MASK"
-	CPUBINDNONE             V0039JobDescMsgCpuBindingFlags = "CPU_BIND_NONE"
-	CPUBINDOFF              V0039JobDescMsgCpuBindingFlags = "CPU_BIND_OFF"
-	CPUBINDONETHREADPERCORE V0039JobDescMsgCpuBindingFlags = "CPU_BIND_ONE_THREAD_PER_CORE"
-	CPUBINDRANK             V0039JobDescMsgCpuBindingFlags = "CPU_BIND_RANK"
-	CPUBINDTOCORES          V0039JobDescMsgCpuBindingFlags = "CPU_BIND_TO_CORES"
-	CPUBINDTOLDOMS          V0039JobDescMsgCpuBindingFlags = "CPU_BIND_TO_LDOMS"
-	CPUBINDTOSOCKETS        V0039JobDescMsgCpuBindingFlags = "CPU_BIND_TO_SOCKETS"
-	CPUBINDTOTHREADS        V0039JobDescMsgCpuBindingFlags = "CPU_BIND_TO_THREADS"
-	SLURMDOFFSPEC           V0039JobDescMsgCpuBindingFlags = "SLURMD_OFF_SPEC"
-	VERBOSE                 V0039JobDescMsgCpuBindingFlags = "VERBOSE"
+	V0041OpenapiJobInfoRespJobsJobStateBOOTFAIL     V0041OpenapiJobInfoRespJobsJobState = "BOOT_FAIL"
+	V0041OpenapiJobInfoRespJobsJobStateCANCELLED    V0041OpenapiJobInfoRespJobsJobState = "CANCELLED"
+	V0041OpenapiJobInfoRespJobsJobStateCOMPLETED    V0041OpenapiJobInfoRespJobsJobState = "COMPLETED"
+	V0041OpenapiJobInfoRespJobsJobStateCOMPLETING   V0041OpenapiJobInfoRespJobsJobState = "COMPLETING"
+	V0041OpenapiJobInfoRespJobsJobStateCONFIGURING  V0041OpenapiJobInfoRespJobsJobState = "CONFIGURING"
+	V0041OpenapiJobInfoRespJobsJobStateDEADLINE     V0041OpenapiJobInfoRespJobsJobState = "DEADLINE"
+	V0041OpenapiJobInfoRespJobsJobStateFAILED       V0041OpenapiJobInfoRespJobsJobState = "FAILED"
+	V0041OpenapiJobInfoRespJobsJobStateLAUNCHFAILED V0041OpenapiJobInfoRespJobsJobState = "LAUNCH_FAILED"
+	V0041OpenapiJobInfoRespJobsJobStateNODEFAIL     V0041OpenapiJobInfoRespJobsJobState = "NODE_FAIL"
+	V0041OpenapiJobInfoRespJobsJobStateOUTOFMEMORY  V0041OpenapiJobInfoRespJobsJobState = "OUT_OF_MEMORY"
+	V0041OpenapiJobInfoRespJobsJobStatePENDING      V0041OpenapiJobInfoRespJobsJobState = "PENDING"
+	V0041OpenapiJobInfoRespJobsJobStatePOWERUPNODE  V0041OpenapiJobInfoRespJobsJobState = "POWER_UP_NODE"
+	V0041OpenapiJobInfoRespJobsJobStatePREEMPTED    V0041OpenapiJobInfoRespJobsJobState = "PREEMPTED"
+	V0041OpenapiJobInfoRespJobsJobStateRECONFIGFAIL V0041OpenapiJobInfoRespJobsJobState = "RECONFIG_FAIL"
+	V0041OpenapiJobInfoRespJobsJobStateREQUEUED     V0041OpenapiJobInfoRespJobsJobState = "REQUEUED"
+	V0041OpenapiJobInfoRespJobsJobStateREQUEUEFED   V0041OpenapiJobInfoRespJobsJobState = "REQUEUE_FED"
+	V0041OpenapiJobInfoRespJobsJobStateREQUEUEHOLD  V0041OpenapiJobInfoRespJobsJobState = "REQUEUE_HOLD"
+	V0041OpenapiJobInfoRespJobsJobStateRESIZING     V0041OpenapiJobInfoRespJobsJobState = "RESIZING"
+	V0041OpenapiJobInfoRespJobsJobStateRESVDELHOLD  V0041OpenapiJobInfoRespJobsJobState = "RESV_DEL_HOLD"
+	V0041OpenapiJobInfoRespJobsJobStateREVOKED      V0041OpenapiJobInfoRespJobsJobState = "REVOKED"
+	V0041OpenapiJobInfoRespJobsJobStateRUNNING      V0041OpenapiJobInfoRespJobsJobState = "RUNNING"
+	V0041OpenapiJobInfoRespJobsJobStateSIGNALING    V0041OpenapiJobInfoRespJobsJobState = "SIGNALING"
+	V0041OpenapiJobInfoRespJobsJobStateSPECIALEXIT  V0041OpenapiJobInfoRespJobsJobState = "SPECIAL_EXIT"
+	V0041OpenapiJobInfoRespJobsJobStateSTAGEOUT     V0041OpenapiJobInfoRespJobsJobState = "STAGE_OUT"
+	V0041OpenapiJobInfoRespJobsJobStateSTOPPED      V0041OpenapiJobInfoRespJobsJobState = "STOPPED"
+	V0041OpenapiJobInfoRespJobsJobStateSUSPENDED    V0041OpenapiJobInfoRespJobsJobState = "SUSPENDED"
+	V0041OpenapiJobInfoRespJobsJobStateTIMEOUT      V0041OpenapiJobInfoRespJobsJobState = "TIMEOUT"
+	V0041OpenapiJobInfoRespJobsJobStateUPDATEDB     V0041OpenapiJobInfoRespJobsJobState = "UPDATE_DB"
 )
 
-// Defines values for V0039JobDescMsgFlags.
+// Defines values for V0041OpenapiJobInfoRespJobsMailType.
 const (
-	V0039JobDescMsgFlagsACCRUECOUNTCLEARED       V0039JobDescMsgFlags = "ACCRUE_COUNT_CLEARED"
-	V0039JobDescMsgFlagsBACKFILLATTEMPTED        V0039JobDescMsgFlags = "BACKFILL_ATTEMPTED"
-	V0039JobDescMsgFlagsCRONJOB                  V0039JobDescMsgFlags = "CRON_JOB"
-	V0039JobDescMsgFlagsDEPENDENT                V0039JobDescMsgFlags = "DEPENDENT"
-	V0039JobDescMsgFlagsEXACTCPUCOUNTREQUESTED   V0039JobDescMsgFlags = "EXACT_CPU_COUNT_REQUESTED"
-	V0039JobDescMsgFlagsEXACTMEMORYREQUESTED     V0039JobDescMsgFlags = "EXACT_MEMORY_REQUESTED"
-	V0039JobDescMsgFlagsEXACTTASKCOUNTREQUESTED  V0039JobDescMsgFlags = "EXACT_TASK_COUNT_REQUESTED"
-	V0039JobDescMsgFlagsGREDBINDINGDISABLED      V0039JobDescMsgFlags = "GRED_BINDING_DISABLED"
-	V0039JobDescMsgFlagsGRESBINDINGENFORCED      V0039JobDescMsgFlags = "GRES_BINDING_ENFORCED"
-	V0039JobDescMsgFlagsHASSTATEDIRECTORY        V0039JobDescMsgFlags = "HAS_STATE_DIRECTORY"
-	V0039JobDescMsgFlagsHETEROGENEOUSJOB         V0039JobDescMsgFlags = "HETEROGENEOUS_JOB"
-	V0039JobDescMsgFlagsJOBACCRUETIMERESET       V0039JobDescMsgFlags = "JOB_ACCRUE_TIME_RESET"
-	V0039JobDescMsgFlagsJOBKILLHURRY             V0039JobDescMsgFlags = "JOB_KILL_HURRY"
-	V0039JobDescMsgFlagsJOBWASRUNNING            V0039JobDescMsgFlags = "JOB_WAS_RUNNING"
-	V0039JobDescMsgFlagsKILLINVALIDDEPENDENCY    V0039JobDescMsgFlags = "KILL_INVALID_DEPENDENCY"
-	V0039JobDescMsgFlagsMAGNETIC                 V0039JobDescMsgFlags = "MAGNETIC"
-	V0039JobDescMsgFlagsNOKILLINVALIDDEPENDENCY  V0039JobDescMsgFlags = "NO_KILL_INVALID_DEPENDENCY"
-	V0039JobDescMsgFlagsPARTITIONASSIGNED        V0039JobDescMsgFlags = "PARTITION_ASSIGNED"
-	V0039JobDescMsgFlagsPREFERMINIMUMNODECOUNT   V0039JobDescMsgFlags = "PREFER_MINIMUM_NODE_COUNT"
-	V0039JobDescMsgFlagsSAVEBATCHSCRIPT          V0039JobDescMsgFlags = "SAVE_BATCH_SCRIPT"
-	V0039JobDescMsgFlagsSCHEDULINGATTEMPTED      V0039JobDescMsgFlags = "SCHEDULING_ATTEMPTED"
-	V0039JobDescMsgFlagsSENDJOBENVIRONMENT       V0039JobDescMsgFlags = "SEND_JOB_ENVIRONMENT"
-	V0039JobDescMsgFlagsSIBLINGCLUSTERUPDATEONLY V0039JobDescMsgFlags = "SIBLING_CLUSTER_UPDATE_ONLY"
-	V0039JobDescMsgFlagsSKIPTRESSTRINGACCOUNTING V0039JobDescMsgFlags = "SKIP_TRES_STRING_ACCOUNTING"
-	V0039JobDescMsgFlagsSPREADJOB                V0039JobDescMsgFlags = "SPREAD_JOB"
-	V0039JobDescMsgFlagsTESTINGBACKFILL          V0039JobDescMsgFlags = "TESTING_BACKFILL"
-	V0039JobDescMsgFlagsTESTINGWHOLENODEBACKFILL V0039JobDescMsgFlags = "TESTING_WHOLE_NODE_BACKFILL"
-	V0039JobDescMsgFlagsTESTNOWONLY              V0039JobDescMsgFlags = "TEST_NOW_ONLY"
-	V0039JobDescMsgFlagsTOPPRIORITYJOB           V0039JobDescMsgFlags = "TOP_PRIORITY_JOB"
-	V0039JobDescMsgFlagsUSINGDEFAULTACCOUNT      V0039JobDescMsgFlags = "USING_DEFAULT_ACCOUNT"
-	V0039JobDescMsgFlagsUSINGDEFAULTPARTITION    V0039JobDescMsgFlags = "USING_DEFAULT_PARTITION"
-	V0039JobDescMsgFlagsUSINGDEFAULTQOS          V0039JobDescMsgFlags = "USING_DEFAULT_QOS"
-	V0039JobDescMsgFlagsUSINGDEFAULTWCKEY        V0039JobDescMsgFlags = "USING_DEFAULT_WCKEY"
+	V0041OpenapiJobInfoRespJobsMailTypeARRAYTASKS        V0041OpenapiJobInfoRespJobsMailType = "ARRAY_TASKS"
+	V0041OpenapiJobInfoRespJobsMailTypeBEGIN             V0041OpenapiJobInfoRespJobsMailType = "BEGIN"
+	V0041OpenapiJobInfoRespJobsMailTypeEND               V0041OpenapiJobInfoRespJobsMailType = "END"
+	V0041OpenapiJobInfoRespJobsMailTypeFAIL              V0041OpenapiJobInfoRespJobsMailType = "FAIL"
+	V0041OpenapiJobInfoRespJobsMailTypeINVALIDDEPENDENCY V0041OpenapiJobInfoRespJobsMailType = "INVALID_DEPENDENCY"
+	V0041OpenapiJobInfoRespJobsMailTypeREQUEUE           V0041OpenapiJobInfoRespJobsMailType = "REQUEUE"
+	V0041OpenapiJobInfoRespJobsMailTypeSTAGEOUT          V0041OpenapiJobInfoRespJobsMailType = "STAGE_OUT"
+	V0041OpenapiJobInfoRespJobsMailTypeTIME100           V0041OpenapiJobInfoRespJobsMailType = "TIME=100%"
+	V0041OpenapiJobInfoRespJobsMailTypeTIME50            V0041OpenapiJobInfoRespJobsMailType = "TIME=50%"
+	V0041OpenapiJobInfoRespJobsMailTypeTIME80            V0041OpenapiJobInfoRespJobsMailType = "TIME=80%"
+	V0041OpenapiJobInfoRespJobsMailTypeTIME90            V0041OpenapiJobInfoRespJobsMailType = "TIME=90%"
 )
 
-// Defines values for V0039JobDescMsgKillWarningFlags.
+// Defines values for V0041OpenapiJobInfoRespJobsProfile.
 const (
-	V0039JobDescMsgKillWarningFlagsARRAYTASK         V0039JobDescMsgKillWarningFlags = "ARRAY_TASK"
-	V0039JobDescMsgKillWarningFlagsBATCHJOB          V0039JobDescMsgKillWarningFlags = "BATCH_JOB"
-	V0039JobDescMsgKillWarningFlagsFEDERATIONREQUEUE V0039JobDescMsgKillWarningFlags = "FEDERATION_REQUEUE"
-	V0039JobDescMsgKillWarningFlagsFULLJOB           V0039JobDescMsgKillWarningFlags = "FULL_JOB"
-	V0039JobDescMsgKillWarningFlagsFULLSTEPSONLY     V0039JobDescMsgKillWarningFlags = "FULL_STEPS_ONLY"
-	V0039JobDescMsgKillWarningFlagsHURRY             V0039JobDescMsgKillWarningFlags = "HURRY"
-	V0039JobDescMsgKillWarningFlagsNOSIBLINGJOBS     V0039JobDescMsgKillWarningFlags = "NO_SIBLING_JOBS"
-	V0039JobDescMsgKillWarningFlagsOUTOFMEMORY       V0039JobDescMsgKillWarningFlags = "OUT_OF_MEMORY"
-	V0039JobDescMsgKillWarningFlagsRESERVATIONJOB    V0039JobDescMsgKillWarningFlags = "RESERVATION_JOB"
-	V0039JobDescMsgKillWarningFlagsWARNINGSENT       V0039JobDescMsgKillWarningFlags = "WARNING_SENT"
+	V0041OpenapiJobInfoRespJobsProfileENERGY  V0041OpenapiJobInfoRespJobsProfile = "ENERGY"
+	V0041OpenapiJobInfoRespJobsProfileLUSTRE  V0041OpenapiJobInfoRespJobsProfile = "LUSTRE"
+	V0041OpenapiJobInfoRespJobsProfileNETWORK V0041OpenapiJobInfoRespJobsProfile = "NETWORK"
+	V0041OpenapiJobInfoRespJobsProfileNONE    V0041OpenapiJobInfoRespJobsProfile = "NONE"
+	V0041OpenapiJobInfoRespJobsProfileNOTSET  V0041OpenapiJobInfoRespJobsProfile = "NOT_SET"
+	V0041OpenapiJobInfoRespJobsProfileTASK    V0041OpenapiJobInfoRespJobsProfile = "TASK"
 )
 
-// Defines values for V0039JobDescMsgMailType.
+// Defines values for V0041OpenapiJobInfoRespJobsShared.
 const (
-	V0039JobDescMsgMailTypeARRAYTASKS        V0039JobDescMsgMailType = "ARRAY_TASKS"
-	V0039JobDescMsgMailTypeBEGIN             V0039JobDescMsgMailType = "BEGIN"
-	V0039JobDescMsgMailTypeEND               V0039JobDescMsgMailType = "END"
-	V0039JobDescMsgMailTypeFAIL              V0039JobDescMsgMailType = "FAIL"
-	V0039JobDescMsgMailTypeINVALIDDEPENDENCY V0039JobDescMsgMailType = "INVALID_DEPENDENCY"
-	V0039JobDescMsgMailTypeREQUEUE           V0039JobDescMsgMailType = "REQUEUE"
-	V0039JobDescMsgMailTypeSTAGEOUT          V0039JobDescMsgMailType = "STAGE_OUT"
-	V0039JobDescMsgMailTypeTIME100           V0039JobDescMsgMailType = "TIME=100%"
-	V0039JobDescMsgMailTypeTIME50            V0039JobDescMsgMailType = "TIME=50%"
-	V0039JobDescMsgMailTypeTIME80            V0039JobDescMsgMailType = "TIME=80%"
-	V0039JobDescMsgMailTypeTIME90            V0039JobDescMsgMailType = "TIME=90%"
+	V0041OpenapiJobInfoRespJobsSharedMcs           V0041OpenapiJobInfoRespJobsShared = "mcs"
+	V0041OpenapiJobInfoRespJobsSharedNone          V0041OpenapiJobInfoRespJobsShared = "none"
+	V0041OpenapiJobInfoRespJobsSharedOversubscribe V0041OpenapiJobInfoRespJobsShared = "oversubscribe"
+	V0041OpenapiJobInfoRespJobsSharedTopo          V0041OpenapiJobInfoRespJobsShared = "topo"
+	V0041OpenapiJobInfoRespJobsSharedUser          V0041OpenapiJobInfoRespJobsShared = "user"
 )
 
-// Defines values for V0039JobDescMsgMemoryBindingType.
+// Defines values for V0041OpenapiJobInfoRespJobsShowFlags.
 const (
-	V0039JobDescMsgMemoryBindingTypeLOCAL   V0039JobDescMsgMemoryBindingType = "LOCAL"
-	V0039JobDescMsgMemoryBindingTypeMAP     V0039JobDescMsgMemoryBindingType = "MAP"
-	V0039JobDescMsgMemoryBindingTypeMASK    V0039JobDescMsgMemoryBindingType = "MASK"
-	V0039JobDescMsgMemoryBindingTypeNONE    V0039JobDescMsgMemoryBindingType = "NONE"
-	V0039JobDescMsgMemoryBindingTypePREFER  V0039JobDescMsgMemoryBindingType = "PREFER"
-	V0039JobDescMsgMemoryBindingTypeRANK    V0039JobDescMsgMemoryBindingType = "RANK"
-	V0039JobDescMsgMemoryBindingTypeSORT    V0039JobDescMsgMemoryBindingType = "SORT"
-	V0039JobDescMsgMemoryBindingTypeVERBOSE V0039JobDescMsgMemoryBindingType = "VERBOSE"
+	V0041OpenapiJobInfoRespJobsShowFlagsALL        V0041OpenapiJobInfoRespJobsShowFlags = "ALL"
+	V0041OpenapiJobInfoRespJobsShowFlagsDETAIL     V0041OpenapiJobInfoRespJobsShowFlags = "DETAIL"
+	V0041OpenapiJobInfoRespJobsShowFlagsFEDERATION V0041OpenapiJobInfoRespJobsShowFlags = "FEDERATION"
+	V0041OpenapiJobInfoRespJobsShowFlagsFUTURE     V0041OpenapiJobInfoRespJobsShowFlags = "FUTURE"
+	V0041OpenapiJobInfoRespJobsShowFlagsLOCAL      V0041OpenapiJobInfoRespJobsShowFlags = "LOCAL"
+	V0041OpenapiJobInfoRespJobsShowFlagsMIXED      V0041OpenapiJobInfoRespJobsShowFlags = "MIXED"
+	V0041OpenapiJobInfoRespJobsShowFlagsSIBLING    V0041OpenapiJobInfoRespJobsShowFlags = "SIBLING"
 )
 
-// Defines values for V0039JobDescMsgOpenMode.
+// Defines values for V0041OpenapiNodesRespNodesNextStateAfterReboot.
 const (
-	APPEND   V0039JobDescMsgOpenMode = "APPEND"
-	TRUNCATE V0039JobDescMsgOpenMode = "TRUNCATE"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootALLOCATED       V0041OpenapiNodesRespNodesNextStateAfterReboot = "ALLOCATED"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootCLOUD           V0041OpenapiNodesRespNodesNextStateAfterReboot = "CLOUD"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootCOMPLETING      V0041OpenapiNodesRespNodesNextStateAfterReboot = "COMPLETING"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootDOWN            V0041OpenapiNodesRespNodesNextStateAfterReboot = "DOWN"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootDRAIN           V0041OpenapiNodesRespNodesNextStateAfterReboot = "DRAIN"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootDYNAMICFUTURE   V0041OpenapiNodesRespNodesNextStateAfterReboot = "DYNAMIC_FUTURE"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootDYNAMICNORM     V0041OpenapiNodesRespNodesNextStateAfterReboot = "DYNAMIC_NORM"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootERROR           V0041OpenapiNodesRespNodesNextStateAfterReboot = "ERROR"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootFAIL            V0041OpenapiNodesRespNodesNextStateAfterReboot = "FAIL"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootFUTURE          V0041OpenapiNodesRespNodesNextStateAfterReboot = "FUTURE"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootIDLE            V0041OpenapiNodesRespNodesNextStateAfterReboot = "IDLE"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootINVALID         V0041OpenapiNodesRespNodesNextStateAfterReboot = "INVALID"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootINVALIDREG      V0041OpenapiNodesRespNodesNextStateAfterReboot = "INVALID_REG"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootMAINTENANCE     V0041OpenapiNodesRespNodesNextStateAfterReboot = "MAINTENANCE"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootMIXED           V0041OpenapiNodesRespNodesNextStateAfterReboot = "MIXED"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootNOTRESPONDING   V0041OpenapiNodesRespNodesNextStateAfterReboot = "NOT_RESPONDING"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootPLANNED         V0041OpenapiNodesRespNodesNextStateAfterReboot = "PLANNED"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootPOWERDOWN       V0041OpenapiNodesRespNodesNextStateAfterReboot = "POWER_DOWN"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootPOWERDRAIN      V0041OpenapiNodesRespNodesNextStateAfterReboot = "POWER_DRAIN"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootPOWEREDDOWN     V0041OpenapiNodesRespNodesNextStateAfterReboot = "POWERED_DOWN"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootPOWERINGDOWN    V0041OpenapiNodesRespNodesNextStateAfterReboot = "POWERING_DOWN"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootPOWERINGUP      V0041OpenapiNodesRespNodesNextStateAfterReboot = "POWERING_UP"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootPOWERUP         V0041OpenapiNodesRespNodesNextStateAfterReboot = "POWER_UP"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootREBOOTCANCELED  V0041OpenapiNodesRespNodesNextStateAfterReboot = "REBOOT_CANCELED"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootREBOOTISSUED    V0041OpenapiNodesRespNodesNextStateAfterReboot = "REBOOT_ISSUED"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootREBOOTREQUESTED V0041OpenapiNodesRespNodesNextStateAfterReboot = "REBOOT_REQUESTED"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootRESERVED        V0041OpenapiNodesRespNodesNextStateAfterReboot = "RESERVED"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootRESUME          V0041OpenapiNodesRespNodesNextStateAfterReboot = "RESUME"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootUNDRAIN         V0041OpenapiNodesRespNodesNextStateAfterReboot = "UNDRAIN"
+	V0041OpenapiNodesRespNodesNextStateAfterRebootUNKNOWN         V0041OpenapiNodesRespNodesNextStateAfterReboot = "UNKNOWN"
 )
 
-// Defines values for V0039JobDescMsgPowerFlags.
+// Defines values for V0041OpenapiNodesRespNodesState.
 const (
-	V0039JobDescMsgPowerFlagsEQUALPOWER V0039JobDescMsgPowerFlags = "EQUAL_POWER"
+	V0041OpenapiNodesRespNodesStateALLOCATED       V0041OpenapiNodesRespNodesState = "ALLOCATED"
+	V0041OpenapiNodesRespNodesStateCLOUD           V0041OpenapiNodesRespNodesState = "CLOUD"
+	V0041OpenapiNodesRespNodesStateCOMPLETING      V0041OpenapiNodesRespNodesState = "COMPLETING"
+	V0041OpenapiNodesRespNodesStateDOWN            V0041OpenapiNodesRespNodesState = "DOWN"
+	V0041OpenapiNodesRespNodesStateDRAIN           V0041OpenapiNodesRespNodesState = "DRAIN"
+	V0041OpenapiNodesRespNodesStateDYNAMICFUTURE   V0041OpenapiNodesRespNodesState = "DYNAMIC_FUTURE"
+	V0041OpenapiNodesRespNodesStateDYNAMICNORM     V0041OpenapiNodesRespNodesState = "DYNAMIC_NORM"
+	V0041OpenapiNodesRespNodesStateERROR           V0041OpenapiNodesRespNodesState = "ERROR"
+	V0041OpenapiNodesRespNodesStateFAIL            V0041OpenapiNodesRespNodesState = "FAIL"
+	V0041OpenapiNodesRespNodesStateFUTURE          V0041OpenapiNodesRespNodesState = "FUTURE"
+	V0041OpenapiNodesRespNodesStateIDLE            V0041OpenapiNodesRespNodesState = "IDLE"
+	V0041OpenapiNodesRespNodesStateINVALID         V0041OpenapiNodesRespNodesState = "INVALID"
+	V0041OpenapiNodesRespNodesStateINVALIDREG      V0041OpenapiNodesRespNodesState = "INVALID_REG"
+	V0041OpenapiNodesRespNodesStateMAINTENANCE     V0041OpenapiNodesRespNodesState = "MAINTENANCE"
+	V0041OpenapiNodesRespNodesStateMIXED           V0041OpenapiNodesRespNodesState = "MIXED"
+	V0041OpenapiNodesRespNodesStateNOTRESPONDING   V0041OpenapiNodesRespNodesState = "NOT_RESPONDING"
+	V0041OpenapiNodesRespNodesStatePLANNED         V0041OpenapiNodesRespNodesState = "PLANNED"
+	V0041OpenapiNodesRespNodesStatePOWERDOWN       V0041OpenapiNodesRespNodesState = "POWER_DOWN"
+	V0041OpenapiNodesRespNodesStatePOWERDRAIN      V0041OpenapiNodesRespNodesState = "POWER_DRAIN"
+	V0041OpenapiNodesRespNodesStatePOWEREDDOWN     V0041OpenapiNodesRespNodesState = "POWERED_DOWN"
+	V0041OpenapiNodesRespNodesStatePOWERINGDOWN    V0041OpenapiNodesRespNodesState = "POWERING_DOWN"
+	V0041OpenapiNodesRespNodesStatePOWERINGUP      V0041OpenapiNodesRespNodesState = "POWERING_UP"
+	V0041OpenapiNodesRespNodesStatePOWERUP         V0041OpenapiNodesRespNodesState = "POWER_UP"
+	V0041OpenapiNodesRespNodesStateREBOOTCANCELED  V0041OpenapiNodesRespNodesState = "REBOOT_CANCELED"
+	V0041OpenapiNodesRespNodesStateREBOOTISSUED    V0041OpenapiNodesRespNodesState = "REBOOT_ISSUED"
+	V0041OpenapiNodesRespNodesStateREBOOTREQUESTED V0041OpenapiNodesRespNodesState = "REBOOT_REQUESTED"
+	V0041OpenapiNodesRespNodesStateRESERVED        V0041OpenapiNodesRespNodesState = "RESERVED"
+	V0041OpenapiNodesRespNodesStateRESUME          V0041OpenapiNodesRespNodesState = "RESUME"
+	V0041OpenapiNodesRespNodesStateUNDRAIN         V0041OpenapiNodesRespNodesState = "UNDRAIN"
+	V0041OpenapiNodesRespNodesStateUNKNOWN         V0041OpenapiNodesRespNodesState = "UNKNOWN"
 )
 
-// Defines values for V0039JobDescMsgProfile.
+// Defines values for V0041OpenapiPartitionRespPartitionsMaximumsOversubscribeFlags.
 const (
-	V0039JobDescMsgProfileENERGY  V0039JobDescMsgProfile = "ENERGY"
-	V0039JobDescMsgProfileLUSTRE  V0039JobDescMsgProfile = "LUSTRE"
-	V0039JobDescMsgProfileNETWORK V0039JobDescMsgProfile = "NETWORK"
-	V0039JobDescMsgProfileNONE    V0039JobDescMsgProfile = "NONE"
-	V0039JobDescMsgProfileNOTSET  V0039JobDescMsgProfile = "NOT_SET"
-	V0039JobDescMsgProfileTASK    V0039JobDescMsgProfile = "TASK"
+	Force V0041OpenapiPartitionRespPartitionsMaximumsOversubscribeFlags = "force"
 )
 
-// Defines values for V0039JobDescMsgShared.
+// Defines values for V0041OpenapiPartitionRespPartitionsPartitionState.
 const (
-	V0039JobDescMsgSharedMcs           V0039JobDescMsgShared = "mcs"
-	V0039JobDescMsgSharedNone          V0039JobDescMsgShared = "none"
-	V0039JobDescMsgSharedOversubscribe V0039JobDescMsgShared = "oversubscribe"
-	V0039JobDescMsgSharedUser          V0039JobDescMsgShared = "user"
+	V0041OpenapiPartitionRespPartitionsPartitionStateDOWN     V0041OpenapiPartitionRespPartitionsPartitionState = "DOWN"
+	V0041OpenapiPartitionRespPartitionsPartitionStateDRAIN    V0041OpenapiPartitionRespPartitionsPartitionState = "DRAIN"
+	V0041OpenapiPartitionRespPartitionsPartitionStateINACTIVE V0041OpenapiPartitionRespPartitionsPartitionState = "INACTIVE"
+	V0041OpenapiPartitionRespPartitionsPartitionStateUNKNOWN  V0041OpenapiPartitionRespPartitionsPartitionState = "UNKNOWN"
+	V0041OpenapiPartitionRespPartitionsPartitionStateUP       V0041OpenapiPartitionRespPartitionsPartitionState = "UP"
 )
 
-// Defines values for V0039JobDescMsgX11.
+// Defines values for V0041OpenapiPartitionRespPartitionsSelectType.
 const (
-	BATCHNODE       V0039JobDescMsgX11 = "BATCH_NODE"
-	FIRSTNODE       V0039JobDescMsgX11 = "FIRST_NODE"
-	FORWARDALLNODES V0039JobDescMsgX11 = "FORWARD_ALL_NODES"
-	LASTNODE        V0039JobDescMsgX11 = "LAST_NODE"
+	V0041OpenapiPartitionRespPartitionsSelectTypeBOARD                V0041OpenapiPartitionRespPartitionsSelectType = "BOARD"
+	V0041OpenapiPartitionRespPartitionsSelectTypeCORE                 V0041OpenapiPartitionRespPartitionsSelectType = "CORE"
+	V0041OpenapiPartitionRespPartitionsSelectTypeCOREDEFAULTDISTBLOCK V0041OpenapiPartitionRespPartitionsSelectType = "CORE_DEFAULT_DIST_BLOCK"
+	V0041OpenapiPartitionRespPartitionsSelectTypeCPU                  V0041OpenapiPartitionRespPartitionsSelectType = "CPU"
+	V0041OpenapiPartitionRespPartitionsSelectTypeLINEAR               V0041OpenapiPartitionRespPartitionsSelectType = "LINEAR"
+	V0041OpenapiPartitionRespPartitionsSelectTypeLLN                  V0041OpenapiPartitionRespPartitionsSelectType = "LLN"
+	V0041OpenapiPartitionRespPartitionsSelectTypeMEMORY               V0041OpenapiPartitionRespPartitionsSelectType = "MEMORY"
+	V0041OpenapiPartitionRespPartitionsSelectTypeONETASKPERCORE       V0041OpenapiPartitionRespPartitionsSelectType = "ONE_TASK_PER_CORE"
+	V0041OpenapiPartitionRespPartitionsSelectTypePACKNODES            V0041OpenapiPartitionRespPartitionsSelectType = "PACK_NODES"
+	V0041OpenapiPartitionRespPartitionsSelectTypeSOCKET               V0041OpenapiPartitionRespPartitionsSelectType = "SOCKET"
 )
 
-// Defines values for V0039JobInfoFlags.
+// Defines values for V0041OpenapiReservationRespReservationsFlags.
 const (
-	V0039JobInfoFlagsACCRUECOUNTCLEARED       V0039JobInfoFlags = "ACCRUE_COUNT_CLEARED"
-	V0039JobInfoFlagsBACKFILLATTEMPTED        V0039JobInfoFlags = "BACKFILL_ATTEMPTED"
-	V0039JobInfoFlagsCRONJOB                  V0039JobInfoFlags = "CRON_JOB"
-	V0039JobInfoFlagsDEPENDENT                V0039JobInfoFlags = "DEPENDENT"
-	V0039JobInfoFlagsEXACTCPUCOUNTREQUESTED   V0039JobInfoFlags = "EXACT_CPU_COUNT_REQUESTED"
-	V0039JobInfoFlagsEXACTMEMORYREQUESTED     V0039JobInfoFlags = "EXACT_MEMORY_REQUESTED"
-	V0039JobInfoFlagsEXACTTASKCOUNTREQUESTED  V0039JobInfoFlags = "EXACT_TASK_COUNT_REQUESTED"
-	V0039JobInfoFlagsGREDBINDINGDISABLED      V0039JobInfoFlags = "GRED_BINDING_DISABLED"
-	V0039JobInfoFlagsGRESBINDINGENFORCED      V0039JobInfoFlags = "GRES_BINDING_ENFORCED"
-	V0039JobInfoFlagsHASSTATEDIRECTORY        V0039JobInfoFlags = "HAS_STATE_DIRECTORY"
-	V0039JobInfoFlagsHETEROGENEOUSJOB         V0039JobInfoFlags = "HETEROGENEOUS_JOB"
-	V0039JobInfoFlagsJOBACCRUETIMERESET       V0039JobInfoFlags = "JOB_ACCRUE_TIME_RESET"
-	V0039JobInfoFlagsJOBKILLHURRY             V0039JobInfoFlags = "JOB_KILL_HURRY"
-	V0039JobInfoFlagsJOBWASRUNNING            V0039JobInfoFlags = "JOB_WAS_RUNNING"
-	V0039JobInfoFlagsKILLINVALIDDEPENDENCY    V0039JobInfoFlags = "KILL_INVALID_DEPENDENCY"
-	V0039JobInfoFlagsMAGNETIC                 V0039JobInfoFlags = "MAGNETIC"
-	V0039JobInfoFlagsNOKILLINVALIDDEPENDENCY  V0039JobInfoFlags = "NO_KILL_INVALID_DEPENDENCY"
-	V0039JobInfoFlagsPARTITIONASSIGNED        V0039JobInfoFlags = "PARTITION_ASSIGNED"
-	V0039JobInfoFlagsPREFERMINIMUMNODECOUNT   V0039JobInfoFlags = "PREFER_MINIMUM_NODE_COUNT"
-	V0039JobInfoFlagsSAVEBATCHSCRIPT          V0039JobInfoFlags = "SAVE_BATCH_SCRIPT"
-	V0039JobInfoFlagsSCHEDULINGATTEMPTED      V0039JobInfoFlags = "SCHEDULING_ATTEMPTED"
-	V0039JobInfoFlagsSENDJOBENVIRONMENT       V0039JobInfoFlags = "SEND_JOB_ENVIRONMENT"
-	V0039JobInfoFlagsSIBLINGCLUSTERUPDATEONLY V0039JobInfoFlags = "SIBLING_CLUSTER_UPDATE_ONLY"
-	V0039JobInfoFlagsSKIPTRESSTRINGACCOUNTING V0039JobInfoFlags = "SKIP_TRES_STRING_ACCOUNTING"
-	V0039JobInfoFlagsSPREADJOB                V0039JobInfoFlags = "SPREAD_JOB"
-	V0039JobInfoFlagsTESTINGBACKFILL          V0039JobInfoFlags = "TESTING_BACKFILL"
-	V0039JobInfoFlagsTESTINGWHOLENODEBACKFILL V0039JobInfoFlags = "TESTING_WHOLE_NODE_BACKFILL"
-	V0039JobInfoFlagsTESTNOWONLY              V0039JobInfoFlags = "TEST_NOW_ONLY"
-	V0039JobInfoFlagsTOPPRIORITYJOB           V0039JobInfoFlags = "TOP_PRIORITY_JOB"
-	V0039JobInfoFlagsUSINGDEFAULTACCOUNT      V0039JobInfoFlags = "USING_DEFAULT_ACCOUNT"
-	V0039JobInfoFlagsUSINGDEFAULTPARTITION    V0039JobInfoFlags = "USING_DEFAULT_PARTITION"
-	V0039JobInfoFlagsUSINGDEFAULTQOS          V0039JobInfoFlags = "USING_DEFAULT_QOS"
-	V0039JobInfoFlagsUSINGDEFAULTWCKEY        V0039JobInfoFlags = "USING_DEFAULT_WCKEY"
+	V0041OpenapiReservationRespReservationsFlagsALLNODES           V0041OpenapiReservationRespReservationsFlags = "ALL_NODES"
+	V0041OpenapiReservationRespReservationsFlagsANYNODES           V0041OpenapiReservationRespReservationsFlags = "ANY_NODES"
+	V0041OpenapiReservationRespReservationsFlagsDAILY              V0041OpenapiReservationRespReservationsFlags = "DAILY"
+	V0041OpenapiReservationRespReservationsFlagsDURATIONMINUS      V0041OpenapiReservationRespReservationsFlags = "DURATION_MINUS"
+	V0041OpenapiReservationRespReservationsFlagsDURATIONPLUS       V0041OpenapiReservationRespReservationsFlags = "DURATION_PLUS"
+	V0041OpenapiReservationRespReservationsFlagsFLEX               V0041OpenapiReservationRespReservationsFlags = "FLEX"
+	V0041OpenapiReservationRespReservationsFlagsHOURLY             V0041OpenapiReservationRespReservationsFlags = "HOURLY"
+	V0041OpenapiReservationRespReservationsFlagsIGNOREJOBS         V0041OpenapiReservationRespReservationsFlags = "IGNORE_JOBS"
+	V0041OpenapiReservationRespReservationsFlagsMAGNETIC           V0041OpenapiReservationRespReservationsFlags = "MAGNETIC"
+	V0041OpenapiReservationRespReservationsFlagsMAINT              V0041OpenapiReservationRespReservationsFlags = "MAINT"
+	V0041OpenapiReservationRespReservationsFlagsNODAILY            V0041OpenapiReservationRespReservationsFlags = "NO_DAILY"
+	V0041OpenapiReservationRespReservationsFlagsNOFLEX             V0041OpenapiReservationRespReservationsFlags = "NO_FLEX"
+	V0041OpenapiReservationRespReservationsFlagsNOHOLDJOBSAFTEREND V0041OpenapiReservationRespReservationsFlags = "NO_HOLD_JOBS_AFTER_END"
+	V0041OpenapiReservationRespReservationsFlagsNOHOURLY           V0041OpenapiReservationRespReservationsFlags = "NO_HOURLY"
+	V0041OpenapiReservationRespReservationsFlagsNOIGNOREJOBS       V0041OpenapiReservationRespReservationsFlags = "NO_IGNORE_JOBS"
+	V0041OpenapiReservationRespReservationsFlagsNOMAINT            V0041OpenapiReservationRespReservationsFlags = "NO_MAINT"
+	V0041OpenapiReservationRespReservationsFlagsNOPARTNODES        V0041OpenapiReservationRespReservationsFlags = "NO_PART_NODES"
+	V0041OpenapiReservationRespReservationsFlagsNOPURGECOMP        V0041OpenapiReservationRespReservationsFlags = "NO_PURGE_COMP"
+	V0041OpenapiReservationRespReservationsFlagsNOSTATIC           V0041OpenapiReservationRespReservationsFlags = "NO_STATIC"
+	V0041OpenapiReservationRespReservationsFlagsNOUSERDELETE       V0041OpenapiReservationRespReservationsFlags = "NO_USER_DELETE"
+	V0041OpenapiReservationRespReservationsFlagsNOWEEKDAY          V0041OpenapiReservationRespReservationsFlags = "NO_WEEKDAY"
+	V0041OpenapiReservationRespReservationsFlagsNOWEEKEND          V0041OpenapiReservationRespReservationsFlags = "NO_WEEKEND"
+	V0041OpenapiReservationRespReservationsFlagsNOWEEKLY           V0041OpenapiReservationRespReservationsFlags = "NO_WEEKLY"
+	V0041OpenapiReservationRespReservationsFlagsOVERLAP            V0041OpenapiReservationRespReservationsFlags = "OVERLAP"
+	V0041OpenapiReservationRespReservationsFlagsPARTNODES          V0041OpenapiReservationRespReservationsFlags = "PART_NODES"
+	V0041OpenapiReservationRespReservationsFlagsPURGECOMP          V0041OpenapiReservationRespReservationsFlags = "PURGE_COMP"
+	V0041OpenapiReservationRespReservationsFlagsREOCCURRING        V0041OpenapiReservationRespReservationsFlags = "REOCCURRING"
+	V0041OpenapiReservationRespReservationsFlagsREPLACE            V0041OpenapiReservationRespReservationsFlags = "REPLACE"
+	V0041OpenapiReservationRespReservationsFlagsSKIP               V0041OpenapiReservationRespReservationsFlags = "SKIP"
+	V0041OpenapiReservationRespReservationsFlagsSPECNODES          V0041OpenapiReservationRespReservationsFlags = "SPEC_NODES"
+	V0041OpenapiReservationRespReservationsFlagsSTATIC             V0041OpenapiReservationRespReservationsFlags = "STATIC"
+	V0041OpenapiReservationRespReservationsFlagsTIMEFLOAT          V0041OpenapiReservationRespReservationsFlags = "TIME_FLOAT"
+	V0041OpenapiReservationRespReservationsFlagsUSERDELETE         V0041OpenapiReservationRespReservationsFlags = "USER_DELETE"
+	V0041OpenapiReservationRespReservationsFlagsWEEKDAY            V0041OpenapiReservationRespReservationsFlags = "WEEKDAY"
+	V0041OpenapiReservationRespReservationsFlagsWEEKEND            V0041OpenapiReservationRespReservationsFlags = "WEEKEND"
+	V0041OpenapiReservationRespReservationsFlagsWEEKLY             V0041OpenapiReservationRespReservationsFlags = "WEEKLY"
 )
 
-// Defines values for V0039JobInfoMailType.
+// Defines values for V0041OpenapiSlurmdbdConfigRespAccountsFlags.
 const (
-	V0039JobInfoMailTypeARRAYTASKS        V0039JobInfoMailType = "ARRAY_TASKS"
-	V0039JobInfoMailTypeBEGIN             V0039JobInfoMailType = "BEGIN"
-	V0039JobInfoMailTypeEND               V0039JobInfoMailType = "END"
-	V0039JobInfoMailTypeFAIL              V0039JobInfoMailType = "FAIL"
-	V0039JobInfoMailTypeINVALIDDEPENDENCY V0039JobInfoMailType = "INVALID_DEPENDENCY"
-	V0039JobInfoMailTypeREQUEUE           V0039JobInfoMailType = "REQUEUE"
-	V0039JobInfoMailTypeSTAGEOUT          V0039JobInfoMailType = "STAGE_OUT"
-	V0039JobInfoMailTypeTIME100           V0039JobInfoMailType = "TIME=100%"
-	V0039JobInfoMailTypeTIME50            V0039JobInfoMailType = "TIME=50%"
-	V0039JobInfoMailTypeTIME80            V0039JobInfoMailType = "TIME=80%"
-	V0039JobInfoMailTypeTIME90            V0039JobInfoMailType = "TIME=90%"
+	V0041OpenapiSlurmdbdConfigRespAccountsFlagsDELETED          V0041OpenapiSlurmdbdConfigRespAccountsFlags = "DELETED"
+	V0041OpenapiSlurmdbdConfigRespAccountsFlagsNoUsersAreCoords V0041OpenapiSlurmdbdConfigRespAccountsFlags = "NoUsersAreCoords"
+	V0041OpenapiSlurmdbdConfigRespAccountsFlagsUsersAreCoords   V0041OpenapiSlurmdbdConfigRespAccountsFlags = "UsersAreCoords"
+	V0041OpenapiSlurmdbdConfigRespAccountsFlagsWithAssociations V0041OpenapiSlurmdbdConfigRespAccountsFlags = "WithAssociations"
+	V0041OpenapiSlurmdbdConfigRespAccountsFlagsWithCoordinators V0041OpenapiSlurmdbdConfigRespAccountsFlags = "WithCoordinators"
 )
 
-// Defines values for V0039JobInfoPowerFlags.
+// Defines values for V0041OpenapiSlurmdbdConfigRespAssociationsFlags.
 const (
-	V0039JobInfoPowerFlagsEQUALPOWER V0039JobInfoPowerFlags = "EQUAL_POWER"
+	V0041OpenapiSlurmdbdConfigRespAssociationsFlagsDELETED          V0041OpenapiSlurmdbdConfigRespAssociationsFlags = "DELETED"
+	V0041OpenapiSlurmdbdConfigRespAssociationsFlagsExact            V0041OpenapiSlurmdbdConfigRespAssociationsFlags = "Exact"
+	V0041OpenapiSlurmdbdConfigRespAssociationsFlagsNoUpdate         V0041OpenapiSlurmdbdConfigRespAssociationsFlags = "NoUpdate"
+	V0041OpenapiSlurmdbdConfigRespAssociationsFlagsNoUsersAreCoords V0041OpenapiSlurmdbdConfigRespAssociationsFlags = "NoUsersAreCoords"
+	V0041OpenapiSlurmdbdConfigRespAssociationsFlagsUsersAreCoords   V0041OpenapiSlurmdbdConfigRespAssociationsFlags = "UsersAreCoords"
 )
 
-// Defines values for V0039JobInfoProfile.
+// Defines values for V0041OpenapiSlurmdbdConfigRespClustersFlags.
 const (
-	V0039JobInfoProfileENERGY  V0039JobInfoProfile = "ENERGY"
-	V0039JobInfoProfileLUSTRE  V0039JobInfoProfile = "LUSTRE"
-	V0039JobInfoProfileNETWORK V0039JobInfoProfile = "NETWORK"
-	V0039JobInfoProfileNONE    V0039JobInfoProfile = "NONE"
-	V0039JobInfoProfileNOTSET  V0039JobInfoProfile = "NOT_SET"
-	V0039JobInfoProfileTASK    V0039JobInfoProfile = "TASK"
+	V0041OpenapiSlurmdbdConfigRespClustersFlagsEXTERNAL       V0041OpenapiSlurmdbdConfigRespClustersFlags = "EXTERNAL"
+	V0041OpenapiSlurmdbdConfigRespClustersFlagsFEDERATION     V0041OpenapiSlurmdbdConfigRespClustersFlags = "FEDERATION"
+	V0041OpenapiSlurmdbdConfigRespClustersFlagsFRONTEND       V0041OpenapiSlurmdbdConfigRespClustersFlags = "FRONT_END"
+	V0041OpenapiSlurmdbdConfigRespClustersFlagsMULTIPLESLURMD V0041OpenapiSlurmdbdConfigRespClustersFlags = "MULTIPLE_SLURMD"
+	V0041OpenapiSlurmdbdConfigRespClustersFlagsREGISTERING    V0041OpenapiSlurmdbdConfigRespClustersFlags = "REGISTERING"
 )
 
-// Defines values for V0039JobInfoShared.
+// Defines values for V0041OpenapiSlurmdbdConfigRespQosFlags.
 const (
-	V0039JobInfoSharedMcs           V0039JobInfoShared = "mcs"
-	V0039JobInfoSharedNone          V0039JobInfoShared = "none"
-	V0039JobInfoSharedOversubscribe V0039JobInfoShared = "oversubscribe"
-	V0039JobInfoSharedUser          V0039JobInfoShared = "user"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsADD                   V0041OpenapiSlurmdbdConfigRespQosFlags = "ADD"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsDENYLIMIT             V0041OpenapiSlurmdbdConfigRespQosFlags = "DENY_LIMIT"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsENFORCEUSAGETHRESHOLD V0041OpenapiSlurmdbdConfigRespQosFlags = "ENFORCE_USAGE_THRESHOLD"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsNODECAY               V0041OpenapiSlurmdbdConfigRespQosFlags = "NO_DECAY"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsNORESERVE             V0041OpenapiSlurmdbdConfigRespQosFlags = "NO_RESERVE"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsNOTSET                V0041OpenapiSlurmdbdConfigRespQosFlags = "NOT_SET"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsOVERRIDEPARTITIONQOS  V0041OpenapiSlurmdbdConfigRespQosFlags = "OVERRIDE_PARTITION_QOS"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsPARTITIONMAXIMUMNODE  V0041OpenapiSlurmdbdConfigRespQosFlags = "PARTITION_MAXIMUM_NODE"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsPARTITIONMINIMUMNODE  V0041OpenapiSlurmdbdConfigRespQosFlags = "PARTITION_MINIMUM_NODE"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsPARTITIONTIMELIMIT    V0041OpenapiSlurmdbdConfigRespQosFlags = "PARTITION_TIME_LIMIT"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsRELATIVE              V0041OpenapiSlurmdbdConfigRespQosFlags = "RELATIVE"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsREMOVE                V0041OpenapiSlurmdbdConfigRespQosFlags = "REMOVE"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsREQUIREDRESERVATION   V0041OpenapiSlurmdbdConfigRespQosFlags = "REQUIRED_RESERVATION"
+	V0041OpenapiSlurmdbdConfigRespQosFlagsUSAGEFACTORSAFE       V0041OpenapiSlurmdbdConfigRespQosFlags = "USAGE_FACTOR_SAFE"
 )
 
-// Defines values for V0039JobInfoShowFlags.
+// Defines values for V0041OpenapiSlurmdbdConfigRespQosPreemptMode.
 const (
-	V0039JobInfoShowFlagsALL        V0039JobInfoShowFlags = "ALL"
-	V0039JobInfoShowFlagsDETAIL     V0039JobInfoShowFlags = "DETAIL"
-	V0039JobInfoShowFlagsFEDERATION V0039JobInfoShowFlags = "FEDERATION"
-	V0039JobInfoShowFlagsFUTURE     V0039JobInfoShowFlags = "FUTURE"
-	V0039JobInfoShowFlagsLOCAL      V0039JobInfoShowFlags = "LOCAL"
-	V0039JobInfoShowFlagsMIXED      V0039JobInfoShowFlags = "MIXED"
-	V0039JobInfoShowFlagsSIBLING    V0039JobInfoShowFlags = "SIBLING"
+	V0041OpenapiSlurmdbdConfigRespQosPreemptModeCANCEL   V0041OpenapiSlurmdbdConfigRespQosPreemptMode = "CANCEL"
+	V0041OpenapiSlurmdbdConfigRespQosPreemptModeDISABLED V0041OpenapiSlurmdbdConfigRespQosPreemptMode = "DISABLED"
+	V0041OpenapiSlurmdbdConfigRespQosPreemptModeGANG     V0041OpenapiSlurmdbdConfigRespQosPreemptMode = "GANG"
+	V0041OpenapiSlurmdbdConfigRespQosPreemptModeREQUEUE  V0041OpenapiSlurmdbdConfigRespQosPreemptMode = "REQUEUE"
+	V0041OpenapiSlurmdbdConfigRespQosPreemptModeSUSPEND  V0041OpenapiSlurmdbdConfigRespQosPreemptMode = "SUSPEND"
 )
 
-// Defines values for V0039NodeNextStateAfterReboot.
+// Defines values for V0041OpenapiSlurmdbdConfigRespUsersAdministratorLevel.
 const (
-	V0039NodeNextStateAfterRebootALLOCATED       V0039NodeNextStateAfterReboot = "ALLOCATED"
-	V0039NodeNextStateAfterRebootCLOUD           V0039NodeNextStateAfterReboot = "CLOUD"
-	V0039NodeNextStateAfterRebootCOMPLETING      V0039NodeNextStateAfterReboot = "COMPLETING"
-	V0039NodeNextStateAfterRebootDOWN            V0039NodeNextStateAfterReboot = "DOWN"
-	V0039NodeNextStateAfterRebootDRAIN           V0039NodeNextStateAfterReboot = "DRAIN"
-	V0039NodeNextStateAfterRebootDYNAMICFUTURE   V0039NodeNextStateAfterReboot = "DYNAMIC_FUTURE"
-	V0039NodeNextStateAfterRebootDYNAMICNORM     V0039NodeNextStateAfterReboot = "DYNAMIC_NORM"
-	V0039NodeNextStateAfterRebootERROR           V0039NodeNextStateAfterReboot = "ERROR"
-	V0039NodeNextStateAfterRebootFAIL            V0039NodeNextStateAfterReboot = "FAIL"
-	V0039NodeNextStateAfterRebootFUTURE          V0039NodeNextStateAfterReboot = "FUTURE"
-	V0039NodeNextStateAfterRebootIDLE            V0039NodeNextStateAfterReboot = "IDLE"
-	V0039NodeNextStateAfterRebootINVALID         V0039NodeNextStateAfterReboot = "INVALID"
-	V0039NodeNextStateAfterRebootINVALIDREG      V0039NodeNextStateAfterReboot = "INVALID_REG"
-	V0039NodeNextStateAfterRebootMAINTENANCE     V0039NodeNextStateAfterReboot = "MAINTENANCE"
-	V0039NodeNextStateAfterRebootMIXED           V0039NodeNextStateAfterReboot = "MIXED"
-	V0039NodeNextStateAfterRebootNOTRESPONDING   V0039NodeNextStateAfterReboot = "NOT_RESPONDING"
-	V0039NodeNextStateAfterRebootPERFCTRS        V0039NodeNextStateAfterReboot = "PERFCTRS"
-	V0039NodeNextStateAfterRebootPLANNED         V0039NodeNextStateAfterReboot = "PLANNED"
-	V0039NodeNextStateAfterRebootPOWERDOWN       V0039NodeNextStateAfterReboot = "POWER_DOWN"
-	V0039NodeNextStateAfterRebootPOWERDRAIN      V0039NodeNextStateAfterReboot = "POWER_DRAIN"
-	V0039NodeNextStateAfterRebootPOWEREDDOWN     V0039NodeNextStateAfterReboot = "POWERED_DOWN"
-	V0039NodeNextStateAfterRebootPOWERINGDOWN    V0039NodeNextStateAfterReboot = "POWERING_DOWN"
-	V0039NodeNextStateAfterRebootPOWERINGUP      V0039NodeNextStateAfterReboot = "POWERING_UP"
-	V0039NodeNextStateAfterRebootPOWERUP         V0039NodeNextStateAfterReboot = "POWER_UP"
-	V0039NodeNextStateAfterRebootREBOOTCANCELED  V0039NodeNextStateAfterReboot = "REBOOT_CANCELED"
-	V0039NodeNextStateAfterRebootREBOOTISSUED    V0039NodeNextStateAfterReboot = "REBOOT_ISSUED"
-	V0039NodeNextStateAfterRebootREBOOTREQUESTED V0039NodeNextStateAfterReboot = "REBOOT_REQUESTED"
-	V0039NodeNextStateAfterRebootRESERVED        V0039NodeNextStateAfterReboot = "RESERVED"
-	V0039NodeNextStateAfterRebootRESUME          V0039NodeNextStateAfterReboot = "RESUME"
-	V0039NodeNextStateAfterRebootUNDRAIN         V0039NodeNextStateAfterReboot = "UNDRAIN"
-	V0039NodeNextStateAfterRebootUNKNOWN         V0039NodeNextStateAfterReboot = "UNKNOWN"
+	V0041OpenapiSlurmdbdConfigRespUsersAdministratorLevelAdministrator V0041OpenapiSlurmdbdConfigRespUsersAdministratorLevel = "Administrator"
+	V0041OpenapiSlurmdbdConfigRespUsersAdministratorLevelNone          V0041OpenapiSlurmdbdConfigRespUsersAdministratorLevel = "None"
+	V0041OpenapiSlurmdbdConfigRespUsersAdministratorLevelNotSet        V0041OpenapiSlurmdbdConfigRespUsersAdministratorLevel = "Not Set"
+	V0041OpenapiSlurmdbdConfigRespUsersAdministratorLevelOperator      V0041OpenapiSlurmdbdConfigRespUsersAdministratorLevel = "Operator"
 )
 
-// Defines values for V0039NodeState.
+// Defines values for V0041OpenapiSlurmdbdConfigRespUsersFlags.
 const (
-	V0039NodeStateALLOCATED       V0039NodeState = "ALLOCATED"
-	V0039NodeStateCLOUD           V0039NodeState = "CLOUD"
-	V0039NodeStateCOMPLETING      V0039NodeState = "COMPLETING"
-	V0039NodeStateDOWN            V0039NodeState = "DOWN"
-	V0039NodeStateDRAIN           V0039NodeState = "DRAIN"
-	V0039NodeStateDYNAMICFUTURE   V0039NodeState = "DYNAMIC_FUTURE"
-	V0039NodeStateDYNAMICNORM     V0039NodeState = "DYNAMIC_NORM"
-	V0039NodeStateERROR           V0039NodeState = "ERROR"
-	V0039NodeStateFAIL            V0039NodeState = "FAIL"
-	V0039NodeStateFUTURE          V0039NodeState = "FUTURE"
-	V0039NodeStateIDLE            V0039NodeState = "IDLE"
-	V0039NodeStateINVALID         V0039NodeState = "INVALID"
-	V0039NodeStateINVALIDREG      V0039NodeState = "INVALID_REG"
-	V0039NodeStateMAINTENANCE     V0039NodeState = "MAINTENANCE"
-	V0039NodeStateMIXED           V0039NodeState = "MIXED"
-	V0039NodeStateNOTRESPONDING   V0039NodeState = "NOT_RESPONDING"
-	V0039NodeStatePERFCTRS        V0039NodeState = "PERFCTRS"
-	V0039NodeStatePLANNED         V0039NodeState = "PLANNED"
-	V0039NodeStatePOWERDOWN       V0039NodeState = "POWER_DOWN"
-	V0039NodeStatePOWERDRAIN      V0039NodeState = "POWER_DRAIN"
-	V0039NodeStatePOWEREDDOWN     V0039NodeState = "POWERED_DOWN"
-	V0039NodeStatePOWERINGDOWN    V0039NodeState = "POWERING_DOWN"
-	V0039NodeStatePOWERINGUP      V0039NodeState = "POWERING_UP"
-	V0039NodeStatePOWERUP         V0039NodeState = "POWER_UP"
-	V0039NodeStateREBOOTCANCELED  V0039NodeState = "REBOOT_CANCELED"
-	V0039NodeStateREBOOTISSUED    V0039NodeState = "REBOOT_ISSUED"
-	V0039NodeStateREBOOTREQUESTED V0039NodeState = "REBOOT_REQUESTED"
-	V0039NodeStateRESERVED        V0039NodeState = "RESERVED"
-	V0039NodeStateRESUME          V0039NodeState = "RESUME"
-	V0039NodeStateUNDRAIN         V0039NodeState = "UNDRAIN"
-	V0039NodeStateUNKNOWN         V0039NodeState = "UNKNOWN"
+	V0041OpenapiSlurmdbdConfigRespUsersFlagsDELETED V0041OpenapiSlurmdbdConfigRespUsersFlags = "DELETED"
+	V0041OpenapiSlurmdbdConfigRespUsersFlagsNONE    V0041OpenapiSlurmdbdConfigRespUsersFlags = "NONE"
 )
 
-// Defines values for V0039QosFlags.
+// Defines values for V0041OpenapiSlurmdbdConfigRespUsersWckeysFlags.
 const (
-	ADD                   V0039QosFlags = "ADD"
-	DENYLIMIT             V0039QosFlags = "DENY_LIMIT"
-	ENFORCEUSAGETHRESHOLD V0039QosFlags = "ENFORCE_USAGE_THRESHOLD"
-	NODECAY               V0039QosFlags = "NO_DECAY"
-	NORESERVE             V0039QosFlags = "NO_RESERVE"
-	NOTSET                V0039QosFlags = "NOT_SET"
-	OVERRIDEPARTITIONQOS  V0039QosFlags = "OVERRIDE_PARTITION_QOS"
-	PARTITIONMAXIMUMNODE  V0039QosFlags = "PARTITION_MAXIMUM_NODE"
-	PARTITIONMINIMUMNODE  V0039QosFlags = "PARTITION_MINIMUM_NODE"
-	PARTITIONTIMELIMIT    V0039QosFlags = "PARTITION_TIME_LIMIT"
-	REMOVE                V0039QosFlags = "REMOVE"
-	REQUIREDRESERVATION   V0039QosFlags = "REQUIRED_RESERVATION"
-	USAGEFACTORSAFE       V0039QosFlags = "USAGE_FACTOR_SAFE"
+	V0041OpenapiSlurmdbdConfigRespUsersWckeysFlagsDELETED V0041OpenapiSlurmdbdConfigRespUsersWckeysFlags = "DELETED"
 )
 
-// Defines values for V0039QosPreemptMode.
+// Defines values for V0041OpenapiSlurmdbdConfigRespWckeysFlags.
 const (
-	V0039QosPreemptModeCANCEL   V0039QosPreemptMode = "CANCEL"
-	V0039QosPreemptModeDISABLED V0039QosPreemptMode = "DISABLED"
-	V0039QosPreemptModeGANG     V0039QosPreemptMode = "GANG"
-	V0039QosPreemptModeREQUEUE  V0039QosPreemptMode = "REQUEUE"
-	V0039QosPreemptModeSUSPEND  V0039QosPreemptMode = "SUSPEND"
+	V0041OpenapiSlurmdbdConfigRespWckeysFlagsDELETED V0041OpenapiSlurmdbdConfigRespWckeysFlags = "DELETED"
 )
 
-// Defines values for V0039ReservationInfoFlags.
+// Defines values for V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatus.
 const (
-	ALLNODES           V0039ReservationInfoFlags = "ALL_NODES"
-	ANYNODES           V0039ReservationInfoFlags = "ANY_NODES"
-	DAILY              V0039ReservationInfoFlags = "DAILY"
-	DURATIONMINUS      V0039ReservationInfoFlags = "DURATION_MINUS"
-	DURATIONPLUS       V0039ReservationInfoFlags = "DURATION_PLUS"
-	FLEX               V0039ReservationInfoFlags = "FLEX"
-	HOURLY             V0039ReservationInfoFlags = "HOURLY"
-	IGNOREJOBS         V0039ReservationInfoFlags = "IGNORE_JOBS"
-	MAGNETIC           V0039ReservationInfoFlags = "MAGNETIC"
-	MAINT              V0039ReservationInfoFlags = "MAINT"
-	NODAILY            V0039ReservationInfoFlags = "NO_DAILY"
-	NOFLEX             V0039ReservationInfoFlags = "NO_FLEX"
-	NOHOLDJOBSAFTEREND V0039ReservationInfoFlags = "NO_HOLD_JOBS_AFTER_END"
-	NOHOURLY           V0039ReservationInfoFlags = "NO_HOURLY"
-	NOIGNOREJOBS       V0039ReservationInfoFlags = "NO_IGNORE_JOBS"
-	NOMAINT            V0039ReservationInfoFlags = "NO_MAINT"
-	NOPARTNODES        V0039ReservationInfoFlags = "NO_PART_NODES"
-	NOPURGECOMP        V0039ReservationInfoFlags = "NO_PURGE_COMP"
-	NOSTATIC           V0039ReservationInfoFlags = "NO_STATIC"
-	NOWEEKDAY          V0039ReservationInfoFlags = "NO_WEEKDAY"
-	NOWEEKEND          V0039ReservationInfoFlags = "NO_WEEKEND"
-	NOWEEKLY           V0039ReservationInfoFlags = "NO_WEEKLY"
-	OVERLAP            V0039ReservationInfoFlags = "OVERLAP"
-	PARTNODES          V0039ReservationInfoFlags = "PART_NODES"
-	PURGECOMP          V0039ReservationInfoFlags = "PURGE_COMP"
-	REOCCURRING        V0039ReservationInfoFlags = "REOCCURRING"
-	REPLACE            V0039ReservationInfoFlags = "REPLACE"
-	SKIP               V0039ReservationInfoFlags = "SKIP"
-	SPECNODES          V0039ReservationInfoFlags = "SPEC_NODES"
-	STATIC             V0039ReservationInfoFlags = "STATIC"
-	TIMEFLOAT          V0039ReservationInfoFlags = "TIME_FLOAT"
-	WEEKDAY            V0039ReservationInfoFlags = "WEEKDAY"
-	WEEKEND            V0039ReservationInfoFlags = "WEEKEND"
-	WEEKLY             V0039ReservationInfoFlags = "WEEKLY"
+	V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatusCOREDUMPED V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatus = "CORE_DUMPED"
+	V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatusERROR      V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatus = "ERROR"
+	V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatusINVALID    V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatus = "INVALID"
+	V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatusPENDING    V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatus = "PENDING"
+	V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatusSIGNALED   V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatus = "SIGNALED"
+	V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatusSUCCESS    V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatus = "SUCCESS"
 )
 
-// Defines values for V0039RollupStatsType.
+// Defines values for V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatus.
 const (
-	V0039RollupStatsTypeInternal V0039RollupStatsType = "internal"
-	V0039RollupStatsTypeUnknown  V0039RollupStatsType = "unknown"
-	V0039RollupStatsTypeUser     V0039RollupStatsType = "user"
+	V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatusCOREDUMPED V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatus = "CORE_DUMPED"
+	V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatusERROR      V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatus = "ERROR"
+	V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatusINVALID    V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatus = "INVALID"
+	V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatusPENDING    V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatus = "PENDING"
+	V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatusSIGNALED   V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatus = "SIGNALED"
+	V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatusSUCCESS    V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatus = "SUCCESS"
 )
 
-// Defines values for V0039UpdateNodeMsgState.
+// Defines values for V0041OpenapiSlurmdbdJobsRespJobsFlags.
 const (
-	V0039UpdateNodeMsgStateALLOCATED       V0039UpdateNodeMsgState = "ALLOCATED"
-	V0039UpdateNodeMsgStateCLOUD           V0039UpdateNodeMsgState = "CLOUD"
-	V0039UpdateNodeMsgStateCOMPLETING      V0039UpdateNodeMsgState = "COMPLETING"
-	V0039UpdateNodeMsgStateDOWN            V0039UpdateNodeMsgState = "DOWN"
-	V0039UpdateNodeMsgStateDRAIN           V0039UpdateNodeMsgState = "DRAIN"
-	V0039UpdateNodeMsgStateDYNAMICFUTURE   V0039UpdateNodeMsgState = "DYNAMIC_FUTURE"
-	V0039UpdateNodeMsgStateDYNAMICNORM     V0039UpdateNodeMsgState = "DYNAMIC_NORM"
-	V0039UpdateNodeMsgStateERROR           V0039UpdateNodeMsgState = "ERROR"
-	V0039UpdateNodeMsgStateFAIL            V0039UpdateNodeMsgState = "FAIL"
-	V0039UpdateNodeMsgStateFUTURE          V0039UpdateNodeMsgState = "FUTURE"
-	V0039UpdateNodeMsgStateIDLE            V0039UpdateNodeMsgState = "IDLE"
-	V0039UpdateNodeMsgStateINVALID         V0039UpdateNodeMsgState = "INVALID"
-	V0039UpdateNodeMsgStateINVALIDREG      V0039UpdateNodeMsgState = "INVALID_REG"
-	V0039UpdateNodeMsgStateMAINTENANCE     V0039UpdateNodeMsgState = "MAINTENANCE"
-	V0039UpdateNodeMsgStateMIXED           V0039UpdateNodeMsgState = "MIXED"
-	V0039UpdateNodeMsgStateNOTRESPONDING   V0039UpdateNodeMsgState = "NOT_RESPONDING"
-	V0039UpdateNodeMsgStatePERFCTRS        V0039UpdateNodeMsgState = "PERFCTRS"
-	V0039UpdateNodeMsgStatePLANNED         V0039UpdateNodeMsgState = "PLANNED"
-	V0039UpdateNodeMsgStatePOWERDOWN       V0039UpdateNodeMsgState = "POWER_DOWN"
-	V0039UpdateNodeMsgStatePOWERDRAIN      V0039UpdateNodeMsgState = "POWER_DRAIN"
-	V0039UpdateNodeMsgStatePOWEREDDOWN     V0039UpdateNodeMsgState = "POWERED_DOWN"
-	V0039UpdateNodeMsgStatePOWERINGDOWN    V0039UpdateNodeMsgState = "POWERING_DOWN"
-	V0039UpdateNodeMsgStatePOWERINGUP      V0039UpdateNodeMsgState = "POWERING_UP"
-	V0039UpdateNodeMsgStatePOWERUP         V0039UpdateNodeMsgState = "POWER_UP"
-	V0039UpdateNodeMsgStateREBOOTCANCELED  V0039UpdateNodeMsgState = "REBOOT_CANCELED"
-	V0039UpdateNodeMsgStateREBOOTISSUED    V0039UpdateNodeMsgState = "REBOOT_ISSUED"
-	V0039UpdateNodeMsgStateREBOOTREQUESTED V0039UpdateNodeMsgState = "REBOOT_REQUESTED"
-	V0039UpdateNodeMsgStateRESERVED        V0039UpdateNodeMsgState = "RESERVED"
-	V0039UpdateNodeMsgStateRESUME          V0039UpdateNodeMsgState = "RESUME"
-	V0039UpdateNodeMsgStateUNDRAIN         V0039UpdateNodeMsgState = "UNDRAIN"
-	V0039UpdateNodeMsgStateUNKNOWN         V0039UpdateNodeMsgState = "UNKNOWN"
+	V0041OpenapiSlurmdbdJobsRespJobsFlagsCLEARSCHEDULING   V0041OpenapiSlurmdbdJobsRespJobsFlags = "CLEAR_SCHEDULING"
+	V0041OpenapiSlurmdbdJobsRespJobsFlagsNONE              V0041OpenapiSlurmdbdJobsRespJobsFlags = "NONE"
+	V0041OpenapiSlurmdbdJobsRespJobsFlagsNOTSET            V0041OpenapiSlurmdbdJobsRespJobsFlags = "NOT_SET"
+	V0041OpenapiSlurmdbdJobsRespJobsFlagsSTARTEDONBACKFILL V0041OpenapiSlurmdbdJobsRespJobsFlags = "STARTED_ON_BACKFILL"
+	V0041OpenapiSlurmdbdJobsRespJobsFlagsSTARTEDONSCHEDULE V0041OpenapiSlurmdbdJobsRespJobsFlags = "STARTED_ON_SCHEDULE"
+	V0041OpenapiSlurmdbdJobsRespJobsFlagsSTARTEDONSUBMIT   V0041OpenapiSlurmdbdJobsRespJobsFlags = "STARTED_ON_SUBMIT"
+	V0041OpenapiSlurmdbdJobsRespJobsFlagsSTARTRECEIVED     V0041OpenapiSlurmdbdJobsRespJobsFlags = "START_RECEIVED"
 )
 
-// Defines values for V0039UserAdministratorLevel.
+// Defines values for V0041OpenapiSlurmdbdJobsRespJobsStateCurrent.
 const (
-	V0039UserAdministratorLevelAdministrator V0039UserAdministratorLevel = "Administrator"
-	V0039UserAdministratorLevelNone          V0039UserAdministratorLevel = "None"
-	V0039UserAdministratorLevelNotSet        V0039UserAdministratorLevel = "Not Set"
-	V0039UserAdministratorLevelOperator      V0039UserAdministratorLevel = "Operator"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentBOOTFAIL     V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "BOOT_FAIL"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentCANCELLED    V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "CANCELLED"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentCOMPLETED    V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "COMPLETED"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentCOMPLETING   V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "COMPLETING"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentCONFIGURING  V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "CONFIGURING"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentDEADLINE     V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "DEADLINE"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentFAILED       V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "FAILED"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentLAUNCHFAILED V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "LAUNCH_FAILED"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentNODEFAIL     V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "NODE_FAIL"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentOUTOFMEMORY  V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "OUT_OF_MEMORY"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentPENDING      V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "PENDING"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentPOWERUPNODE  V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "POWER_UP_NODE"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentPREEMPTED    V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "PREEMPTED"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentRECONFIGFAIL V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "RECONFIG_FAIL"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentREQUEUED     V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "REQUEUED"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentREQUEUEFED   V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "REQUEUE_FED"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentREQUEUEHOLD  V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "REQUEUE_HOLD"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentRESIZING     V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "RESIZING"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentRESVDELHOLD  V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "RESV_DEL_HOLD"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentREVOKED      V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "REVOKED"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentRUNNING      V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "RUNNING"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentSIGNALING    V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "SIGNALING"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentSPECIALEXIT  V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "SPECIAL_EXIT"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentSTAGEOUT     V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "STAGE_OUT"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentSTOPPED      V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "STOPPED"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentSUSPENDED    V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "SUSPENDED"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentTIMEOUT      V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "TIMEOUT"
+	V0041OpenapiSlurmdbdJobsRespJobsStateCurrentUPDATEDB     V0041OpenapiSlurmdbdJobsRespJobsStateCurrent = "UPDATE_DB"
 )
 
-// Defines values for V0039UserFlags.
+// Defines values for V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatus.
 const (
-	V0039UserFlagsDELETED V0039UserFlags = "DELETED"
-	V0039UserFlagsNONE    V0039UserFlags = "NONE"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatusCOREDUMPED V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatus = "CORE_DUMPED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatusERROR      V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatus = "ERROR"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatusINVALID    V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatus = "INVALID"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatusPENDING    V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatus = "PENDING"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatusSIGNALED   V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatus = "SIGNALED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatusSUCCESS    V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatus = "SUCCESS"
 )
 
-// Defines values for V0039WckeyFlags.
+// Defines values for V0041OpenapiSlurmdbdJobsRespJobsStepsState.
 const (
-	V0039WckeyFlagsDELETED V0039WckeyFlags = "DELETED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateBOOTFAIL     V0041OpenapiSlurmdbdJobsRespJobsStepsState = "BOOT_FAIL"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateCANCELLED    V0041OpenapiSlurmdbdJobsRespJobsStepsState = "CANCELLED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateCOMPLETED    V0041OpenapiSlurmdbdJobsRespJobsStepsState = "COMPLETED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateCOMPLETING   V0041OpenapiSlurmdbdJobsRespJobsStepsState = "COMPLETING"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateCONFIGURING  V0041OpenapiSlurmdbdJobsRespJobsStepsState = "CONFIGURING"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateDEADLINE     V0041OpenapiSlurmdbdJobsRespJobsStepsState = "DEADLINE"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateFAILED       V0041OpenapiSlurmdbdJobsRespJobsStepsState = "FAILED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateLAUNCHFAILED V0041OpenapiSlurmdbdJobsRespJobsStepsState = "LAUNCH_FAILED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateNODEFAIL     V0041OpenapiSlurmdbdJobsRespJobsStepsState = "NODE_FAIL"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateOUTOFMEMORY  V0041OpenapiSlurmdbdJobsRespJobsStepsState = "OUT_OF_MEMORY"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStatePENDING      V0041OpenapiSlurmdbdJobsRespJobsStepsState = "PENDING"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStatePOWERUPNODE  V0041OpenapiSlurmdbdJobsRespJobsStepsState = "POWER_UP_NODE"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStatePREEMPTED    V0041OpenapiSlurmdbdJobsRespJobsStepsState = "PREEMPTED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateRECONFIGFAIL V0041OpenapiSlurmdbdJobsRespJobsStepsState = "RECONFIG_FAIL"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateREQUEUED     V0041OpenapiSlurmdbdJobsRespJobsStepsState = "REQUEUED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateREQUEUEFED   V0041OpenapiSlurmdbdJobsRespJobsStepsState = "REQUEUE_FED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateREQUEUEHOLD  V0041OpenapiSlurmdbdJobsRespJobsStepsState = "REQUEUE_HOLD"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateRESIZING     V0041OpenapiSlurmdbdJobsRespJobsStepsState = "RESIZING"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateRESVDELHOLD  V0041OpenapiSlurmdbdJobsRespJobsStepsState = "RESV_DEL_HOLD"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateREVOKED      V0041OpenapiSlurmdbdJobsRespJobsStepsState = "REVOKED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateRUNNING      V0041OpenapiSlurmdbdJobsRespJobsStepsState = "RUNNING"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateSIGNALING    V0041OpenapiSlurmdbdJobsRespJobsStepsState = "SIGNALING"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateSPECIALEXIT  V0041OpenapiSlurmdbdJobsRespJobsStepsState = "SPECIAL_EXIT"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateSTAGEOUT     V0041OpenapiSlurmdbdJobsRespJobsStepsState = "STAGE_OUT"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateSTOPPED      V0041OpenapiSlurmdbdJobsRespJobsStepsState = "STOPPED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateSUSPENDED    V0041OpenapiSlurmdbdJobsRespJobsStepsState = "SUSPENDED"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateTIMEOUT      V0041OpenapiSlurmdbdJobsRespJobsStepsState = "TIMEOUT"
+	V0041OpenapiSlurmdbdJobsRespJobsStepsStateUPDATEDB     V0041OpenapiSlurmdbdJobsRespJobsStepsState = "UPDATE_DB"
 )
 
-// Defines values for V0039WckeyTagFlags.
+// Defines values for V0041OpenapiSlurmdbdJobsRespJobsWckeyFlags.
 const (
-	ASSIGNEDDEFAULT V0039WckeyTagFlags = "ASSIGNED_DEFAULT"
+	ASSIGNEDDEFAULT V0041OpenapiSlurmdbdJobsRespJobsWckeyFlags = "ASSIGNED_DEFAULT"
 )
 
-// Defines values for V0040RollupStatsType.
+// Defines values for V0041OpenapiSlurmdbdQosRespQosFlags.
 const (
-	Internal V0040RollupStatsType = "internal"
-	Unknown  V0040RollupStatsType = "unknown"
-	User     V0040RollupStatsType = "user"
+	V0041OpenapiSlurmdbdQosRespQosFlagsADD                   V0041OpenapiSlurmdbdQosRespQosFlags = "ADD"
+	V0041OpenapiSlurmdbdQosRespQosFlagsDENYLIMIT             V0041OpenapiSlurmdbdQosRespQosFlags = "DENY_LIMIT"
+	V0041OpenapiSlurmdbdQosRespQosFlagsENFORCEUSAGETHRESHOLD V0041OpenapiSlurmdbdQosRespQosFlags = "ENFORCE_USAGE_THRESHOLD"
+	V0041OpenapiSlurmdbdQosRespQosFlagsNODECAY               V0041OpenapiSlurmdbdQosRespQosFlags = "NO_DECAY"
+	V0041OpenapiSlurmdbdQosRespQosFlagsNORESERVE             V0041OpenapiSlurmdbdQosRespQosFlags = "NO_RESERVE"
+	V0041OpenapiSlurmdbdQosRespQosFlagsNOTSET                V0041OpenapiSlurmdbdQosRespQosFlags = "NOT_SET"
+	V0041OpenapiSlurmdbdQosRespQosFlagsOVERRIDEPARTITIONQOS  V0041OpenapiSlurmdbdQosRespQosFlags = "OVERRIDE_PARTITION_QOS"
+	V0041OpenapiSlurmdbdQosRespQosFlagsPARTITIONMAXIMUMNODE  V0041OpenapiSlurmdbdQosRespQosFlags = "PARTITION_MAXIMUM_NODE"
+	V0041OpenapiSlurmdbdQosRespQosFlagsPARTITIONMINIMUMNODE  V0041OpenapiSlurmdbdQosRespQosFlags = "PARTITION_MINIMUM_NODE"
+	V0041OpenapiSlurmdbdQosRespQosFlagsPARTITIONTIMELIMIT    V0041OpenapiSlurmdbdQosRespQosFlags = "PARTITION_TIME_LIMIT"
+	V0041OpenapiSlurmdbdQosRespQosFlagsRELATIVE              V0041OpenapiSlurmdbdQosRespQosFlags = "RELATIVE"
+	V0041OpenapiSlurmdbdQosRespQosFlagsREMOVE                V0041OpenapiSlurmdbdQosRespQosFlags = "REMOVE"
+	V0041OpenapiSlurmdbdQosRespQosFlagsREQUIREDRESERVATION   V0041OpenapiSlurmdbdQosRespQosFlags = "REQUIRED_RESERVATION"
+	V0041OpenapiSlurmdbdQosRespQosFlagsUSAGEFACTORSAFE       V0041OpenapiSlurmdbdQosRespQosFlags = "USAGE_FACTOR_SAFE"
 )
 
-// Defines values for SlurmV0039CancelJobParamsSignal.
+// Defines values for V0041OpenapiSlurmdbdQosRespQosPreemptMode.
 const (
-	SlurmV0039CancelJobParamsSignalABRT SlurmV0039CancelJobParamsSignal = "ABRT"
-	SlurmV0039CancelJobParamsSignalALRM SlurmV0039CancelJobParamsSignal = "ALRM"
-	SlurmV0039CancelJobParamsSignalCONT SlurmV0039CancelJobParamsSignal = "CONT"
-	SlurmV0039CancelJobParamsSignalHUP  SlurmV0039CancelJobParamsSignal = "HUP"
-	SlurmV0039CancelJobParamsSignalINT  SlurmV0039CancelJobParamsSignal = "INT"
-	SlurmV0039CancelJobParamsSignalKILL SlurmV0039CancelJobParamsSignal = "KILL"
-	SlurmV0039CancelJobParamsSignalQUIT SlurmV0039CancelJobParamsSignal = "QUIT"
-	SlurmV0039CancelJobParamsSignalSTOP SlurmV0039CancelJobParamsSignal = "STOP"
-	SlurmV0039CancelJobParamsSignalTERM SlurmV0039CancelJobParamsSignal = "TERM"
-	SlurmV0039CancelJobParamsSignalTSTP SlurmV0039CancelJobParamsSignal = "TSTP"
-	SlurmV0039CancelJobParamsSignalTTIN SlurmV0039CancelJobParamsSignal = "TTIN"
-	SlurmV0039CancelJobParamsSignalTTOU SlurmV0039CancelJobParamsSignal = "TTOU"
-	SlurmV0039CancelJobParamsSignalURG  SlurmV0039CancelJobParamsSignal = "URG"
-	SlurmV0039CancelJobParamsSignalUSR1 SlurmV0039CancelJobParamsSignal = "USR1"
-	SlurmV0039CancelJobParamsSignalUSR2 SlurmV0039CancelJobParamsSignal = "USR2"
+	V0041OpenapiSlurmdbdQosRespQosPreemptModeCANCEL   V0041OpenapiSlurmdbdQosRespQosPreemptMode = "CANCEL"
+	V0041OpenapiSlurmdbdQosRespQosPreemptModeDISABLED V0041OpenapiSlurmdbdQosRespQosPreemptMode = "DISABLED"
+	V0041OpenapiSlurmdbdQosRespQosPreemptModeGANG     V0041OpenapiSlurmdbdQosRespQosPreemptMode = "GANG"
+	V0041OpenapiSlurmdbdQosRespQosPreemptModeREQUEUE  V0041OpenapiSlurmdbdQosRespQosPreemptMode = "REQUEUE"
+	V0041OpenapiSlurmdbdQosRespQosPreemptModeSUSPEND  V0041OpenapiSlurmdbdQosRespQosPreemptMode = "SUSPEND"
 )
 
-// Defines values for SlurmV0040DeleteJobParamsFlags.
+// Defines values for V0041OpenapiUsersRespUsersAdministratorLevel.
 const (
-	SlurmV0040DeleteJobParamsFlagsARRAYTASK         SlurmV0040DeleteJobParamsFlags = "ARRAY_TASK"
-	SlurmV0040DeleteJobParamsFlagsBATCHJOB          SlurmV0040DeleteJobParamsFlags = "BATCH_JOB"
-	SlurmV0040DeleteJobParamsFlagsFEDERATIONREQUEUE SlurmV0040DeleteJobParamsFlags = "FEDERATION_REQUEUE"
-	SlurmV0040DeleteJobParamsFlagsFULLJOB           SlurmV0040DeleteJobParamsFlags = "FULL_JOB"
-	SlurmV0040DeleteJobParamsFlagsFULLSTEPSONLY     SlurmV0040DeleteJobParamsFlags = "FULL_STEPS_ONLY"
-	SlurmV0040DeleteJobParamsFlagsHURRY             SlurmV0040DeleteJobParamsFlags = "HURRY"
-	SlurmV0040DeleteJobParamsFlagsNOSIBLINGJOBS     SlurmV0040DeleteJobParamsFlags = "NO_SIBLING_JOBS"
-	SlurmV0040DeleteJobParamsFlagsOUTOFMEMORY       SlurmV0040DeleteJobParamsFlags = "OUT_OF_MEMORY"
-	SlurmV0040DeleteJobParamsFlagsRESERVATIONJOB    SlurmV0040DeleteJobParamsFlags = "RESERVATION_JOB"
-	SlurmV0040DeleteJobParamsFlagsWARNINGSENT       SlurmV0040DeleteJobParamsFlags = "WARNING_SENT"
+	V0041OpenapiUsersRespUsersAdministratorLevelAdministrator V0041OpenapiUsersRespUsersAdministratorLevel = "Administrator"
+	V0041OpenapiUsersRespUsersAdministratorLevelNone          V0041OpenapiUsersRespUsersAdministratorLevel = "None"
+	V0041OpenapiUsersRespUsersAdministratorLevelNotSet        V0041OpenapiUsersRespUsersAdministratorLevel = "Not Set"
+	V0041OpenapiUsersRespUsersAdministratorLevelOperator      V0041OpenapiUsersRespUsersAdministratorLevel = "Operator"
 )
 
-// Defines values for SlurmV0040GetJobParamsFlags.
+// Defines values for V0041OpenapiUsersRespUsersFlags.
 const (
-	SlurmV0040GetJobParamsFlagsALL        SlurmV0040GetJobParamsFlags = "ALL"
-	SlurmV0040GetJobParamsFlagsDETAIL     SlurmV0040GetJobParamsFlags = "DETAIL"
-	SlurmV0040GetJobParamsFlagsFEDERATION SlurmV0040GetJobParamsFlags = "FEDERATION"
-	SlurmV0040GetJobParamsFlagsFUTURE     SlurmV0040GetJobParamsFlags = "FUTURE"
-	SlurmV0040GetJobParamsFlagsLOCAL      SlurmV0040GetJobParamsFlags = "LOCAL"
-	SlurmV0040GetJobParamsFlagsMIXED      SlurmV0040GetJobParamsFlags = "MIXED"
-	SlurmV0040GetJobParamsFlagsSIBLING    SlurmV0040GetJobParamsFlags = "SIBLING"
+	V0041OpenapiUsersRespUsersFlagsDELETED V0041OpenapiUsersRespUsersFlags = "DELETED"
+	V0041OpenapiUsersRespUsersFlagsNONE    V0041OpenapiUsersRespUsersFlags = "NONE"
 )
 
-// Defines values for SlurmV0040GetJobsParamsFlags.
+// Defines values for V0041OpenapiUsersRespUsersWckeysFlags.
 const (
-	SlurmV0040GetJobsParamsFlagsALL        SlurmV0040GetJobsParamsFlags = "ALL"
-	SlurmV0040GetJobsParamsFlagsDETAIL     SlurmV0040GetJobsParamsFlags = "DETAIL"
-	SlurmV0040GetJobsParamsFlagsFEDERATION SlurmV0040GetJobsParamsFlags = "FEDERATION"
-	SlurmV0040GetJobsParamsFlagsFUTURE     SlurmV0040GetJobsParamsFlags = "FUTURE"
-	SlurmV0040GetJobsParamsFlagsLOCAL      SlurmV0040GetJobsParamsFlags = "LOCAL"
-	SlurmV0040GetJobsParamsFlagsMIXED      SlurmV0040GetJobsParamsFlags = "MIXED"
-	SlurmV0040GetJobsParamsFlagsSIBLING    SlurmV0040GetJobsParamsFlags = "SIBLING"
+	V0041OpenapiUsersRespUsersWckeysFlagsDELETED V0041OpenapiUsersRespUsersWckeysFlags = "DELETED"
 )
 
-// Defines values for SlurmV0040GetNodeParamsFlags.
+// Defines values for V0041OpenapiWckeyRespWckeysFlags.
 const (
-	SlurmV0040GetNodeParamsFlagsALL        SlurmV0040GetNodeParamsFlags = "ALL"
-	SlurmV0040GetNodeParamsFlagsDETAIL     SlurmV0040GetNodeParamsFlags = "DETAIL"
-	SlurmV0040GetNodeParamsFlagsFEDERATION SlurmV0040GetNodeParamsFlags = "FEDERATION"
-	SlurmV0040GetNodeParamsFlagsFUTURE     SlurmV0040GetNodeParamsFlags = "FUTURE"
-	SlurmV0040GetNodeParamsFlagsLOCAL      SlurmV0040GetNodeParamsFlags = "LOCAL"
-	SlurmV0040GetNodeParamsFlagsMIXED      SlurmV0040GetNodeParamsFlags = "MIXED"
-	SlurmV0040GetNodeParamsFlagsSIBLING    SlurmV0040GetNodeParamsFlags = "SIBLING"
+	V0041OpenapiWckeyRespWckeysFlagsDELETED V0041OpenapiWckeyRespWckeysFlags = "DELETED"
 )
 
-// Defines values for SlurmV0040GetNodesParamsFlags.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags.
 const (
-	SlurmV0040GetNodesParamsFlagsALL        SlurmV0040GetNodesParamsFlags = "ALL"
-	SlurmV0040GetNodesParamsFlagsDETAIL     SlurmV0040GetNodesParamsFlags = "DETAIL"
-	SlurmV0040GetNodesParamsFlagsFEDERATION SlurmV0040GetNodesParamsFlags = "FEDERATION"
-	SlurmV0040GetNodesParamsFlagsFUTURE     SlurmV0040GetNodesParamsFlags = "FUTURE"
-	SlurmV0040GetNodesParamsFlagsLOCAL      SlurmV0040GetNodesParamsFlags = "LOCAL"
-	SlurmV0040GetNodesParamsFlagsMIXED      SlurmV0040GetNodesParamsFlags = "MIXED"
-	SlurmV0040GetNodesParamsFlagsSIBLING    SlurmV0040GetNodesParamsFlags = "SIBLING"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsCPUBINDLDMAP            SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "CPU_BIND_LDMAP"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsCPUBINDLDMASK           SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "CPU_BIND_LDMASK"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsCPUBINDLDRANK           SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "CPU_BIND_LDRANK"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsCPUBINDMAP              SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "CPU_BIND_MAP"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsCPUBINDMASK             SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "CPU_BIND_MASK"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsCPUBINDNONE             SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "CPU_BIND_NONE"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsCPUBINDONETHREADPERCORE SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "CPU_BIND_ONE_THREAD_PER_CORE"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsCPUBINDRANK             SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "CPU_BIND_RANK"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsCPUBINDTOCORES          SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "CPU_BIND_TO_CORES"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsCPUBINDTOLDOMS          SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "CPU_BIND_TO_LDOMS"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsCPUBINDTOSOCKETS        SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "CPU_BIND_TO_SOCKETS"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsCPUBINDTOTHREADS        SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "CPU_BIND_TO_THREADS"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlagsVERBOSE                 SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags = "VERBOSE"
 )
 
-// Defines values for SlurmdbV0039GetAccountParamsWithDeleted.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlags.
 const (
-	SlurmdbV0039GetAccountParamsWithDeletedFalse SlurmdbV0039GetAccountParamsWithDeleted = "false"
-	SlurmdbV0039GetAccountParamsWithDeletedTrue  SlurmdbV0039GetAccountParamsWithDeleted = "true"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlagsWILDDAYOFMONTH SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlags = "WILD_DAY_OF_MONTH"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlagsWILDDAYOFWEEK  SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlags = "WILD_DAY_OF_WEEK"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlagsWILDHOUR       SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlags = "WILD_HOUR"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlagsWILDMINUTE     SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlags = "WILD_MINUTE"
+	SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlagsWILDMONTH      SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlags = "WILD_MONTH"
 )
 
-// Defines values for SlurmdbV0039GetAccountsParamsWithDeleted.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyHetjobExclusive.
 const (
-	SlurmdbV0039GetAccountsParamsWithDeletedFalse SlurmdbV0039GetAccountsParamsWithDeleted = "false"
-	SlurmdbV0039GetAccountsParamsWithDeletedTrue  SlurmdbV0039GetAccountsParamsWithDeleted = "true"
+	SlurmV0041PostJobAllocateJSONBodyHetjobExclusiveFalse SlurmV0041PostJobAllocateJSONBodyHetjobExclusive = "false"
+	SlurmV0041PostJobAllocateJSONBodyHetjobExclusiveMcs   SlurmV0041PostJobAllocateJSONBodyHetjobExclusive = "mcs"
+	SlurmV0041PostJobAllocateJSONBodyHetjobExclusiveTopo  SlurmV0041PostJobAllocateJSONBodyHetjobExclusive = "topo"
+	SlurmV0041PostJobAllocateJSONBodyHetjobExclusiveTrue  SlurmV0041PostJobAllocateJSONBodyHetjobExclusive = "true"
+	SlurmV0041PostJobAllocateJSONBodyHetjobExclusiveUser  SlurmV0041PostJobAllocateJSONBodyHetjobExclusive = "user"
 )
 
-// Defines values for SlurmdbV0039GetJobsParamsSkipSteps.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyHetjobFlags.
 const (
-	SlurmdbV0039GetJobsParamsSkipStepsFalse SlurmdbV0039GetJobsParamsSkipSteps = "false"
-	SlurmdbV0039GetJobsParamsSkipStepsTrue  SlurmdbV0039GetJobsParamsSkipSteps = "true"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsACCRUECOUNTCLEARED       SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "ACCRUE_COUNT_CLEARED"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsBACKFILLATTEMPTED        SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "BACKFILL_ATTEMPTED"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsCRONJOB                  SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "CRON_JOB"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsDEPENDENT                SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "DEPENDENT"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsEXACTCPUCOUNTREQUESTED   SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "EXACT_CPU_COUNT_REQUESTED"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsEXACTMEMORYREQUESTED     SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "EXACT_MEMORY_REQUESTED"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsEXACTTASKCOUNTREQUESTED  SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "EXACT_TASK_COUNT_REQUESTED"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsGRESBINDINGDISABLED      SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "GRES_BINDING_DISABLED"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsGRESBINDINGENFORCED      SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "GRES_BINDING_ENFORCED"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsHASSTATEDIRECTORY        SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "HAS_STATE_DIRECTORY"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsHETEROGENEOUSJOB         SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "HETEROGENEOUS_JOB"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsJOBACCRUETIMERESET       SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "JOB_ACCRUE_TIME_RESET"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsJOBKILLHURRY             SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "JOB_KILL_HURRY"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsJOBWASRUNNING            SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "JOB_WAS_RUNNING"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsKILLINVALIDDEPENDENCY    SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "KILL_INVALID_DEPENDENCY"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsMAGNETIC                 SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "MAGNETIC"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsNOKILLINVALIDDEPENDENCY  SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "NO_KILL_INVALID_DEPENDENCY"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsPARTITIONASSIGNED        SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "PARTITION_ASSIGNED"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsPREFERMINIMUMNODECOUNT   SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "PREFER_MINIMUM_NODE_COUNT"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsSCHEDULINGATTEMPTED      SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "SCHEDULING_ATTEMPTED"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsSENDJOBENVIRONMENT       SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "SEND_JOB_ENVIRONMENT"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsSIBLINGCLUSTERUPDATEONLY SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "SIBLING_CLUSTER_UPDATE_ONLY"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsSKIPTRESSTRINGACCOUNTING SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "SKIP_TRES_STRING_ACCOUNTING"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsSPREADJOB                SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "SPREAD_JOB"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsSTEPMGRENABLED           SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "STEPMGR_ENABLED"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsTESTINGBACKFILL          SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "TESTING_BACKFILL"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsTESTINGWHOLENODEBACKFILL SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "TESTING_WHOLE_NODE_BACKFILL"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsTESTNOWONLY              SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "TEST_NOW_ONLY"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsTOPPRIORITYJOB           SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "TOP_PRIORITY_JOB"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsUSINGDEFAULTACCOUNT      SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "USING_DEFAULT_ACCOUNT"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsUSINGDEFAULTPARTITION    SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "USING_DEFAULT_PARTITION"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsUSINGDEFAULTQOS          SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "USING_DEFAULT_QOS"
+	SlurmV0041PostJobAllocateJSONBodyHetjobFlagsUSINGDEFAULTWCKEY        SlurmV0041PostJobAllocateJSONBodyHetjobFlags = "USING_DEFAULT_WCKEY"
 )
 
-// Defines values for SlurmdbV0039GetJobsParamsDisableWaitForResult.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags.
 const (
-	SlurmdbV0039GetJobsParamsDisableWaitForResultFalse SlurmdbV0039GetJobsParamsDisableWaitForResult = "false"
-	SlurmdbV0039GetJobsParamsDisableWaitForResultTrue  SlurmdbV0039GetJobsParamsDisableWaitForResult = "true"
+	SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlagsARRAYTASK         SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags = "ARRAY_TASK"
+	SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlagsBATCHJOB          SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags = "BATCH_JOB"
+	SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlagsCRONJOBS          SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags = "CRON_JOBS"
+	SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlagsFEDERATIONREQUEUE SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags = "FEDERATION_REQUEUE"
+	SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlagsFULLJOB           SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags = "FULL_JOB"
+	SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlagsFULLSTEPSONLY     SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags = "FULL_STEPS_ONLY"
+	SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlagsHURRY             SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags = "HURRY"
+	SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlagsNOSIBLINGJOBS     SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags = "NO_SIBLING_JOBS"
+	SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlagsOUTOFMEMORY       SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags = "OUT_OF_MEMORY"
+	SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlagsRESERVATIONJOB    SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags = "RESERVATION_JOB"
+	SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlagsVERBOSE           SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags = "VERBOSE"
+	SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlagsWARNINGSENT       SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags = "WARNING_SENT"
 )
 
-// Defines values for SlurmdbV0039GetQosParamsWithDeleted.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyHetjobMailType.
 const (
-	SlurmdbV0039GetQosParamsWithDeletedFalse SlurmdbV0039GetQosParamsWithDeleted = "false"
-	SlurmdbV0039GetQosParamsWithDeletedTrue  SlurmdbV0039GetQosParamsWithDeleted = "true"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMailTypeARRAYTASKS        SlurmV0041PostJobAllocateJSONBodyHetjobMailType = "ARRAY_TASKS"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMailTypeBEGIN             SlurmV0041PostJobAllocateJSONBodyHetjobMailType = "BEGIN"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMailTypeEND               SlurmV0041PostJobAllocateJSONBodyHetjobMailType = "END"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMailTypeFAIL              SlurmV0041PostJobAllocateJSONBodyHetjobMailType = "FAIL"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMailTypeINVALIDDEPENDENCY SlurmV0041PostJobAllocateJSONBodyHetjobMailType = "INVALID_DEPENDENCY"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMailTypeREQUEUE           SlurmV0041PostJobAllocateJSONBodyHetjobMailType = "REQUEUE"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMailTypeSTAGEOUT          SlurmV0041PostJobAllocateJSONBodyHetjobMailType = "STAGE_OUT"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMailTypeTIME100           SlurmV0041PostJobAllocateJSONBodyHetjobMailType = "TIME=100%"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMailTypeTIME50            SlurmV0041PostJobAllocateJSONBodyHetjobMailType = "TIME=50%"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMailTypeTIME80            SlurmV0041PostJobAllocateJSONBodyHetjobMailType = "TIME=80%"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMailTypeTIME90            SlurmV0041PostJobAllocateJSONBodyHetjobMailType = "TIME=90%"
 )
 
-// Defines values for SlurmdbV0039GetSingleQosParamsWithDeleted.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingType.
 const (
-	SlurmdbV0039GetSingleQosParamsWithDeletedFalse SlurmdbV0039GetSingleQosParamsWithDeleted = "false"
-	SlurmdbV0039GetSingleQosParamsWithDeletedTrue  SlurmdbV0039GetSingleQosParamsWithDeleted = "true"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingTypeLOCAL   SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingType = "LOCAL"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingTypeMAP     SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingType = "MAP"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingTypeMASK    SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingType = "MASK"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingTypeNONE    SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingType = "NONE"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingTypePREFER  SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingType = "PREFER"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingTypeRANK    SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingType = "RANK"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingTypeSORT    SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingType = "SORT"
+	SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingTypeVERBOSE SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingType = "VERBOSE"
 )
 
-// Defines values for SlurmdbV0039GetUserParamsWithDeleted.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyHetjobOpenMode.
 const (
-	SlurmdbV0039GetUserParamsWithDeletedFalse SlurmdbV0039GetUserParamsWithDeleted = "false"
-	SlurmdbV0039GetUserParamsWithDeletedTrue  SlurmdbV0039GetUserParamsWithDeleted = "true"
+	SlurmV0041PostJobAllocateJSONBodyHetjobOpenModeAPPEND   SlurmV0041PostJobAllocateJSONBodyHetjobOpenMode = "APPEND"
+	SlurmV0041PostJobAllocateJSONBodyHetjobOpenModeTRUNCATE SlurmV0041PostJobAllocateJSONBodyHetjobOpenMode = "TRUNCATE"
 )
 
-// Defines values for SlurmdbV0039GetUsersParamsWithDeleted.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyHetjobProfile.
 const (
-	SlurmdbV0039GetUsersParamsWithDeletedFalse SlurmdbV0039GetUsersParamsWithDeleted = "false"
-	SlurmdbV0039GetUsersParamsWithDeletedTrue  SlurmdbV0039GetUsersParamsWithDeleted = "true"
+	SlurmV0041PostJobAllocateJSONBodyHetjobProfileENERGY  SlurmV0041PostJobAllocateJSONBodyHetjobProfile = "ENERGY"
+	SlurmV0041PostJobAllocateJSONBodyHetjobProfileLUSTRE  SlurmV0041PostJobAllocateJSONBodyHetjobProfile = "LUSTRE"
+	SlurmV0041PostJobAllocateJSONBodyHetjobProfileNETWORK SlurmV0041PostJobAllocateJSONBodyHetjobProfile = "NETWORK"
+	SlurmV0041PostJobAllocateJSONBodyHetjobProfileNONE    SlurmV0041PostJobAllocateJSONBodyHetjobProfile = "NONE"
+	SlurmV0041PostJobAllocateJSONBodyHetjobProfileNOTSET  SlurmV0041PostJobAllocateJSONBodyHetjobProfile = "NOT_SET"
+	SlurmV0041PostJobAllocateJSONBodyHetjobProfileTASK    SlurmV0041PostJobAllocateJSONBodyHetjobProfile = "TASK"
 )
 
-// Defines values for SlurmdbV0040DeleteClusterParamsClassification.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyHetjobShared.
 const (
-	SlurmdbV0040DeleteClusterParamsClassificationCAPABILITY   SlurmdbV0040DeleteClusterParamsClassification = "CAPABILITY"
-	SlurmdbV0040DeleteClusterParamsClassificationCAPACITY     SlurmdbV0040DeleteClusterParamsClassification = "CAPACITY"
-	SlurmdbV0040DeleteClusterParamsClassificationCAPAPACITY   SlurmdbV0040DeleteClusterParamsClassification = "CAPAPACITY"
-	SlurmdbV0040DeleteClusterParamsClassificationUNCLASSIFIED SlurmdbV0040DeleteClusterParamsClassification = "UNCLASSIFIED"
+	SlurmV0041PostJobAllocateJSONBodyHetjobSharedMcs           SlurmV0041PostJobAllocateJSONBodyHetjobShared = "mcs"
+	SlurmV0041PostJobAllocateJSONBodyHetjobSharedNone          SlurmV0041PostJobAllocateJSONBodyHetjobShared = "none"
+	SlurmV0041PostJobAllocateJSONBodyHetjobSharedOversubscribe SlurmV0041PostJobAllocateJSONBodyHetjobShared = "oversubscribe"
+	SlurmV0041PostJobAllocateJSONBodyHetjobSharedTopo          SlurmV0041PostJobAllocateJSONBodyHetjobShared = "topo"
+	SlurmV0041PostJobAllocateJSONBodyHetjobSharedUser          SlurmV0041PostJobAllocateJSONBodyHetjobShared = "user"
 )
 
-// Defines values for SlurmdbV0040DeleteClusterParamsFlags.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyHetjobX11.
 const (
-	SlurmdbV0040DeleteClusterParamsFlagsCRAYNATIVE     SlurmdbV0040DeleteClusterParamsFlags = "CRAY_NATIVE"
-	SlurmdbV0040DeleteClusterParamsFlagsEXTERNAL       SlurmdbV0040DeleteClusterParamsFlags = "EXTERNAL"
-	SlurmdbV0040DeleteClusterParamsFlagsFEDERATION     SlurmdbV0040DeleteClusterParamsFlags = "FEDERATION"
-	SlurmdbV0040DeleteClusterParamsFlagsFRONTEND       SlurmdbV0040DeleteClusterParamsFlags = "FRONT_END"
-	SlurmdbV0040DeleteClusterParamsFlagsMULTIPLESLURMD SlurmdbV0040DeleteClusterParamsFlags = "MULTIPLE_SLURMD"
-	SlurmdbV0040DeleteClusterParamsFlagsREGISTERING    SlurmdbV0040DeleteClusterParamsFlags = "REGISTERING"
+	SlurmV0041PostJobAllocateJSONBodyHetjobX11BATCHNODE       SlurmV0041PostJobAllocateJSONBodyHetjobX11 = "BATCH_NODE"
+	SlurmV0041PostJobAllocateJSONBodyHetjobX11FIRSTNODE       SlurmV0041PostJobAllocateJSONBodyHetjobX11 = "FIRST_NODE"
+	SlurmV0041PostJobAllocateJSONBodyHetjobX11FORWARDALLNODES SlurmV0041PostJobAllocateJSONBodyHetjobX11 = "FORWARD_ALL_NODES"
+	SlurmV0041PostJobAllocateJSONBodyHetjobX11LASTNODE        SlurmV0041PostJobAllocateJSONBodyHetjobX11 = "LAST_NODE"
 )
 
-// Defines values for SlurmdbV0040GetClusterParamsClassification.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags.
 const (
-	SlurmdbV0040GetClusterParamsClassificationCAPABILITY   SlurmdbV0040GetClusterParamsClassification = "CAPABILITY"
-	SlurmdbV0040GetClusterParamsClassificationCAPACITY     SlurmdbV0040GetClusterParamsClassification = "CAPACITY"
-	SlurmdbV0040GetClusterParamsClassificationCAPAPACITY   SlurmdbV0040GetClusterParamsClassification = "CAPAPACITY"
-	SlurmdbV0040GetClusterParamsClassificationUNCLASSIFIED SlurmdbV0040GetClusterParamsClassification = "UNCLASSIFIED"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsCPUBINDLDMAP            SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "CPU_BIND_LDMAP"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsCPUBINDLDMASK           SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "CPU_BIND_LDMASK"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsCPUBINDLDRANK           SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "CPU_BIND_LDRANK"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsCPUBINDMAP              SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "CPU_BIND_MAP"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsCPUBINDMASK             SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "CPU_BIND_MASK"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsCPUBINDNONE             SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "CPU_BIND_NONE"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsCPUBINDONETHREADPERCORE SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "CPU_BIND_ONE_THREAD_PER_CORE"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsCPUBINDRANK             SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "CPU_BIND_RANK"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsCPUBINDTOCORES          SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "CPU_BIND_TO_CORES"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsCPUBINDTOLDOMS          SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "CPU_BIND_TO_LDOMS"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsCPUBINDTOSOCKETS        SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "CPU_BIND_TO_SOCKETS"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsCPUBINDTOTHREADS        SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "CPU_BIND_TO_THREADS"
+	SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlagsVERBOSE                 SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags = "VERBOSE"
 )
 
-// Defines values for SlurmdbV0040GetClusterParamsFlags.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyJobCrontabFlags.
 const (
-	SlurmdbV0040GetClusterParamsFlagsCRAYNATIVE     SlurmdbV0040GetClusterParamsFlags = "CRAY_NATIVE"
-	SlurmdbV0040GetClusterParamsFlagsEXTERNAL       SlurmdbV0040GetClusterParamsFlags = "EXTERNAL"
-	SlurmdbV0040GetClusterParamsFlagsFEDERATION     SlurmdbV0040GetClusterParamsFlags = "FEDERATION"
-	SlurmdbV0040GetClusterParamsFlagsFRONTEND       SlurmdbV0040GetClusterParamsFlags = "FRONT_END"
-	SlurmdbV0040GetClusterParamsFlagsMULTIPLESLURMD SlurmdbV0040GetClusterParamsFlags = "MULTIPLE_SLURMD"
-	SlurmdbV0040GetClusterParamsFlagsREGISTERING    SlurmdbV0040GetClusterParamsFlags = "REGISTERING"
+	SlurmV0041PostJobAllocateJSONBodyJobCrontabFlagsWILDDAYOFMONTH SlurmV0041PostJobAllocateJSONBodyJobCrontabFlags = "WILD_DAY_OF_MONTH"
+	SlurmV0041PostJobAllocateJSONBodyJobCrontabFlagsWILDDAYOFWEEK  SlurmV0041PostJobAllocateJSONBodyJobCrontabFlags = "WILD_DAY_OF_WEEK"
+	SlurmV0041PostJobAllocateJSONBodyJobCrontabFlagsWILDHOUR       SlurmV0041PostJobAllocateJSONBodyJobCrontabFlags = "WILD_HOUR"
+	SlurmV0041PostJobAllocateJSONBodyJobCrontabFlagsWILDMINUTE     SlurmV0041PostJobAllocateJSONBodyJobCrontabFlags = "WILD_MINUTE"
+	SlurmV0041PostJobAllocateJSONBodyJobCrontabFlagsWILDMONTH      SlurmV0041PostJobAllocateJSONBodyJobCrontabFlags = "WILD_MONTH"
 )
 
-// Defines values for SlurmdbV0040GetClustersParamsClassification.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyJobExclusive.
 const (
-	CAPABILITY   SlurmdbV0040GetClustersParamsClassification = "CAPABILITY"
-	CAPACITY     SlurmdbV0040GetClustersParamsClassification = "CAPACITY"
-	CAPAPACITY   SlurmdbV0040GetClustersParamsClassification = "CAPAPACITY"
-	UNCLASSIFIED SlurmdbV0040GetClustersParamsClassification = "UNCLASSIFIED"
+	SlurmV0041PostJobAllocateJSONBodyJobExclusiveFalse SlurmV0041PostJobAllocateJSONBodyJobExclusive = "false"
+	SlurmV0041PostJobAllocateJSONBodyJobExclusiveMcs   SlurmV0041PostJobAllocateJSONBodyJobExclusive = "mcs"
+	SlurmV0041PostJobAllocateJSONBodyJobExclusiveTopo  SlurmV0041PostJobAllocateJSONBodyJobExclusive = "topo"
+	SlurmV0041PostJobAllocateJSONBodyJobExclusiveTrue  SlurmV0041PostJobAllocateJSONBodyJobExclusive = "true"
+	SlurmV0041PostJobAllocateJSONBodyJobExclusiveUser  SlurmV0041PostJobAllocateJSONBodyJobExclusive = "user"
 )
 
-// Defines values for SlurmdbV0040GetClustersParamsFlags.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyJobFlags.
 const (
-	CRAYNATIVE     SlurmdbV0040GetClustersParamsFlags = "CRAY_NATIVE"
-	EXTERNAL       SlurmdbV0040GetClustersParamsFlags = "EXTERNAL"
-	FEDERATION     SlurmdbV0040GetClustersParamsFlags = "FEDERATION"
-	FRONTEND       SlurmdbV0040GetClustersParamsFlags = "FRONT_END"
-	MULTIPLESLURMD SlurmdbV0040GetClustersParamsFlags = "MULTIPLE_SLURMD"
-	REGISTERING    SlurmdbV0040GetClustersParamsFlags = "REGISTERING"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsACCRUECOUNTCLEARED       SlurmV0041PostJobAllocateJSONBodyJobFlags = "ACCRUE_COUNT_CLEARED"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsBACKFILLATTEMPTED        SlurmV0041PostJobAllocateJSONBodyJobFlags = "BACKFILL_ATTEMPTED"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsCRONJOB                  SlurmV0041PostJobAllocateJSONBodyJobFlags = "CRON_JOB"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsDEPENDENT                SlurmV0041PostJobAllocateJSONBodyJobFlags = "DEPENDENT"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsEXACTCPUCOUNTREQUESTED   SlurmV0041PostJobAllocateJSONBodyJobFlags = "EXACT_CPU_COUNT_REQUESTED"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsEXACTMEMORYREQUESTED     SlurmV0041PostJobAllocateJSONBodyJobFlags = "EXACT_MEMORY_REQUESTED"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsEXACTTASKCOUNTREQUESTED  SlurmV0041PostJobAllocateJSONBodyJobFlags = "EXACT_TASK_COUNT_REQUESTED"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsGRESBINDINGDISABLED      SlurmV0041PostJobAllocateJSONBodyJobFlags = "GRES_BINDING_DISABLED"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsGRESBINDINGENFORCED      SlurmV0041PostJobAllocateJSONBodyJobFlags = "GRES_BINDING_ENFORCED"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsHASSTATEDIRECTORY        SlurmV0041PostJobAllocateJSONBodyJobFlags = "HAS_STATE_DIRECTORY"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsHETEROGENEOUSJOB         SlurmV0041PostJobAllocateJSONBodyJobFlags = "HETEROGENEOUS_JOB"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsJOBACCRUETIMERESET       SlurmV0041PostJobAllocateJSONBodyJobFlags = "JOB_ACCRUE_TIME_RESET"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsJOBKILLHURRY             SlurmV0041PostJobAllocateJSONBodyJobFlags = "JOB_KILL_HURRY"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsJOBWASRUNNING            SlurmV0041PostJobAllocateJSONBodyJobFlags = "JOB_WAS_RUNNING"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsKILLINVALIDDEPENDENCY    SlurmV0041PostJobAllocateJSONBodyJobFlags = "KILL_INVALID_DEPENDENCY"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsMAGNETIC                 SlurmV0041PostJobAllocateJSONBodyJobFlags = "MAGNETIC"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsNOKILLINVALIDDEPENDENCY  SlurmV0041PostJobAllocateJSONBodyJobFlags = "NO_KILL_INVALID_DEPENDENCY"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsPARTITIONASSIGNED        SlurmV0041PostJobAllocateJSONBodyJobFlags = "PARTITION_ASSIGNED"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsPREFERMINIMUMNODECOUNT   SlurmV0041PostJobAllocateJSONBodyJobFlags = "PREFER_MINIMUM_NODE_COUNT"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsSCHEDULINGATTEMPTED      SlurmV0041PostJobAllocateJSONBodyJobFlags = "SCHEDULING_ATTEMPTED"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsSENDJOBENVIRONMENT       SlurmV0041PostJobAllocateJSONBodyJobFlags = "SEND_JOB_ENVIRONMENT"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsSIBLINGCLUSTERUPDATEONLY SlurmV0041PostJobAllocateJSONBodyJobFlags = "SIBLING_CLUSTER_UPDATE_ONLY"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsSKIPTRESSTRINGACCOUNTING SlurmV0041PostJobAllocateJSONBodyJobFlags = "SKIP_TRES_STRING_ACCOUNTING"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsSPREADJOB                SlurmV0041PostJobAllocateJSONBodyJobFlags = "SPREAD_JOB"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsSTEPMGRENABLED           SlurmV0041PostJobAllocateJSONBodyJobFlags = "STEPMGR_ENABLED"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsTESTINGBACKFILL          SlurmV0041PostJobAllocateJSONBodyJobFlags = "TESTING_BACKFILL"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsTESTINGWHOLENODEBACKFILL SlurmV0041PostJobAllocateJSONBodyJobFlags = "TESTING_WHOLE_NODE_BACKFILL"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsTESTNOWONLY              SlurmV0041PostJobAllocateJSONBodyJobFlags = "TEST_NOW_ONLY"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsTOPPRIORITYJOB           SlurmV0041PostJobAllocateJSONBodyJobFlags = "TOP_PRIORITY_JOB"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsUSINGDEFAULTACCOUNT      SlurmV0041PostJobAllocateJSONBodyJobFlags = "USING_DEFAULT_ACCOUNT"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsUSINGDEFAULTPARTITION    SlurmV0041PostJobAllocateJSONBodyJobFlags = "USING_DEFAULT_PARTITION"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsUSINGDEFAULTQOS          SlurmV0041PostJobAllocateJSONBodyJobFlags = "USING_DEFAULT_QOS"
+	SlurmV0041PostJobAllocateJSONBodyJobFlagsUSINGDEFAULTWCKEY        SlurmV0041PostJobAllocateJSONBodyJobFlags = "USING_DEFAULT_WCKEY"
 )
 
-// Defines values for SlurmdbV0040GetQosParamsPreemptMode.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags.
 const (
-	SlurmdbV0040GetQosParamsPreemptModeCANCEL   SlurmdbV0040GetQosParamsPreemptMode = "CANCEL"
-	SlurmdbV0040GetQosParamsPreemptModeDISABLED SlurmdbV0040GetQosParamsPreemptMode = "DISABLED"
-	SlurmdbV0040GetQosParamsPreemptModeGANG     SlurmdbV0040GetQosParamsPreemptMode = "GANG"
-	SlurmdbV0040GetQosParamsPreemptModeREQUEUE  SlurmdbV0040GetQosParamsPreemptMode = "REQUEUE"
-	SlurmdbV0040GetQosParamsPreemptModeSUSPEND  SlurmdbV0040GetQosParamsPreemptMode = "SUSPEND"
+	SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlagsARRAYTASK         SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags = "ARRAY_TASK"
+	SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlagsBATCHJOB          SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags = "BATCH_JOB"
+	SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlagsCRONJOBS          SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags = "CRON_JOBS"
+	SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlagsFEDERATIONREQUEUE SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags = "FEDERATION_REQUEUE"
+	SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlagsFULLJOB           SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags = "FULL_JOB"
+	SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlagsFULLSTEPSONLY     SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags = "FULL_STEPS_ONLY"
+	SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlagsHURRY             SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags = "HURRY"
+	SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlagsNOSIBLINGJOBS     SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags = "NO_SIBLING_JOBS"
+	SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlagsOUTOFMEMORY       SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags = "OUT_OF_MEMORY"
+	SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlagsRESERVATIONJOB    SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags = "RESERVATION_JOB"
+	SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlagsVERBOSE           SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags = "VERBOSE"
+	SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlagsWARNINGSENT       SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags = "WARNING_SENT"
 )
 
-// Defines values for SlurmdbV0040GetUsersParamsAdminLevel.
+// Defines values for SlurmV0041PostJobAllocateJSONBodyJobMailType.
 const (
-	SlurmdbV0040GetUsersParamsAdminLevelAdministrator SlurmdbV0040GetUsersParamsAdminLevel = "Administrator"
-	SlurmdbV0040GetUsersParamsAdminLevelNone          SlurmdbV0040GetUsersParamsAdminLevel = "None"
-	SlurmdbV0040GetUsersParamsAdminLevelNotSet        SlurmdbV0040GetUsersParamsAdminLevel = "Not Set"
-	SlurmdbV0040GetUsersParamsAdminLevelOperator      SlurmdbV0040GetUsersParamsAdminLevel = "Operator"
+	SlurmV0041PostJobAllocateJSONBodyJobMailTypeARRAYTASKS        SlurmV0041PostJobAllocateJSONBodyJobMailType = "ARRAY_TASKS"
+	SlurmV0041PostJobAllocateJSONBodyJobMailTypeBEGIN             SlurmV0041PostJobAllocateJSONBodyJobMailType = "BEGIN"
+	SlurmV0041PostJobAllocateJSONBodyJobMailTypeEND               SlurmV0041PostJobAllocateJSONBodyJobMailType = "END"
+	SlurmV0041PostJobAllocateJSONBodyJobMailTypeFAIL              SlurmV0041PostJobAllocateJSONBodyJobMailType = "FAIL"
+	SlurmV0041PostJobAllocateJSONBodyJobMailTypeINVALIDDEPENDENCY SlurmV0041PostJobAllocateJSONBodyJobMailType = "INVALID_DEPENDENCY"
+	SlurmV0041PostJobAllocateJSONBodyJobMailTypeREQUEUE           SlurmV0041PostJobAllocateJSONBodyJobMailType = "REQUEUE"
+	SlurmV0041PostJobAllocateJSONBodyJobMailTypeSTAGEOUT          SlurmV0041PostJobAllocateJSONBodyJobMailType = "STAGE_OUT"
+	SlurmV0041PostJobAllocateJSONBodyJobMailTypeTIME100           SlurmV0041PostJobAllocateJSONBodyJobMailType = "TIME=100%"
+	SlurmV0041PostJobAllocateJSONBodyJobMailTypeTIME50            SlurmV0041PostJobAllocateJSONBodyJobMailType = "TIME=50%"
+	SlurmV0041PostJobAllocateJSONBodyJobMailTypeTIME80            SlurmV0041PostJobAllocateJSONBodyJobMailType = "TIME=80%"
+	SlurmV0041PostJobAllocateJSONBodyJobMailTypeTIME90            SlurmV0041PostJobAllocateJSONBodyJobMailType = "TIME=90%"
 )
 
-// Dbv0038Account Account description
-type Dbv0038Account struct {
-	// Associations List of assigned associations
-	Associations *[]Dbv0038AssociationShortInfo `json:"associations,omitempty"`
-
-	// Coordinators List of assigned coordinators
-	Coordinators *[]Dbv0038CoordinatorInfo `json:"coordinators,omitempty"`
-
-	// Description Description of account
-	Description *string `json:"description,omitempty"`
-
-	// Flags List of properties of account
-	Flags *[]string `json:"flags,omitempty"`
-
-	// Name Name of account
-	Name *string `json:"name,omitempty"`
-
-	// Organization Assigned organization of account
-	Organization *string `json:"organization,omitempty"`
-}
-
-// Dbv0038AccountInfo defines model for dbv0.0.38_account_info.
-type Dbv0038AccountInfo struct {
-	// Accounts List of accounts
-	Accounts *[]Dbv0038Account `json:"accounts,omitempty"`
-
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038AccountResponse defines model for dbv0.0.38_account_response.
-type Dbv0038AccountResponse struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038Accounting defines model for dbv0.0.38_accounting.
-type Dbv0038Accounting struct {
-	// TRES TRES list of attributes
-	TRES *Dbv0038TresList `json:"TRES,omitempty"`
-
-	// Allocated total seconds allocated
-	Allocated *int `json:"allocated,omitempty"`
-
-	// Id association/wckey ID
-	Id *int `json:"id,omitempty"`
-
-	// Start UNIX timestamp when accounting period started
-	Start *int `json:"start,omitempty"`
-}
-
-// Dbv0038Association Association description
-type Dbv0038Association struct {
-	// QOS Assigned QOS
-	QOS *[]string `json:"QOS,omitempty"`
-
-	// Account Assigned account
-	Account *string `json:"account,omitempty"`
-
-	// Cluster Assigned cluster
-	Cluster *string `json:"cluster,omitempty"`
-
-	// Default Default settings
-	Default *struct {
-		// Qos Default QOS
-		Qos *string `json:"qos,omitempty"`
-	} `json:"default,omitempty"`
-
-	// Flags List of properties of association
-	Flags *[]string `json:"flags,omitempty"`
-
-	// Max Max settings
-	Max *struct {
-		// Jobs Max jobs settings
-		Jobs *struct {
-			// Per Max jobs per settings
-			Per *struct {
-				// WallClock Max wallclock per job
-				WallClock *int `json:"wall_clock,omitempty"`
-			} `json:"per,omitempty"`
-		} `json:"jobs,omitempty"`
-
-		// Per Max per settings
-		Per *struct {
-			// Account Max per accounting settings
-			Account *struct {
-				// WallClock Max wallclock per account
-				WallClock *int `json:"wall_clock,omitempty"`
-			} `json:"account,omitempty"`
-		} `json:"per,omitempty"`
-
-		// Tres Max TRES settings
-		Tres *struct {
-			// Minutes Max TRES minutes settings
-			Minutes *struct {
-				// Per Max TRES minutes per settings
-				Per *struct {
-					// Job TRES list of attributes
-					Job *Dbv0038TresList `json:"job,omitempty"`
-				} `json:"per,omitempty"`
-
-				// Total TRES list of attributes
-				Total *Dbv0038TresList `json:"total,omitempty"`
-			} `json:"minutes,omitempty"`
-
-			// Per Max TRES per settings
-			Per *struct {
-				// Job TRES list of attributes
-				Job *Dbv0038TresList `json:"job,omitempty"`
-
-				// Node TRES list of attributes
-				Node *Dbv0038TresList `json:"node,omitempty"`
-			} `json:"per,omitempty"`
-
-			// Total TRES list of attributes
-			Total *Dbv0038TresList `json:"total,omitempty"`
-		} `json:"tres,omitempty"`
-	} `json:"max,omitempty"`
-
-	// Min Min settings
-	Min *struct {
-		// PriorityThreshold Min priority threshold
-		PriorityThreshold *int `json:"priority_threshold,omitempty"`
-	} `json:"min,omitempty"`
-
-	// ParentAccount Parent account name
-	ParentAccount *string `json:"parent_account,omitempty"`
-
-	// Partition Assigned partition
-	Partition *string `json:"partition,omitempty"`
-
-	// Priority Assigned priority
-	Priority *int `json:"priority,omitempty"`
-
-	// SharesRaw Raw fairshare shares
-	SharesRaw *int `json:"shares_raw,omitempty"`
-
-	// Usage Association usage
-	Usage *struct {
-		// AccrueJobCount Jobs accuring priority
-		AccrueJobCount *int `json:"accrue_job_count,omitempty"`
-
-		// EffectiveNormalizedUsage Effective normalized usage
-		EffectiveNormalizedUsage *float32 `json:"effective_normalized_usage,omitempty"`
-
-		// FairshareFactor Fairshare factor
-		FairshareFactor *float32 `json:"fairshare_factor,omitempty"`
-
-		// FairshareLevel Fairshare level
-		FairshareLevel *float32 `json:"fairshare_level,omitempty"`
-
-		// FairshareShares Fairshare shares
-		FairshareShares *int `json:"fairshare_shares,omitempty"`
-
-		// GroupUsedWallclock Group used wallclock time (s)
-		GroupUsedWallclock *float32 `json:"group_used_wallclock,omitempty"`
-
-		// JobCount Total jobs submitted
-		JobCount *int `json:"job_count,omitempty"`
-
-		// NormalizedPriority Currently active jobs
-		NormalizedPriority *int `json:"normalized_priority,omitempty"`
-
-		// NormalizedShares Normalized shares
-		NormalizedShares *float32 `json:"normalized_shares,omitempty"`
-
-		// RawUsage Raw usage
-		RawUsage *int `json:"raw_usage,omitempty"`
-	} `json:"usage,omitempty"`
-
-	// User Assigned user
-	User *string `json:"user,omitempty"`
-}
-
-// Dbv0038AssociationShortInfo defines model for dbv0.0.38_association_short_info.
-type Dbv0038AssociationShortInfo struct {
-	// Account Account name
-	Account *string `json:"account,omitempty"`
-
-	// Cluster Cluster name
-	Cluster *string `json:"cluster,omitempty"`
-
-	// Partition Partition name (optional)
-	Partition *string `json:"partition,omitempty"`
-
-	// User User name
-	User *string `json:"user,omitempty"`
-}
-
-// Dbv0038AssociationsInfo defines model for dbv0.0.38_associations_info.
-type Dbv0038AssociationsInfo struct {
-	// Associations Array of associations
-	Associations *[]Dbv0038Association `json:"associations,omitempty"`
-
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038ClusterInfo defines model for dbv0.0.38_cluster_info.
-type Dbv0038ClusterInfo struct {
-	// Associations Information about associations
-	Associations *struct {
-		Root *Dbv0038AssociationShortInfo `json:"root,omitempty"`
-	} `json:"associations,omitempty"`
-
-	// Controller Information about controller
-	Controller *struct {
-		// Host Hostname
-		Host *string `json:"host,omitempty"`
-
-		// Port Port number
-		Port *int `json:"port,omitempty"`
-	} `json:"controller,omitempty"`
-
-	// Flags List of properties of cluster
-	Flags *[]string `json:"flags,omitempty"`
-
-	// Name Cluster name
-	Name *string `json:"name,omitempty"`
-
-	// Nodes Assigned nodes
-	Nodes *string `json:"nodes,omitempty"`
-
-	// RpcVersion Number rpc version
-	RpcVersion *int `json:"rpc_version,omitempty"`
-
-	// SelectPlugin Configured select plugin
-	SelectPlugin *string `json:"select_plugin,omitempty"`
-
-	// Tres List of TRES in cluster
-	Tres *[]Dbv0038ResponseTres `json:"tres,omitempty"`
-}
-
-// Dbv0038ClustersProperties defines model for dbv0.0.38_clusters_properties.
-type Dbv0038ClustersProperties struct {
-	Clusters *Dbv0038ClusterInfo `json:"clusters,omitempty"`
-}
-
-// Dbv0038ConfigInfo defines model for dbv0.0.38_config_info.
-type Dbv0038ConfigInfo struct {
-	// Accounts Array of accounts
-	Accounts *[]Dbv0038Account `json:"accounts,omitempty"`
-
-	// Associations Array of associations
-	Associations *[]Dbv0038Association `json:"associations,omitempty"`
-
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-
-	// Qos Array of qos
-	Qos *[]Dbv0038Qos `json:"qos,omitempty"`
-
-	// Tres Array of TRES
-	Tres *[]Dbv0038TresList `json:"tres,omitempty"`
-
-	// Users Array of users
-	Users *[]Dbv0038User `json:"users,omitempty"`
-
-	// Wckeys Array of wckeys
-	Wckeys *[]Dbv0038Wckey `json:"wckeys,omitempty"`
-}
-
-// Dbv0038ConfigResponse defines model for dbv0.0.38_config_response.
-type Dbv0038ConfigResponse struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038CoordinatorInfo defines model for dbv0.0.38_coordinator_info.
-type Dbv0038CoordinatorInfo struct {
-	// Direct If user is coordinator of this account directly or coordinator status was inherited from a higher account in the tree
-	Direct *int `json:"direct,omitempty"`
-
-	// Name Name of user
-	Name *string `json:"name,omitempty"`
-}
-
-// Dbv0038Diag defines model for dbv0.0.38_diag.
-type Dbv0038Diag struct {
-	// Errors Slurm errors
-	Errors     *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta       *Dbv0038Meta    `json:"meta,omitempty"`
-	Statistics *struct {
-		RPCs *[]struct {
-			// Count Number of RPCs
-			Count *int `json:"count,omitempty"`
-
-			// Rpc RPC type
-			Rpc *string `json:"rpc,omitempty"`
-
-			// Time Time values
-			Time *struct {
-				// Average Average time spent processing this RPC type
-				Average *int `json:"average,omitempty"`
-
-				// Total Total time spent processing this RPC type
-				Total *int `json:"total,omitempty"`
-			} `json:"time,omitempty"`
-		} `json:"RPCs,omitempty"`
-		Rollups *[]struct {
-			// LastCycle Timestamp of last cycle
-			LastCycle *int `json:"last_cycle,omitempty"`
-
-			// LastRun Timestamp of last rollup
-			LastRun *int `json:"last_run,omitempty"`
-
-			// MaxCycle Max time of all cycles
-			MaxCycle *int `json:"max_cycle,omitempty"`
-
-			// MeanCycles Average time (s) of cycle
-			MeanCycles *int `json:"mean_cycles,omitempty"`
-
-			// TotalTime Total time (s) spent doing rollup
-			TotalTime *int `json:"total_time,omitempty"`
-
-			// Type Type of rollup
-			Type *string `json:"type,omitempty"`
-		} `json:"rollups,omitempty"`
-
-		// TimeStart Unix timestamp of start time
-		TimeStart *int `json:"time_start,omitempty"`
-		Users     *[]struct {
-			// Count Number of RPCs
-			Count *int `json:"count,omitempty"`
-
-			// Time Time values
-			Time *struct {
-				// Average Average time spent processing each user RPC
-				Average *int `json:"average,omitempty"`
-
-				// Total Total time spent processing each user RPC
-				Total *int `json:"total,omitempty"`
-			} `json:"time,omitempty"`
+// Defines values for SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingType.
+const (
+	SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingTypeLOCAL   SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingType = "LOCAL"
+	SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingTypeMAP     SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingType = "MAP"
+	SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingTypeMASK    SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingType = "MASK"
+	SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingTypeNONE    SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingType = "NONE"
+	SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingTypePREFER  SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingType = "PREFER"
+	SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingTypeRANK    SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingType = "RANK"
+	SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingTypeSORT    SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingType = "SORT"
+	SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingTypeVERBOSE SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingType = "VERBOSE"
+)
+
+// Defines values for SlurmV0041PostJobAllocateJSONBodyJobOpenMode.
+const (
+	SlurmV0041PostJobAllocateJSONBodyJobOpenModeAPPEND   SlurmV0041PostJobAllocateJSONBodyJobOpenMode = "APPEND"
+	SlurmV0041PostJobAllocateJSONBodyJobOpenModeTRUNCATE SlurmV0041PostJobAllocateJSONBodyJobOpenMode = "TRUNCATE"
+)
+
+// Defines values for SlurmV0041PostJobAllocateJSONBodyJobProfile.
+const (
+	SlurmV0041PostJobAllocateJSONBodyJobProfileENERGY  SlurmV0041PostJobAllocateJSONBodyJobProfile = "ENERGY"
+	SlurmV0041PostJobAllocateJSONBodyJobProfileLUSTRE  SlurmV0041PostJobAllocateJSONBodyJobProfile = "LUSTRE"
+	SlurmV0041PostJobAllocateJSONBodyJobProfileNETWORK SlurmV0041PostJobAllocateJSONBodyJobProfile = "NETWORK"
+	SlurmV0041PostJobAllocateJSONBodyJobProfileNONE    SlurmV0041PostJobAllocateJSONBodyJobProfile = "NONE"
+	SlurmV0041PostJobAllocateJSONBodyJobProfileNOTSET  SlurmV0041PostJobAllocateJSONBodyJobProfile = "NOT_SET"
+	SlurmV0041PostJobAllocateJSONBodyJobProfileTASK    SlurmV0041PostJobAllocateJSONBodyJobProfile = "TASK"
+)
+
+// Defines values for SlurmV0041PostJobAllocateJSONBodyJobShared.
+const (
+	SlurmV0041PostJobAllocateJSONBodyJobSharedMcs           SlurmV0041PostJobAllocateJSONBodyJobShared = "mcs"
+	SlurmV0041PostJobAllocateJSONBodyJobSharedNone          SlurmV0041PostJobAllocateJSONBodyJobShared = "none"
+	SlurmV0041PostJobAllocateJSONBodyJobSharedOversubscribe SlurmV0041PostJobAllocateJSONBodyJobShared = "oversubscribe"
+	SlurmV0041PostJobAllocateJSONBodyJobSharedTopo          SlurmV0041PostJobAllocateJSONBodyJobShared = "topo"
+	SlurmV0041PostJobAllocateJSONBodyJobSharedUser          SlurmV0041PostJobAllocateJSONBodyJobShared = "user"
+)
+
+// Defines values for SlurmV0041PostJobAllocateJSONBodyJobX11.
+const (
+	SlurmV0041PostJobAllocateJSONBodyJobX11BATCHNODE       SlurmV0041PostJobAllocateJSONBodyJobX11 = "BATCH_NODE"
+	SlurmV0041PostJobAllocateJSONBodyJobX11FIRSTNODE       SlurmV0041PostJobAllocateJSONBodyJobX11 = "FIRST_NODE"
+	SlurmV0041PostJobAllocateJSONBodyJobX11FORWARDALLNODES SlurmV0041PostJobAllocateJSONBodyJobX11 = "FORWARD_ALL_NODES"
+	SlurmV0041PostJobAllocateJSONBodyJobX11LASTNODE        SlurmV0041PostJobAllocateJSONBodyJobX11 = "LAST_NODE"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsCPUBINDLDMAP            SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "CPU_BIND_LDMAP"
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsCPUBINDLDMASK           SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "CPU_BIND_LDMASK"
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsCPUBINDLDRANK           SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "CPU_BIND_LDRANK"
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsCPUBINDMAP              SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "CPU_BIND_MAP"
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsCPUBINDMASK             SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "CPU_BIND_MASK"
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsCPUBINDNONE             SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "CPU_BIND_NONE"
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsCPUBINDONETHREADPERCORE SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "CPU_BIND_ONE_THREAD_PER_CORE"
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsCPUBINDRANK             SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "CPU_BIND_RANK"
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsCPUBINDTOCORES          SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "CPU_BIND_TO_CORES"
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsCPUBINDTOLDOMS          SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "CPU_BIND_TO_LDOMS"
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsCPUBINDTOSOCKETS        SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "CPU_BIND_TO_SOCKETS"
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsCPUBINDTOTHREADS        SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "CPU_BIND_TO_THREADS"
+	SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlagsVERBOSE                 SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags = "VERBOSE"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobCrontabFlags.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobCrontabFlagsWILDDAYOFMONTH SlurmV0041PostJobSubmitJSONBodyJobCrontabFlags = "WILD_DAY_OF_MONTH"
+	SlurmV0041PostJobSubmitJSONBodyJobCrontabFlagsWILDDAYOFWEEK  SlurmV0041PostJobSubmitJSONBodyJobCrontabFlags = "WILD_DAY_OF_WEEK"
+	SlurmV0041PostJobSubmitJSONBodyJobCrontabFlagsWILDHOUR       SlurmV0041PostJobSubmitJSONBodyJobCrontabFlags = "WILD_HOUR"
+	SlurmV0041PostJobSubmitJSONBodyJobCrontabFlagsWILDMINUTE     SlurmV0041PostJobSubmitJSONBodyJobCrontabFlags = "WILD_MINUTE"
+	SlurmV0041PostJobSubmitJSONBodyJobCrontabFlagsWILDMONTH      SlurmV0041PostJobSubmitJSONBodyJobCrontabFlags = "WILD_MONTH"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobExclusive.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobExclusiveFalse SlurmV0041PostJobSubmitJSONBodyJobExclusive = "false"
+	SlurmV0041PostJobSubmitJSONBodyJobExclusiveMcs   SlurmV0041PostJobSubmitJSONBodyJobExclusive = "mcs"
+	SlurmV0041PostJobSubmitJSONBodyJobExclusiveTopo  SlurmV0041PostJobSubmitJSONBodyJobExclusive = "topo"
+	SlurmV0041PostJobSubmitJSONBodyJobExclusiveTrue  SlurmV0041PostJobSubmitJSONBodyJobExclusive = "true"
+	SlurmV0041PostJobSubmitJSONBodyJobExclusiveUser  SlurmV0041PostJobSubmitJSONBodyJobExclusive = "user"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobFlags.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsACCRUECOUNTCLEARED       SlurmV0041PostJobSubmitJSONBodyJobFlags = "ACCRUE_COUNT_CLEARED"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsBACKFILLATTEMPTED        SlurmV0041PostJobSubmitJSONBodyJobFlags = "BACKFILL_ATTEMPTED"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsCRONJOB                  SlurmV0041PostJobSubmitJSONBodyJobFlags = "CRON_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsDEPENDENT                SlurmV0041PostJobSubmitJSONBodyJobFlags = "DEPENDENT"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsEXACTCPUCOUNTREQUESTED   SlurmV0041PostJobSubmitJSONBodyJobFlags = "EXACT_CPU_COUNT_REQUESTED"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsEXACTMEMORYREQUESTED     SlurmV0041PostJobSubmitJSONBodyJobFlags = "EXACT_MEMORY_REQUESTED"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsEXACTTASKCOUNTREQUESTED  SlurmV0041PostJobSubmitJSONBodyJobFlags = "EXACT_TASK_COUNT_REQUESTED"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsGRESBINDINGDISABLED      SlurmV0041PostJobSubmitJSONBodyJobFlags = "GRES_BINDING_DISABLED"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsGRESBINDINGENFORCED      SlurmV0041PostJobSubmitJSONBodyJobFlags = "GRES_BINDING_ENFORCED"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsHASSTATEDIRECTORY        SlurmV0041PostJobSubmitJSONBodyJobFlags = "HAS_STATE_DIRECTORY"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsHETEROGENEOUSJOB         SlurmV0041PostJobSubmitJSONBodyJobFlags = "HETEROGENEOUS_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsJOBACCRUETIMERESET       SlurmV0041PostJobSubmitJSONBodyJobFlags = "JOB_ACCRUE_TIME_RESET"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsJOBKILLHURRY             SlurmV0041PostJobSubmitJSONBodyJobFlags = "JOB_KILL_HURRY"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsJOBWASRUNNING            SlurmV0041PostJobSubmitJSONBodyJobFlags = "JOB_WAS_RUNNING"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsKILLINVALIDDEPENDENCY    SlurmV0041PostJobSubmitJSONBodyJobFlags = "KILL_INVALID_DEPENDENCY"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsMAGNETIC                 SlurmV0041PostJobSubmitJSONBodyJobFlags = "MAGNETIC"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsNOKILLINVALIDDEPENDENCY  SlurmV0041PostJobSubmitJSONBodyJobFlags = "NO_KILL_INVALID_DEPENDENCY"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsPARTITIONASSIGNED        SlurmV0041PostJobSubmitJSONBodyJobFlags = "PARTITION_ASSIGNED"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsPREFERMINIMUMNODECOUNT   SlurmV0041PostJobSubmitJSONBodyJobFlags = "PREFER_MINIMUM_NODE_COUNT"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsSCHEDULINGATTEMPTED      SlurmV0041PostJobSubmitJSONBodyJobFlags = "SCHEDULING_ATTEMPTED"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsSENDJOBENVIRONMENT       SlurmV0041PostJobSubmitJSONBodyJobFlags = "SEND_JOB_ENVIRONMENT"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsSIBLINGCLUSTERUPDATEONLY SlurmV0041PostJobSubmitJSONBodyJobFlags = "SIBLING_CLUSTER_UPDATE_ONLY"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsSKIPTRESSTRINGACCOUNTING SlurmV0041PostJobSubmitJSONBodyJobFlags = "SKIP_TRES_STRING_ACCOUNTING"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsSPREADJOB                SlurmV0041PostJobSubmitJSONBodyJobFlags = "SPREAD_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsSTEPMGRENABLED           SlurmV0041PostJobSubmitJSONBodyJobFlags = "STEPMGR_ENABLED"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsTESTINGBACKFILL          SlurmV0041PostJobSubmitJSONBodyJobFlags = "TESTING_BACKFILL"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsTESTINGWHOLENODEBACKFILL SlurmV0041PostJobSubmitJSONBodyJobFlags = "TESTING_WHOLE_NODE_BACKFILL"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsTESTNOWONLY              SlurmV0041PostJobSubmitJSONBodyJobFlags = "TEST_NOW_ONLY"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsTOPPRIORITYJOB           SlurmV0041PostJobSubmitJSONBodyJobFlags = "TOP_PRIORITY_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsUSINGDEFAULTACCOUNT      SlurmV0041PostJobSubmitJSONBodyJobFlags = "USING_DEFAULT_ACCOUNT"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsUSINGDEFAULTPARTITION    SlurmV0041PostJobSubmitJSONBodyJobFlags = "USING_DEFAULT_PARTITION"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsUSINGDEFAULTQOS          SlurmV0041PostJobSubmitJSONBodyJobFlags = "USING_DEFAULT_QOS"
+	SlurmV0041PostJobSubmitJSONBodyJobFlagsUSINGDEFAULTWCKEY        SlurmV0041PostJobSubmitJSONBodyJobFlags = "USING_DEFAULT_WCKEY"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlagsARRAYTASK         SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags = "ARRAY_TASK"
+	SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlagsBATCHJOB          SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags = "BATCH_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlagsCRONJOBS          SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags = "CRON_JOBS"
+	SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlagsFEDERATIONREQUEUE SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags = "FEDERATION_REQUEUE"
+	SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlagsFULLJOB           SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags = "FULL_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlagsFULLSTEPSONLY     SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags = "FULL_STEPS_ONLY"
+	SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlagsHURRY             SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags = "HURRY"
+	SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlagsNOSIBLINGJOBS     SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags = "NO_SIBLING_JOBS"
+	SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlagsOUTOFMEMORY       SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags = "OUT_OF_MEMORY"
+	SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlagsRESERVATIONJOB    SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags = "RESERVATION_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlagsVERBOSE           SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags = "VERBOSE"
+	SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlagsWARNINGSENT       SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags = "WARNING_SENT"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobMailType.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobMailTypeARRAYTASKS        SlurmV0041PostJobSubmitJSONBodyJobMailType = "ARRAY_TASKS"
+	SlurmV0041PostJobSubmitJSONBodyJobMailTypeBEGIN             SlurmV0041PostJobSubmitJSONBodyJobMailType = "BEGIN"
+	SlurmV0041PostJobSubmitJSONBodyJobMailTypeEND               SlurmV0041PostJobSubmitJSONBodyJobMailType = "END"
+	SlurmV0041PostJobSubmitJSONBodyJobMailTypeFAIL              SlurmV0041PostJobSubmitJSONBodyJobMailType = "FAIL"
+	SlurmV0041PostJobSubmitJSONBodyJobMailTypeINVALIDDEPENDENCY SlurmV0041PostJobSubmitJSONBodyJobMailType = "INVALID_DEPENDENCY"
+	SlurmV0041PostJobSubmitJSONBodyJobMailTypeREQUEUE           SlurmV0041PostJobSubmitJSONBodyJobMailType = "REQUEUE"
+	SlurmV0041PostJobSubmitJSONBodyJobMailTypeSTAGEOUT          SlurmV0041PostJobSubmitJSONBodyJobMailType = "STAGE_OUT"
+	SlurmV0041PostJobSubmitJSONBodyJobMailTypeTIME100           SlurmV0041PostJobSubmitJSONBodyJobMailType = "TIME=100%"
+	SlurmV0041PostJobSubmitJSONBodyJobMailTypeTIME50            SlurmV0041PostJobSubmitJSONBodyJobMailType = "TIME=50%"
+	SlurmV0041PostJobSubmitJSONBodyJobMailTypeTIME80            SlurmV0041PostJobSubmitJSONBodyJobMailType = "TIME=80%"
+	SlurmV0041PostJobSubmitJSONBodyJobMailTypeTIME90            SlurmV0041PostJobSubmitJSONBodyJobMailType = "TIME=90%"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingType.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingTypeLOCAL   SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingType = "LOCAL"
+	SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingTypeMAP     SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingType = "MAP"
+	SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingTypeMASK    SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingType = "MASK"
+	SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingTypeNONE    SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingType = "NONE"
+	SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingTypePREFER  SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingType = "PREFER"
+	SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingTypeRANK    SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingType = "RANK"
+	SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingTypeSORT    SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingType = "SORT"
+	SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingTypeVERBOSE SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingType = "VERBOSE"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobOpenMode.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobOpenModeAPPEND   SlurmV0041PostJobSubmitJSONBodyJobOpenMode = "APPEND"
+	SlurmV0041PostJobSubmitJSONBodyJobOpenModeTRUNCATE SlurmV0041PostJobSubmitJSONBodyJobOpenMode = "TRUNCATE"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobProfile.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobProfileENERGY  SlurmV0041PostJobSubmitJSONBodyJobProfile = "ENERGY"
+	SlurmV0041PostJobSubmitJSONBodyJobProfileLUSTRE  SlurmV0041PostJobSubmitJSONBodyJobProfile = "LUSTRE"
+	SlurmV0041PostJobSubmitJSONBodyJobProfileNETWORK SlurmV0041PostJobSubmitJSONBodyJobProfile = "NETWORK"
+	SlurmV0041PostJobSubmitJSONBodyJobProfileNONE    SlurmV0041PostJobSubmitJSONBodyJobProfile = "NONE"
+	SlurmV0041PostJobSubmitJSONBodyJobProfileNOTSET  SlurmV0041PostJobSubmitJSONBodyJobProfile = "NOT_SET"
+	SlurmV0041PostJobSubmitJSONBodyJobProfileTASK    SlurmV0041PostJobSubmitJSONBodyJobProfile = "TASK"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobShared.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobSharedMcs           SlurmV0041PostJobSubmitJSONBodyJobShared = "mcs"
+	SlurmV0041PostJobSubmitJSONBodyJobSharedNone          SlurmV0041PostJobSubmitJSONBodyJobShared = "none"
+	SlurmV0041PostJobSubmitJSONBodyJobSharedOversubscribe SlurmV0041PostJobSubmitJSONBodyJobShared = "oversubscribe"
+	SlurmV0041PostJobSubmitJSONBodyJobSharedTopo          SlurmV0041PostJobSubmitJSONBodyJobShared = "topo"
+	SlurmV0041PostJobSubmitJSONBodyJobSharedUser          SlurmV0041PostJobSubmitJSONBodyJobShared = "user"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobX11.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobX11BATCHNODE       SlurmV0041PostJobSubmitJSONBodyJobX11 = "BATCH_NODE"
+	SlurmV0041PostJobSubmitJSONBodyJobX11FIRSTNODE       SlurmV0041PostJobSubmitJSONBodyJobX11 = "FIRST_NODE"
+	SlurmV0041PostJobSubmitJSONBodyJobX11FORWARDALLNODES SlurmV0041PostJobSubmitJSONBodyJobX11 = "FORWARD_ALL_NODES"
+	SlurmV0041PostJobSubmitJSONBodyJobX11LASTNODE        SlurmV0041PostJobSubmitJSONBodyJobX11 = "LAST_NODE"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsCPUBINDLDMAP            SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "CPU_BIND_LDMAP"
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsCPUBINDLDMASK           SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "CPU_BIND_LDMASK"
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsCPUBINDLDRANK           SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "CPU_BIND_LDRANK"
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsCPUBINDMAP              SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "CPU_BIND_MAP"
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsCPUBINDMASK             SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "CPU_BIND_MASK"
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsCPUBINDNONE             SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "CPU_BIND_NONE"
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsCPUBINDONETHREADPERCORE SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "CPU_BIND_ONE_THREAD_PER_CORE"
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsCPUBINDRANK             SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "CPU_BIND_RANK"
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsCPUBINDTOCORES          SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "CPU_BIND_TO_CORES"
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsCPUBINDTOLDOMS          SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "CPU_BIND_TO_LDOMS"
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsCPUBINDTOSOCKETS        SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "CPU_BIND_TO_SOCKETS"
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsCPUBINDTOTHREADS        SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "CPU_BIND_TO_THREADS"
+	SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlagsVERBOSE                 SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags = "VERBOSE"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlags.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlagsWILDDAYOFMONTH SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlags = "WILD_DAY_OF_MONTH"
+	SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlagsWILDDAYOFWEEK  SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlags = "WILD_DAY_OF_WEEK"
+	SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlagsWILDHOUR       SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlags = "WILD_HOUR"
+	SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlagsWILDMINUTE     SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlags = "WILD_MINUTE"
+	SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlagsWILDMONTH      SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlags = "WILD_MONTH"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobsExclusive.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobsExclusiveFalse SlurmV0041PostJobSubmitJSONBodyJobsExclusive = "false"
+	SlurmV0041PostJobSubmitJSONBodyJobsExclusiveMcs   SlurmV0041PostJobSubmitJSONBodyJobsExclusive = "mcs"
+	SlurmV0041PostJobSubmitJSONBodyJobsExclusiveTopo  SlurmV0041PostJobSubmitJSONBodyJobsExclusive = "topo"
+	SlurmV0041PostJobSubmitJSONBodyJobsExclusiveTrue  SlurmV0041PostJobSubmitJSONBodyJobsExclusive = "true"
+	SlurmV0041PostJobSubmitJSONBodyJobsExclusiveUser  SlurmV0041PostJobSubmitJSONBodyJobsExclusive = "user"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobsFlags.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsACCRUECOUNTCLEARED       SlurmV0041PostJobSubmitJSONBodyJobsFlags = "ACCRUE_COUNT_CLEARED"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsBACKFILLATTEMPTED        SlurmV0041PostJobSubmitJSONBodyJobsFlags = "BACKFILL_ATTEMPTED"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsCRONJOB                  SlurmV0041PostJobSubmitJSONBodyJobsFlags = "CRON_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsDEPENDENT                SlurmV0041PostJobSubmitJSONBodyJobsFlags = "DEPENDENT"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsEXACTCPUCOUNTREQUESTED   SlurmV0041PostJobSubmitJSONBodyJobsFlags = "EXACT_CPU_COUNT_REQUESTED"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsEXACTMEMORYREQUESTED     SlurmV0041PostJobSubmitJSONBodyJobsFlags = "EXACT_MEMORY_REQUESTED"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsEXACTTASKCOUNTREQUESTED  SlurmV0041PostJobSubmitJSONBodyJobsFlags = "EXACT_TASK_COUNT_REQUESTED"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsGRESBINDINGDISABLED      SlurmV0041PostJobSubmitJSONBodyJobsFlags = "GRES_BINDING_DISABLED"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsGRESBINDINGENFORCED      SlurmV0041PostJobSubmitJSONBodyJobsFlags = "GRES_BINDING_ENFORCED"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsHASSTATEDIRECTORY        SlurmV0041PostJobSubmitJSONBodyJobsFlags = "HAS_STATE_DIRECTORY"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsHETEROGENEOUSJOB         SlurmV0041PostJobSubmitJSONBodyJobsFlags = "HETEROGENEOUS_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsJOBACCRUETIMERESET       SlurmV0041PostJobSubmitJSONBodyJobsFlags = "JOB_ACCRUE_TIME_RESET"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsJOBKILLHURRY             SlurmV0041PostJobSubmitJSONBodyJobsFlags = "JOB_KILL_HURRY"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsJOBWASRUNNING            SlurmV0041PostJobSubmitJSONBodyJobsFlags = "JOB_WAS_RUNNING"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsKILLINVALIDDEPENDENCY    SlurmV0041PostJobSubmitJSONBodyJobsFlags = "KILL_INVALID_DEPENDENCY"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsMAGNETIC                 SlurmV0041PostJobSubmitJSONBodyJobsFlags = "MAGNETIC"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsNOKILLINVALIDDEPENDENCY  SlurmV0041PostJobSubmitJSONBodyJobsFlags = "NO_KILL_INVALID_DEPENDENCY"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsPARTITIONASSIGNED        SlurmV0041PostJobSubmitJSONBodyJobsFlags = "PARTITION_ASSIGNED"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsPREFERMINIMUMNODECOUNT   SlurmV0041PostJobSubmitJSONBodyJobsFlags = "PREFER_MINIMUM_NODE_COUNT"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsSCHEDULINGATTEMPTED      SlurmV0041PostJobSubmitJSONBodyJobsFlags = "SCHEDULING_ATTEMPTED"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsSENDJOBENVIRONMENT       SlurmV0041PostJobSubmitJSONBodyJobsFlags = "SEND_JOB_ENVIRONMENT"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsSIBLINGCLUSTERUPDATEONLY SlurmV0041PostJobSubmitJSONBodyJobsFlags = "SIBLING_CLUSTER_UPDATE_ONLY"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsSKIPTRESSTRINGACCOUNTING SlurmV0041PostJobSubmitJSONBodyJobsFlags = "SKIP_TRES_STRING_ACCOUNTING"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsSPREADJOB                SlurmV0041PostJobSubmitJSONBodyJobsFlags = "SPREAD_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsSTEPMGRENABLED           SlurmV0041PostJobSubmitJSONBodyJobsFlags = "STEPMGR_ENABLED"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsTESTINGBACKFILL          SlurmV0041PostJobSubmitJSONBodyJobsFlags = "TESTING_BACKFILL"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsTESTINGWHOLENODEBACKFILL SlurmV0041PostJobSubmitJSONBodyJobsFlags = "TESTING_WHOLE_NODE_BACKFILL"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsTESTNOWONLY              SlurmV0041PostJobSubmitJSONBodyJobsFlags = "TEST_NOW_ONLY"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsTOPPRIORITYJOB           SlurmV0041PostJobSubmitJSONBodyJobsFlags = "TOP_PRIORITY_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsUSINGDEFAULTACCOUNT      SlurmV0041PostJobSubmitJSONBodyJobsFlags = "USING_DEFAULT_ACCOUNT"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsUSINGDEFAULTPARTITION    SlurmV0041PostJobSubmitJSONBodyJobsFlags = "USING_DEFAULT_PARTITION"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsUSINGDEFAULTQOS          SlurmV0041PostJobSubmitJSONBodyJobsFlags = "USING_DEFAULT_QOS"
+	SlurmV0041PostJobSubmitJSONBodyJobsFlagsUSINGDEFAULTWCKEY        SlurmV0041PostJobSubmitJSONBodyJobsFlags = "USING_DEFAULT_WCKEY"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlagsARRAYTASK         SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags = "ARRAY_TASK"
+	SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlagsBATCHJOB          SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags = "BATCH_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlagsCRONJOBS          SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags = "CRON_JOBS"
+	SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlagsFEDERATIONREQUEUE SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags = "FEDERATION_REQUEUE"
+	SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlagsFULLJOB           SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags = "FULL_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlagsFULLSTEPSONLY     SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags = "FULL_STEPS_ONLY"
+	SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlagsHURRY             SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags = "HURRY"
+	SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlagsNOSIBLINGJOBS     SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags = "NO_SIBLING_JOBS"
+	SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlagsOUTOFMEMORY       SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags = "OUT_OF_MEMORY"
+	SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlagsRESERVATIONJOB    SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags = "RESERVATION_JOB"
+	SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlagsVERBOSE           SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags = "VERBOSE"
+	SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlagsWARNINGSENT       SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags = "WARNING_SENT"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobsMailType.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobsMailTypeARRAYTASKS        SlurmV0041PostJobSubmitJSONBodyJobsMailType = "ARRAY_TASKS"
+	SlurmV0041PostJobSubmitJSONBodyJobsMailTypeBEGIN             SlurmV0041PostJobSubmitJSONBodyJobsMailType = "BEGIN"
+	SlurmV0041PostJobSubmitJSONBodyJobsMailTypeEND               SlurmV0041PostJobSubmitJSONBodyJobsMailType = "END"
+	SlurmV0041PostJobSubmitJSONBodyJobsMailTypeFAIL              SlurmV0041PostJobSubmitJSONBodyJobsMailType = "FAIL"
+	SlurmV0041PostJobSubmitJSONBodyJobsMailTypeINVALIDDEPENDENCY SlurmV0041PostJobSubmitJSONBodyJobsMailType = "INVALID_DEPENDENCY"
+	SlurmV0041PostJobSubmitJSONBodyJobsMailTypeREQUEUE           SlurmV0041PostJobSubmitJSONBodyJobsMailType = "REQUEUE"
+	SlurmV0041PostJobSubmitJSONBodyJobsMailTypeSTAGEOUT          SlurmV0041PostJobSubmitJSONBodyJobsMailType = "STAGE_OUT"
+	SlurmV0041PostJobSubmitJSONBodyJobsMailTypeTIME100           SlurmV0041PostJobSubmitJSONBodyJobsMailType = "TIME=100%"
+	SlurmV0041PostJobSubmitJSONBodyJobsMailTypeTIME50            SlurmV0041PostJobSubmitJSONBodyJobsMailType = "TIME=50%"
+	SlurmV0041PostJobSubmitJSONBodyJobsMailTypeTIME80            SlurmV0041PostJobSubmitJSONBodyJobsMailType = "TIME=80%"
+	SlurmV0041PostJobSubmitJSONBodyJobsMailTypeTIME90            SlurmV0041PostJobSubmitJSONBodyJobsMailType = "TIME=90%"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingType.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingTypeLOCAL   SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingType = "LOCAL"
+	SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingTypeMAP     SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingType = "MAP"
+	SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingTypeMASK    SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingType = "MASK"
+	SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingTypeNONE    SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingType = "NONE"
+	SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingTypePREFER  SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingType = "PREFER"
+	SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingTypeRANK    SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingType = "RANK"
+	SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingTypeSORT    SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingType = "SORT"
+	SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingTypeVERBOSE SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingType = "VERBOSE"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobsOpenMode.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobsOpenModeAPPEND   SlurmV0041PostJobSubmitJSONBodyJobsOpenMode = "APPEND"
+	SlurmV0041PostJobSubmitJSONBodyJobsOpenModeTRUNCATE SlurmV0041PostJobSubmitJSONBodyJobsOpenMode = "TRUNCATE"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobsProfile.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobsProfileENERGY  SlurmV0041PostJobSubmitJSONBodyJobsProfile = "ENERGY"
+	SlurmV0041PostJobSubmitJSONBodyJobsProfileLUSTRE  SlurmV0041PostJobSubmitJSONBodyJobsProfile = "LUSTRE"
+	SlurmV0041PostJobSubmitJSONBodyJobsProfileNETWORK SlurmV0041PostJobSubmitJSONBodyJobsProfile = "NETWORK"
+	SlurmV0041PostJobSubmitJSONBodyJobsProfileNONE    SlurmV0041PostJobSubmitJSONBodyJobsProfile = "NONE"
+	SlurmV0041PostJobSubmitJSONBodyJobsProfileNOTSET  SlurmV0041PostJobSubmitJSONBodyJobsProfile = "NOT_SET"
+	SlurmV0041PostJobSubmitJSONBodyJobsProfileTASK    SlurmV0041PostJobSubmitJSONBodyJobsProfile = "TASK"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobsShared.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobsSharedMcs           SlurmV0041PostJobSubmitJSONBodyJobsShared = "mcs"
+	SlurmV0041PostJobSubmitJSONBodyJobsSharedNone          SlurmV0041PostJobSubmitJSONBodyJobsShared = "none"
+	SlurmV0041PostJobSubmitJSONBodyJobsSharedOversubscribe SlurmV0041PostJobSubmitJSONBodyJobsShared = "oversubscribe"
+	SlurmV0041PostJobSubmitJSONBodyJobsSharedTopo          SlurmV0041PostJobSubmitJSONBodyJobsShared = "topo"
+	SlurmV0041PostJobSubmitJSONBodyJobsSharedUser          SlurmV0041PostJobSubmitJSONBodyJobsShared = "user"
+)
+
+// Defines values for SlurmV0041PostJobSubmitJSONBodyJobsX11.
+const (
+	SlurmV0041PostJobSubmitJSONBodyJobsX11BATCHNODE       SlurmV0041PostJobSubmitJSONBodyJobsX11 = "BATCH_NODE"
+	SlurmV0041PostJobSubmitJSONBodyJobsX11FIRSTNODE       SlurmV0041PostJobSubmitJSONBodyJobsX11 = "FIRST_NODE"
+	SlurmV0041PostJobSubmitJSONBodyJobsX11FORWARDALLNODES SlurmV0041PostJobSubmitJSONBodyJobsX11 = "FORWARD_ALL_NODES"
+	SlurmV0041PostJobSubmitJSONBodyJobsX11LASTNODE        SlurmV0041PostJobSubmitJSONBodyJobsX11 = "LAST_NODE"
+)
+
+// Defines values for SlurmV0041DeleteJobParamsFlags.
+const (
+	SlurmV0041DeleteJobParamsFlagsARRAYTASK         SlurmV0041DeleteJobParamsFlags = "ARRAY_TASK"
+	SlurmV0041DeleteJobParamsFlagsBATCHJOB          SlurmV0041DeleteJobParamsFlags = "BATCH_JOB"
+	SlurmV0041DeleteJobParamsFlagsCRONJOBS          SlurmV0041DeleteJobParamsFlags = "CRON_JOBS"
+	SlurmV0041DeleteJobParamsFlagsFEDERATIONREQUEUE SlurmV0041DeleteJobParamsFlags = "FEDERATION_REQUEUE"
+	SlurmV0041DeleteJobParamsFlagsFULLJOB           SlurmV0041DeleteJobParamsFlags = "FULL_JOB"
+	SlurmV0041DeleteJobParamsFlagsFULLSTEPSONLY     SlurmV0041DeleteJobParamsFlags = "FULL_STEPS_ONLY"
+	SlurmV0041DeleteJobParamsFlagsHURRY             SlurmV0041DeleteJobParamsFlags = "HURRY"
+	SlurmV0041DeleteJobParamsFlagsNOSIBLINGJOBS     SlurmV0041DeleteJobParamsFlags = "NO_SIBLING_JOBS"
+	SlurmV0041DeleteJobParamsFlagsOUTOFMEMORY       SlurmV0041DeleteJobParamsFlags = "OUT_OF_MEMORY"
+	SlurmV0041DeleteJobParamsFlagsRESERVATIONJOB    SlurmV0041DeleteJobParamsFlags = "RESERVATION_JOB"
+	SlurmV0041DeleteJobParamsFlagsVERBOSE           SlurmV0041DeleteJobParamsFlags = "VERBOSE"
+	SlurmV0041DeleteJobParamsFlagsWARNINGSENT       SlurmV0041DeleteJobParamsFlags = "WARNING_SENT"
+)
+
+// Defines values for SlurmV0041GetJobParamsFlags.
+const (
+	SlurmV0041GetJobParamsFlagsALL        SlurmV0041GetJobParamsFlags = "ALL"
+	SlurmV0041GetJobParamsFlagsDETAIL     SlurmV0041GetJobParamsFlags = "DETAIL"
+	SlurmV0041GetJobParamsFlagsFEDERATION SlurmV0041GetJobParamsFlags = "FEDERATION"
+	SlurmV0041GetJobParamsFlagsFUTURE     SlurmV0041GetJobParamsFlags = "FUTURE"
+	SlurmV0041GetJobParamsFlagsLOCAL      SlurmV0041GetJobParamsFlags = "LOCAL"
+	SlurmV0041GetJobParamsFlagsMIXED      SlurmV0041GetJobParamsFlags = "MIXED"
+	SlurmV0041GetJobParamsFlagsSIBLING    SlurmV0041GetJobParamsFlags = "SIBLING"
+)
+
+// Defines values for SlurmV0041PostJobJSONBodyCpuBindingFlags.
+const (
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsCPUBINDLDMAP            SlurmV0041PostJobJSONBodyCpuBindingFlags = "CPU_BIND_LDMAP"
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsCPUBINDLDMASK           SlurmV0041PostJobJSONBodyCpuBindingFlags = "CPU_BIND_LDMASK"
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsCPUBINDLDRANK           SlurmV0041PostJobJSONBodyCpuBindingFlags = "CPU_BIND_LDRANK"
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsCPUBINDMAP              SlurmV0041PostJobJSONBodyCpuBindingFlags = "CPU_BIND_MAP"
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsCPUBINDMASK             SlurmV0041PostJobJSONBodyCpuBindingFlags = "CPU_BIND_MASK"
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsCPUBINDNONE             SlurmV0041PostJobJSONBodyCpuBindingFlags = "CPU_BIND_NONE"
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsCPUBINDONETHREADPERCORE SlurmV0041PostJobJSONBodyCpuBindingFlags = "CPU_BIND_ONE_THREAD_PER_CORE"
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsCPUBINDRANK             SlurmV0041PostJobJSONBodyCpuBindingFlags = "CPU_BIND_RANK"
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsCPUBINDTOCORES          SlurmV0041PostJobJSONBodyCpuBindingFlags = "CPU_BIND_TO_CORES"
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsCPUBINDTOLDOMS          SlurmV0041PostJobJSONBodyCpuBindingFlags = "CPU_BIND_TO_LDOMS"
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsCPUBINDTOSOCKETS        SlurmV0041PostJobJSONBodyCpuBindingFlags = "CPU_BIND_TO_SOCKETS"
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsCPUBINDTOTHREADS        SlurmV0041PostJobJSONBodyCpuBindingFlags = "CPU_BIND_TO_THREADS"
+	SlurmV0041PostJobJSONBodyCpuBindingFlagsVERBOSE                 SlurmV0041PostJobJSONBodyCpuBindingFlags = "VERBOSE"
+)
+
+// Defines values for SlurmV0041PostJobJSONBodyCrontabFlags.
+const (
+	WILDDAYOFMONTH SlurmV0041PostJobJSONBodyCrontabFlags = "WILD_DAY_OF_MONTH"
+	WILDDAYOFWEEK  SlurmV0041PostJobJSONBodyCrontabFlags = "WILD_DAY_OF_WEEK"
+	WILDHOUR       SlurmV0041PostJobJSONBodyCrontabFlags = "WILD_HOUR"
+	WILDMINUTE     SlurmV0041PostJobJSONBodyCrontabFlags = "WILD_MINUTE"
+	WILDMONTH      SlurmV0041PostJobJSONBodyCrontabFlags = "WILD_MONTH"
+)
+
+// Defines values for SlurmV0041PostJobJSONBodyExclusive.
+const (
+	SlurmV0041PostJobJSONBodyExclusiveFalse SlurmV0041PostJobJSONBodyExclusive = "false"
+	SlurmV0041PostJobJSONBodyExclusiveMcs   SlurmV0041PostJobJSONBodyExclusive = "mcs"
+	SlurmV0041PostJobJSONBodyExclusiveTopo  SlurmV0041PostJobJSONBodyExclusive = "topo"
+	SlurmV0041PostJobJSONBodyExclusiveTrue  SlurmV0041PostJobJSONBodyExclusive = "true"
+	SlurmV0041PostJobJSONBodyExclusiveUser  SlurmV0041PostJobJSONBodyExclusive = "user"
+)
+
+// Defines values for SlurmV0041PostJobJSONBodyFlags.
+const (
+	ACCRUECOUNTCLEARED       SlurmV0041PostJobJSONBodyFlags = "ACCRUE_COUNT_CLEARED"
+	BACKFILLATTEMPTED        SlurmV0041PostJobJSONBodyFlags = "BACKFILL_ATTEMPTED"
+	CRONJOB                  SlurmV0041PostJobJSONBodyFlags = "CRON_JOB"
+	DEPENDENT                SlurmV0041PostJobJSONBodyFlags = "DEPENDENT"
+	EXACTCPUCOUNTREQUESTED   SlurmV0041PostJobJSONBodyFlags = "EXACT_CPU_COUNT_REQUESTED"
+	EXACTMEMORYREQUESTED     SlurmV0041PostJobJSONBodyFlags = "EXACT_MEMORY_REQUESTED"
+	EXACTTASKCOUNTREQUESTED  SlurmV0041PostJobJSONBodyFlags = "EXACT_TASK_COUNT_REQUESTED"
+	GRESBINDINGDISABLED      SlurmV0041PostJobJSONBodyFlags = "GRES_BINDING_DISABLED"
+	GRESBINDINGENFORCED      SlurmV0041PostJobJSONBodyFlags = "GRES_BINDING_ENFORCED"
+	HASSTATEDIRECTORY        SlurmV0041PostJobJSONBodyFlags = "HAS_STATE_DIRECTORY"
+	HETEROGENEOUSJOB         SlurmV0041PostJobJSONBodyFlags = "HETEROGENEOUS_JOB"
+	JOBACCRUETIMERESET       SlurmV0041PostJobJSONBodyFlags = "JOB_ACCRUE_TIME_RESET"
+	JOBKILLHURRY             SlurmV0041PostJobJSONBodyFlags = "JOB_KILL_HURRY"
+	JOBWASRUNNING            SlurmV0041PostJobJSONBodyFlags = "JOB_WAS_RUNNING"
+	KILLINVALIDDEPENDENCY    SlurmV0041PostJobJSONBodyFlags = "KILL_INVALID_DEPENDENCY"
+	MAGNETIC                 SlurmV0041PostJobJSONBodyFlags = "MAGNETIC"
+	NOKILLINVALIDDEPENDENCY  SlurmV0041PostJobJSONBodyFlags = "NO_KILL_INVALID_DEPENDENCY"
+	PARTITIONASSIGNED        SlurmV0041PostJobJSONBodyFlags = "PARTITION_ASSIGNED"
+	PREFERMINIMUMNODECOUNT   SlurmV0041PostJobJSONBodyFlags = "PREFER_MINIMUM_NODE_COUNT"
+	SCHEDULINGATTEMPTED      SlurmV0041PostJobJSONBodyFlags = "SCHEDULING_ATTEMPTED"
+	SENDJOBENVIRONMENT       SlurmV0041PostJobJSONBodyFlags = "SEND_JOB_ENVIRONMENT"
+	SIBLINGCLUSTERUPDATEONLY SlurmV0041PostJobJSONBodyFlags = "SIBLING_CLUSTER_UPDATE_ONLY"
+	SKIPTRESSTRINGACCOUNTING SlurmV0041PostJobJSONBodyFlags = "SKIP_TRES_STRING_ACCOUNTING"
+	SPREADJOB                SlurmV0041PostJobJSONBodyFlags = "SPREAD_JOB"
+	STEPMGRENABLED           SlurmV0041PostJobJSONBodyFlags = "STEPMGR_ENABLED"
+	TESTINGBACKFILL          SlurmV0041PostJobJSONBodyFlags = "TESTING_BACKFILL"
+	TESTINGWHOLENODEBACKFILL SlurmV0041PostJobJSONBodyFlags = "TESTING_WHOLE_NODE_BACKFILL"
+	TESTNOWONLY              SlurmV0041PostJobJSONBodyFlags = "TEST_NOW_ONLY"
+	TOPPRIORITYJOB           SlurmV0041PostJobJSONBodyFlags = "TOP_PRIORITY_JOB"
+	USINGDEFAULTACCOUNT      SlurmV0041PostJobJSONBodyFlags = "USING_DEFAULT_ACCOUNT"
+	USINGDEFAULTPARTITION    SlurmV0041PostJobJSONBodyFlags = "USING_DEFAULT_PARTITION"
+	USINGDEFAULTQOS          SlurmV0041PostJobJSONBodyFlags = "USING_DEFAULT_QOS"
+	USINGDEFAULTWCKEY        SlurmV0041PostJobJSONBodyFlags = "USING_DEFAULT_WCKEY"
+)
+
+// Defines values for SlurmV0041PostJobJSONBodyKillWarningFlags.
+const (
+	SlurmV0041PostJobJSONBodyKillWarningFlagsARRAYTASK         SlurmV0041PostJobJSONBodyKillWarningFlags = "ARRAY_TASK"
+	SlurmV0041PostJobJSONBodyKillWarningFlagsBATCHJOB          SlurmV0041PostJobJSONBodyKillWarningFlags = "BATCH_JOB"
+	SlurmV0041PostJobJSONBodyKillWarningFlagsCRONJOBS          SlurmV0041PostJobJSONBodyKillWarningFlags = "CRON_JOBS"
+	SlurmV0041PostJobJSONBodyKillWarningFlagsFEDERATIONREQUEUE SlurmV0041PostJobJSONBodyKillWarningFlags = "FEDERATION_REQUEUE"
+	SlurmV0041PostJobJSONBodyKillWarningFlagsFULLJOB           SlurmV0041PostJobJSONBodyKillWarningFlags = "FULL_JOB"
+	SlurmV0041PostJobJSONBodyKillWarningFlagsFULLSTEPSONLY     SlurmV0041PostJobJSONBodyKillWarningFlags = "FULL_STEPS_ONLY"
+	SlurmV0041PostJobJSONBodyKillWarningFlagsHURRY             SlurmV0041PostJobJSONBodyKillWarningFlags = "HURRY"
+	SlurmV0041PostJobJSONBodyKillWarningFlagsNOSIBLINGJOBS     SlurmV0041PostJobJSONBodyKillWarningFlags = "NO_SIBLING_JOBS"
+	SlurmV0041PostJobJSONBodyKillWarningFlagsOUTOFMEMORY       SlurmV0041PostJobJSONBodyKillWarningFlags = "OUT_OF_MEMORY"
+	SlurmV0041PostJobJSONBodyKillWarningFlagsRESERVATIONJOB    SlurmV0041PostJobJSONBodyKillWarningFlags = "RESERVATION_JOB"
+	SlurmV0041PostJobJSONBodyKillWarningFlagsVERBOSE           SlurmV0041PostJobJSONBodyKillWarningFlags = "VERBOSE"
+	SlurmV0041PostJobJSONBodyKillWarningFlagsWARNINGSENT       SlurmV0041PostJobJSONBodyKillWarningFlags = "WARNING_SENT"
+)
+
+// Defines values for SlurmV0041PostJobJSONBodyMailType.
+const (
+	SlurmV0041PostJobJSONBodyMailTypeARRAYTASKS        SlurmV0041PostJobJSONBodyMailType = "ARRAY_TASKS"
+	SlurmV0041PostJobJSONBodyMailTypeBEGIN             SlurmV0041PostJobJSONBodyMailType = "BEGIN"
+	SlurmV0041PostJobJSONBodyMailTypeEND               SlurmV0041PostJobJSONBodyMailType = "END"
+	SlurmV0041PostJobJSONBodyMailTypeFAIL              SlurmV0041PostJobJSONBodyMailType = "FAIL"
+	SlurmV0041PostJobJSONBodyMailTypeINVALIDDEPENDENCY SlurmV0041PostJobJSONBodyMailType = "INVALID_DEPENDENCY"
+	SlurmV0041PostJobJSONBodyMailTypeREQUEUE           SlurmV0041PostJobJSONBodyMailType = "REQUEUE"
+	SlurmV0041PostJobJSONBodyMailTypeSTAGEOUT          SlurmV0041PostJobJSONBodyMailType = "STAGE_OUT"
+	SlurmV0041PostJobJSONBodyMailTypeTIME100           SlurmV0041PostJobJSONBodyMailType = "TIME=100%"
+	SlurmV0041PostJobJSONBodyMailTypeTIME50            SlurmV0041PostJobJSONBodyMailType = "TIME=50%"
+	SlurmV0041PostJobJSONBodyMailTypeTIME80            SlurmV0041PostJobJSONBodyMailType = "TIME=80%"
+	SlurmV0041PostJobJSONBodyMailTypeTIME90            SlurmV0041PostJobJSONBodyMailType = "TIME=90%"
+)
+
+// Defines values for SlurmV0041PostJobJSONBodyMemoryBindingType.
+const (
+	SlurmV0041PostJobJSONBodyMemoryBindingTypeLOCAL   SlurmV0041PostJobJSONBodyMemoryBindingType = "LOCAL"
+	SlurmV0041PostJobJSONBodyMemoryBindingTypeMAP     SlurmV0041PostJobJSONBodyMemoryBindingType = "MAP"
+	SlurmV0041PostJobJSONBodyMemoryBindingTypeMASK    SlurmV0041PostJobJSONBodyMemoryBindingType = "MASK"
+	SlurmV0041PostJobJSONBodyMemoryBindingTypeNONE    SlurmV0041PostJobJSONBodyMemoryBindingType = "NONE"
+	SlurmV0041PostJobJSONBodyMemoryBindingTypePREFER  SlurmV0041PostJobJSONBodyMemoryBindingType = "PREFER"
+	SlurmV0041PostJobJSONBodyMemoryBindingTypeRANK    SlurmV0041PostJobJSONBodyMemoryBindingType = "RANK"
+	SlurmV0041PostJobJSONBodyMemoryBindingTypeSORT    SlurmV0041PostJobJSONBodyMemoryBindingType = "SORT"
+	SlurmV0041PostJobJSONBodyMemoryBindingTypeVERBOSE SlurmV0041PostJobJSONBodyMemoryBindingType = "VERBOSE"
+)
+
+// Defines values for SlurmV0041PostJobJSONBodyOpenMode.
+const (
+	APPEND   SlurmV0041PostJobJSONBodyOpenMode = "APPEND"
+	TRUNCATE SlurmV0041PostJobJSONBodyOpenMode = "TRUNCATE"
+)
+
+// Defines values for SlurmV0041PostJobJSONBodyProfile.
+const (
+	ENERGY  SlurmV0041PostJobJSONBodyProfile = "ENERGY"
+	LUSTRE  SlurmV0041PostJobJSONBodyProfile = "LUSTRE"
+	NETWORK SlurmV0041PostJobJSONBodyProfile = "NETWORK"
+	NONE    SlurmV0041PostJobJSONBodyProfile = "NONE"
+	NOTSET  SlurmV0041PostJobJSONBodyProfile = "NOT_SET"
+	TASK    SlurmV0041PostJobJSONBodyProfile = "TASK"
+)
+
+// Defines values for SlurmV0041PostJobJSONBodyShared.
+const (
+	SlurmV0041PostJobJSONBodySharedMcs           SlurmV0041PostJobJSONBodyShared = "mcs"
+	SlurmV0041PostJobJSONBodySharedNone          SlurmV0041PostJobJSONBodyShared = "none"
+	SlurmV0041PostJobJSONBodySharedOversubscribe SlurmV0041PostJobJSONBodyShared = "oversubscribe"
+	SlurmV0041PostJobJSONBodySharedTopo          SlurmV0041PostJobJSONBodyShared = "topo"
+	SlurmV0041PostJobJSONBodySharedUser          SlurmV0041PostJobJSONBodyShared = "user"
+)
+
+// Defines values for SlurmV0041PostJobJSONBodyX11.
+const (
+	BATCHNODE       SlurmV0041PostJobJSONBodyX11 = "BATCH_NODE"
+	FIRSTNODE       SlurmV0041PostJobJSONBodyX11 = "FIRST_NODE"
+	FORWARDALLNODES SlurmV0041PostJobJSONBodyX11 = "FORWARD_ALL_NODES"
+	LASTNODE        SlurmV0041PostJobJSONBodyX11 = "LAST_NODE"
+)
+
+// Defines values for SlurmV0041DeleteJobsJSONBodyFlags.
+const (
+	SlurmV0041DeleteJobsJSONBodyFlagsARRAYTASK         SlurmV0041DeleteJobsJSONBodyFlags = "ARRAY_TASK"
+	SlurmV0041DeleteJobsJSONBodyFlagsBATCHJOB          SlurmV0041DeleteJobsJSONBodyFlags = "BATCH_JOB"
+	SlurmV0041DeleteJobsJSONBodyFlagsCRONJOBS          SlurmV0041DeleteJobsJSONBodyFlags = "CRON_JOBS"
+	SlurmV0041DeleteJobsJSONBodyFlagsFEDERATIONREQUEUE SlurmV0041DeleteJobsJSONBodyFlags = "FEDERATION_REQUEUE"
+	SlurmV0041DeleteJobsJSONBodyFlagsFULLJOB           SlurmV0041DeleteJobsJSONBodyFlags = "FULL_JOB"
+	SlurmV0041DeleteJobsJSONBodyFlagsFULLSTEPSONLY     SlurmV0041DeleteJobsJSONBodyFlags = "FULL_STEPS_ONLY"
+	SlurmV0041DeleteJobsJSONBodyFlagsHURRY             SlurmV0041DeleteJobsJSONBodyFlags = "HURRY"
+	SlurmV0041DeleteJobsJSONBodyFlagsNOSIBLINGJOBS     SlurmV0041DeleteJobsJSONBodyFlags = "NO_SIBLING_JOBS"
+	SlurmV0041DeleteJobsJSONBodyFlagsOUTOFMEMORY       SlurmV0041DeleteJobsJSONBodyFlags = "OUT_OF_MEMORY"
+	SlurmV0041DeleteJobsJSONBodyFlagsRESERVATIONJOB    SlurmV0041DeleteJobsJSONBodyFlags = "RESERVATION_JOB"
+	SlurmV0041DeleteJobsJSONBodyFlagsVERBOSE           SlurmV0041DeleteJobsJSONBodyFlags = "VERBOSE"
+	SlurmV0041DeleteJobsJSONBodyFlagsWARNINGSENT       SlurmV0041DeleteJobsJSONBodyFlags = "WARNING_SENT"
+)
+
+// Defines values for SlurmV0041DeleteJobsJSONBodyJobState.
+const (
+	SlurmV0041DeleteJobsJSONBodyJobStateBOOTFAIL     SlurmV0041DeleteJobsJSONBodyJobState = "BOOT_FAIL"
+	SlurmV0041DeleteJobsJSONBodyJobStateCANCELLED    SlurmV0041DeleteJobsJSONBodyJobState = "CANCELLED"
+	SlurmV0041DeleteJobsJSONBodyJobStateCOMPLETED    SlurmV0041DeleteJobsJSONBodyJobState = "COMPLETED"
+	SlurmV0041DeleteJobsJSONBodyJobStateCOMPLETING   SlurmV0041DeleteJobsJSONBodyJobState = "COMPLETING"
+	SlurmV0041DeleteJobsJSONBodyJobStateCONFIGURING  SlurmV0041DeleteJobsJSONBodyJobState = "CONFIGURING"
+	SlurmV0041DeleteJobsJSONBodyJobStateDEADLINE     SlurmV0041DeleteJobsJSONBodyJobState = "DEADLINE"
+	SlurmV0041DeleteJobsJSONBodyJobStateFAILED       SlurmV0041DeleteJobsJSONBodyJobState = "FAILED"
+	SlurmV0041DeleteJobsJSONBodyJobStateLAUNCHFAILED SlurmV0041DeleteJobsJSONBodyJobState = "LAUNCH_FAILED"
+	SlurmV0041DeleteJobsJSONBodyJobStateNODEFAIL     SlurmV0041DeleteJobsJSONBodyJobState = "NODE_FAIL"
+	SlurmV0041DeleteJobsJSONBodyJobStateOUTOFMEMORY  SlurmV0041DeleteJobsJSONBodyJobState = "OUT_OF_MEMORY"
+	SlurmV0041DeleteJobsJSONBodyJobStatePENDING      SlurmV0041DeleteJobsJSONBodyJobState = "PENDING"
+	SlurmV0041DeleteJobsJSONBodyJobStatePOWERUPNODE  SlurmV0041DeleteJobsJSONBodyJobState = "POWER_UP_NODE"
+	SlurmV0041DeleteJobsJSONBodyJobStatePREEMPTED    SlurmV0041DeleteJobsJSONBodyJobState = "PREEMPTED"
+	SlurmV0041DeleteJobsJSONBodyJobStateRECONFIGFAIL SlurmV0041DeleteJobsJSONBodyJobState = "RECONFIG_FAIL"
+	SlurmV0041DeleteJobsJSONBodyJobStateREQUEUED     SlurmV0041DeleteJobsJSONBodyJobState = "REQUEUED"
+	SlurmV0041DeleteJobsJSONBodyJobStateREQUEUEFED   SlurmV0041DeleteJobsJSONBodyJobState = "REQUEUE_FED"
+	SlurmV0041DeleteJobsJSONBodyJobStateREQUEUEHOLD  SlurmV0041DeleteJobsJSONBodyJobState = "REQUEUE_HOLD"
+	SlurmV0041DeleteJobsJSONBodyJobStateRESIZING     SlurmV0041DeleteJobsJSONBodyJobState = "RESIZING"
+	SlurmV0041DeleteJobsJSONBodyJobStateRESVDELHOLD  SlurmV0041DeleteJobsJSONBodyJobState = "RESV_DEL_HOLD"
+	SlurmV0041DeleteJobsJSONBodyJobStateREVOKED      SlurmV0041DeleteJobsJSONBodyJobState = "REVOKED"
+	SlurmV0041DeleteJobsJSONBodyJobStateRUNNING      SlurmV0041DeleteJobsJSONBodyJobState = "RUNNING"
+	SlurmV0041DeleteJobsJSONBodyJobStateSIGNALING    SlurmV0041DeleteJobsJSONBodyJobState = "SIGNALING"
+	SlurmV0041DeleteJobsJSONBodyJobStateSPECIALEXIT  SlurmV0041DeleteJobsJSONBodyJobState = "SPECIAL_EXIT"
+	SlurmV0041DeleteJobsJSONBodyJobStateSTAGEOUT     SlurmV0041DeleteJobsJSONBodyJobState = "STAGE_OUT"
+	SlurmV0041DeleteJobsJSONBodyJobStateSTOPPED      SlurmV0041DeleteJobsJSONBodyJobState = "STOPPED"
+	SlurmV0041DeleteJobsJSONBodyJobStateSUSPENDED    SlurmV0041DeleteJobsJSONBodyJobState = "SUSPENDED"
+	SlurmV0041DeleteJobsJSONBodyJobStateTIMEOUT      SlurmV0041DeleteJobsJSONBodyJobState = "TIMEOUT"
+	SlurmV0041DeleteJobsJSONBodyJobStateUPDATEDB     SlurmV0041DeleteJobsJSONBodyJobState = "UPDATE_DB"
+)
+
+// Defines values for SlurmV0041GetJobsParamsFlags.
+const (
+	SlurmV0041GetJobsParamsFlagsALL        SlurmV0041GetJobsParamsFlags = "ALL"
+	SlurmV0041GetJobsParamsFlagsDETAIL     SlurmV0041GetJobsParamsFlags = "DETAIL"
+	SlurmV0041GetJobsParamsFlagsFEDERATION SlurmV0041GetJobsParamsFlags = "FEDERATION"
+	SlurmV0041GetJobsParamsFlagsFUTURE     SlurmV0041GetJobsParamsFlags = "FUTURE"
+	SlurmV0041GetJobsParamsFlagsLOCAL      SlurmV0041GetJobsParamsFlags = "LOCAL"
+	SlurmV0041GetJobsParamsFlagsMIXED      SlurmV0041GetJobsParamsFlags = "MIXED"
+	SlurmV0041GetJobsParamsFlagsSIBLING    SlurmV0041GetJobsParamsFlags = "SIBLING"
+)
+
+// Defines values for SlurmV0041GetJobsStateParamsFlags.
+const (
+	SlurmV0041GetJobsStateParamsFlagsALL        SlurmV0041GetJobsStateParamsFlags = "ALL"
+	SlurmV0041GetJobsStateParamsFlagsDETAIL     SlurmV0041GetJobsStateParamsFlags = "DETAIL"
+	SlurmV0041GetJobsStateParamsFlagsFEDERATION SlurmV0041GetJobsStateParamsFlags = "FEDERATION"
+	SlurmV0041GetJobsStateParamsFlagsFUTURE     SlurmV0041GetJobsStateParamsFlags = "FUTURE"
+	SlurmV0041GetJobsStateParamsFlagsLOCAL      SlurmV0041GetJobsStateParamsFlags = "LOCAL"
+	SlurmV0041GetJobsStateParamsFlagsMIXED      SlurmV0041GetJobsStateParamsFlags = "MIXED"
+	SlurmV0041GetJobsStateParamsFlagsSIBLING    SlurmV0041GetJobsStateParamsFlags = "SIBLING"
+)
+
+// Defines values for SlurmV0041GetNodeParamsFlags.
+const (
+	SlurmV0041GetNodeParamsFlagsALL        SlurmV0041GetNodeParamsFlags = "ALL"
+	SlurmV0041GetNodeParamsFlagsDETAIL     SlurmV0041GetNodeParamsFlags = "DETAIL"
+	SlurmV0041GetNodeParamsFlagsFEDERATION SlurmV0041GetNodeParamsFlags = "FEDERATION"
+	SlurmV0041GetNodeParamsFlagsFUTURE     SlurmV0041GetNodeParamsFlags = "FUTURE"
+	SlurmV0041GetNodeParamsFlagsLOCAL      SlurmV0041GetNodeParamsFlags = "LOCAL"
+	SlurmV0041GetNodeParamsFlagsMIXED      SlurmV0041GetNodeParamsFlags = "MIXED"
+	SlurmV0041GetNodeParamsFlagsSIBLING    SlurmV0041GetNodeParamsFlags = "SIBLING"
+)
+
+// Defines values for SlurmV0041PostNodeJSONBodyState.
+const (
+	SlurmV0041PostNodeJSONBodyStateALLOCATED       SlurmV0041PostNodeJSONBodyState = "ALLOCATED"
+	SlurmV0041PostNodeJSONBodyStateCLOUD           SlurmV0041PostNodeJSONBodyState = "CLOUD"
+	SlurmV0041PostNodeJSONBodyStateCOMPLETING      SlurmV0041PostNodeJSONBodyState = "COMPLETING"
+	SlurmV0041PostNodeJSONBodyStateDOWN            SlurmV0041PostNodeJSONBodyState = "DOWN"
+	SlurmV0041PostNodeJSONBodyStateDRAIN           SlurmV0041PostNodeJSONBodyState = "DRAIN"
+	SlurmV0041PostNodeJSONBodyStateDYNAMICFUTURE   SlurmV0041PostNodeJSONBodyState = "DYNAMIC_FUTURE"
+	SlurmV0041PostNodeJSONBodyStateDYNAMICNORM     SlurmV0041PostNodeJSONBodyState = "DYNAMIC_NORM"
+	SlurmV0041PostNodeJSONBodyStateERROR           SlurmV0041PostNodeJSONBodyState = "ERROR"
+	SlurmV0041PostNodeJSONBodyStateFAIL            SlurmV0041PostNodeJSONBodyState = "FAIL"
+	SlurmV0041PostNodeJSONBodyStateFUTURE          SlurmV0041PostNodeJSONBodyState = "FUTURE"
+	SlurmV0041PostNodeJSONBodyStateIDLE            SlurmV0041PostNodeJSONBodyState = "IDLE"
+	SlurmV0041PostNodeJSONBodyStateINVALID         SlurmV0041PostNodeJSONBodyState = "INVALID"
+	SlurmV0041PostNodeJSONBodyStateINVALIDREG      SlurmV0041PostNodeJSONBodyState = "INVALID_REG"
+	SlurmV0041PostNodeJSONBodyStateMAINTENANCE     SlurmV0041PostNodeJSONBodyState = "MAINTENANCE"
+	SlurmV0041PostNodeJSONBodyStateMIXED           SlurmV0041PostNodeJSONBodyState = "MIXED"
+	SlurmV0041PostNodeJSONBodyStateNOTRESPONDING   SlurmV0041PostNodeJSONBodyState = "NOT_RESPONDING"
+	SlurmV0041PostNodeJSONBodyStatePLANNED         SlurmV0041PostNodeJSONBodyState = "PLANNED"
+	SlurmV0041PostNodeJSONBodyStatePOWERDOWN       SlurmV0041PostNodeJSONBodyState = "POWER_DOWN"
+	SlurmV0041PostNodeJSONBodyStatePOWERDRAIN      SlurmV0041PostNodeJSONBodyState = "POWER_DRAIN"
+	SlurmV0041PostNodeJSONBodyStatePOWEREDDOWN     SlurmV0041PostNodeJSONBodyState = "POWERED_DOWN"
+	SlurmV0041PostNodeJSONBodyStatePOWERINGDOWN    SlurmV0041PostNodeJSONBodyState = "POWERING_DOWN"
+	SlurmV0041PostNodeJSONBodyStatePOWERINGUP      SlurmV0041PostNodeJSONBodyState = "POWERING_UP"
+	SlurmV0041PostNodeJSONBodyStatePOWERUP         SlurmV0041PostNodeJSONBodyState = "POWER_UP"
+	SlurmV0041PostNodeJSONBodyStateREBOOTCANCELED  SlurmV0041PostNodeJSONBodyState = "REBOOT_CANCELED"
+	SlurmV0041PostNodeJSONBodyStateREBOOTISSUED    SlurmV0041PostNodeJSONBodyState = "REBOOT_ISSUED"
+	SlurmV0041PostNodeJSONBodyStateREBOOTREQUESTED SlurmV0041PostNodeJSONBodyState = "REBOOT_REQUESTED"
+	SlurmV0041PostNodeJSONBodyStateRESERVED        SlurmV0041PostNodeJSONBodyState = "RESERVED"
+	SlurmV0041PostNodeJSONBodyStateRESUME          SlurmV0041PostNodeJSONBodyState = "RESUME"
+	SlurmV0041PostNodeJSONBodyStateUNDRAIN         SlurmV0041PostNodeJSONBodyState = "UNDRAIN"
+	SlurmV0041PostNodeJSONBodyStateUNKNOWN         SlurmV0041PostNodeJSONBodyState = "UNKNOWN"
+)
+
+// Defines values for SlurmV0041GetNodesParamsFlags.
+const (
+	SlurmV0041GetNodesParamsFlagsALL        SlurmV0041GetNodesParamsFlags = "ALL"
+	SlurmV0041GetNodesParamsFlagsDETAIL     SlurmV0041GetNodesParamsFlags = "DETAIL"
+	SlurmV0041GetNodesParamsFlagsFEDERATION SlurmV0041GetNodesParamsFlags = "FEDERATION"
+	SlurmV0041GetNodesParamsFlagsFUTURE     SlurmV0041GetNodesParamsFlags = "FUTURE"
+	SlurmV0041GetNodesParamsFlagsLOCAL      SlurmV0041GetNodesParamsFlags = "LOCAL"
+	SlurmV0041GetNodesParamsFlagsMIXED      SlurmV0041GetNodesParamsFlags = "MIXED"
+	SlurmV0041GetNodesParamsFlagsSIBLING    SlurmV0041GetNodesParamsFlags = "SIBLING"
+)
+
+// Defines values for SlurmV0041GetPartitionParamsFlags.
+const (
+	SlurmV0041GetPartitionParamsFlagsALL        SlurmV0041GetPartitionParamsFlags = "ALL"
+	SlurmV0041GetPartitionParamsFlagsDETAIL     SlurmV0041GetPartitionParamsFlags = "DETAIL"
+	SlurmV0041GetPartitionParamsFlagsFEDERATION SlurmV0041GetPartitionParamsFlags = "FEDERATION"
+	SlurmV0041GetPartitionParamsFlagsFUTURE     SlurmV0041GetPartitionParamsFlags = "FUTURE"
+	SlurmV0041GetPartitionParamsFlagsLOCAL      SlurmV0041GetPartitionParamsFlags = "LOCAL"
+	SlurmV0041GetPartitionParamsFlagsMIXED      SlurmV0041GetPartitionParamsFlags = "MIXED"
+	SlurmV0041GetPartitionParamsFlagsSIBLING    SlurmV0041GetPartitionParamsFlags = "SIBLING"
+)
+
+// Defines values for SlurmV0041GetPartitionsParamsFlags.
+const (
+	SlurmV0041GetPartitionsParamsFlagsALL        SlurmV0041GetPartitionsParamsFlags = "ALL"
+	SlurmV0041GetPartitionsParamsFlagsDETAIL     SlurmV0041GetPartitionsParamsFlags = "DETAIL"
+	SlurmV0041GetPartitionsParamsFlagsFEDERATION SlurmV0041GetPartitionsParamsFlags = "FEDERATION"
+	SlurmV0041GetPartitionsParamsFlagsFUTURE     SlurmV0041GetPartitionsParamsFlags = "FUTURE"
+	SlurmV0041GetPartitionsParamsFlagsLOCAL      SlurmV0041GetPartitionsParamsFlags = "LOCAL"
+	SlurmV0041GetPartitionsParamsFlagsMIXED      SlurmV0041GetPartitionsParamsFlags = "MIXED"
+	SlurmV0041GetPartitionsParamsFlagsSIBLING    SlurmV0041GetPartitionsParamsFlags = "SIBLING"
+)
+
+// Defines values for SlurmdbV0041DeleteClusterParamsClassification.
+const (
+	SlurmdbV0041DeleteClusterParamsClassificationCAPABILITY                          SlurmdbV0041DeleteClusterParamsClassification = "CAPABILITY"
+	SlurmdbV0041DeleteClusterParamsClassificationCAPACITY                            SlurmdbV0041DeleteClusterParamsClassification = "CAPACITY"
+	SlurmdbV0041DeleteClusterParamsClassificationCAPAPACITYBothCAPABILITYAndCAPACITY SlurmdbV0041DeleteClusterParamsClassification = "CAPAPACITY (both CAPABILITY and CAPACITY)"
+	SlurmdbV0041DeleteClusterParamsClassificationUNCLASSIFIED                        SlurmdbV0041DeleteClusterParamsClassification = "UNCLASSIFIED"
+)
+
+// Defines values for SlurmdbV0041DeleteClusterParamsFlags.
+const (
+	SlurmdbV0041DeleteClusterParamsFlagsEXTERNAL       SlurmdbV0041DeleteClusterParamsFlags = "EXTERNAL"
+	SlurmdbV0041DeleteClusterParamsFlagsFEDERATION     SlurmdbV0041DeleteClusterParamsFlags = "FEDERATION"
+	SlurmdbV0041DeleteClusterParamsFlagsFRONTEND       SlurmdbV0041DeleteClusterParamsFlags = "FRONT_END"
+	SlurmdbV0041DeleteClusterParamsFlagsMULTIPLESLURMD SlurmdbV0041DeleteClusterParamsFlags = "MULTIPLE_SLURMD"
+	SlurmdbV0041DeleteClusterParamsFlagsREGISTERING    SlurmdbV0041DeleteClusterParamsFlags = "REGISTERING"
+)
+
+// Defines values for SlurmdbV0041GetClusterParamsClassification.
+const (
+	SlurmdbV0041GetClusterParamsClassificationCAPABILITY                          SlurmdbV0041GetClusterParamsClassification = "CAPABILITY"
+	SlurmdbV0041GetClusterParamsClassificationCAPACITY                            SlurmdbV0041GetClusterParamsClassification = "CAPACITY"
+	SlurmdbV0041GetClusterParamsClassificationCAPAPACITYBothCAPABILITYAndCAPACITY SlurmdbV0041GetClusterParamsClassification = "CAPAPACITY (both CAPABILITY and CAPACITY)"
+	SlurmdbV0041GetClusterParamsClassificationUNCLASSIFIED                        SlurmdbV0041GetClusterParamsClassification = "UNCLASSIFIED"
+)
+
+// Defines values for SlurmdbV0041GetClusterParamsFlags.
+const (
+	SlurmdbV0041GetClusterParamsFlagsEXTERNAL       SlurmdbV0041GetClusterParamsFlags = "EXTERNAL"
+	SlurmdbV0041GetClusterParamsFlagsFEDERATION     SlurmdbV0041GetClusterParamsFlags = "FEDERATION"
+	SlurmdbV0041GetClusterParamsFlagsFRONTEND       SlurmdbV0041GetClusterParamsFlags = "FRONT_END"
+	SlurmdbV0041GetClusterParamsFlagsMULTIPLESLURMD SlurmdbV0041GetClusterParamsFlags = "MULTIPLE_SLURMD"
+	SlurmdbV0041GetClusterParamsFlagsREGISTERING    SlurmdbV0041GetClusterParamsFlags = "REGISTERING"
+)
+
+// Defines values for SlurmdbV0041GetQosParamsPreemptMode.
+const (
+	SlurmdbV0041GetQosParamsPreemptModeCANCEL   SlurmdbV0041GetQosParamsPreemptMode = "CANCEL"
+	SlurmdbV0041GetQosParamsPreemptModeDISABLED SlurmdbV0041GetQosParamsPreemptMode = "DISABLED"
+	SlurmdbV0041GetQosParamsPreemptModeGANG     SlurmdbV0041GetQosParamsPreemptMode = "GANG"
+	SlurmdbV0041GetQosParamsPreemptModeREQUEUE  SlurmdbV0041GetQosParamsPreemptMode = "REQUEUE"
+	SlurmdbV0041GetQosParamsPreemptModeSUSPEND  SlurmdbV0041GetQosParamsPreemptMode = "SUSPEND"
+)
+
+// Defines values for SlurmdbV0041PostQosParamsPreemptMode.
+const (
+	SlurmdbV0041PostQosParamsPreemptModeCANCEL   SlurmdbV0041PostQosParamsPreemptMode = "CANCEL"
+	SlurmdbV0041PostQosParamsPreemptModeDISABLED SlurmdbV0041PostQosParamsPreemptMode = "DISABLED"
+	SlurmdbV0041PostQosParamsPreemptModeGANG     SlurmdbV0041PostQosParamsPreemptMode = "GANG"
+	SlurmdbV0041PostQosParamsPreemptModeREQUEUE  SlurmdbV0041PostQosParamsPreemptMode = "REQUEUE"
+	SlurmdbV0041PostQosParamsPreemptModeSUSPEND  SlurmdbV0041PostQosParamsPreemptMode = "SUSPEND"
+)
+
+// Defines values for SlurmdbV0041GetUsersParamsAdminLevel.
+const (
+	SlurmdbV0041GetUsersParamsAdminLevelAdministrator SlurmdbV0041GetUsersParamsAdminLevel = "Administrator"
+	SlurmdbV0041GetUsersParamsAdminLevelNone          SlurmdbV0041GetUsersParamsAdminLevel = "None"
+	SlurmdbV0041GetUsersParamsAdminLevelNotSet        SlurmdbV0041GetUsersParamsAdminLevel = "Not Set"
+	SlurmdbV0041GetUsersParamsAdminLevelOperator      SlurmdbV0041GetUsersParamsAdminLevel = "Operator"
+)
+
+// Defines values for SlurmdbV0041PostUsersAssociationParamsFlags.
+const (
+	ALL        SlurmdbV0041PostUsersAssociationParamsFlags = "ALL"
+	DETAIL     SlurmdbV0041PostUsersAssociationParamsFlags = "DETAIL"
+	FEDERATION SlurmdbV0041PostUsersAssociationParamsFlags = "FEDERATION"
+	FUTURE     SlurmdbV0041PostUsersAssociationParamsFlags = "FUTURE"
+	LOCAL      SlurmdbV0041PostUsersAssociationParamsFlags = "LOCAL"
+	MIXED      SlurmdbV0041PostUsersAssociationParamsFlags = "MIXED"
+	SIBLING    SlurmdbV0041PostUsersAssociationParamsFlags = "SIBLING"
+)
+
+// Defines values for SlurmdbV0041PostUsersAssociationJSONBodyUserAdminlevel.
+const (
+	SlurmdbV0041PostUsersAssociationJSONBodyUserAdminlevelAdministrator SlurmdbV0041PostUsersAssociationJSONBodyUserAdminlevel = "Administrator"
+	SlurmdbV0041PostUsersAssociationJSONBodyUserAdminlevelNone          SlurmdbV0041PostUsersAssociationJSONBodyUserAdminlevel = "None"
+	SlurmdbV0041PostUsersAssociationJSONBodyUserAdminlevelNotSet        SlurmdbV0041PostUsersAssociationJSONBodyUserAdminlevel = "Not Set"
+	SlurmdbV0041PostUsersAssociationJSONBodyUserAdminlevelOperator      SlurmdbV0041PostUsersAssociationJSONBodyUserAdminlevel = "Operator"
+)
+
+// V0041OpenapiAccountsResp defines model for v0.0.41_openapi_accounts_resp.
+type V0041OpenapiAccountsResp struct {
+	// Accounts accounts
+	Accounts []struct {
+		// Associations Associations involving this account (only populated if requested)
+		Associations *[]struct {
+			// Account Account
+			Account *string `json:"account,omitempty"`
+
+			// Cluster Cluster
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Id Numeric association ID
+			Id *int32 `json:"id,omitempty"`
+
+			// Partition Partition
+			Partition *string `json:"partition,omitempty"`
 
 			// User User name
+			User string `json:"user"`
+		} `json:"associations,omitempty"`
+
+		// Coordinators List of users that are a coordinator of this account (only populated if requested)
+		Coordinators *[]struct {
+			// Direct Indicates whether the coordinator was directly assigned to this account
+			Direct *bool `json:"direct,omitempty"`
+
+			// Name User name
+			Name string `json:"name"`
+		} `json:"coordinators,omitempty"`
+
+		// Description Arbitrary string describing the account
+		Description string `json:"description"`
+
+		// Flags Flags associated with the account
+		Flags *[]V0041OpenapiAccountsRespAccountsFlags `json:"flags,omitempty"`
+
+		// Name Account name
+		Name string `json:"name"`
+
+		// Organization Organization to which the account belongs
+		Organization string `json:"organization"`
+	} `json:"accounts"`
+
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
 			User *string `json:"user,omitempty"`
-		} `json:"users,omitempty"`
-	} `json:"statistics,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Dbv0038Error defines model for dbv0.0.38_error.
-type Dbv0038Error struct {
-	// Description Explanation of cause of error
-	Description *string `json:"description,omitempty"`
+// V0041OpenapiAccountsRespAccountsFlags defines model for V0041OpenapiAccountsResp.Accounts.Flags.
+type V0041OpenapiAccountsRespAccountsFlags string
 
-	// Error Error message
-	Error *string `json:"error,omitempty"`
+// V0041OpenapiAssocsRemovedResp defines model for v0.0.41_openapi_assocs_removed_resp.
+type V0041OpenapiAssocsRemovedResp struct {
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
 
-	// ErrorNumber Slurm internal error number
-	ErrorNumber *int `json:"error_number,omitempty"`
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
 
-	// Source Where error occurred in the source
-	Source *string `json:"source,omitempty"`
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// RemovedAssociations removed_associations
+	RemovedAssociations []string `json:"removed_associations"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Dbv0038Errors Slurm errors
-type Dbv0038Errors = []Dbv0038Error
-
-// Dbv0038Job Single job description
-type Dbv0038Job struct {
-	// Account Account charged by job
-	Account *string `json:"account,omitempty"`
-
-	// AllocationNodes Nodes allocated to job
-	AllocationNodes *string `json:"allocation_nodes,omitempty"`
-
-	// Array Array properties (optional)
-	Array *struct {
-		// JobId Job id of array
-		JobId *int `json:"job_id,omitempty"`
-
-		// Limits Limits on array settings
-		Limits *struct {
-			// Max Limits on array settings
-			Max *struct {
-				// Running Limits on array settings
-				Running *struct {
-					// Tasks Max running tasks in array at any one time
-					Tasks *int `json:"tasks,omitempty"`
-				} `json:"running,omitempty"`
-			} `json:"max,omitempty"`
-		} `json:"limits,omitempty"`
-
-		// Task Array task
-		Task *string `json:"task,omitempty"`
-
-		// TaskId Array task id
-		TaskId *int `json:"task_id,omitempty"`
-	} `json:"array,omitempty"`
-	Association *Dbv0038AssociationShortInfo `json:"association,omitempty"`
-
-	// Cluster Assigned cluster
-	Cluster *string `json:"cluster,omitempty"`
-
-	// Comment Job comments by type
-	Comment *struct {
-		// Administrator Administrator set comment
-		Administrator *string `json:"administrator,omitempty"`
-
-		// Job Job comment
-		Job *string `json:"job,omitempty"`
-
-		// System System set comment
-		System *string `json:"system,omitempty"`
-	} `json:"comment,omitempty"`
-
-	// Constraints Constraints on job
-	Constraints *string `json:"constraints,omitempty"`
-
-	// Container absolute path to OCI container bundle
-	Container       *string             `json:"container,omitempty"`
-	DerivedExitCode *Dbv0038JobExitCode `json:"derived_exit_code,omitempty"`
-	ExitCode        *Dbv0038JobExitCode `json:"exit_code,omitempty"`
-
-	// Flags List of properties of job
-	Flags *[]string `json:"flags,omitempty"`
-
-	// Group User's group to run job
-	Group *string `json:"group,omitempty"`
-
-	// Het Heterogeneous Job details (optional)
-	Het *struct {
-		// JobId Parent HetJob id
-		JobId *int `json:"job_id,omitempty"`
-
-		// JobOffset Offset of this job to parent
-		JobOffset *int `json:"job_offset,omitempty"`
-	} `json:"het,omitempty"`
-
-	// JobId Job id
-	JobId *int `json:"job_id,omitempty"`
-
-	// KillRequestUser User who requested job killed
-	KillRequestUser *string `json:"kill_request_user,omitempty"`
-
-	// Mcs Multi-Category Security
-	Mcs *struct {
-		// Label Assigned MCS label
-		Label *string `json:"label,omitempty"`
-	} `json:"mcs,omitempty"`
-
-	// Name Assigned job name
-	Name *string `json:"name,omitempty"`
-
-	// Nodes List of nodes allocated for job
-	Nodes *string `json:"nodes,omitempty"`
-
-	// Partition Assigned job's partition
-	Partition *string `json:"partition,omitempty"`
-
-	// Priority Priority
-	Priority *int `json:"priority,omitempty"`
-
-	// Qos Assigned qos name
-	Qos *string `json:"qos,omitempty"`
-
-	// Required Job run requirements
-	Required *struct {
-		// CPUs Required number of CPUs
-		CPUs *int `json:"CPUs,omitempty"`
-
-		// Memory Required amount of memory (MiB)
-		Memory *int `json:"memory,omitempty"`
-	} `json:"required,omitempty"`
-
-	// Reservation Reservation usage details
-	Reservation *struct {
-		// Id Database id of reservation
-		Id *int `json:"id,omitempty"`
-
-		// Name Name of reservation
-		Name *int `json:"name,omitempty"`
-	} `json:"reservation,omitempty"`
-
-	// State State properties of job
-	State *struct {
-		// Current Current state of job
-		Current *string `json:"current,omitempty"`
-
-		// Reason Last reason job didn't run
-		Reason *string `json:"reason,omitempty"`
-	} `json:"state,omitempty"`
-
-	// Steps Job step description
-	Steps *[]Dbv0038JobStep `json:"steps,omitempty"`
-
-	// Time Time properties
-	Time *struct {
-		// Elapsed Total time elapsed
-		Elapsed *int `json:"elapsed,omitempty"`
-
-		// Eligible Total time eligible to run
-		Eligible *int `json:"eligible,omitempty"`
-
-		// End Timestamp of when job ended
-		End *int `json:"end,omitempty"`
-
-		// Limit Job wall clock time limit
-		Limit *int `json:"limit,omitempty"`
-
-		// Start Timestamp of when job started
-		Start *int `json:"start,omitempty"`
-
-		// Submission Timestamp of when job submitted
-		Submission *int `json:"submission,omitempty"`
-
-		// Suspended Timestamp of when job last suspended
-		Suspended *int `json:"suspended,omitempty"`
-
-		// System System time values
-		System *struct {
-			// Microseconds Total number of CPU-seconds used by the system on behalf of the process (in kernel mode), in microseconds
-			Microseconds *int `json:"microseconds,omitempty"`
-
-			// Seconds Total number of CPU-seconds used by the system on behalf of the process (in kernel mode), in seconds
-			Seconds *int `json:"seconds,omitempty"`
-		} `json:"system,omitempty"`
-
-		// Total System time values
-		Total *struct {
-			// Microseconds Total number of CPU-seconds used by the job, in microseconds
-			Microseconds *int `json:"microseconds,omitempty"`
-
-			// Seconds Total number of CPU-seconds used by the job, in seconds
-			Seconds *int `json:"seconds,omitempty"`
-		} `json:"total,omitempty"`
-
-		// User User land time values
-		User *struct {
-			// Microseconds Total number of CPU-seconds used by the job in user land, in microseconds
-			Microseconds *int `json:"microseconds,omitempty"`
-
-			// Seconds Total number of CPU-seconds used by the job in user land, in seconds
-			Seconds *int `json:"seconds,omitempty"`
-		} `json:"user,omitempty"`
-	} `json:"time,omitempty"`
-
-	// Tres TRES settings
-	Tres *struct {
-		// Allocated TRES list of attributes
-		Allocated *Dbv0038TresList `json:"allocated,omitempty"`
-
-		// Requested TRES list of attributes
-		Requested *Dbv0038TresList `json:"requested,omitempty"`
-	} `json:"tres,omitempty"`
-
-	// User Job user
-	User *string `json:"user,omitempty"`
-
-	// Wckey Job assigned wckey details
-	Wckey *struct {
-		// Flags wckey flags
-		Flags *[]string `json:"flags,omitempty"`
-
-		// Wckey Job assigned wckey
-		Wckey *string `json:"wckey,omitempty"`
-	} `json:"wckey,omitempty"`
-
-	// WorkingDirectory Directory where job was initially started
-	WorkingDirectory *string `json:"working_directory,omitempty"`
-}
-
-// Dbv0038JobExitCode defines model for dbv0.0.38_job_exit_code.
-type Dbv0038JobExitCode struct {
-	// ReturnCode Return code from parent process
-	ReturnCode *int `json:"return_code,omitempty"`
-
-	// Signal Signal details (if signaled)
-	Signal *struct {
-		// Name Name of signal received
-		Name *string `json:"name,omitempty"`
-
-		// SignalId Signal number process received
-		SignalId *int `json:"signal_id,omitempty"`
-	} `json:"signal,omitempty"`
-
-	// Status Job exit status
-	Status *string `json:"status,omitempty"`
-}
-
-// Dbv0038JobInfo defines model for dbv0.0.38_job_info.
-type Dbv0038JobInfo struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-
-	// Jobs Array of jobs
-	Jobs *[]Dbv0038Job `json:"jobs,omitempty"`
-	Meta *Dbv0038Meta  `json:"meta,omitempty"`
-}
-
-// Dbv0038JobStep defines model for dbv0.0.38_job_step.
-type Dbv0038JobStep struct {
-	// CPU CPU properties
-	CPU *struct {
-		// Governor CPU governor
-		Governor *[]string `json:"governor,omitempty"`
-
-		// RequestedFrequency CPU frequency requested
-		RequestedFrequency *struct {
-			// Max Max CPU frequency
-			Max *int `json:"max,omitempty"`
-
-			// Min Min CPU frequency
-			Min *int `json:"min,omitempty"`
-		} `json:"requested_frequency,omitempty"`
-	} `json:"CPU,omitempty"`
-	ExitCode *Dbv0038JobExitCode `json:"exit_code,omitempty"`
-
-	// KillRequestUser User who requested job killed
-	KillRequestUser *string `json:"kill_request_user,omitempty"`
-
-	// Nodes Node details
-	Nodes *struct {
-		// Count Total number of nodes in step
-		Count *int `json:"count,omitempty"`
-
-		// Range Nodes in step
-		Range *string `json:"range,omitempty"`
-	} `json:"nodes,omitempty"`
-
-	// Pid First process PID
-	Pid *string `json:"pid,omitempty"`
-
-	// State State of job step
-	State *string `json:"state,omitempty"`
-
-	// Statistics Statistics of job step
-	Statistics *struct {
-		// CPU Statistics of CPU
-		CPU *struct {
-			// ActualFrequency Actual frequency of CPU during step
-			ActualFrequency *int `json:"actual_frequency,omitempty"`
-		} `json:"CPU,omitempty"`
-
-		// Energy Statistics of energy
-		Energy *struct {
-			// Consumed Energy consumed during step
-			Consumed *int `json:"consumed,omitempty"`
-		} `json:"energy,omitempty"`
-	} `json:"statistics,omitempty"`
-
-	// Step Step details
-	Step *struct {
-		// Het Heterogeneous job details
-		Het *struct {
-			// Component Parent HetJob component id
-			Component *int `json:"component,omitempty"`
-		} `json:"het,omitempty"`
-
-		// Id Step id
-		Id *string `json:"id,omitempty"`
-
-		// JobId Parent job id
-		JobId *int `json:"job_id,omitempty"`
-
-		// Name Step name
-		Name *string `json:"name,omitempty"`
-	} `json:"step,omitempty"`
-
-	// Task Task distribution properties
-	Task *string `json:"task,omitempty"`
-
-	// Tasks Task properties
-	Tasks *struct {
-		// Count Number of tasks in step
-		Count *int `json:"count,omitempty"`
-	} `json:"tasks,omitempty"`
-
-	// Time Time properties
-	Time *struct {
-		// Elapsed Total time elapsed
-		Elapsed *int `json:"elapsed,omitempty"`
-
-		// End Timestamp of when job ended
-		End *int `json:"end,omitempty"`
-
-		// Start Timestamp of when job started
-		Start *int `json:"start,omitempty"`
-
-		// Suspended Timestamp of when job last suspended
-		Suspended *int `json:"suspended,omitempty"`
-
-		// System System time values
-		System *struct {
-			// Microseconds Total number of CPU-seconds used by the system on behalf of the process (in kernel mode), in microseconds
-			Microseconds *int `json:"microseconds,omitempty"`
-
-			// Seconds Total number of CPU-seconds used by the system on behalf of the process (in kernel mode), in seconds
-			Seconds *int `json:"seconds,omitempty"`
-		} `json:"system,omitempty"`
-
-		// Total System time values
-		Total *struct {
-			// Microseconds Total number of CPU-seconds used by the job, in microseconds
-			Microseconds *int `json:"microseconds,omitempty"`
-
-			// Seconds Total number of CPU-seconds used by the job, in seconds
-			Seconds *int `json:"seconds,omitempty"`
-		} `json:"total,omitempty"`
-
-		// User User land time values
-		User *struct {
-			// Microseconds Total number of CPU-seconds used by the job in user land, in microseconds
-			Microseconds *int `json:"microseconds,omitempty"`
-
-			// Seconds Total number of CPU-seconds used by the job in user land, in seconds
-			Seconds *int `json:"seconds,omitempty"`
-		} `json:"user,omitempty"`
-	} `json:"time,omitempty"`
-
-	// Tres TRES usage
-	Tres *struct {
-		// Allocated TRES list of attributes
-		Allocated *Dbv0038TresList `json:"allocated,omitempty"`
-
-		// Consumed TRES requested for job
-		Consumed *struct {
-			// Average TRES list of attributes
-			Average *Dbv0038TresList `json:"average,omitempty"`
-
-			// Max TRES list of attributes
-			Max *Dbv0038TresList `json:"max,omitempty"`
-
-			// Min TRES list of attributes
-			Min *Dbv0038TresList `json:"min,omitempty"`
-
-			// Total TRES list of attributes
-			Total *Dbv0038TresList `json:"total,omitempty"`
-		} `json:"consumed,omitempty"`
-
-		// Requested TRES requested for job
-		Requested *struct {
-			// Average TRES list of attributes
-			Average *Dbv0038TresList `json:"average,omitempty"`
-
-			// Max TRES list of attributes
-			Max *Dbv0038TresList `json:"max,omitempty"`
-
-			// Min TRES list of attributes
-			Min *Dbv0038TresList `json:"min,omitempty"`
-
-			// Total TRES list of attributes
-			Total *Dbv0038TresList `json:"total,omitempty"`
-		} `json:"requested,omitempty"`
-	} `json:"tres,omitempty"`
-}
-
-// Dbv0038Meta defines model for dbv0.0.38_meta.
-type Dbv0038Meta struct {
-	// Slurm Slurm information
-	Slurm *struct {
-		// Release version specifier
-		Release *string `json:"release,omitempty"`
-		Version *struct {
-			Major *string `json:"major,omitempty"`
-			Micro *string `json:"micro,omitempty"`
-			Minor *string `json:"minor,omitempty"`
-		} `json:"version,omitempty"`
-	} `json:"Slurm,omitempty"`
-	Plugin *struct {
-		Name *string `json:"name,omitempty"`
-		Type *string `json:"type,omitempty"`
-	} `json:"plugin,omitempty"`
-}
-
-// Dbv0038Qos QOS description
-type Dbv0038Qos struct {
-	// Description QOS description
-	Description *string `json:"description,omitempty"`
-
-	// Flags List of properties of QOS
-	Flags *[]string `json:"flags,omitempty"`
-
-	// Id Database id
-	Id *string `json:"id,omitempty"`
-
-	// Limits Assigned limits
-	Limits *struct {
-		// Factor factor to apply to TRES count for associations using this QOS
-		Factor *float32 `json:"factor,omitempty"`
-
-		// Max Limits on max settings
-		Max *struct {
-			// Accruing Limits on accruing priority
-			Accruing *struct {
-				// Per Max accuring priority per setting
-				Per *struct {
-					// Account Max accuring priority per account
-					Account *int `json:"account,omitempty"`
-
-					// User Max accuring priority per user
-					User *int `json:"user,omitempty"`
-				} `json:"per,omitempty"`
-			} `json:"accruing,omitempty"`
-
-			// Jobs Limits on jobs settings
-			Jobs *struct {
-				// ActiveJobs Limits on active jobs settings
-				ActiveJobs *struct {
-					// Per Limits on active jobs per settings
-					Per *struct {
-						// Account Max jobs per account
-						Account *int `json:"account,omitempty"`
-
-						// User Max jobs per user
-						User *int `json:"user,omitempty"`
-					} `json:"per,omitempty"`
-				} `json:"active_jobs,omitempty"`
-			} `json:"jobs,omitempty"`
-
-			// Tres Limits on TRES
-			Tres *struct {
-				// Minutes Max TRES minutes settings
-				Minutes *struct {
-					// Per Max TRES minutes per settings
-					Per *struct {
-						// Account TRES list of attributes
-						Account *Dbv0038TresList `json:"account,omitempty"`
-
-						// Job TRES list of attributes
-						Job *Dbv0038TresList `json:"job,omitempty"`
-
-						// Qos TRES list of attributes
-						Qos *Dbv0038TresList `json:"qos,omitempty"`
-
-						// User TRES list of attributes
-						User *Dbv0038TresList `json:"user,omitempty"`
-					} `json:"per,omitempty"`
-				} `json:"minutes,omitempty"`
-
-				// Per Max TRES per settings
-				Per *struct {
-					// Account TRES list of attributes
-					Account *Dbv0038TresList `json:"account,omitempty"`
-
-					// Job TRES list of attributes
-					Job *Dbv0038TresList `json:"job,omitempty"`
-
-					// Node TRES list of attributes
-					Node *Dbv0038TresList `json:"node,omitempty"`
-
-					// User TRES list of attributes
-					User *Dbv0038TresList `json:"user,omitempty"`
-				} `json:"per,omitempty"`
-			} `json:"tres,omitempty"`
-
-			// WallClock Limit on wallclock settings
-			WallClock *struct {
-				// Per Limit on wallclock per settings
-				Per *struct {
-					// Job Max wallclock per job
-					Job *int `json:"job,omitempty"`
-
-					// Qos Max wallclock per QOS
-					Qos *int `json:"qos,omitempty"`
-				} `json:"per,omitempty"`
-			} `json:"wall_clock,omitempty"`
-		} `json:"max,omitempty"`
-
-		// Min Min limit settings
-		Min *struct {
-			// PriorityThreshold Min priority threshold
-			PriorityThreshold *int `json:"priority_threshold,omitempty"`
-
-			// Tres Min tres settings
-			Tres *struct {
-				// Per Min tres per settings
-				Per *struct {
-					// Job TRES list of attributes
-					Job *Dbv0038TresList `json:"job,omitempty"`
-				} `json:"per,omitempty"`
-			} `json:"tres,omitempty"`
-		} `json:"min,omitempty"`
-	} `json:"limits,omitempty"`
-
-	// Name Assigned name of QOS
-	Name *string `json:"name,omitempty"`
-
-	// Preempt Preemption settings
-	Preempt *struct {
-		// ExemptTime Grace period (s) before jobs can preempted
-		ExemptTime *int `json:"exempt_time,omitempty"`
-
-		// List List of preemptable QOS
-		List *[]string `json:"list,omitempty"`
-
-		// Mode List of preemption modes
-		Mode *[]string `json:"mode,omitempty"`
-	} `json:"preempt,omitempty"`
-
-	// Priority QOS priority
-	Priority *int `json:"priority,omitempty"`
-
-	// UsageFactor Usage factor
-	UsageFactor *float32 `json:"usage_factor,omitempty"`
-
-	// UsageThreshold Usage threshold
-	UsageThreshold *float32 `json:"usage_threshold,omitempty"`
-}
-
-// Dbv0038QosInfo defines model for dbv0.0.38_qos_info.
-type Dbv0038QosInfo struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-
-	// Qos Array of QOS
-	Qos *[]Dbv0038Qos `json:"qos,omitempty"`
-}
-
-// Dbv0038ResponseAccountDelete defines model for dbv0.0.38_response_account_delete.
-type Dbv0038ResponseAccountDelete struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038ResponseAssociations defines model for dbv0.0.38_response_associations.
-type Dbv0038ResponseAssociations struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038ResponseAssociationsDelete defines model for dbv0.0.38_response_associations_delete.
-type Dbv0038ResponseAssociationsDelete struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-
-	// RemovedAssociations the associations
-	RemovedAssociations *[]string `json:"removed_associations,omitempty"`
-}
-
-// Dbv0038ResponseClusterAdd defines model for dbv0.0.38_response_cluster_add.
-type Dbv0038ResponseClusterAdd struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038ResponseClusterDelete defines model for dbv0.0.38_response_cluster_delete.
-type Dbv0038ResponseClusterDelete struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038ResponseQos defines model for dbv0.0.38_response_qos.
-type Dbv0038ResponseQos struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038ResponseQosDelete defines model for dbv0.0.38_response_qos_delete.
-type Dbv0038ResponseQosDelete struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038ResponseTres defines model for dbv0.0.38_response_tres.
-type Dbv0038ResponseTres struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038ResponseUserDelete defines model for dbv0.0.38_response_user_delete.
-type Dbv0038ResponseUserDelete struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038ResponseUserUpdate defines model for dbv0.0.38_response_user_update.
-type Dbv0038ResponseUserUpdate struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038ResponseWckeyAdd defines model for dbv0.0.38_response_wckey_add.
-type Dbv0038ResponseWckeyAdd struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038ResponseWckeyDelete defines model for dbv0.0.38_response_wckey_delete.
-type Dbv0038ResponseWckeyDelete struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-}
-
-// Dbv0038SetConfig defines model for dbv0.0.38_set_config.
-type Dbv0038SetConfig struct {
-	TRES         *[]Dbv0038TresList           `json:"TRES,omitempty"`
-	Accounts     *[]Dbv0038UpdateAccount      `json:"accounts,omitempty"`
-	Associations *[]Dbv0038Association        `json:"associations,omitempty"`
-	Clusters     *[]Dbv0038ClustersProperties `json:"clusters,omitempty"`
-	Qos          *[]Dbv0038Qos                `json:"qos,omitempty"`
-	Users        *[]Dbv0038User               `json:"users,omitempty"`
-	Wckeys       *[]Dbv0038Wckey              `json:"wckeys,omitempty"`
-}
-
-// Dbv0038TresInfo defines model for dbv0.0.38_tres_info.
-type Dbv0038TresInfo struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-
-	// Tres TRES list of attributes
-	Tres *Dbv0038TresList `json:"tres,omitempty"`
-}
-
-// Dbv0038TresList TRES list of attributes
-type Dbv0038TresList = []struct {
-	// Count count of TRES
-	Count *int `json:"count,omitempty"`
-
-	// Id database id
-	Id *int `json:"id,omitempty"`
-
-	// Name TRES name (optional)
-	Name *string `json:"name,omitempty"`
-
-	// Type TRES type
-	Type *string `json:"type,omitempty"`
-}
-
-// Dbv0038TresUpdate defines model for dbv0.0.38_tres_update.
-type Dbv0038TresUpdate struct {
-	// Tres TRES list of attributes
-	Tres *Dbv0038TresList `json:"tres,omitempty"`
-}
-
-// Dbv0038UpdateAccount defines model for dbv0.0.38_update_account.
-type Dbv0038UpdateAccount struct {
-	Accounts *[]Dbv0038Account `json:"accounts,omitempty"`
-}
-
-// Dbv0038UpdateQos defines model for dbv0.0.38_update_qos.
-type Dbv0038UpdateQos struct {
-	Qos *[]Dbv0038Qos `json:"qos,omitempty"`
-}
-
-// Dbv0038UpdateUsers defines model for dbv0.0.38_update_users.
-type Dbv0038UpdateUsers struct {
-	Users *[]Dbv0038User `json:"users,omitempty"`
-}
-
-// Dbv0038User User description
-type Dbv0038User struct {
-	// AdministratorLevel Description of administrator level
-	AdministratorLevel *string `json:"administrator_level,omitempty"`
-
-	// Associations Assigned associations
-	Associations *[]Dbv0038AssociationShortInfo `json:"associations,omitempty"`
-
-	// Coordinators List of assigned coordinators
-	Coordinators *[]Dbv0038CoordinatorInfo `json:"coordinators,omitempty"`
-
-	// Default Default settings
-	Default *struct {
-		// Account Default account name
+// V0041OpenapiAssocsResp defines model for v0.0.41_openapi_assocs_resp.
+type V0041OpenapiAssocsResp struct {
+	// Associations associations
+	Associations []struct {
+		// Account Account
 		Account *string `json:"account,omitempty"`
 
-		// Wckey Default wckey
-		Wckey *string `json:"wckey,omitempty"`
-	} `json:"default,omitempty"`
+		// Accounting Accounting records containing related resource usage
+		Accounting *[]struct {
+			// TRES Trackable resources
+			TRES *struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
 
-	// Flags List of properties of user
-	Flags *[]string `json:"flags,omitempty"`
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
 
-	// Name User name
-	Name *string `json:"name,omitempty"`
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"TRES,omitempty"`
+			Allocated *struct {
+				// Seconds Number of cpu seconds allocated
+				Seconds *int64 `json:"seconds,omitempty"`
+			} `json:"allocated,omitempty"`
+
+			// Id Association ID or Workload characterization key ID
+			Id *int32 `json:"id,omitempty"`
+
+			// Start When the record was started
+			Start *int64 `json:"start,omitempty"`
+		} `json:"accounting,omitempty"`
+
+		// Cluster Cluster name
+		Cluster *string `json:"cluster,omitempty"`
+
+		// Comment Arbitrary comment
+		Comment *string `json:"comment,omitempty"`
+		Default *struct {
+			// Qos Default QOS
+			Qos *string `json:"qos,omitempty"`
+		} `json:"default,omitempty"`
+
+		// Flags Flags on the association
+		Flags *[]V0041OpenapiAssocsRespAssociationsFlags `json:"flags,omitempty"`
+
+		// Id Unique ID
+		Id *int32 `json:"id,omitempty"`
+
+		// IsDefault Is default association for user
+		IsDefault *bool `json:"is_default,omitempty"`
+
+		// Lineage Complete path up the hierarchy to the root association
+		Lineage *string `json:"lineage,omitempty"`
+		Max     *struct {
+			Jobs *struct {
+				// Accruing MaxJobsAccrue
+				Accruing *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"accruing,omitempty"`
+
+				// Active MaxJobs
+				Active *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"active,omitempty"`
+				Per *struct {
+					// Accruing GrpJobsAccrue
+					Accruing *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"accruing,omitempty"`
+
+					// Count GrpJobs
+					Count *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"count,omitempty"`
+
+					// Submitted GrpSubmitJobs
+					Submitted *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"submitted,omitempty"`
+
+					// WallClock MaxWallDurationPerJob
+					WallClock *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"wall_clock,omitempty"`
+				} `json:"per,omitempty"`
+
+				// Total MaxSubmitJobs
+				Total *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"total,omitempty"`
+			} `json:"jobs,omitempty"`
+			Per *struct {
+				Account *struct {
+					// WallClock GrpWall
+					WallClock *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"wall_clock,omitempty"`
+				} `json:"account,omitempty"`
+			} `json:"per,omitempty"`
+			Tres *struct {
+				Group *struct {
+					// Active GrpTRESRunMins
+					Active *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"active,omitempty"`
+
+					// Minutes GrpTRESMins
+					Minutes *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"minutes,omitempty"`
+				} `json:"group,omitempty"`
+				Minutes *struct {
+					Per *struct {
+						// Job MaxTRESMinsPerJob
+						Job *[]struct {
+							// Count TRES count (0 if listed generically)
+							Count *int64 `json:"count,omitempty"`
+
+							// Id ID used in database
+							Id *int32 `json:"id,omitempty"`
+
+							// Name TRES name (if applicable)
+							Name *string `json:"name,omitempty"`
+
+							// Type TRES type (CPU, MEM, etc)
+							Type string `json:"type"`
+						} `json:"job,omitempty"`
+					} `json:"per,omitempty"`
+
+					// Total MaxTRESMinsPerJob
+					Total *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"total,omitempty"`
+				} `json:"minutes,omitempty"`
+				Per *struct {
+					// Job MaxTRESPerJob
+					Job *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"job,omitempty"`
+
+					// Node MaxTRESPerNode
+					Node *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"node,omitempty"`
+				} `json:"per,omitempty"`
+
+				// Total GrpTRES
+				Total *[]struct {
+					// Count TRES count (0 if listed generically)
+					Count *int64 `json:"count,omitempty"`
+
+					// Id ID used in database
+					Id *int32 `json:"id,omitempty"`
+
+					// Name TRES name (if applicable)
+					Name *string `json:"name,omitempty"`
+
+					// Type TRES type (CPU, MEM, etc)
+					Type string `json:"type"`
+				} `json:"total,omitempty"`
+			} `json:"tres,omitempty"`
+		} `json:"max,omitempty"`
+		Min *struct {
+			// PriorityThreshold MinPrioThreshold
+			PriorityThreshold *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"priority_threshold,omitempty"`
+		} `json:"min,omitempty"`
+
+		// ParentAccount Name of parent account
+		ParentAccount *string `json:"parent_account,omitempty"`
+
+		// Partition Partition name
+		Partition *string `json:"partition,omitempty"`
+
+		// Priority Association priority factor
+		Priority *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"priority,omitempty"`
+
+		// Qos List of available QOS names
+		Qos *[]string `json:"qos,omitempty"`
+
+		// SharesRaw Allocated shares used for fairshare calculation
+		SharesRaw *int32 `json:"shares_raw,omitempty"`
+
+		// User User name
+		User string `json:"user"`
+	} `json:"associations"`
+
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Dbv0038UserInfo defines model for dbv0.0.38_user_info.
-type Dbv0038UserInfo struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
+// V0041OpenapiAssocsRespAssociationsFlags defines model for V0041OpenapiAssocsResp.Associations.Flags.
+type V0041OpenapiAssocsRespAssociationsFlags string
 
-	// Users Array of users
-	Users *[]Dbv0038User `json:"users,omitempty"`
-}
+// V0041OpenapiClustersResp defines model for v0.0.41_openapi_clusters_resp.
+type V0041OpenapiClustersResp struct {
+	// Clusters clusters
+	Clusters []struct {
+		Associations *struct {
+			// Root Root association information
+			Root *struct {
+				// Account Account
+				Account *string `json:"account,omitempty"`
 
-// Dbv0038Wckey defines model for dbv0.0.38_wckey.
-type Dbv0038Wckey struct {
-	// Accounting List of accounting records
-	Accounting *[]Dbv0038Accounting `json:"accounting,omitempty"`
+				// Cluster Cluster
+				Cluster *string `json:"cluster,omitempty"`
 
-	// Cluster Cluster name
-	Cluster *string `json:"cluster,omitempty"`
+				// Id Numeric association ID
+				Id *int32 `json:"id,omitempty"`
 
-	// Flags List of properties of wckey
-	Flags *[]string `json:"flags,omitempty"`
+				// Partition Partition
+				Partition *string `json:"partition,omitempty"`
 
-	// Id wckey database unique id
-	Id *int `json:"id,omitempty"`
+				// User User name
+				User string `json:"user"`
+			} `json:"root,omitempty"`
+		} `json:"associations,omitempty"`
+		Controller *struct {
+			// Host ControlHost
+			Host *string `json:"host,omitempty"`
 
-	// Name wckey name
-	Name *string `json:"name,omitempty"`
+			// Port ControlPort
+			Port *int32 `json:"port,omitempty"`
+		} `json:"controller,omitempty"`
 
-	// User wckey user
-	User *string `json:"user,omitempty"`
-}
+		// Flags Flags
+		Flags *[]V0041OpenapiClustersRespClustersFlags `json:"flags,omitempty"`
 
-// Dbv0038WckeyInfo defines model for dbv0.0.38_wckey_info.
-type Dbv0038WckeyInfo struct {
-	// Errors Slurm errors
-	Errors *[]Dbv0038Error `json:"errors,omitempty"`
-	Meta   *Dbv0038Meta    `json:"meta,omitempty"`
-
-	// Wckeys List of wckeys
-	Wckeys *[]Dbv0038Wckey `json:"wckeys,omitempty"`
-}
-
-// Dbv0039AccountInfo defines model for dbv0.0.39_account_info.
-type Dbv0039AccountInfo struct {
-	Accounts *V0039AccountList `json:"accounts,omitempty"`
-
-	// Errors Slurm errors
-	Errors *Dbv0039Errors `json:"errors,omitempty"`
-	Meta   *Dbv0039Meta   `json:"meta,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *Dbv0039Warnings `json:"warnings,omitempty"`
-}
-
-// Dbv0039AssociationsInfo defines model for dbv0.0.39_associations_info.
-type Dbv0039AssociationsInfo struct {
-	Associations *V0039AssocList `json:"associations,omitempty"`
-
-	// Errors Slurm errors
-	Errors *Dbv0039Errors `json:"errors,omitempty"`
-	Meta   *Dbv0039Meta   `json:"meta,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *Dbv0039Warnings `json:"warnings,omitempty"`
-}
-
-// Dbv0039ClustersInfo defines model for dbv0.0.39_clusters_info.
-type Dbv0039ClustersInfo struct {
-	Clusters *V0039ClusterRecList `json:"clusters,omitempty"`
-
-	// Errors Slurm errors
-	Errors *Dbv0039Errors `json:"errors,omitempty"`
-	Meta   *Dbv0039Meta   `json:"meta,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *Dbv0039Warnings `json:"warnings,omitempty"`
-}
-
-// Dbv0039ConfigInfo defines model for dbv0.0.39_config_info.
-type Dbv0039ConfigInfo struct {
-	Accounts     *V0039AccountList    `json:"accounts,omitempty"`
-	Associations *V0039AssocList      `json:"associations,omitempty"`
-	Clusters     *V0039ClusterRecList `json:"clusters,omitempty"`
-
-	// Errors Slurm errors
-	Errors *Dbv0039Errors `json:"errors,omitempty"`
-	Meta   *Dbv0039Meta   `json:"meta,omitempty"`
-	Qos    *V0039QosList  `json:"qos,omitempty"`
-	Tres   *V0039TresList `json:"tres,omitempty"`
-	Users  *V0039UserList `json:"users,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *Dbv0039Warnings `json:"warnings,omitempty"`
-	Wckeys   *V0039WckeyList  `json:"wckeys,omitempty"`
-}
-
-// Dbv0039Diag defines model for dbv0.0.39_diag.
-type Dbv0039Diag struct {
-	// Errors Slurm errors
-	Errors     *Dbv0039Errors    `json:"errors,omitempty"`
-	Meta       *Dbv0039Meta      `json:"meta,omitempty"`
-	Statistics *V0039StatsRecPtr `json:"statistics,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *Dbv0039Warnings `json:"warnings,omitempty"`
-}
-
-// Dbv0039Error defines model for dbv0.0.39_error.
-type Dbv0039Error struct {
-	// Description Explanation of cause of error
-	Description *string `json:"description,omitempty"`
-
-	// Error Error message
-	Error *string `json:"error,omitempty"`
-
-	// ErrorNumber Slurm internal error number
-	ErrorNumber *int `json:"error_number,omitempty"`
-
-	// Source Where error occurred in the source
-	Source *string `json:"source,omitempty"`
-}
-
-// Dbv0039Errors Slurm errors
-type Dbv0039Errors = []Dbv0039Error
-
-// Dbv0039JobInfo defines model for dbv0.0.39_job_info.
-type Dbv0039JobInfo struct {
-	// Errors Slurm errors
-	Errors *Dbv0039Errors `json:"errors,omitempty"`
-	Jobs   *V0039JobList  `json:"jobs,omitempty"`
-	Meta   *Dbv0039Meta   `json:"meta,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *Dbv0039Warnings `json:"warnings,omitempty"`
-}
-
-// Dbv0039Meta defines model for dbv0.0.39_meta.
-type Dbv0039Meta struct {
-	// Slurm Slurm information
-	Slurm *struct {
-		// Release version specifier
-		Release *string `json:"release,omitempty"`
-		Version *struct {
-			Major *int `json:"major,omitempty"`
-			Micro *int `json:"micro,omitempty"`
-			Minor *int `json:"minor,omitempty"`
-		} `json:"version,omitempty"`
-	} `json:"Slurm,omitempty"`
-	Plugin *struct {
+		// Name ClusterName
 		Name *string `json:"name,omitempty"`
-		Type *string `json:"type,omitempty"`
-	} `json:"plugin,omitempty"`
+
+		// Nodes Node names
+		Nodes *string `json:"nodes,omitempty"`
+
+		// RpcVersion RPC version used in the cluster
+		RpcVersion *int32 `json:"rpc_version,omitempty"`
+		// Deprecated:
+		SelectPlugin *string `json:"select_plugin,omitempty"`
+
+		// Tres Trackable resources
+		Tres *[]struct {
+			// Count TRES count (0 if listed generically)
+			Count *int64 `json:"count,omitempty"`
+
+			// Id ID used in database
+			Id *int32 `json:"id,omitempty"`
+
+			// Name TRES name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type TRES type (CPU, MEM, etc)
+			Type string `json:"type"`
+		} `json:"tres,omitempty"`
+	} `json:"clusters"`
+
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Dbv0039QosInfo defines model for dbv0.0.39_qos_info.
-type Dbv0039QosInfo struct {
-	// Errors Slurm errors
-	Errors *Dbv0039Errors `json:"errors,omitempty"`
-	Meta   *Dbv0039Meta   `json:"meta,omitempty"`
-	Qos    *V0039QosList  `json:"qos,omitempty"`
+// V0041OpenapiClustersRespClustersFlags defines model for V0041OpenapiClustersResp.Clusters.Flags.
+type V0041OpenapiClustersRespClustersFlags string
 
-	// Warnings Slurm warnings
-	Warnings *Dbv0039Warnings `json:"warnings,omitempty"`
+// V0041OpenapiInstancesResp defines model for v0.0.41_openapi_instances_resp.
+type V0041OpenapiInstancesResp struct {
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Instances instances
+	Instances []struct {
+		// Cluster Cluster name
+		Cluster *string `json:"cluster,omitempty"`
+
+		// Extra Arbitrary string used for node filtering if extra constraints are enabled
+		Extra *string `json:"extra,omitempty"`
+
+		// InstanceId Cloud instance ID
+		InstanceId *string `json:"instance_id,omitempty"`
+
+		// InstanceType Cloud instance type
+		InstanceType *string `json:"instance_type,omitempty"`
+
+		// NodeName NodeName
+		NodeName *string `json:"node_name,omitempty"`
+		Time     *struct {
+			// TimeEnd When the instance will end (UNIX timestamp)
+			TimeEnd *int64 `json:"time_end,omitempty"`
+
+			// TimeStart When the instance will start (UNIX timestamp)
+			TimeStart *int64 `json:"time_start,omitempty"`
+		} `json:"time,omitempty"`
+	} `json:"instances"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Dbv0039ResponseAssociationsDelete defines model for dbv0.0.39_response_associations_delete.
-type Dbv0039ResponseAssociationsDelete struct {
-	// Errors Slurm errors
-	Errors *Dbv0039Errors `json:"errors,omitempty"`
-	Meta   *Dbv0039Meta   `json:"meta,omitempty"`
+// V0041OpenapiJobInfoResp defines model for v0.0.41_openapi_job_info_resp.
+type V0041OpenapiJobInfoResp struct {
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
 
-	// RemovedAssociations the associations
-	RemovedAssociations *[]string `json:"removed_associations,omitempty"`
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
 
-	// Warnings Slurm warnings
-	Warnings *Dbv0039Warnings `json:"warnings,omitempty"`
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Jobs List of jobs
+	Jobs []struct {
+		// Account Account associated with the job
+		Account *string `json:"account,omitempty"`
+
+		// AccrueTime When the job started accruing age priority (UNIX timestamp)
+		AccrueTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"accrue_time,omitempty"`
+
+		// AdminComment Arbitrary comment made by administrator
+		AdminComment *string `json:"admin_comment,omitempty"`
+
+		// AllocatingNode Local node making the resource allocation
+		AllocatingNode *string `json:"allocating_node,omitempty"`
+
+		// ArrayJobId Job ID of job array, or 0 if N/A
+		ArrayJobId *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"array_job_id,omitempty"`
+
+		// ArrayMaxTasks Maximum number of simultaneously running array tasks, 0 if no limit
+		ArrayMaxTasks *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"array_max_tasks,omitempty"`
+
+		// ArrayTaskId Task ID of this task in job array
+		ArrayTaskId *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"array_task_id,omitempty"`
+
+		// ArrayTaskString String expression of task IDs in this record
+		ArrayTaskString *string `json:"array_task_string,omitempty"`
+
+		// AssociationId Unique identifier for the association
+		AssociationId *int32 `json:"association_id,omitempty"`
+
+		// BatchFeatures Features required for batch script's node
+		BatchFeatures *string `json:"batch_features,omitempty"`
+
+		// BatchFlag True if batch job
+		BatchFlag *bool `json:"batch_flag,omitempty"`
+
+		// BatchHost Name of host running batch script
+		BatchHost *string `json:"batch_host,omitempty"`
+
+		// BillableTres Billable TRES
+		BillableTres *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *float64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"billable_tres,omitempty"`
+
+		// BurstBuffer Burst buffer specifications
+		BurstBuffer *string `json:"burst_buffer,omitempty"`
+
+		// BurstBufferState Burst buffer state details
+		BurstBufferState *string `json:"burst_buffer_state,omitempty"`
+
+		// Cluster Cluster name
+		Cluster *string `json:"cluster,omitempty"`
+
+		// ClusterFeatures List of required cluster features
+		ClusterFeatures *string `json:"cluster_features,omitempty"`
+
+		// Command Executed command
+		Command *string `json:"command,omitempty"`
+
+		// Comment Arbitrary comment
+		Comment *string `json:"comment,omitempty"`
+
+		// Container Absolute path to OCI container bundle
+		Container *string `json:"container,omitempty"`
+
+		// ContainerId OCI container ID
+		ContainerId *string `json:"container_id,omitempty"`
+
+		// Contiguous True if job requires contiguous nodes
+		Contiguous *bool `json:"contiguous,omitempty"`
+
+		// CoreSpec Specialized core count
+		CoreSpec *int32 `json:"core_spec,omitempty"`
+
+		// CoresPerSocket Cores per socket required
+		CoresPerSocket *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"cores_per_socket,omitempty"`
+
+		// CpuFrequencyGovernor CPU frequency governor
+		CpuFrequencyGovernor *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"cpu_frequency_governor,omitempty"`
+
+		// CpuFrequencyMaximum Maximum CPU frequency
+		CpuFrequencyMaximum *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"cpu_frequency_maximum,omitempty"`
+
+		// CpuFrequencyMinimum Minimum CPU frequency
+		CpuFrequencyMinimum *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"cpu_frequency_minimum,omitempty"`
+
+		// Cpus Minimum number of CPUs required
+		Cpus *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"cpus,omitempty"`
+
+		// CpusPerTask Number of CPUs required by each task
+		CpusPerTask *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"cpus_per_task,omitempty"`
+
+		// CpusPerTres Semicolon delimited list of TRES=# values indicating how many CPUs should be allocated for each specified TRES (currently only used for gres/gpu)
+		CpusPerTres *string `json:"cpus_per_tres,omitempty"`
+
+		// Cron Time specification for scrontab job
+		Cron *string `json:"cron,omitempty"`
+
+		// CurrentWorkingDirectory Working directory to use for the job
+		CurrentWorkingDirectory *string `json:"current_working_directory,omitempty"`
+
+		// Deadline Latest time that the job may start (UNIX timestamp)
+		Deadline *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"deadline,omitempty"`
+
+		// DelayBoot Number of seconds after job eligible start that nodes will be rebooted to satisfy feature specification
+		DelayBoot *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"delay_boot,omitempty"`
+
+		// Dependency Other jobs that must meet certain criteria before this job can start
+		Dependency *string `json:"dependency,omitempty"`
+
+		// DerivedExitCode Highest exit code of all job steps
+		DerivedExitCode *struct {
+			// ReturnCode Process return code (numeric)
+			ReturnCode *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"return_code,omitempty"`
+			Signal *struct {
+				// Id Signal sent to process (numeric)
+				Id *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"id,omitempty"`
+
+				// Name Signal sent to process
+				Name *string `json:"name,omitempty"`
+			} `json:"signal,omitempty"`
+
+			// Status Status given by return code
+			Status *[]V0041OpenapiJobInfoRespJobsDerivedExitCodeStatus `json:"status,omitempty"`
+		} `json:"derived_exit_code,omitempty"`
+
+		// EligibleTime Time when the job became eligible to run (UNIX timestamp)
+		EligibleTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"eligible_time,omitempty"`
+
+		// EndTime End time, real or expected (UNIX timestamp)
+		EndTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"end_time,omitempty"`
+
+		// ExcludedNodes Comma separated list of nodes that may not be used
+		ExcludedNodes *string `json:"excluded_nodes,omitempty"`
+		// Deprecated:
+		Exclusive *[]V0041OpenapiJobInfoRespJobsExclusive `json:"exclusive,omitempty"`
+
+		// ExitCode Exit code of the job
+		ExitCode *struct {
+			// ReturnCode Process return code (numeric)
+			ReturnCode *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"return_code,omitempty"`
+			Signal *struct {
+				// Id Signal sent to process (numeric)
+				Id *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"id,omitempty"`
+
+				// Name Signal sent to process
+				Name *string `json:"name,omitempty"`
+			} `json:"signal,omitempty"`
+
+			// Status Status given by return code
+			Status *[]V0041OpenapiJobInfoRespJobsExitCodeStatus `json:"status,omitempty"`
+		} `json:"exit_code,omitempty"`
+
+		// Extra Arbitrary string used for node filtering if extra constraints are enabled
+		Extra *string `json:"extra,omitempty"`
+
+		// FailedNode Name of node that caused job failure
+		FailedNode *string `json:"failed_node,omitempty"`
+
+		// Features Comma separated list of features that are required
+		Features *string `json:"features,omitempty"`
+
+		// FederationOrigin Origin cluster's name (when using federation)
+		FederationOrigin *string `json:"federation_origin,omitempty"`
+
+		// FederationSiblingsActive Active sibling job names
+		FederationSiblingsActive *string `json:"federation_siblings_active,omitempty"`
+
+		// FederationSiblingsViable Viable sibling job names
+		FederationSiblingsViable *string `json:"federation_siblings_viable,omitempty"`
+
+		// Flags Job flags
+		Flags *[]V0041OpenapiJobInfoRespJobsFlags `json:"flags,omitempty"`
+
+		// GresDetail List of GRES index and counts allocated per node
+		GresDetail *[]string `json:"gres_detail,omitempty"`
+
+		// GroupId Group ID of the user that owns the job
+		GroupId *int32 `json:"group_id,omitempty"`
+
+		// GroupName Group name of the user that owns the job
+		GroupName *string `json:"group_name,omitempty"`
+
+		// HetJobId Heterogeneous job ID, if applicable
+		HetJobId *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"het_job_id,omitempty"`
+
+		// HetJobIdSet Job ID range for all heterogeneous job components
+		HetJobIdSet *string `json:"het_job_id_set,omitempty"`
+
+		// HetJobOffset Unique sequence number applied to this component of the heterogeneous job
+		HetJobOffset *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"het_job_offset,omitempty"`
+
+		// Hold Hold (true) or release (false) job
+		Hold *bool `json:"hold,omitempty"`
+
+		// JobId Job ID
+		JobId *int32 `json:"job_id,omitempty"`
+
+		// JobResources Resources used by the job
+		JobResources *struct {
+			// Cpus Number of allocated CPUs
+			Cpus  int32 `json:"cpus"`
+			Nodes *struct {
+				// Allocation Allocated node resources
+				Allocation *[]struct {
+					Cpus *struct {
+						// Count Total number of CPUs assigned to job
+						Count *int32 `json:"count,omitempty"`
+
+						// Used Total number of CPUs used by job
+						Used *int32 `json:"used,omitempty"`
+					} `json:"cpus,omitempty"`
+
+					// Index Node index
+					Index  int32 `json:"index"`
+					Memory *struct {
+						// Allocated Total memory (MiB) allocated to job
+						Allocated *int64 `json:"allocated,omitempty"`
+
+						// Used Total memory (MiB) used by job
+						Used *int64 `json:"used,omitempty"`
+					} `json:"memory,omitempty"`
+
+					// Name Node name
+					Name string `json:"name"`
+
+					// Sockets Socket allocations in node
+					Sockets []struct {
+						// Cores Core in socket
+						Cores []struct {
+							// Index Core index
+							Index int32 `json:"index"`
+
+							// Status Core status
+							Status []V0041OpenapiJobInfoRespJobsJobResourcesNodesAllocationSocketsCoresStatus `json:"status"`
+						} `json:"cores"`
+
+						// Index Core index
+						Index int32 `json:"index"`
+					} `json:"sockets"`
+				} `json:"allocation,omitempty"`
+
+				// Count Number of allocated nodes
+				Count *int32 `json:"count,omitempty"`
+
+				// List Node(s) allocated to the job
+				List *string `json:"list,omitempty"`
+
+				// SelectType Node scheduling selection method
+				SelectType *[]V0041OpenapiJobInfoRespJobsJobResourcesNodesSelectType `json:"select_type,omitempty"`
+
+				// Whole Whether whole nodes were allocated
+				Whole *bool `json:"whole,omitempty"`
+			} `json:"nodes,omitempty"`
+
+			// SelectType Scheduler consumable resource selection type
+			SelectType []V0041OpenapiJobInfoRespJobsJobResourcesSelectType `json:"select_type"`
+
+			// ThreadsPerCore Number of processor threads per CPU core
+			ThreadsPerCore struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"threads_per_core"`
+		} `json:"job_resources,omitempty"`
+
+		// JobSizeStr Number of nodes (in a range) required for this job
+		JobSizeStr *[]string `json:"job_size_str,omitempty"`
+
+		// JobState Current state
+		JobState *[]V0041OpenapiJobInfoRespJobsJobState `json:"job_state,omitempty"`
+
+		// LastSchedEvaluation Last time job was evaluated for scheduling (UNIX timestamp)
+		LastSchedEvaluation *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"last_sched_evaluation,omitempty"`
+
+		// Licenses License(s) required by the job
+		Licenses *string `json:"licenses,omitempty"`
+
+		// MailType Mail event type(s)
+		MailType *[]V0041OpenapiJobInfoRespJobsMailType `json:"mail_type,omitempty"`
+
+		// MailUser User to receive email notifications
+		MailUser *string `json:"mail_user,omitempty"`
+
+		// MaxCpus Maximum number of CPUs usable by the job
+		MaxCpus *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"max_cpus,omitempty"`
+
+		// MaxNodes Maximum number of nodes usable by the job
+		MaxNodes *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"max_nodes,omitempty"`
+
+		// MaximumSwitchWaitTime Maximum time to wait for switches in seconds
+		MaximumSwitchWaitTime *int32 `json:"maximum_switch_wait_time,omitempty"`
+
+		// McsLabel Multi-Category Security label on the job
+		McsLabel *string `json:"mcs_label,omitempty"`
+
+		// MemoryPerCpu Minimum memory in megabytes per allocated CPU
+		MemoryPerCpu *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"memory_per_cpu,omitempty"`
+
+		// MemoryPerNode Minimum memory in megabytes per allocated node
+		MemoryPerNode *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"memory_per_node,omitempty"`
+
+		// MemoryPerTres Semicolon delimited list of TRES=# values indicating how much memory in megabytes should be allocated for each specified TRES (currently only used for gres/gpu)
+		MemoryPerTres *string `json:"memory_per_tres,omitempty"`
+
+		// MinimumCpusPerNode Minimum number of CPUs per node
+		MinimumCpusPerNode *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"minimum_cpus_per_node,omitempty"`
+
+		// MinimumSwitches Maximum number of switches (the 'minimum' in the key is incorrect)
+		MinimumSwitches *int32 `json:"minimum_switches,omitempty"`
+
+		// MinimumTmpDiskPerNode Minimum tmp disk space required per node
+		MinimumTmpDiskPerNode *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"minimum_tmp_disk_per_node,omitempty"`
+
+		// Name Job name
+		Name *string `json:"name,omitempty"`
+
+		// Network Network specs for the job
+		Network *string `json:"network,omitempty"`
+
+		// Nice Requested job priority change
+		Nice *int32 `json:"nice,omitempty"`
+
+		// NodeCount Minimum number of nodes required
+		NodeCount *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"node_count,omitempty"`
+
+		// Nodes Node(s) allocated to the job
+		Nodes *string `json:"nodes,omitempty"`
+		// Deprecated:
+		Oversubscribe *bool `json:"oversubscribe,omitempty"`
+
+		// Partition Partition assigned to the job
+		Partition *string `json:"partition,omitempty"`
+		Power     *struct {
+			// Deprecated:
+			Flags *[]interface{} `json:"flags,omitempty"`
+		} `json:"power,omitempty"`
+
+		// PreSusTime Total run time prior to last suspend in seconds
+		PreSusTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"pre_sus_time,omitempty"`
+
+		// PreemptTime Time job received preemption signal (UNIX timestamp)
+		PreemptTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"preempt_time,omitempty"`
+
+		// PreemptableTime Time job becomes eligible for preemption (UNIX timestamp)
+		PreemptableTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"preemptable_time,omitempty"`
+
+		// Prefer Feature(s) the job requested but that are not required
+		Prefer *string `json:"prefer,omitempty"`
+
+		// Priority Request specific job priority
+		Priority *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"priority,omitempty"`
+
+		// Profile Profile used by the acct_gather_profile plugin
+		Profile *[]V0041OpenapiJobInfoRespJobsProfile `json:"profile,omitempty"`
+
+		// Qos Quality of Service assigned to the job
+		Qos *string `json:"qos,omitempty"`
+
+		// Reboot Node reboot requested before start
+		Reboot *bool `json:"reboot,omitempty"`
+
+		// Requeue Determines whether the job may be requeued
+		Requeue *bool `json:"requeue,omitempty"`
+
+		// RequiredNodes Comma separated list of required nodes
+		RequiredNodes *string `json:"required_nodes,omitempty"`
+
+		// ResizeTime Time of last size change (UNIX timestamp)
+		ResizeTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"resize_time,omitempty"`
+
+		// RestartCnt Number of job restarts
+		RestartCnt *int32 `json:"restart_cnt,omitempty"`
+
+		// ResvName Name of reservation to use
+		ResvName *string `json:"resv_name,omitempty"`
+
+		// ScheduledNodes List of nodes scheduled to be used for the job
+		ScheduledNodes *string `json:"scheduled_nodes,omitempty"`
+
+		// SelinuxContext SELinux context
+		SelinuxContext *string `json:"selinux_context,omitempty"`
+
+		// Shared How the job can share resources with other jobs, if at all
+		Shared *[]V0041OpenapiJobInfoRespJobsShared `json:"shared,omitempty"`
+
+		// ShowFlags Job details shown in this response
+		ShowFlags *[]V0041OpenapiJobInfoRespJobsShowFlags `json:"show_flags,omitempty"`
+
+		// SocketsPerBoard Number of sockets per board required
+		SocketsPerBoard *int32 `json:"sockets_per_board,omitempty"`
+
+		// SocketsPerNode Number of sockets per node required
+		SocketsPerNode *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"sockets_per_node,omitempty"`
+
+		// StandardError Path to stderr file
+		StandardError *string `json:"standard_error,omitempty"`
+
+		// StandardInput Path to stdin file
+		StandardInput *string `json:"standard_input,omitempty"`
+
+		// StandardOutput Path to stdout file
+		StandardOutput *string `json:"standard_output,omitempty"`
+
+		// StartTime Time execution began, or is expected to begin (UNIX timestamp)
+		StartTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"start_time,omitempty"`
+
+		// StateDescription Optional details for state_reason
+		StateDescription *string `json:"state_description,omitempty"`
+
+		// StateReason Reason for current Pending or Failed state
+		StateReason *string `json:"state_reason,omitempty"`
+
+		// SubmitTime Time when the job was submitted (UNIX timestamp)
+		SubmitTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"submit_time,omitempty"`
+
+		// SuspendTime Time the job was last suspended or resumed (UNIX timestamp)
+		SuspendTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"suspend_time,omitempty"`
+
+		// SystemComment Arbitrary comment from slurmctld
+		SystemComment *string `json:"system_comment,omitempty"`
+
+		// Tasks Number of tasks
+		Tasks *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"tasks,omitempty"`
+
+		// TasksPerBoard Number of tasks invoked on each board
+		TasksPerBoard *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"tasks_per_board,omitempty"`
+
+		// TasksPerCore Number of tasks invoked on each core
+		TasksPerCore *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"tasks_per_core,omitempty"`
+
+		// TasksPerNode Number of tasks invoked on each node
+		TasksPerNode *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"tasks_per_node,omitempty"`
+
+		// TasksPerSocket Number of tasks invoked on each socket
+		TasksPerSocket *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"tasks_per_socket,omitempty"`
+
+		// TasksPerTres Number of tasks that can assess each GPU
+		TasksPerTres *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"tasks_per_tres,omitempty"`
+
+		// ThreadSpec Specialized thread count
+		ThreadSpec *int32 `json:"thread_spec,omitempty"`
+
+		// ThreadsPerCore Number of processor threads per CPU core required
+		ThreadsPerCore *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"threads_per_core,omitempty"`
+
+		// TimeLimit Maximum run time in minutes
+		TimeLimit *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"time_limit,omitempty"`
+
+		// TimeMinimum Minimum run time in minutes
+		TimeMinimum *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"time_minimum,omitempty"`
+
+		// TresAllocStr TRES used by the job
+		TresAllocStr *string `json:"tres_alloc_str,omitempty"`
+
+		// TresBind Task to TRES binding directives
+		TresBind *string `json:"tres_bind,omitempty"`
+
+		// TresFreq TRES frequency directives
+		TresFreq *string `json:"tres_freq,omitempty"`
+
+		// TresPerJob Comma separated list of TRES=# values to be allocated per job
+		TresPerJob *string `json:"tres_per_job,omitempty"`
+
+		// TresPerNode Comma separated list of TRES=# values to be allocated per node
+		TresPerNode *string `json:"tres_per_node,omitempty"`
+
+		// TresPerSocket Comma separated list of TRES=# values to be allocated per socket
+		TresPerSocket *string `json:"tres_per_socket,omitempty"`
+
+		// TresPerTask Comma separated list of TRES=# values to be allocated per task
+		TresPerTask *string `json:"tres_per_task,omitempty"`
+
+		// TresReqStr TRES requested by the job
+		TresReqStr *string `json:"tres_req_str,omitempty"`
+
+		// UserId User ID that owns the job
+		UserId *int32 `json:"user_id,omitempty"`
+
+		// UserName User name that owns the job
+		UserName *string `json:"user_name,omitempty"`
+
+		// Wckey Workload characterization key
+		Wckey *string `json:"wckey,omitempty"`
+	} `json:"jobs"`
+
+	// LastBackfill Time of last backfill scheduler run (UNIX timestamp)
+	LastBackfill struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
+
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int64 `json:"number,omitempty"`
+
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"last_backfill"`
+
+	// LastUpdate Time of last job change (UNIX timestamp)
+	LastUpdate struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
+
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int64 `json:"number,omitempty"`
+
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"last_update"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Dbv0039SetConfig defines model for dbv0.0.39_set_config.
-type Dbv0039SetConfig struct {
-	TRES         *[]V0039TresList     `json:"TRES,omitempty"`
-	Accounts     *V0039AccountList    `json:"accounts,omitempty"`
-	Associations *V0039AssocList      `json:"associations,omitempty"`
-	Clusters     *V0039ClusterRecList `json:"clusters,omitempty"`
-	Qos          *V0039QosList        `json:"qos,omitempty"`
-	Users        *V0039UserList       `json:"users,omitempty"`
-	Wckeys       *V0039WckeyList      `json:"wckeys,omitempty"`
+// V0041OpenapiJobInfoRespJobsDerivedExitCodeStatus defines model for V0041OpenapiJobInfoResp.Jobs.DerivedExitCode.Status.
+type V0041OpenapiJobInfoRespJobsDerivedExitCodeStatus string
+
+// V0041OpenapiJobInfoRespJobsExclusive defines model for V0041OpenapiJobInfoResp.Jobs.Exclusive.
+type V0041OpenapiJobInfoRespJobsExclusive string
+
+// V0041OpenapiJobInfoRespJobsExitCodeStatus defines model for V0041OpenapiJobInfoResp.Jobs.ExitCode.Status.
+type V0041OpenapiJobInfoRespJobsExitCodeStatus string
+
+// V0041OpenapiJobInfoRespJobsFlags defines model for V0041OpenapiJobInfoResp.Jobs.Flags.
+type V0041OpenapiJobInfoRespJobsFlags string
+
+// V0041OpenapiJobInfoRespJobsJobResourcesNodesAllocationSocketsCoresStatus defines model for V0041OpenapiJobInfoResp.Jobs.JobResources.Nodes.Allocation.Sockets.Cores.Status.
+type V0041OpenapiJobInfoRespJobsJobResourcesNodesAllocationSocketsCoresStatus string
+
+// V0041OpenapiJobInfoRespJobsJobResourcesNodesSelectType defines model for V0041OpenapiJobInfoResp.Jobs.JobResources.Nodes.SelectType.
+type V0041OpenapiJobInfoRespJobsJobResourcesNodesSelectType string
+
+// V0041OpenapiJobInfoRespJobsJobResourcesSelectType defines model for V0041OpenapiJobInfoResp.Jobs.JobResources.SelectType.
+type V0041OpenapiJobInfoRespJobsJobResourcesSelectType string
+
+// V0041OpenapiJobInfoRespJobsJobState defines model for V0041OpenapiJobInfoResp.Jobs.JobState.
+type V0041OpenapiJobInfoRespJobsJobState string
+
+// V0041OpenapiJobInfoRespJobsMailType defines model for V0041OpenapiJobInfoResp.Jobs.MailType.
+type V0041OpenapiJobInfoRespJobsMailType string
+
+// V0041OpenapiJobInfoRespJobsProfile defines model for V0041OpenapiJobInfoResp.Jobs.Profile.
+type V0041OpenapiJobInfoRespJobsProfile string
+
+// V0041OpenapiJobInfoRespJobsShared defines model for V0041OpenapiJobInfoResp.Jobs.Shared.
+type V0041OpenapiJobInfoRespJobsShared string
+
+// V0041OpenapiJobInfoRespJobsShowFlags defines model for V0041OpenapiJobInfoResp.Jobs.ShowFlags.
+type V0041OpenapiJobInfoRespJobsShowFlags string
+
+// V0041OpenapiNodesResp defines model for v0.0.41_openapi_nodes_resp.
+type V0041OpenapiNodesResp struct {
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// LastUpdate Time of last node change (UNIX timestamp)
+	LastUpdate struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
+
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int64 `json:"number,omitempty"`
+
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"last_update"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Nodes List of nodes
+	Nodes []struct {
+		// ActiveFeatures Currently active features
+		ActiveFeatures *[]string `json:"active_features,omitempty"`
+
+		// Address NodeAddr, used to establish a communication path
+		Address *string `json:"address,omitempty"`
+
+		// AllocCpus Total number of CPUs currently allocated for jobs
+		AllocCpus *int32 `json:"alloc_cpus,omitempty"`
+
+		// AllocIdleCpus Total number of idle CPUs
+		AllocIdleCpus *int32 `json:"alloc_idle_cpus,omitempty"`
+
+		// AllocMemory Total memory in MB currently allocated for jobs
+		AllocMemory *int64 `json:"alloc_memory,omitempty"`
+
+		// Architecture Computer architecture
+		Architecture *string `json:"architecture,omitempty"`
+
+		// Boards Number of Baseboards in nodes with a baseboard controller
+		Boards *int32 `json:"boards,omitempty"`
+
+		// BootTime Time when the node booted (UNIX timestamp)
+		BootTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"boot_time,omitempty"`
+
+		// BurstbufferNetworkAddress Alternate network path to be used for sbcast network traffic
+		BurstbufferNetworkAddress *string `json:"burstbuffer_network_address,omitempty"`
+
+		// ClusterName Cluster name (only set in federated environments)
+		ClusterName *string `json:"cluster_name,omitempty"`
+
+		// Comment Arbitrary comment
+		Comment *string `json:"comment,omitempty"`
+
+		// Cores Number of cores in a single physical processor socket
+		Cores *int32 `json:"cores,omitempty"`
+
+		// CpuBinding Default method for binding tasks to allocated CPUs
+		CpuBinding *int32 `json:"cpu_binding,omitempty"`
+
+		// CpuLoad CPU load as reported by the OS
+		CpuLoad *int32 `json:"cpu_load,omitempty"`
+
+		// Cpus Total CPUs, including cores and threads
+		Cpus *int32 `json:"cpus,omitempty"`
+
+		// EffectiveCpus Number of effective CPUs (excluding specialized CPUs)
+		EffectiveCpus *int32 `json:"effective_cpus,omitempty"`
+
+		// Energy Energy usage data
+		Energy *struct {
+			// AverageWatts Average power consumption, in watts
+			AverageWatts *int32 `json:"average_watts,omitempty"`
+
+			// BaseConsumedEnergy The energy consumed between when the node was powered on and the last time it was registered by slurmd, in joules
+			BaseConsumedEnergy *int64 `json:"base_consumed_energy,omitempty"`
+
+			// ConsumedEnergy The energy consumed between the last time the node was registered by the slurmd daemon and the last node energy accounting sample, in joules
+			ConsumedEnergy *int64 `json:"consumed_energy,omitempty"`
+
+			// CurrentWatts The instantaneous power consumption at the time of the last node energy accounting sample, in watts
+			CurrentWatts *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"current_watts,omitempty"`
+
+			// LastCollected Time when energy data was last retrieved (UNIX timestamp)
+			LastCollected *int64 `json:"last_collected,omitempty"`
+
+			// PreviousConsumedEnergy Previous value of consumed_energy
+			PreviousConsumedEnergy *int64 `json:"previous_consumed_energy,omitempty"`
+		} `json:"energy,omitempty"`
+		// Deprecated:
+		ExternalSensors *map[string]interface{} `json:"external_sensors,omitempty"`
+
+		// Extra Arbitrary string used for node filtering if extra constraints are enabled
+		Extra *string `json:"extra,omitempty"`
+
+		// Features Available features
+		Features *[]string `json:"features,omitempty"`
+
+		// FreeMem Total memory in MB currently free as reported by the OS
+		FreeMem *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"free_mem,omitempty"`
+
+		// GpuSpec CPU cores reserved for jobs that also use a GPU
+		GpuSpec *string `json:"gpu_spec,omitempty"`
+
+		// Gres Generic resources
+		Gres *string `json:"gres,omitempty"`
+
+		// GresDrained Drained generic resources
+		GresDrained *string `json:"gres_drained,omitempty"`
+
+		// GresUsed Generic resources currently in use
+		GresUsed *string `json:"gres_used,omitempty"`
+
+		// Hostname NodeHostname
+		Hostname *string `json:"hostname,omitempty"`
+
+		// InstanceId Cloud instance ID
+		InstanceId *string `json:"instance_id,omitempty"`
+
+		// InstanceType Cloud instance type
+		InstanceType *string `json:"instance_type,omitempty"`
+
+		// LastBusy Time when the node was last busy (UNIX timestamp)
+		LastBusy *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"last_busy,omitempty"`
+
+		// McsLabel Multi-Category Security label
+		McsLabel *string `json:"mcs_label,omitempty"`
+
+		// Name NodeName
+		Name *string `json:"name,omitempty"`
+
+		// NextStateAfterReboot The state the node will be assigned after rebooting
+		NextStateAfterReboot *[]V0041OpenapiNodesRespNodesNextStateAfterReboot `json:"next_state_after_reboot,omitempty"`
+
+		// OperatingSystem Operating system reported by the node
+		OperatingSystem *string `json:"operating_system,omitempty"`
+
+		// Owner User allowed to run jobs on this node (unset if no restriction)
+		Owner *string `json:"owner,omitempty"`
+
+		// Partitions Partitions containing this node
+		Partitions *[]string `json:"partitions,omitempty"`
+
+		// Port TCP port number of the slurmd
+		Port *int32 `json:"port,omitempty"`
+		// Deprecated:
+		Power *map[string]interface{} `json:"power,omitempty"`
+
+		// RealMemory Total memory in MB on the node
+		RealMemory *int64 `json:"real_memory,omitempty"`
+
+		// Reason Describes why the node is in a "DOWN", "DRAINED", "DRAINING", "FAILING" or "FAIL" state
+		Reason *string `json:"reason,omitempty"`
+
+		// ReasonChangedAt When the reason changed (UNIX timestamp)
+		ReasonChangedAt *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"reason_changed_at,omitempty"`
+
+		// ReasonSetByUser User who set the reason
+		ReasonSetByUser *string `json:"reason_set_by_user,omitempty"`
+
+		// ResCoresPerGpu Number of CPU cores per GPU restricted to GPU jobs
+		ResCoresPerGpu *int32 `json:"res_cores_per_gpu,omitempty"`
+
+		// Reservation Name of reservation containing this node
+		Reservation *string `json:"reservation,omitempty"`
+
+		// ResumeAfter Number of seconds after the node's state is updated to "DOWN" or "DRAIN" before scheduling a node state resume
+		ResumeAfter *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"resume_after,omitempty"`
+
+		// SlurmdStartTime Time when the slurmd started (UNIX timestamp)
+		SlurmdStartTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"slurmd_start_time,omitempty"`
+
+		// Sockets Number of physical processor sockets/chips on the node
+		Sockets *int32 `json:"sockets,omitempty"`
+
+		// SpecializedCores Number of cores reserved for system use
+		SpecializedCores *int32 `json:"specialized_cores,omitempty"`
+
+		// SpecializedCpus Abstract CPU IDs on this node reserved for exclusive use by slurmd and slurmstepd
+		SpecializedCpus *string `json:"specialized_cpus,omitempty"`
+
+		// SpecializedMemory Combined memory limit, in MB, for Slurm compute node daemons
+		SpecializedMemory *int64 `json:"specialized_memory,omitempty"`
+
+		// State Node state(s) applicable to this node
+		State *[]V0041OpenapiNodesRespNodesState `json:"state,omitempty"`
+
+		// TemporaryDisk Total size in MB of temporary disk storage in TmpFS
+		TemporaryDisk *int32 `json:"temporary_disk,omitempty"`
+
+		// Threads Number of logical threads in a single physical core
+		Threads *int32 `json:"threads,omitempty"`
+
+		// Tres Configured trackable resources
+		Tres *string `json:"tres,omitempty"`
+
+		// TresUsed Trackable resources currently allocated for jobs
+		TresUsed *string `json:"tres_used,omitempty"`
+
+		// TresWeighted Weighted number of billable trackable resources allocated
+		TresWeighted *float64 `json:"tres_weighted,omitempty"`
+
+		// Version Slurmd version
+		Version *string `json:"version,omitempty"`
+
+		// Weight Weight of the node for scheduling purposes
+		Weight *int32 `json:"weight,omitempty"`
+	} `json:"nodes"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Dbv0039TresInfo defines model for dbv0.0.39_tres_info.
-type Dbv0039TresInfo struct {
-	// Errors Slurm errors
-	Errors *Dbv0039Errors `json:"errors,omitempty"`
-	Meta   *Dbv0039Meta   `json:"meta,omitempty"`
-	Tres   *V0039TresList `json:"tres,omitempty"`
+// V0041OpenapiNodesRespNodesNextStateAfterReboot defines model for V0041OpenapiNodesResp.Nodes.NextStateAfterReboot.
+type V0041OpenapiNodesRespNodesNextStateAfterReboot string
 
-	// Warnings Slurm warnings
-	Warnings *Dbv0039Warnings `json:"warnings,omitempty"`
+// V0041OpenapiNodesRespNodesState defines model for V0041OpenapiNodesResp.Nodes.State.
+type V0041OpenapiNodesRespNodesState string
+
+// V0041OpenapiPartitionResp defines model for v0.0.41_openapi_partition_resp.
+type V0041OpenapiPartitionResp struct {
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// LastUpdate Time of last partition change (UNIX timestamp)
+	LastUpdate struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
+
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int64 `json:"number,omitempty"`
+
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"last_update"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Partitions List of partitions
+	Partitions []struct {
+		Accounts *struct {
+			// Allowed AllowAccounts
+			Allowed *string `json:"allowed,omitempty"`
+
+			// Deny DenyAccounts
+			Deny *string `json:"deny,omitempty"`
+		} `json:"accounts,omitempty"`
+
+		// Alternate Alternate
+		Alternate *string `json:"alternate,omitempty"`
+
+		// Cluster Cluster name
+		Cluster *string `json:"cluster,omitempty"`
+		Cpus    *struct {
+			// TaskBinding CpuBind
+			TaskBinding *int32 `json:"task_binding,omitempty"`
+
+			// Total TotalCPUs
+			Total *int32 `json:"total,omitempty"`
+		} `json:"cpus,omitempty"`
+		Defaults *struct {
+			// Job JobDefaults
+			Job *string `json:"job,omitempty"`
+
+			// MemoryPerCpu DefMemPerCPU or DefMemPerNode
+			MemoryPerCpu *int64 `json:"memory_per_cpu,omitempty"`
+
+			// PartitionMemoryPerCpu DefMemPerCPU
+			PartitionMemoryPerCpu *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"partition_memory_per_cpu,omitempty"`
+
+			// PartitionMemoryPerNode DefMemPerNode
+			PartitionMemoryPerNode *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"partition_memory_per_node,omitempty"`
+
+			// Time DefaultTime in minutes
+			Time *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"time,omitempty"`
+		} `json:"defaults,omitempty"`
+
+		// GraceTime GraceTime
+		GraceTime *int32 `json:"grace_time,omitempty"`
+		Groups    *struct {
+			// Allowed AllowGroups
+			Allowed *string `json:"allowed,omitempty"`
+		} `json:"groups,omitempty"`
+		Maximums *struct {
+			// CpusPerNode MaxCPUsPerNode
+			CpusPerNode *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"cpus_per_node,omitempty"`
+
+			// CpusPerSocket MaxCPUsPerSocket
+			CpusPerSocket *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"cpus_per_socket,omitempty"`
+
+			// MemoryPerCpu MaxMemPerCPU or MaxMemPerNode
+			MemoryPerCpu *int64 `json:"memory_per_cpu,omitempty"`
+
+			// Nodes MaxNodes
+			Nodes *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"nodes,omitempty"`
+
+			// OverTimeLimit OverTimeLimit
+			OverTimeLimit *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"over_time_limit,omitempty"`
+			Oversubscribe *struct {
+				// Flags Flags applicable to the OverSubscribe setting
+				Flags *[]V0041OpenapiPartitionRespPartitionsMaximumsOversubscribeFlags `json:"flags,omitempty"`
+
+				// Jobs Maximum number of jobs allowed to oversubscribe resources
+				Jobs *int32 `json:"jobs,omitempty"`
+			} `json:"oversubscribe,omitempty"`
+
+			// PartitionMemoryPerCpu MaxMemPerCPU
+			PartitionMemoryPerCpu *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"partition_memory_per_cpu,omitempty"`
+
+			// PartitionMemoryPerNode MaxMemPerNode
+			PartitionMemoryPerNode *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"partition_memory_per_node,omitempty"`
+
+			// Shares OverSubscribe
+			Shares *int32 `json:"shares,omitempty"`
+
+			// Time MaxTime
+			Time *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"time,omitempty"`
+		} `json:"maximums,omitempty"`
+		Minimums *struct {
+			// Nodes MinNodes
+			Nodes *int32 `json:"nodes,omitempty"`
+		} `json:"minimums,omitempty"`
+
+		// Name PartitionName
+		Name *string `json:"name,omitempty"`
+
+		// NodeSets NodeSets
+		NodeSets *string `json:"node_sets,omitempty"`
+		Nodes    *struct {
+			// AllowedAllocation AllocNodes
+			AllowedAllocation *string `json:"allowed_allocation,omitempty"`
+
+			// Configured Nodes
+			Configured *string `json:"configured,omitempty"`
+
+			// Total TotalNodes
+			Total *int32 `json:"total,omitempty"`
+		} `json:"nodes,omitempty"`
+		Partition *struct {
+			// State Current state(s)
+			State *[]V0041OpenapiPartitionRespPartitionsPartitionState `json:"state,omitempty"`
+		} `json:"partition,omitempty"`
+		Priority *struct {
+			// JobFactor PriorityJobFactor
+			JobFactor *int32 `json:"job_factor,omitempty"`
+
+			// Tier PriorityTier
+			Tier *int32 `json:"tier,omitempty"`
+		} `json:"priority,omitempty"`
+		Qos *struct {
+			// Allowed AllowQOS
+			Allowed *string `json:"allowed,omitempty"`
+
+			// Assigned QOS
+			Assigned *string `json:"assigned,omitempty"`
+
+			// Deny DenyQOS
+			Deny *string `json:"deny,omitempty"`
+		} `json:"qos,omitempty"`
+
+		// SelectType Scheduler consumable resource selection type
+		SelectType *[]V0041OpenapiPartitionRespPartitionsSelectType `json:"select_type,omitempty"`
+
+		// SuspendTime SuspendTime (GLOBAL if both set and infinite are false)
+		SuspendTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"suspend_time,omitempty"`
+		Timeouts *struct {
+			// Resume ResumeTimeout (GLOBAL if both set and infinite are false)
+			Resume *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"resume,omitempty"`
+
+			// Suspend SuspendTimeout (GLOBAL if both set and infinite are false)
+			Suspend *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"suspend,omitempty"`
+		} `json:"timeouts,omitempty"`
+		Tres *struct {
+			// BillingWeights TRESBillingWeights
+			BillingWeights *string `json:"billing_weights,omitempty"`
+
+			// Configured TRES
+			Configured *string `json:"configured,omitempty"`
+		} `json:"tres,omitempty"`
+	} `json:"partitions"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Dbv0039TresUpdate defines model for dbv0.0.39_tres_update.
-type Dbv0039TresUpdate struct {
-	Tres *V0039TresList `json:"tres,omitempty"`
+// V0041OpenapiPartitionRespPartitionsMaximumsOversubscribeFlags defines model for V0041OpenapiPartitionResp.Partitions.Maximums.Oversubscribe.Flags.
+type V0041OpenapiPartitionRespPartitionsMaximumsOversubscribeFlags string
+
+// V0041OpenapiPartitionRespPartitionsPartitionState defines model for V0041OpenapiPartitionResp.Partitions.Partition.State.
+type V0041OpenapiPartitionRespPartitionsPartitionState string
+
+// V0041OpenapiPartitionRespPartitionsSelectType defines model for V0041OpenapiPartitionResp.Partitions.SelectType.
+type V0041OpenapiPartitionRespPartitionsSelectType string
+
+// V0041OpenapiReservationResp defines model for v0.0.41_openapi_reservation_resp.
+type V0041OpenapiReservationResp struct {
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// LastUpdate Time of last reservation change (UNIX timestamp)
+	LastUpdate struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
+
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int64 `json:"number,omitempty"`
+
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"last_update"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Reservations List of reservations
+	Reservations []struct {
+		// Accounts Comma separated list of permitted accounts
+		Accounts *string `json:"accounts,omitempty"`
+
+		// BurstBuffer BurstBuffer
+		BurstBuffer *string `json:"burst_buffer,omitempty"`
+
+		// CoreCount CoreCnt
+		CoreCount *int32 `json:"core_count,omitempty"`
+
+		// CoreSpecializations Reserved cores specification
+		CoreSpecializations *[]struct {
+			// Core IDs of reserved cores
+			Core *string `json:"core,omitempty"`
+
+			// Node Name of reserved node
+			Node *string `json:"node,omitempty"`
+		} `json:"core_specializations,omitempty"`
+
+		// EndTime EndTime (UNIX timestamp)
+		EndTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"end_time,omitempty"`
+
+		// Features Features
+		Features *string `json:"features,omitempty"`
+
+		// Flags Flags associated with the reservation
+		Flags *[]V0041OpenapiReservationRespReservationsFlags `json:"flags,omitempty"`
+
+		// Groups Groups
+		Groups *string `json:"groups,omitempty"`
+
+		// Licenses Licenses
+		Licenses *string `json:"licenses,omitempty"`
+
+		// MaxStartDelay MaxStartDelay in seconds
+		MaxStartDelay *int32 `json:"max_start_delay,omitempty"`
+
+		// Name ReservationName
+		Name *string `json:"name,omitempty"`
+
+		// NodeCount NodeCnt
+		NodeCount *int32 `json:"node_count,omitempty"`
+
+		// NodeList Nodes
+		NodeList *string `json:"node_list,omitempty"`
+
+		// Partition PartitionName
+		Partition      *string `json:"partition,omitempty"`
+		PurgeCompleted *struct {
+			// Time If PURGE_COMP flag is set, the number of seconds this reservation will sit idle until it is revoked
+			Time *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"time,omitempty"`
+		} `json:"purge_completed,omitempty"`
+
+		// StartTime StartTime (UNIX timestamp)
+		StartTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"start_time,omitempty"`
+
+		// Tres Comma separated list of required TRES
+		Tres *string `json:"tres,omitempty"`
+
+		// Users Comma separated list of permitted users
+		Users *string `json:"users,omitempty"`
+
+		// Watts 32 bit integer number with flags
+		// Deprecated:
+		Watts *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"watts,omitempty"`
+	} `json:"reservations"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Dbv0039UpdateQos defines model for dbv0.0.39_update_qos.
-type Dbv0039UpdateQos struct {
-	Qos *V0039QosList `json:"qos,omitempty"`
+// V0041OpenapiReservationRespReservationsFlags defines model for V0041OpenapiReservationResp.Reservations.Flags.
+type V0041OpenapiReservationRespReservationsFlags string
+
+// V0041OpenapiResp defines model for v0.0.41_openapi_resp.
+type V0041OpenapiResp struct {
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Dbv0039UpdateUsers defines model for dbv0.0.39_update_users.
-type Dbv0039UpdateUsers struct {
-	Users *V0039UserList `json:"users,omitempty"`
+// V0041OpenapiSlurmdbdConfigResp defines model for v0.0.41_openapi_slurmdbd_config_resp.
+type V0041OpenapiSlurmdbdConfigResp struct {
+	// Accounts Accounts
+	Accounts *[]struct {
+		// Associations Associations involving this account (only populated if requested)
+		Associations *[]struct {
+			// Account Account
+			Account *string `json:"account,omitempty"`
+
+			// Cluster Cluster
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Id Numeric association ID
+			Id *int32 `json:"id,omitempty"`
+
+			// Partition Partition
+			Partition *string `json:"partition,omitempty"`
+
+			// User User name
+			User string `json:"user"`
+		} `json:"associations,omitempty"`
+
+		// Coordinators List of users that are a coordinator of this account (only populated if requested)
+		Coordinators *[]struct {
+			// Direct Indicates whether the coordinator was directly assigned to this account
+			Direct *bool `json:"direct,omitempty"`
+
+			// Name User name
+			Name string `json:"name"`
+		} `json:"coordinators,omitempty"`
+
+		// Description Arbitrary string describing the account
+		Description string `json:"description"`
+
+		// Flags Flags associated with the account
+		Flags *[]V0041OpenapiSlurmdbdConfigRespAccountsFlags `json:"flags,omitempty"`
+
+		// Name Account name
+		Name string `json:"name"`
+
+		// Organization Organization to which the account belongs
+		Organization string `json:"organization"`
+	} `json:"accounts,omitempty"`
+
+	// Associations Associations
+	Associations *[]struct {
+		// Account Account
+		Account *string `json:"account,omitempty"`
+
+		// Accounting Accounting records containing related resource usage
+		Accounting *[]struct {
+			// TRES Trackable resources
+			TRES *struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"TRES,omitempty"`
+			Allocated *struct {
+				// Seconds Number of cpu seconds allocated
+				Seconds *int64 `json:"seconds,omitempty"`
+			} `json:"allocated,omitempty"`
+
+			// Id Association ID or Workload characterization key ID
+			Id *int32 `json:"id,omitempty"`
+
+			// Start When the record was started
+			Start *int64 `json:"start,omitempty"`
+		} `json:"accounting,omitempty"`
+
+		// Cluster Cluster name
+		Cluster *string `json:"cluster,omitempty"`
+
+		// Comment Arbitrary comment
+		Comment *string `json:"comment,omitempty"`
+		Default *struct {
+			// Qos Default QOS
+			Qos *string `json:"qos,omitempty"`
+		} `json:"default,omitempty"`
+
+		// Flags Flags on the association
+		Flags *[]V0041OpenapiSlurmdbdConfigRespAssociationsFlags `json:"flags,omitempty"`
+
+		// Id Unique ID
+		Id *int32 `json:"id,omitempty"`
+
+		// IsDefault Is default association for user
+		IsDefault *bool `json:"is_default,omitempty"`
+
+		// Lineage Complete path up the hierarchy to the root association
+		Lineage *string `json:"lineage,omitempty"`
+		Max     *struct {
+			Jobs *struct {
+				// Accruing MaxJobsAccrue
+				Accruing *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"accruing,omitempty"`
+
+				// Active MaxJobs
+				Active *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"active,omitempty"`
+				Per *struct {
+					// Accruing GrpJobsAccrue
+					Accruing *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"accruing,omitempty"`
+
+					// Count GrpJobs
+					Count *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"count,omitempty"`
+
+					// Submitted GrpSubmitJobs
+					Submitted *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"submitted,omitempty"`
+
+					// WallClock MaxWallDurationPerJob
+					WallClock *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"wall_clock,omitempty"`
+				} `json:"per,omitempty"`
+
+				// Total MaxSubmitJobs
+				Total *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"total,omitempty"`
+			} `json:"jobs,omitempty"`
+			Per *struct {
+				Account *struct {
+					// WallClock GrpWall
+					WallClock *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"wall_clock,omitempty"`
+				} `json:"account,omitempty"`
+			} `json:"per,omitempty"`
+			Tres *struct {
+				Group *struct {
+					// Active GrpTRESRunMins
+					Active *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"active,omitempty"`
+
+					// Minutes GrpTRESMins
+					Minutes *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"minutes,omitempty"`
+				} `json:"group,omitempty"`
+				Minutes *struct {
+					Per *struct {
+						// Job MaxTRESMinsPerJob
+						Job *[]struct {
+							// Count TRES count (0 if listed generically)
+							Count *int64 `json:"count,omitempty"`
+
+							// Id ID used in database
+							Id *int32 `json:"id,omitempty"`
+
+							// Name TRES name (if applicable)
+							Name *string `json:"name,omitempty"`
+
+							// Type TRES type (CPU, MEM, etc)
+							Type string `json:"type"`
+						} `json:"job,omitempty"`
+					} `json:"per,omitempty"`
+
+					// Total MaxTRESMinsPerJob
+					Total *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"total,omitempty"`
+				} `json:"minutes,omitempty"`
+				Per *struct {
+					// Job MaxTRESPerJob
+					Job *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"job,omitempty"`
+
+					// Node MaxTRESPerNode
+					Node *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"node,omitempty"`
+				} `json:"per,omitempty"`
+
+				// Total GrpTRES
+				Total *[]struct {
+					// Count TRES count (0 if listed generically)
+					Count *int64 `json:"count,omitempty"`
+
+					// Id ID used in database
+					Id *int32 `json:"id,omitempty"`
+
+					// Name TRES name (if applicable)
+					Name *string `json:"name,omitempty"`
+
+					// Type TRES type (CPU, MEM, etc)
+					Type string `json:"type"`
+				} `json:"total,omitempty"`
+			} `json:"tres,omitempty"`
+		} `json:"max,omitempty"`
+		Min *struct {
+			// PriorityThreshold MinPrioThreshold
+			PriorityThreshold *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"priority_threshold,omitempty"`
+		} `json:"min,omitempty"`
+
+		// ParentAccount Name of parent account
+		ParentAccount *string `json:"parent_account,omitempty"`
+
+		// Partition Partition name
+		Partition *string `json:"partition,omitempty"`
+
+		// Priority Association priority factor
+		Priority *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"priority,omitempty"`
+
+		// Qos List of available QOS names
+		Qos *[]string `json:"qos,omitempty"`
+
+		// SharesRaw Allocated shares used for fairshare calculation
+		SharesRaw *int32 `json:"shares_raw,omitempty"`
+
+		// User User name
+		User string `json:"user"`
+	} `json:"associations,omitempty"`
+
+	// Clusters Clusters
+	Clusters *[]struct {
+		Associations *struct {
+			// Root Root association information
+			Root *struct {
+				// Account Account
+				Account *string `json:"account,omitempty"`
+
+				// Cluster Cluster
+				Cluster *string `json:"cluster,omitempty"`
+
+				// Id Numeric association ID
+				Id *int32 `json:"id,omitempty"`
+
+				// Partition Partition
+				Partition *string `json:"partition,omitempty"`
+
+				// User User name
+				User string `json:"user"`
+			} `json:"root,omitempty"`
+		} `json:"associations,omitempty"`
+		Controller *struct {
+			// Host ControlHost
+			Host *string `json:"host,omitempty"`
+
+			// Port ControlPort
+			Port *int32 `json:"port,omitempty"`
+		} `json:"controller,omitempty"`
+
+		// Flags Flags
+		Flags *[]V0041OpenapiSlurmdbdConfigRespClustersFlags `json:"flags,omitempty"`
+
+		// Name ClusterName
+		Name *string `json:"name,omitempty"`
+
+		// Nodes Node names
+		Nodes *string `json:"nodes,omitempty"`
+
+		// RpcVersion RPC version used in the cluster
+		RpcVersion *int32 `json:"rpc_version,omitempty"`
+		// Deprecated:
+		SelectPlugin *string `json:"select_plugin,omitempty"`
+
+		// Tres Trackable resources
+		Tres *[]struct {
+			// Count TRES count (0 if listed generically)
+			Count *int64 `json:"count,omitempty"`
+
+			// Id ID used in database
+			Id *int32 `json:"id,omitempty"`
+
+			// Name TRES name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type TRES type (CPU, MEM, etc)
+			Type string `json:"type"`
+		} `json:"tres,omitempty"`
+	} `json:"clusters,omitempty"`
+
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Instances Instances
+	Instances *[]struct {
+		// Cluster Cluster name
+		Cluster *string `json:"cluster,omitempty"`
+
+		// Extra Arbitrary string used for node filtering if extra constraints are enabled
+		Extra *string `json:"extra,omitempty"`
+
+		// InstanceId Cloud instance ID
+		InstanceId *string `json:"instance_id,omitempty"`
+
+		// InstanceType Cloud instance type
+		InstanceType *string `json:"instance_type,omitempty"`
+
+		// NodeName NodeName
+		NodeName *string `json:"node_name,omitempty"`
+		Time     *struct {
+			// TimeEnd When the instance will end (UNIX timestamp)
+			TimeEnd *int64 `json:"time_end,omitempty"`
+
+			// TimeStart When the instance will start (UNIX timestamp)
+			TimeStart *int64 `json:"time_start,omitempty"`
+		} `json:"time,omitempty"`
+	} `json:"instances,omitempty"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Qos QOS
+	Qos *[]struct {
+		// Description Arbitrary description
+		Description *string `json:"description,omitempty"`
+
+		// Flags Flags, to avoid modifying current values specify NOT_SET
+		Flags *[]V0041OpenapiSlurmdbdConfigRespQosFlags `json:"flags,omitempty"`
+
+		// Id Unique ID
+		Id     *int32 `json:"id,omitempty"`
+		Limits *struct {
+			// Factor LimitFactor
+			Factor *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *float64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"factor,omitempty"`
+
+			// GraceTime GraceTime
+			GraceTime *int32 `json:"grace_time,omitempty"`
+			Max       *struct {
+				Accruing *struct {
+					Per *struct {
+						// Account MaxJobsAccruePerAccount
+						Account *struct {
+							// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+							Infinite *bool `json:"infinite,omitempty"`
+
+							// Number If "set" is True the number will be set with value; otherwise ignore number contents
+							Number *int32 `json:"number,omitempty"`
+
+							// Set True if number has been set; False if number is unset
+							Set *bool `json:"set,omitempty"`
+						} `json:"account,omitempty"`
+
+						// User MaxJobsAccruePerUser
+						User *struct {
+							// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+							Infinite *bool `json:"infinite,omitempty"`
+
+							// Number If "set" is True the number will be set with value; otherwise ignore number contents
+							Number *int32 `json:"number,omitempty"`
+
+							// Set True if number has been set; False if number is unset
+							Set *bool `json:"set,omitempty"`
+						} `json:"user,omitempty"`
+					} `json:"per,omitempty"`
+				} `json:"accruing,omitempty"`
+				ActiveJobs *struct {
+					// Accruing GrpJobsAccrue
+					Accruing *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"accruing,omitempty"`
+
+					// Count GrpJobs
+					Count *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"count,omitempty"`
+				} `json:"active_jobs,omitempty"`
+				Jobs *struct {
+					ActiveJobs *struct {
+						Per *struct {
+							// Account MaxJobsPerAccount
+							Account *struct {
+								// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+								Infinite *bool `json:"infinite,omitempty"`
+
+								// Number If "set" is True the number will be set with value; otherwise ignore number contents
+								Number *int32 `json:"number,omitempty"`
+
+								// Set True if number has been set; False if number is unset
+								Set *bool `json:"set,omitempty"`
+							} `json:"account,omitempty"`
+
+							// User MaxJobsPerUser
+							User *struct {
+								// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+								Infinite *bool `json:"infinite,omitempty"`
+
+								// Number If "set" is True the number will be set with value; otherwise ignore number contents
+								Number *int32 `json:"number,omitempty"`
+
+								// Set True if number has been set; False if number is unset
+								Set *bool `json:"set,omitempty"`
+							} `json:"user,omitempty"`
+						} `json:"per,omitempty"`
+					} `json:"active_jobs,omitempty"`
+					Per *struct {
+						// Account MaxSubmitJobsPerAccount
+						Account *struct {
+							// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+							Infinite *bool `json:"infinite,omitempty"`
+
+							// Number If "set" is True the number will be set with value; otherwise ignore number contents
+							Number *int32 `json:"number,omitempty"`
+
+							// Set True if number has been set; False if number is unset
+							Set *bool `json:"set,omitempty"`
+						} `json:"account,omitempty"`
+
+						// User MaxSubmitJobsPerUser
+						User *struct {
+							// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+							Infinite *bool `json:"infinite,omitempty"`
+
+							// Number If "set" is True the number will be set with value; otherwise ignore number contents
+							Number *int32 `json:"number,omitempty"`
+
+							// Set True if number has been set; False if number is unset
+							Set *bool `json:"set,omitempty"`
+						} `json:"user,omitempty"`
+					} `json:"per,omitempty"`
+				} `json:"jobs,omitempty"`
+				Tres *struct {
+					Minutes *struct {
+						Per *struct {
+							// Account MaxTRESRunMinsPerAccount
+							Account *[]struct {
+								// Count TRES count (0 if listed generically)
+								Count *int64 `json:"count,omitempty"`
+
+								// Id ID used in database
+								Id *int32 `json:"id,omitempty"`
+
+								// Name TRES name (if applicable)
+								Name *string `json:"name,omitempty"`
+
+								// Type TRES type (CPU, MEM, etc)
+								Type string `json:"type"`
+							} `json:"account,omitempty"`
+
+							// Job MaxTRESMinsPerJob
+							Job *[]struct {
+								// Count TRES count (0 if listed generically)
+								Count *int64 `json:"count,omitempty"`
+
+								// Id ID used in database
+								Id *int32 `json:"id,omitempty"`
+
+								// Name TRES name (if applicable)
+								Name *string `json:"name,omitempty"`
+
+								// Type TRES type (CPU, MEM, etc)
+								Type string `json:"type"`
+							} `json:"job,omitempty"`
+
+							// Qos GrpTRESRunMins
+							Qos *[]struct {
+								// Count TRES count (0 if listed generically)
+								Count *int64 `json:"count,omitempty"`
+
+								// Id ID used in database
+								Id *int32 `json:"id,omitempty"`
+
+								// Name TRES name (if applicable)
+								Name *string `json:"name,omitempty"`
+
+								// Type TRES type (CPU, MEM, etc)
+								Type string `json:"type"`
+							} `json:"qos,omitempty"`
+
+							// User MaxTRESRunMinsPerUser
+							User *[]struct {
+								// Count TRES count (0 if listed generically)
+								Count *int64 `json:"count,omitempty"`
+
+								// Id ID used in database
+								Id *int32 `json:"id,omitempty"`
+
+								// Name TRES name (if applicable)
+								Name *string `json:"name,omitempty"`
+
+								// Type TRES type (CPU, MEM, etc)
+								Type string `json:"type"`
+							} `json:"user,omitempty"`
+						} `json:"per,omitempty"`
+					} `json:"minutes,omitempty"`
+					Per *struct {
+						// Account MaxTRESPerAccount
+						Account *[]struct {
+							// Count TRES count (0 if listed generically)
+							Count *int64 `json:"count,omitempty"`
+
+							// Id ID used in database
+							Id *int32 `json:"id,omitempty"`
+
+							// Name TRES name (if applicable)
+							Name *string `json:"name,omitempty"`
+
+							// Type TRES type (CPU, MEM, etc)
+							Type string `json:"type"`
+						} `json:"account,omitempty"`
+
+						// Job MaxTRESPerJob
+						Job *[]struct {
+							// Count TRES count (0 if listed generically)
+							Count *int64 `json:"count,omitempty"`
+
+							// Id ID used in database
+							Id *int32 `json:"id,omitempty"`
+
+							// Name TRES name (if applicable)
+							Name *string `json:"name,omitempty"`
+
+							// Type TRES type (CPU, MEM, etc)
+							Type string `json:"type"`
+						} `json:"job,omitempty"`
+
+						// Node MaxTRESPerNode
+						Node *[]struct {
+							// Count TRES count (0 if listed generically)
+							Count *int64 `json:"count,omitempty"`
+
+							// Id ID used in database
+							Id *int32 `json:"id,omitempty"`
+
+							// Name TRES name (if applicable)
+							Name *string `json:"name,omitempty"`
+
+							// Type TRES type (CPU, MEM, etc)
+							Type string `json:"type"`
+						} `json:"node,omitempty"`
+
+						// User MaxTRESPerUser
+						User *[]struct {
+							// Count TRES count (0 if listed generically)
+							Count *int64 `json:"count,omitempty"`
+
+							// Id ID used in database
+							Id *int32 `json:"id,omitempty"`
+
+							// Name TRES name (if applicable)
+							Name *string `json:"name,omitempty"`
+
+							// Type TRES type (CPU, MEM, etc)
+							Type string `json:"type"`
+						} `json:"user,omitempty"`
+					} `json:"per,omitempty"`
+
+					// Total GrpTRES
+					Total *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"total,omitempty"`
+				} `json:"tres,omitempty"`
+				WallClock *struct {
+					Per *struct {
+						// Job MaxWallDurationPerJob
+						Job *struct {
+							// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+							Infinite *bool `json:"infinite,omitempty"`
+
+							// Number If "set" is True the number will be set with value; otherwise ignore number contents
+							Number *int32 `json:"number,omitempty"`
+
+							// Set True if number has been set; False if number is unset
+							Set *bool `json:"set,omitempty"`
+						} `json:"job,omitempty"`
+
+						// Qos GrpWall
+						Qos *struct {
+							// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+							Infinite *bool `json:"infinite,omitempty"`
+
+							// Number If "set" is True the number will be set with value; otherwise ignore number contents
+							Number *int32 `json:"number,omitempty"`
+
+							// Set True if number has been set; False if number is unset
+							Set *bool `json:"set,omitempty"`
+						} `json:"qos,omitempty"`
+					} `json:"per,omitempty"`
+				} `json:"wall_clock,omitempty"`
+			} `json:"max,omitempty"`
+			Min *struct {
+				// PriorityThreshold MinPrioThreshold
+				PriorityThreshold *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"priority_threshold,omitempty"`
+				Tres *struct {
+					Per *struct {
+						// Job MinTRES
+						Job *[]struct {
+							// Count TRES count (0 if listed generically)
+							Count *int64 `json:"count,omitempty"`
+
+							// Id ID used in database
+							Id *int32 `json:"id,omitempty"`
+
+							// Name TRES name (if applicable)
+							Name *string `json:"name,omitempty"`
+
+							// Type TRES type (CPU, MEM, etc)
+							Type string `json:"type"`
+						} `json:"job,omitempty"`
+					} `json:"per,omitempty"`
+				} `json:"tres,omitempty"`
+			} `json:"min,omitempty"`
+		} `json:"limits,omitempty"`
+
+		// Name Name
+		Name    *string `json:"name,omitempty"`
+		Preempt *struct {
+			// ExemptTime PreemptExemptTime
+			ExemptTime *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"exempt_time,omitempty"`
+
+			// List Other QOS's this QOS can preempt
+			List *[]string `json:"list,omitempty"`
+
+			// Mode PreemptMode
+			Mode *[]V0041OpenapiSlurmdbdConfigRespQosPreemptMode `json:"mode,omitempty"`
+		} `json:"preempt,omitempty"`
+
+		// Priority Priority
+		Priority *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"priority,omitempty"`
+
+		// UsageFactor UsageFactor
+		UsageFactor *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *float64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"usage_factor,omitempty"`
+
+		// UsageThreshold UsageThreshold
+		UsageThreshold *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *float64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"usage_threshold,omitempty"`
+	} `json:"qos,omitempty"`
+
+	// Tres TRES
+	Tres *[]struct {
+		// Count TRES count (0 if listed generically)
+		Count *int64 `json:"count,omitempty"`
+
+		// Id ID used in database
+		Id *int32 `json:"id,omitempty"`
+
+		// Name TRES name (if applicable)
+		Name *string `json:"name,omitempty"`
+
+		// Type TRES type (CPU, MEM, etc)
+		Type string `json:"type"`
+	} `json:"tres,omitempty"`
+
+	// Users Users
+	Users *[]struct {
+		// AdministratorLevel AdminLevel granted to the user
+		AdministratorLevel *[]V0041OpenapiSlurmdbdConfigRespUsersAdministratorLevel `json:"administrator_level,omitempty"`
+
+		// Associations Associations created for this user
+		Associations *[]struct {
+			// Account Account
+			Account *string `json:"account,omitempty"`
+
+			// Cluster Cluster
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Id Numeric association ID
+			Id *int32 `json:"id,omitempty"`
+
+			// Partition Partition
+			Partition *string `json:"partition,omitempty"`
+
+			// User User name
+			User string `json:"user"`
+		} `json:"associations,omitempty"`
+
+		// Coordinators Accounts this user is a coordinator for
+		Coordinators *[]struct {
+			// Direct Indicates whether the coordinator was directly assigned to this account
+			Direct *bool `json:"direct,omitempty"`
+
+			// Name User name
+			Name string `json:"name"`
+		} `json:"coordinators,omitempty"`
+		Default *struct {
+			// Account Default Account
+			Account *string `json:"account,omitempty"`
+
+			// Wckey Default WCKey
+			Wckey *string `json:"wckey,omitempty"`
+		} `json:"default,omitempty"`
+
+		// Flags Flags associated with user
+		Flags *[]V0041OpenapiSlurmdbdConfigRespUsersFlags `json:"flags,omitempty"`
+
+		// Name User name
+		Name string `json:"name"`
+
+		// OldName Previous user name
+		OldName *string `json:"old_name,omitempty"`
+
+		// Wckeys List of available WCKeys
+		Wckeys *[]struct {
+			// Accounting Accounting records containing related resource usage
+			Accounting *[]struct {
+				// TRES Trackable resources
+				TRES *struct {
+					// Count TRES count (0 if listed generically)
+					Count *int64 `json:"count,omitempty"`
+
+					// Id ID used in database
+					Id *int32 `json:"id,omitempty"`
+
+					// Name TRES name (if applicable)
+					Name *string `json:"name,omitempty"`
+
+					// Type TRES type (CPU, MEM, etc)
+					Type string `json:"type"`
+				} `json:"TRES,omitempty"`
+				Allocated *struct {
+					// Seconds Number of cpu seconds allocated
+					Seconds *int64 `json:"seconds,omitempty"`
+				} `json:"allocated,omitempty"`
+
+				// Id Association ID or Workload characterization key ID
+				Id *int32 `json:"id,omitempty"`
+
+				// Start When the record was started
+				Start *int64 `json:"start,omitempty"`
+			} `json:"accounting,omitempty"`
+
+			// Cluster Cluster name
+			Cluster string `json:"cluster"`
+
+			// Flags Flags associated with the WCKey
+			Flags *[]V0041OpenapiSlurmdbdConfigRespUsersWckeysFlags `json:"flags,omitempty"`
+
+			// Id Unique ID for this user-cluster-wckey combination
+			Id *int32 `json:"id,omitempty"`
+
+			// Name WCKey name
+			Name string `json:"name"`
+
+			// User User name
+			User string `json:"user"`
+		} `json:"wckeys,omitempty"`
+	} `json:"users,omitempty"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
+
+	// Wckeys WCKeys
+	Wckeys *[]struct {
+		// Accounting Accounting records containing related resource usage
+		Accounting *[]struct {
+			// TRES Trackable resources
+			TRES *struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"TRES,omitempty"`
+			Allocated *struct {
+				// Seconds Number of cpu seconds allocated
+				Seconds *int64 `json:"seconds,omitempty"`
+			} `json:"allocated,omitempty"`
+
+			// Id Association ID or Workload characterization key ID
+			Id *int32 `json:"id,omitempty"`
+
+			// Start When the record was started
+			Start *int64 `json:"start,omitempty"`
+		} `json:"accounting,omitempty"`
+
+		// Cluster Cluster name
+		Cluster string `json:"cluster"`
+
+		// Flags Flags associated with the WCKey
+		Flags *[]V0041OpenapiSlurmdbdConfigRespWckeysFlags `json:"flags,omitempty"`
+
+		// Id Unique ID for this user-cluster-wckey combination
+		Id *int32 `json:"id,omitempty"`
+
+		// Name WCKey name
+		Name string `json:"name"`
+
+		// User User name
+		User string `json:"user"`
+	} `json:"wckeys,omitempty"`
 }
 
-// Dbv0039UserInfo defines model for dbv0.0.39_user_info.
-type Dbv0039UserInfo struct {
-	// Errors Slurm errors
-	Errors *Dbv0039Errors `json:"errors,omitempty"`
-	Meta   *Dbv0039Meta   `json:"meta,omitempty"`
-	Users  *V0039UserList `json:"users,omitempty"`
+// V0041OpenapiSlurmdbdConfigRespAccountsFlags defines model for V0041OpenapiSlurmdbdConfigResp.Accounts.Flags.
+type V0041OpenapiSlurmdbdConfigRespAccountsFlags string
 
-	// Warnings Slurm warnings
-	Warnings *Dbv0039Warnings `json:"warnings,omitempty"`
+// V0041OpenapiSlurmdbdConfigRespAssociationsFlags defines model for V0041OpenapiSlurmdbdConfigResp.Associations.Flags.
+type V0041OpenapiSlurmdbdConfigRespAssociationsFlags string
+
+// V0041OpenapiSlurmdbdConfigRespClustersFlags defines model for V0041OpenapiSlurmdbdConfigResp.Clusters.Flags.
+type V0041OpenapiSlurmdbdConfigRespClustersFlags string
+
+// V0041OpenapiSlurmdbdConfigRespQosFlags defines model for V0041OpenapiSlurmdbdConfigResp.Qos.Flags.
+type V0041OpenapiSlurmdbdConfigRespQosFlags string
+
+// V0041OpenapiSlurmdbdConfigRespQosPreemptMode defines model for V0041OpenapiSlurmdbdConfigResp.Qos.Preempt.Mode.
+type V0041OpenapiSlurmdbdConfigRespQosPreemptMode string
+
+// V0041OpenapiSlurmdbdConfigRespUsersAdministratorLevel defines model for V0041OpenapiSlurmdbdConfigResp.Users.AdministratorLevel.
+type V0041OpenapiSlurmdbdConfigRespUsersAdministratorLevel string
+
+// V0041OpenapiSlurmdbdConfigRespUsersFlags defines model for V0041OpenapiSlurmdbdConfigResp.Users.Flags.
+type V0041OpenapiSlurmdbdConfigRespUsersFlags string
+
+// V0041OpenapiSlurmdbdConfigRespUsersWckeysFlags defines model for V0041OpenapiSlurmdbdConfigResp.Users.Wckeys.Flags.
+type V0041OpenapiSlurmdbdConfigRespUsersWckeysFlags string
+
+// V0041OpenapiSlurmdbdConfigRespWckeysFlags defines model for V0041OpenapiSlurmdbdConfigResp.Wckeys.Flags.
+type V0041OpenapiSlurmdbdConfigRespWckeysFlags string
+
+// V0041OpenapiSlurmdbdJobsResp defines model for v0.0.41_openapi_slurmdbd_jobs_resp.
+type V0041OpenapiSlurmdbdJobsResp struct {
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Jobs jobs
+	Jobs []struct {
+		// Account Account the job ran under
+		Account *string `json:"account,omitempty"`
+
+		// AllocationNodes List of nodes allocated to the job
+		AllocationNodes *int32 `json:"allocation_nodes,omitempty"`
+		Array           *struct {
+			// JobId Job ID of job array, or 0 if N/A
+			JobId  *int32 `json:"job_id,omitempty"`
+			Limits *struct {
+				Max *struct {
+					Running *struct {
+						// Tasks Maximum number of simultaneously running tasks, 0 if no limit
+						Tasks *int32 `json:"tasks,omitempty"`
+					} `json:"running,omitempty"`
+				} `json:"max,omitempty"`
+			} `json:"limits,omitempty"`
+
+			// Task String expression of task IDs in this record
+			Task *string `json:"task,omitempty"`
+
+			// TaskId Task ID of this task in job array
+			TaskId *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"task_id,omitempty"`
+		} `json:"array,omitempty"`
+
+		// Association Unique identifier for the association
+		Association *struct {
+			// Account Account
+			Account *string `json:"account,omitempty"`
+
+			// Cluster Cluster
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Id Numeric association ID
+			Id *int32 `json:"id,omitempty"`
+
+			// Partition Partition
+			Partition *string `json:"partition,omitempty"`
+
+			// User User name
+			User string `json:"user"`
+		} `json:"association,omitempty"`
+
+		// Block The name of the block to be used (used with Blue Gene systems)
+		Block *string `json:"block,omitempty"`
+
+		// Cluster Cluster name
+		Cluster *string `json:"cluster,omitempty"`
+		Comment *struct {
+			// Administrator Arbitrary comment made by administrator
+			Administrator *string `json:"administrator,omitempty"`
+
+			// Job Arbitrary comment made by user
+			Job *string `json:"job,omitempty"`
+
+			// System Arbitrary comment from slurmctld
+			System *string `json:"system,omitempty"`
+		} `json:"comment,omitempty"`
+
+		// Constraints Feature(s) the job requested as a constraint
+		Constraints *string `json:"constraints,omitempty"`
+
+		// Container Absolute path to OCI container bundle
+		Container *string `json:"container,omitempty"`
+
+		// DerivedExitCode Highest exit code of all job steps
+		DerivedExitCode *struct {
+			// ReturnCode Process return code (numeric)
+			ReturnCode *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"return_code,omitempty"`
+			Signal *struct {
+				// Id Signal sent to process (numeric)
+				Id *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"id,omitempty"`
+
+				// Name Signal sent to process
+				Name *string `json:"name,omitempty"`
+			} `json:"signal,omitempty"`
+
+			// Status Status given by return code
+			Status *[]V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatus `json:"status,omitempty"`
+		} `json:"derived_exit_code,omitempty"`
+
+		// ExitCode Exit code
+		ExitCode *struct {
+			// ReturnCode Process return code (numeric)
+			ReturnCode *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"return_code,omitempty"`
+			Signal *struct {
+				// Id Signal sent to process (numeric)
+				Id *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"id,omitempty"`
+
+				// Name Signal sent to process
+				Name *string `json:"name,omitempty"`
+			} `json:"signal,omitempty"`
+
+			// Status Status given by return code
+			Status *[]V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatus `json:"status,omitempty"`
+		} `json:"exit_code,omitempty"`
+
+		// Extra Arbitrary string used for node filtering if extra constraints are enabled
+		Extra *string `json:"extra,omitempty"`
+
+		// FailedNode Name of node that caused job failure
+		FailedNode *string `json:"failed_node,omitempty"`
+
+		// Flags Flags associated with the job
+		Flags *[]V0041OpenapiSlurmdbdJobsRespJobsFlags `json:"flags,omitempty"`
+
+		// Group Group ID of the user that owns the job
+		Group *string `json:"group,omitempty"`
+		Het   *struct {
+			// JobId Heterogeneous job ID, if applicable
+			JobId *int32 `json:"job_id,omitempty"`
+
+			// JobOffset Unique sequence number applied to this component of the heterogeneous job
+			JobOffset *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"job_offset,omitempty"`
+		} `json:"het,omitempty"`
+
+		// Hold Hold (true) or release (false) job
+		Hold *bool `json:"hold,omitempty"`
+
+		// JobId Job ID
+		JobId *int32 `json:"job_id,omitempty"`
+
+		// KillRequestUser User ID that requested termination of the job
+		KillRequestUser *string `json:"kill_request_user,omitempty"`
+
+		// Licenses License(s) required by the job
+		Licenses *string `json:"licenses,omitempty"`
+		Mcs      *struct {
+			// Label Multi-Category Security label on the job
+			Label *string `json:"label,omitempty"`
+		} `json:"mcs,omitempty"`
+
+		// Name Job name
+		Name *string `json:"name,omitempty"`
+
+		// Nodes Node(s) allocated to the job
+		Nodes *string `json:"nodes,omitempty"`
+
+		// Partition Partition assigned to the job
+		Partition *string `json:"partition,omitempty"`
+
+		// Priority Request specific job priority
+		Priority *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"priority,omitempty"`
+
+		// Qos Quality of Service assigned to the job
+		Qos      *string `json:"qos,omitempty"`
+		Required *struct {
+			// CPUs Minimum number of CPUs required
+			CPUs *int32 `json:"CPUs,omitempty"`
+
+			// MemoryPerCpu Minimum memory in megabytes per allocated CPU
+			MemoryPerCpu *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"memory_per_cpu,omitempty"`
+
+			// MemoryPerNode Minimum memory in megabytes per allocated node
+			MemoryPerNode *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"memory_per_node,omitempty"`
+		} `json:"required,omitempty"`
+		Reservation *struct {
+			// Id Unique identifier of requested reservation
+			Id *int32 `json:"id,omitempty"`
+
+			// Name Name of reservation to use
+			Name *string `json:"name,omitempty"`
+		} `json:"reservation,omitempty"`
+
+		// Script Job batch script; only the first component in a HetJob is populated or honored
+		Script *string `json:"script,omitempty"`
+		State  *struct {
+			// Current Current state
+			Current *[]V0041OpenapiSlurmdbdJobsRespJobsStateCurrent `json:"current,omitempty"`
+
+			// Reason Reason for previous Pending or Failed state
+			Reason *string `json:"reason,omitempty"`
+		} `json:"state,omitempty"`
+
+		// Stderr Path to stderr file
+		Stderr *string `json:"stderr,omitempty"`
+
+		// StderrExpanded Job stderr with expanded fields
+		StderrExpanded *string `json:"stderr_expanded,omitempty"`
+
+		// Stdin Path to stdin file
+		Stdin *string `json:"stdin,omitempty"`
+
+		// StdinExpanded Job stdin with expanded fields
+		StdinExpanded *string `json:"stdin_expanded,omitempty"`
+
+		// Stdout Path to stdout file
+		Stdout *string `json:"stdout,omitempty"`
+
+		// StdoutExpanded Job stdout with expanded fields
+		StdoutExpanded *string `json:"stdout_expanded,omitempty"`
+
+		// Steps Individual steps in the job
+		Steps *[]struct {
+			CPU *struct {
+				// Governor Requested CPU frequency governor in kHz
+				Governor           *string `json:"governor,omitempty"`
+				RequestedFrequency *struct {
+					// Max Maximum requested CPU frequency in kHz
+					Max *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"max,omitempty"`
+
+					// Min Minimum requested CPU frequency in kHz
+					Min *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"min,omitempty"`
+				} `json:"requested_frequency,omitempty"`
+			} `json:"CPU,omitempty"`
+
+			// ExitCode Exit code
+			ExitCode *struct {
+				// ReturnCode Process return code (numeric)
+				ReturnCode *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"return_code,omitempty"`
+				Signal *struct {
+					// Id Signal sent to process (numeric)
+					Id *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"id,omitempty"`
+
+					// Name Signal sent to process
+					Name *string `json:"name,omitempty"`
+				} `json:"signal,omitempty"`
+
+				// Status Status given by return code
+				Status *[]V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatus `json:"status,omitempty"`
+			} `json:"exit_code,omitempty"`
+
+			// KillRequestUser User ID that requested termination of the step
+			KillRequestUser *string `json:"kill_request_user,omitempty"`
+			Nodes           *struct {
+				// Count Number of nodes in the job step
+				Count *int32 `json:"count,omitempty"`
+
+				// List List of nodes used by the step
+				List *[]string `json:"list,omitempty"`
+
+				// Range Node(s) allocated to the job step
+				Range *string `json:"range,omitempty"`
+			} `json:"nodes,omitempty"`
+
+			// Pid Process ID
+			Pid *string `json:"pid,omitempty"`
+
+			// State Current state
+			State      *[]V0041OpenapiSlurmdbdJobsRespJobsStepsState `json:"state,omitempty"`
+			Statistics *struct {
+				CPU *struct {
+					// ActualFrequency Average weighted CPU frequency of all tasks in kHz
+					ActualFrequency *int64 `json:"actual_frequency,omitempty"`
+				} `json:"CPU,omitempty"`
+				Energy *struct {
+					// Consumed Total energy consumed by all tasks in a job in joules
+					Consumed *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int64 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"consumed,omitempty"`
+				} `json:"energy,omitempty"`
+			} `json:"statistics,omitempty"`
+			Step *struct {
+				// Id Step ID
+				Id *string `json:"id,omitempty"`
+
+				// Name Step name
+				Name *string `json:"name,omitempty"`
+			} `json:"step,omitempty"`
+			Task *struct {
+				// Distribution The layout of the step was when it was running
+				Distribution *string `json:"distribution,omitempty"`
+			} `json:"task,omitempty"`
+			Tasks *struct {
+				// Count Total number of tasks
+				Count *int32 `json:"count,omitempty"`
+			} `json:"tasks,omitempty"`
+			Time *struct {
+				// Elapsed Elapsed time in seconds
+				Elapsed *int32 `json:"elapsed,omitempty"`
+
+				// End End time (UNIX timestamp)
+				End *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int64 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"end,omitempty"`
+
+				// Start Time execution began (UNIX timestamp)
+				Start *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int64 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"start,omitempty"`
+
+				// Suspended Time in suspended state in seconds
+				Suspended *int32 `json:"suspended,omitempty"`
+				System    *struct {
+					// Microseconds System CPU time used by the step in microseconds
+					Microseconds *int32 `json:"microseconds,omitempty"`
+
+					// Seconds System CPU time used by the step in seconds
+					Seconds *int64 `json:"seconds,omitempty"`
+				} `json:"system,omitempty"`
+				Total *struct {
+					// Microseconds Total CPU time used by the step in microseconds
+					Microseconds *int32 `json:"microseconds,omitempty"`
+
+					// Seconds Total CPU time used by the step in seconds
+					Seconds *int64 `json:"seconds,omitempty"`
+				} `json:"total,omitempty"`
+				User *struct {
+					// Microseconds User CPU time used by the step in microseconds
+					Microseconds *int32 `json:"microseconds,omitempty"`
+
+					// Seconds User CPU time used by the step in seconds
+					Seconds *int64 `json:"seconds,omitempty"`
+				} `json:"user,omitempty"`
+			} `json:"time,omitempty"`
+			Tres *struct {
+				// Allocated Trackable resources allocated to the step
+				Allocated *[]struct {
+					// Count TRES count (0 if listed generically)
+					Count *int64 `json:"count,omitempty"`
+
+					// Id ID used in database
+					Id *int32 `json:"id,omitempty"`
+
+					// Name TRES name (if applicable)
+					Name *string `json:"name,omitempty"`
+
+					// Type TRES type (CPU, MEM, etc)
+					Type string `json:"type"`
+				} `json:"allocated,omitempty"`
+				Consumed *struct {
+					// Average Average TRES usage consumed among all tasks
+					Average *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"average,omitempty"`
+
+					// Max Maximum TRES usage consumed among all tasks
+					Max *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"max,omitempty"`
+
+					// Min Minimum TRES usage consumed among all tasks
+					Min *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"min,omitempty"`
+
+					// Total Total TRES usage consumed among all tasks
+					Total *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"total,omitempty"`
+				} `json:"consumed,omitempty"`
+				Requested *struct {
+					// Average Average TRES usage requested among all tasks
+					Average *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"average,omitempty"`
+
+					// Max Maximum TRES usage requested among all tasks
+					Max *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"max,omitempty"`
+
+					// Min Minimum TRES usage requested among all tasks
+					Min *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"min,omitempty"`
+
+					// Total Total TRES usage requested among all tasks
+					Total *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"total,omitempty"`
+				} `json:"requested,omitempty"`
+			} `json:"tres,omitempty"`
+		} `json:"steps,omitempty"`
+
+		// SubmitLine Command used to submit the job
+		SubmitLine *string `json:"submit_line,omitempty"`
+		Time       *struct {
+			// Elapsed Elapsed time in seconds
+			Elapsed *int32 `json:"elapsed,omitempty"`
+
+			// Eligible Time when the job became eligible to run (UNIX timestamp)
+			Eligible *int64 `json:"eligible,omitempty"`
+
+			// End End time (UNIX timestamp)
+			End *int64 `json:"end,omitempty"`
+
+			// Limit Maximum run time in minutes
+			Limit *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"limit,omitempty"`
+
+			// Planned Time required to start job after becoming eligible to run in seconds
+			Planned *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"planned,omitempty"`
+
+			// Start Time execution began (UNIX timestamp)
+			Start *int64 `json:"start,omitempty"`
+
+			// Submission Time when the job was submitted (UNIX timestamp)
+			Submission *int64 `json:"submission,omitempty"`
+
+			// Suspended Total time in suspended state in seconds
+			Suspended *int32 `json:"suspended,omitempty"`
+			System    *struct {
+				// Microseconds System CPU time used by the job in microseconds
+				Microseconds *int64 `json:"microseconds,omitempty"`
+
+				// Seconds System CPU time used by the job in seconds
+				Seconds *int64 `json:"seconds,omitempty"`
+			} `json:"system,omitempty"`
+			Total *struct {
+				// Microseconds Sum of System and User CPU time used by the job in microseconds
+				Microseconds *int64 `json:"microseconds,omitempty"`
+
+				// Seconds Sum of System and User CPU time used by the job in seconds
+				Seconds *int64 `json:"seconds,omitempty"`
+			} `json:"total,omitempty"`
+			User *struct {
+				// Microseconds User CPU time used by the job in microseconds
+				Microseconds *int64 `json:"microseconds,omitempty"`
+
+				// Seconds User CPU time used by the job in seconds
+				Seconds *int64 `json:"seconds,omitempty"`
+			} `json:"user,omitempty"`
+		} `json:"time,omitempty"`
+		Tres *struct {
+			// Allocated Trackable resources allocated to the job
+			Allocated *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"allocated,omitempty"`
+
+			// Requested Trackable resources requested by job
+			Requested *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"requested,omitempty"`
+		} `json:"tres,omitempty"`
+
+		// UsedGres Generic resources used by job
+		UsedGres *string `json:"used_gres,omitempty"`
+
+		// User User that owns the job
+		User *string `json:"user,omitempty"`
+
+		// Wckey Workload characterization key
+		Wckey *struct {
+			// Flags Active flags
+			Flags []V0041OpenapiSlurmdbdJobsRespJobsWckeyFlags `json:"flags"`
+
+			// Wckey WCKey name
+			Wckey string `json:"wckey"`
+		} `json:"wckey,omitempty"`
+
+		// WorkingDirectory Path to current working directory
+		WorkingDirectory *string `json:"working_directory,omitempty"`
+	} `json:"jobs"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Dbv0039Warning defines model for dbv0.0.39_warning.
-type Dbv0039Warning struct {
-	// Description Explanation of cause of error
-	Description *string `json:"description,omitempty"`
+// V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatus defines model for V0041OpenapiSlurmdbdJobsResp.Jobs.DerivedExitCode.Status.
+type V0041OpenapiSlurmdbdJobsRespJobsDerivedExitCodeStatus string
 
-	// Source Where error occurred in the source
-	Source *string `json:"source,omitempty"`
+// V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatus defines model for V0041OpenapiSlurmdbdJobsResp.Jobs.ExitCode.Status.
+type V0041OpenapiSlurmdbdJobsRespJobsExitCodeStatus string
 
-	// Warning Earning message
-	Warning *string `json:"warning,omitempty"`
+// V0041OpenapiSlurmdbdJobsRespJobsFlags defines model for V0041OpenapiSlurmdbdJobsResp.Jobs.Flags.
+type V0041OpenapiSlurmdbdJobsRespJobsFlags string
+
+// V0041OpenapiSlurmdbdJobsRespJobsStateCurrent defines model for V0041OpenapiSlurmdbdJobsResp.Jobs.State.Current.
+type V0041OpenapiSlurmdbdJobsRespJobsStateCurrent string
+
+// V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatus defines model for V0041OpenapiSlurmdbdJobsResp.Jobs.Steps.ExitCode.Status.
+type V0041OpenapiSlurmdbdJobsRespJobsStepsExitCodeStatus string
+
+// V0041OpenapiSlurmdbdJobsRespJobsStepsState defines model for V0041OpenapiSlurmdbdJobsResp.Jobs.Steps.State.
+type V0041OpenapiSlurmdbdJobsRespJobsStepsState string
+
+// V0041OpenapiSlurmdbdJobsRespJobsWckeyFlags defines model for V0041OpenapiSlurmdbdJobsResp.Jobs.Wckey.Flags.
+type V0041OpenapiSlurmdbdJobsRespJobsWckeyFlags string
+
+// V0041OpenapiSlurmdbdQosResp defines model for v0.0.41_openapi_slurmdbd_qos_resp.
+type V0041OpenapiSlurmdbdQosResp struct {
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Qos List of QOS
+	Qos []struct {
+		// Description Arbitrary description
+		Description *string `json:"description,omitempty"`
+
+		// Flags Flags, to avoid modifying current values specify NOT_SET
+		Flags *[]V0041OpenapiSlurmdbdQosRespQosFlags `json:"flags,omitempty"`
+
+		// Id Unique ID
+		Id     *int32 `json:"id,omitempty"`
+		Limits *struct {
+			// Factor LimitFactor
+			Factor *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *float64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"factor,omitempty"`
+
+			// GraceTime GraceTime
+			GraceTime *int32 `json:"grace_time,omitempty"`
+			Max       *struct {
+				Accruing *struct {
+					Per *struct {
+						// Account MaxJobsAccruePerAccount
+						Account *struct {
+							// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+							Infinite *bool `json:"infinite,omitempty"`
+
+							// Number If "set" is True the number will be set with value; otherwise ignore number contents
+							Number *int32 `json:"number,omitempty"`
+
+							// Set True if number has been set; False if number is unset
+							Set *bool `json:"set,omitempty"`
+						} `json:"account,omitempty"`
+
+						// User MaxJobsAccruePerUser
+						User *struct {
+							// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+							Infinite *bool `json:"infinite,omitempty"`
+
+							// Number If "set" is True the number will be set with value; otherwise ignore number contents
+							Number *int32 `json:"number,omitempty"`
+
+							// Set True if number has been set; False if number is unset
+							Set *bool `json:"set,omitempty"`
+						} `json:"user,omitempty"`
+					} `json:"per,omitempty"`
+				} `json:"accruing,omitempty"`
+				ActiveJobs *struct {
+					// Accruing GrpJobsAccrue
+					Accruing *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"accruing,omitempty"`
+
+					// Count GrpJobs
+					Count *struct {
+						// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+						Infinite *bool `json:"infinite,omitempty"`
+
+						// Number If "set" is True the number will be set with value; otherwise ignore number contents
+						Number *int32 `json:"number,omitempty"`
+
+						// Set True if number has been set; False if number is unset
+						Set *bool `json:"set,omitempty"`
+					} `json:"count,omitempty"`
+				} `json:"active_jobs,omitempty"`
+				Jobs *struct {
+					ActiveJobs *struct {
+						Per *struct {
+							// Account MaxJobsPerAccount
+							Account *struct {
+								// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+								Infinite *bool `json:"infinite,omitempty"`
+
+								// Number If "set" is True the number will be set with value; otherwise ignore number contents
+								Number *int32 `json:"number,omitempty"`
+
+								// Set True if number has been set; False if number is unset
+								Set *bool `json:"set,omitempty"`
+							} `json:"account,omitempty"`
+
+							// User MaxJobsPerUser
+							User *struct {
+								// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+								Infinite *bool `json:"infinite,omitempty"`
+
+								// Number If "set" is True the number will be set with value; otherwise ignore number contents
+								Number *int32 `json:"number,omitempty"`
+
+								// Set True if number has been set; False if number is unset
+								Set *bool `json:"set,omitempty"`
+							} `json:"user,omitempty"`
+						} `json:"per,omitempty"`
+					} `json:"active_jobs,omitempty"`
+					Per *struct {
+						// Account MaxSubmitJobsPerAccount
+						Account *struct {
+							// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+							Infinite *bool `json:"infinite,omitempty"`
+
+							// Number If "set" is True the number will be set with value; otherwise ignore number contents
+							Number *int32 `json:"number,omitempty"`
+
+							// Set True if number has been set; False if number is unset
+							Set *bool `json:"set,omitempty"`
+						} `json:"account,omitempty"`
+
+						// User MaxSubmitJobsPerUser
+						User *struct {
+							// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+							Infinite *bool `json:"infinite,omitempty"`
+
+							// Number If "set" is True the number will be set with value; otherwise ignore number contents
+							Number *int32 `json:"number,omitempty"`
+
+							// Set True if number has been set; False if number is unset
+							Set *bool `json:"set,omitempty"`
+						} `json:"user,omitempty"`
+					} `json:"per,omitempty"`
+				} `json:"jobs,omitempty"`
+				Tres *struct {
+					Minutes *struct {
+						Per *struct {
+							// Account MaxTRESRunMinsPerAccount
+							Account *[]struct {
+								// Count TRES count (0 if listed generically)
+								Count *int64 `json:"count,omitempty"`
+
+								// Id ID used in database
+								Id *int32 `json:"id,omitempty"`
+
+								// Name TRES name (if applicable)
+								Name *string `json:"name,omitempty"`
+
+								// Type TRES type (CPU, MEM, etc)
+								Type string `json:"type"`
+							} `json:"account,omitempty"`
+
+							// Job MaxTRESMinsPerJob
+							Job *[]struct {
+								// Count TRES count (0 if listed generically)
+								Count *int64 `json:"count,omitempty"`
+
+								// Id ID used in database
+								Id *int32 `json:"id,omitempty"`
+
+								// Name TRES name (if applicable)
+								Name *string `json:"name,omitempty"`
+
+								// Type TRES type (CPU, MEM, etc)
+								Type string `json:"type"`
+							} `json:"job,omitempty"`
+
+							// Qos GrpTRESRunMins
+							Qos *[]struct {
+								// Count TRES count (0 if listed generically)
+								Count *int64 `json:"count,omitempty"`
+
+								// Id ID used in database
+								Id *int32 `json:"id,omitempty"`
+
+								// Name TRES name (if applicable)
+								Name *string `json:"name,omitempty"`
+
+								// Type TRES type (CPU, MEM, etc)
+								Type string `json:"type"`
+							} `json:"qos,omitempty"`
+
+							// User MaxTRESRunMinsPerUser
+							User *[]struct {
+								// Count TRES count (0 if listed generically)
+								Count *int64 `json:"count,omitempty"`
+
+								// Id ID used in database
+								Id *int32 `json:"id,omitempty"`
+
+								// Name TRES name (if applicable)
+								Name *string `json:"name,omitempty"`
+
+								// Type TRES type (CPU, MEM, etc)
+								Type string `json:"type"`
+							} `json:"user,omitempty"`
+						} `json:"per,omitempty"`
+					} `json:"minutes,omitempty"`
+					Per *struct {
+						// Account MaxTRESPerAccount
+						Account *[]struct {
+							// Count TRES count (0 if listed generically)
+							Count *int64 `json:"count,omitempty"`
+
+							// Id ID used in database
+							Id *int32 `json:"id,omitempty"`
+
+							// Name TRES name (if applicable)
+							Name *string `json:"name,omitempty"`
+
+							// Type TRES type (CPU, MEM, etc)
+							Type string `json:"type"`
+						} `json:"account,omitempty"`
+
+						// Job MaxTRESPerJob
+						Job *[]struct {
+							// Count TRES count (0 if listed generically)
+							Count *int64 `json:"count,omitempty"`
+
+							// Id ID used in database
+							Id *int32 `json:"id,omitempty"`
+
+							// Name TRES name (if applicable)
+							Name *string `json:"name,omitempty"`
+
+							// Type TRES type (CPU, MEM, etc)
+							Type string `json:"type"`
+						} `json:"job,omitempty"`
+
+						// Node MaxTRESPerNode
+						Node *[]struct {
+							// Count TRES count (0 if listed generically)
+							Count *int64 `json:"count,omitempty"`
+
+							// Id ID used in database
+							Id *int32 `json:"id,omitempty"`
+
+							// Name TRES name (if applicable)
+							Name *string `json:"name,omitempty"`
+
+							// Type TRES type (CPU, MEM, etc)
+							Type string `json:"type"`
+						} `json:"node,omitempty"`
+
+						// User MaxTRESPerUser
+						User *[]struct {
+							// Count TRES count (0 if listed generically)
+							Count *int64 `json:"count,omitempty"`
+
+							// Id ID used in database
+							Id *int32 `json:"id,omitempty"`
+
+							// Name TRES name (if applicable)
+							Name *string `json:"name,omitempty"`
+
+							// Type TRES type (CPU, MEM, etc)
+							Type string `json:"type"`
+						} `json:"user,omitempty"`
+					} `json:"per,omitempty"`
+
+					// Total GrpTRES
+					Total *[]struct {
+						// Count TRES count (0 if listed generically)
+						Count *int64 `json:"count,omitempty"`
+
+						// Id ID used in database
+						Id *int32 `json:"id,omitempty"`
+
+						// Name TRES name (if applicable)
+						Name *string `json:"name,omitempty"`
+
+						// Type TRES type (CPU, MEM, etc)
+						Type string `json:"type"`
+					} `json:"total,omitempty"`
+				} `json:"tres,omitempty"`
+				WallClock *struct {
+					Per *struct {
+						// Job MaxWallDurationPerJob
+						Job *struct {
+							// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+							Infinite *bool `json:"infinite,omitempty"`
+
+							// Number If "set" is True the number will be set with value; otherwise ignore number contents
+							Number *int32 `json:"number,omitempty"`
+
+							// Set True if number has been set; False if number is unset
+							Set *bool `json:"set,omitempty"`
+						} `json:"job,omitempty"`
+
+						// Qos GrpWall
+						Qos *struct {
+							// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+							Infinite *bool `json:"infinite,omitempty"`
+
+							// Number If "set" is True the number will be set with value; otherwise ignore number contents
+							Number *int32 `json:"number,omitempty"`
+
+							// Set True if number has been set; False if number is unset
+							Set *bool `json:"set,omitempty"`
+						} `json:"qos,omitempty"`
+					} `json:"per,omitempty"`
+				} `json:"wall_clock,omitempty"`
+			} `json:"max,omitempty"`
+			Min *struct {
+				// PriorityThreshold MinPrioThreshold
+				PriorityThreshold *struct {
+					// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+					Infinite *bool `json:"infinite,omitempty"`
+
+					// Number If "set" is True the number will be set with value; otherwise ignore number contents
+					Number *int32 `json:"number,omitempty"`
+
+					// Set True if number has been set; False if number is unset
+					Set *bool `json:"set,omitempty"`
+				} `json:"priority_threshold,omitempty"`
+				Tres *struct {
+					Per *struct {
+						// Job MinTRES
+						Job *[]struct {
+							// Count TRES count (0 if listed generically)
+							Count *int64 `json:"count,omitempty"`
+
+							// Id ID used in database
+							Id *int32 `json:"id,omitempty"`
+
+							// Name TRES name (if applicable)
+							Name *string `json:"name,omitempty"`
+
+							// Type TRES type (CPU, MEM, etc)
+							Type string `json:"type"`
+						} `json:"job,omitempty"`
+					} `json:"per,omitempty"`
+				} `json:"tres,omitempty"`
+			} `json:"min,omitempty"`
+		} `json:"limits,omitempty"`
+
+		// Name Name
+		Name    *string `json:"name,omitempty"`
+		Preempt *struct {
+			// ExemptTime PreemptExemptTime
+			ExemptTime *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"exempt_time,omitempty"`
+
+			// List Other QOS's this QOS can preempt
+			List *[]string `json:"list,omitempty"`
+
+			// Mode PreemptMode
+			Mode *[]V0041OpenapiSlurmdbdQosRespQosPreemptMode `json:"mode,omitempty"`
+		} `json:"preempt,omitempty"`
+
+		// Priority Priority
+		Priority *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"priority,omitempty"`
+
+		// UsageFactor UsageFactor
+		UsageFactor *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *float64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"usage_factor,omitempty"`
+
+		// UsageThreshold UsageThreshold
+		UsageThreshold *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *float64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"usage_threshold,omitempty"`
+	} `json:"qos"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Dbv0039Warnings Slurm warnings
-type Dbv0039Warnings = []Dbv0039Warning
+// V0041OpenapiSlurmdbdQosRespQosFlags defines model for V0041OpenapiSlurmdbdQosResp.Qos.Flags.
+type V0041OpenapiSlurmdbdQosRespQosFlags string
 
-// Dbv0039WckeyInfo defines model for dbv0.0.39_wckey_info.
-type Dbv0039WckeyInfo struct {
-	// Errors Slurm errors
-	Errors *Dbv0039Errors  `json:"errors,omitempty"`
-	Meta   *Dbv0039Meta    `json:"meta,omitempty"`
-	Wckeys *V0039WckeyList `json:"wckeys,omitempty"`
+// V0041OpenapiSlurmdbdQosRespQosPreemptMode defines model for V0041OpenapiSlurmdbdQosResp.Qos.Preempt.Mode.
+type V0041OpenapiSlurmdbdQosRespQosPreemptMode string
+
+// V0041OpenapiTresResp defines model for v0.0.41_openapi_tres_resp.
+type V0041OpenapiTresResp struct {
+	// TRES TRES
+	TRES []struct {
+		// Count TRES count (0 if listed generically)
+		Count *int64 `json:"count,omitempty"`
+
+		// Id ID used in database
+		Id *int32 `json:"id,omitempty"`
+
+		// Name TRES name (if applicable)
+		Name *string `json:"name,omitempty"`
+
+		// Type TRES type (CPU, MEM, etc)
+		Type string `json:"type"`
+	} `json:"TRES"`
+
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// Status defines model for status.
-type Status struct {
-	// Errors Slurm errors
-	Errors *Dbv0039Errors `json:"errors,omitempty"`
-	Meta   *Dbv0039Meta   `json:"meta,omitempty"`
+// V0041OpenapiUsersResp defines model for v0.0.41_openapi_users_resp.
+type V0041OpenapiUsersResp struct {
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
 
-	// Warnings Slurm warnings
-	Warnings *Dbv0039Warnings `json:"warnings,omitempty"`
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Users users
+	Users []struct {
+		// AdministratorLevel AdminLevel granted to the user
+		AdministratorLevel *[]V0041OpenapiUsersRespUsersAdministratorLevel `json:"administrator_level,omitempty"`
+
+		// Associations Associations created for this user
+		Associations *[]struct {
+			// Account Account
+			Account *string `json:"account,omitempty"`
+
+			// Cluster Cluster
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Id Numeric association ID
+			Id *int32 `json:"id,omitempty"`
+
+			// Partition Partition
+			Partition *string `json:"partition,omitempty"`
+
+			// User User name
+			User string `json:"user"`
+		} `json:"associations,omitempty"`
+
+		// Coordinators Accounts this user is a coordinator for
+		Coordinators *[]struct {
+			// Direct Indicates whether the coordinator was directly assigned to this account
+			Direct *bool `json:"direct,omitempty"`
+
+			// Name User name
+			Name string `json:"name"`
+		} `json:"coordinators,omitempty"`
+		Default *struct {
+			// Account Default Account
+			Account *string `json:"account,omitempty"`
+
+			// Wckey Default WCKey
+			Wckey *string `json:"wckey,omitempty"`
+		} `json:"default,omitempty"`
+
+		// Flags Flags associated with user
+		Flags *[]V0041OpenapiUsersRespUsersFlags `json:"flags,omitempty"`
+
+		// Name User name
+		Name string `json:"name"`
+
+		// OldName Previous user name
+		OldName *string `json:"old_name,omitempty"`
+
+		// Wckeys List of available WCKeys
+		Wckeys *[]struct {
+			// Accounting Accounting records containing related resource usage
+			Accounting *[]struct {
+				// TRES Trackable resources
+				TRES *struct {
+					// Count TRES count (0 if listed generically)
+					Count *int64 `json:"count,omitempty"`
+
+					// Id ID used in database
+					Id *int32 `json:"id,omitempty"`
+
+					// Name TRES name (if applicable)
+					Name *string `json:"name,omitempty"`
+
+					// Type TRES type (CPU, MEM, etc)
+					Type string `json:"type"`
+				} `json:"TRES,omitempty"`
+				Allocated *struct {
+					// Seconds Number of cpu seconds allocated
+					Seconds *int64 `json:"seconds,omitempty"`
+				} `json:"allocated,omitempty"`
+
+				// Id Association ID or Workload characterization key ID
+				Id *int32 `json:"id,omitempty"`
+
+				// Start When the record was started
+				Start *int64 `json:"start,omitempty"`
+			} `json:"accounting,omitempty"`
+
+			// Cluster Cluster name
+			Cluster string `json:"cluster"`
+
+			// Flags Flags associated with the WCKey
+			Flags *[]V0041OpenapiUsersRespUsersWckeysFlags `json:"flags,omitempty"`
+
+			// Id Unique ID for this user-cluster-wckey combination
+			Id *int32 `json:"id,omitempty"`
+
+			// Name WCKey name
+			Name string `json:"name"`
+
+			// User User name
+			User string `json:"user"`
+		} `json:"wckeys,omitempty"`
+	} `json:"users"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 }
 
-// V0038Diag defines model for v0.0.38_diag.
-type V0038Diag struct {
-	// Errors slurm errors
-	Errors *[]V0038Error `json:"errors,omitempty"`
-	Meta   *V0038Meta    `json:"meta,omitempty"`
+// V0041OpenapiUsersRespUsersAdministratorLevel defines model for V0041OpenapiUsersResp.Users.AdministratorLevel.
+type V0041OpenapiUsersRespUsersAdministratorLevel string
 
-	// Statistics Slurm statistics
-	Statistics *struct {
-		// AgentCount Agent count
-		AgentCount *int `json:"agent_count,omitempty"`
+// V0041OpenapiUsersRespUsersFlags defines model for V0041OpenapiUsersResp.Users.Flags.
+type V0041OpenapiUsersRespUsersFlags string
 
-		// AgentQueueSize Agent queue size
-		AgentQueueSize *int `json:"agent_queue_size,omitempty"`
+// V0041OpenapiUsersRespUsersWckeysFlags defines model for V0041OpenapiUsersResp.Users.Wckeys.Flags.
+type V0041OpenapiUsersRespUsersWckeysFlags string
 
-		// AgentThreadCount Agent thread count
-		AgentThreadCount *int `json:"agent_thread_count,omitempty"`
+// V0041OpenapiWckeyResp defines model for v0.0.41_openapi_wckey_resp.
+type V0041OpenapiWckeyResp struct {
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
 
-		// BfActive Backfill Schedule currently active
-		BfActive *bool `json:"bf_active,omitempty"`
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
 
-		// BfBackfilledHetJobs Total backfilled heterogeneous job components
-		BfBackfilledHetJobs *int `json:"bf_backfilled_het_jobs,omitempty"`
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
 
-		// BfBackfilledJobs Total backfilled jobs (since last slurm start)
-		BfBackfilledJobs *int `json:"bf_backfilled_jobs,omitempty"`
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
 
-		// BfCycleCounter Backfill Schedule Total cycles
-		BfCycleCounter *int `json:"bf_cycle_counter,omitempty"`
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
 
-		// BfCycleLast Backfill Schedule Last cycle time
-		BfCycleLast *int `json:"bf_cycle_last,omitempty"`
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
 
-		// BfCycleMax Backfill Schedule Max cycle time
-		BfCycleMax *int `json:"bf_cycle_max,omitempty"`
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
 
-		// BfCycleMean Backfill Schedule Mean cycle
-		BfCycleMean *int `json:"bf_cycle_mean,omitempty"`
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
 
-		// BfDepthMean Backfill Schedule Depth Mean
-		BfDepthMean *int `json:"bf_depth_mean,omitempty"`
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
 
-		// BfDepthMeanTry Backfill Schedule Depth Mean (try sched)
-		BfDepthMeanTry *int `json:"bf_depth_mean_try,omitempty"`
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
 
-		// BfLastBackfilledJobs Total backfilled jobs (since last stats cycle start)
-		BfLastBackfilledJobs *int `json:"bf_last_backfilled_jobs,omitempty"`
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
 
-		// BfLastDepth Backfill Schedule Last depth cycle
-		BfLastDepth *int `json:"bf_last_depth,omitempty"`
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
 
-		// BfLastDepthTry Backfill Schedule Mean cycle (try sched)
-		BfLastDepthTry *int `json:"bf_last_depth_try,omitempty"`
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
 
-		// BfQueueLen Backfill Schedule Last queue length
-		BfQueueLen *int `json:"bf_queue_len,omitempty"`
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
 
-		// BfQueueLenMean Backfill Schedule Mean queue length
-		BfQueueLenMean *int `json:"bf_queue_len_mean,omitempty"`
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
 
-		// BfTableSize Backfill Schedule Last table size
-		BfTableSize *int `json:"bf_table_size,omitempty"`
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
 
-		// BfTableSizeMean Backfill Schedule Mean table size
-		BfTableSizeMean *int `json:"bf_table_size_mean,omitempty"`
+	// Wckeys wckeys
+	Wckeys []struct {
+		// Accounting Accounting records containing related resource usage
+		Accounting *[]struct {
+			// TRES Trackable resources
+			TRES *struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
 
-		// BfWhenLastCycle Last cycle timestamp
-		BfWhenLastCycle *int `json:"bf_when_last_cycle,omitempty"`
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
 
-		// DbdAgentQueueSize DBD Agent queue size
-		DbdAgentQueueSize *int `json:"dbd_agent_queue_size,omitempty"`
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
 
-		// GettimeofdayLatency Latency for 1000 calls to gettimeofday()
-		GettimeofdayLatency *int `json:"gettimeofday_latency,omitempty"`
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"TRES,omitempty"`
+			Allocated *struct {
+				// Seconds Number of cpu seconds allocated
+				Seconds *int64 `json:"seconds,omitempty"`
+			} `json:"allocated,omitempty"`
 
-		// JobStatesTs Job states timestamp
-		JobStatesTs *int `json:"job_states_ts,omitempty"`
+			// Id Association ID or Workload characterization key ID
+			Id *int32 `json:"id,omitempty"`
 
-		// JobsCanceled Job cancelled
-		JobsCanceled *int `json:"jobs_canceled,omitempty"`
+			// Start When the record was started
+			Start *int64 `json:"start,omitempty"`
+		} `json:"accounting,omitempty"`
 
-		// JobsCompleted Job completed
-		JobsCompleted *int `json:"jobs_completed,omitempty"`
+		// Cluster Cluster name
+		Cluster string `json:"cluster"`
 
-		// JobsFailed Job failed
-		JobsFailed *int `json:"jobs_failed,omitempty"`
+		// Flags Flags associated with the WCKey
+		Flags *[]V0041OpenapiWckeyRespWckeysFlags `json:"flags,omitempty"`
 
-		// JobsPending Job pending
-		JobsPending *int `json:"jobs_pending,omitempty"`
+		// Id Unique ID for this user-cluster-wckey combination
+		Id *int32 `json:"id,omitempty"`
 
-		// JobsRunning Job running
-		JobsRunning *int `json:"jobs_running,omitempty"`
+		// Name WCKey name
+		Name string `json:"name"`
 
-		// JobsStarted Job started
-		JobsStarted *int `json:"jobs_started,omitempty"`
-
-		// JobsSubmitted Job submitted
-		JobsSubmitted *int `json:"jobs_submitted,omitempty"`
-
-		// PartsPacked partition records packed
-		PartsPacked *int `json:"parts_packed,omitempty"`
-
-		// ReqTime generation time
-		ReqTime *int `json:"req_time,omitempty"`
-
-		// ReqTimeStart data since
-		ReqTimeStart *int `json:"req_time_start,omitempty"`
-
-		// RpcsByMessageType Remote Procedure Call statistics by message type
-		RpcsByMessageType *[]V0038DiagRpcm `json:"rpcs_by_message_type,omitempty"`
-
-		// RpcsByUser Remote Procedure Call statistics by user
-		RpcsByUser *[]V0038DiagRpcu `json:"rpcs_by_user,omitempty"`
-
-		// ScheduleCycleLast Main Schedule last cycle
-		ScheduleCycleLast *int `json:"schedule_cycle_last,omitempty"`
-
-		// ScheduleCycleMax Main Schedule max cycle
-		ScheduleCycleMax *int `json:"schedule_cycle_max,omitempty"`
-
-		// ScheduleCycleMean Average time for Schedule Max cycle
-		ScheduleCycleMean *int `json:"schedule_cycle_mean,omitempty"`
-
-		// ScheduleCycleMeanDepth Average depth for Schedule Max cycle
-		ScheduleCycleMeanDepth *int `json:"schedule_cycle_mean_depth,omitempty"`
-
-		// ScheduleCyclePerMinute Main Schedule Cycles per minute
-		ScheduleCyclePerMinute *int `json:"schedule_cycle_per_minute,omitempty"`
-
-		// ScheduleCycleTotal Main Schedule cycle iterations
-		ScheduleCycleTotal *int `json:"schedule_cycle_total,omitempty"`
-
-		// ScheduleQueueLength Main Schedule Last queue length
-		ScheduleQueueLength *int `json:"schedule_queue_length,omitempty"`
-
-		// ServerThreadCount Server thread count
-		ServerThreadCount *int `json:"server_thread_count,omitempty"`
-	} `json:"statistics,omitempty"`
+		// User User name
+		User string `json:"user"`
+	} `json:"wckeys"`
 }
 
-// V0038DiagRpcm defines model for v0.0.38_diag_rpcm.
-type V0038DiagRpcm struct {
-	// AverageTime average time
-	AverageTime *int `json:"average_time,omitempty"`
+// V0041OpenapiWckeyRespWckeysFlags defines model for V0041OpenapiWckeyResp.Wckeys.Flags.
+type V0041OpenapiWckeyRespWckeysFlags string
 
-	// Count rpc count
-	Count *int `json:"count,omitempty"`
+// SlurmV0041PostJobAllocateJSONBody defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBody struct {
+	// Hetjob HetJob description
+	Hetjob *[]struct {
+		// Account Account associated with the job
+		Account *string `json:"account,omitempty"`
 
-	// MessageType message type
-	MessageType *string `json:"message_type,omitempty"`
+		// AccountGatherFrequency Job accounting and profiling sampling intervals in seconds
+		AccountGatherFrequency *string `json:"account_gather_frequency,omitempty"`
 
-	// TotalTime total time
-	TotalTime *int `json:"total_time,omitempty"`
+		// AdminComment Arbitrary comment made by administrator
+		AdminComment *string `json:"admin_comment,omitempty"`
 
-	// TypeId message type id
-	TypeId *int `json:"type_id,omitempty"`
+		// AllocationNodeList Local node making the resource allocation
+		AllocationNodeList *string `json:"allocation_node_list,omitempty"`
+
+		// AllocationNodePort Port to send allocation confirmation to
+		AllocationNodePort *int32 `json:"allocation_node_port,omitempty"`
+
+		// Argv Arguments to the script
+		Argv *[]string `json:"argv,omitempty"`
+
+		// Array Job array index value specification
+		Array *string `json:"array,omitempty"`
+
+		// BatchFeatures Features required for batch script's node
+		BatchFeatures *string `json:"batch_features,omitempty"`
+
+		// BeginTime Defer the allocation of the job until the specified time (UNIX timestamp)
+		BeginTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"begin_time,omitempty"`
+
+		// BurstBuffer Burst buffer specifications
+		BurstBuffer *string `json:"burst_buffer,omitempty"`
+
+		// ClusterConstraint Required features that a federated cluster must have to have a sibling job submitted to it
+		ClusterConstraint *string `json:"cluster_constraint,omitempty"`
+
+		// Clusters Clusters that a federated job can run on
+		Clusters *string `json:"clusters,omitempty"`
+
+		// Comment Arbitrary comment made by user
+		Comment *string `json:"comment,omitempty"`
+
+		// Constraints Comma separated list of features that are required
+		Constraints *string `json:"constraints,omitempty"`
+
+		// Container Absolute path to OCI container bundle
+		Container *string `json:"container,omitempty"`
+
+		// ContainerId OCI container ID
+		ContainerId *string `json:"container_id,omitempty"`
+
+		// Contiguous True if job requires contiguous nodes
+		Contiguous *bool `json:"contiguous,omitempty"`
+
+		// CoreSpecification Specialized core count
+		CoreSpecification *int32 `json:"core_specification,omitempty"`
+
+		// CpuBinding Method for binding tasks to allocated CPUs
+		CpuBinding *string `json:"cpu_binding,omitempty"`
+
+		// CpuBindingFlags Flags for CPU binding
+		CpuBindingFlags *[]SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags `json:"cpu_binding_flags,omitempty"`
+
+		// CpuFrequency Requested CPU frequency range <p1>[-p2][:p3]
+		CpuFrequency *string `json:"cpu_frequency,omitempty"`
+
+		// CpusPerTask Number of CPUs required by each task
+		CpusPerTask *int32 `json:"cpus_per_task,omitempty"`
+
+		// CpusPerTres Semicolon delimited list of TRES=# values values indicating how many CPUs should be allocated for each specified TRES (currently only used for gres/gpu)
+		CpusPerTres *string `json:"cpus_per_tres,omitempty"`
+
+		// Crontab Specification for scrontab job
+		Crontab *struct {
+			// Command Command to run
+			Command *string `json:"command,omitempty"`
+
+			// DayOfMonth Ranged string specifying eligible day of month values (e.g. 0-10,29)
+			DayOfMonth *string `json:"day_of_month,omitempty"`
+
+			// DayOfWeek Ranged string specifying eligible day of week values (e.g.0-3,7)
+			DayOfWeek *string `json:"day_of_week,omitempty"`
+
+			// Flags Flags
+			Flags *[]SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlags `json:"flags,omitempty"`
+
+			// Hour Ranged string specifying eligible hour values (e.g. 0-5,23)
+			Hour *string `json:"hour,omitempty"`
+			Line *struct {
+				// End End of this entry in file
+				End *int32 `json:"end,omitempty"`
+
+				// Start Start of this entry in file
+				Start *int32 `json:"start,omitempty"`
+			} `json:"line,omitempty"`
+
+			// Minute Ranged string specifying eligible minute values (e.g. 0-10,50)
+			Minute *string `json:"minute,omitempty"`
+
+			// Month Ranged string specifying eligible month values (e.g. 0-5,12)
+			Month *string `json:"month,omitempty"`
+
+			// Specification Time specification (* means valid for all allowed values) - minute hour day_of_month month day_of_week
+			Specification *string `json:"specification,omitempty"`
+		} `json:"crontab,omitempty"`
+
+		// CurrentWorkingDirectory Working directory to use for the job
+		CurrentWorkingDirectory *string `json:"current_working_directory,omitempty"`
+
+		// Deadline Latest time that the job may start (UNIX timestamp)
+		Deadline *int64 `json:"deadline,omitempty"`
+
+		// DelayBoot Number of seconds after job eligible start that nodes will be rebooted to satisfy feature specification
+		DelayBoot *int32 `json:"delay_boot,omitempty"`
+
+		// Dependency Other jobs that must meet certain criteria before this job can start
+		Dependency *string `json:"dependency,omitempty"`
+
+		// Distribution Layout
+		Distribution *string `json:"distribution,omitempty"`
+
+		// DistributionPlaneSize Plane size specification when distribution specifies plane
+		DistributionPlaneSize *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"distribution_plane_size,omitempty"`
+
+		// EndTime Expected end time (UNIX timestamp)
+		EndTime *int64 `json:"end_time,omitempty"`
+
+		// Environment Environment variables to be set for the job
+		Environment *[]string `json:"environment,omitempty"`
+
+		// ExcludedNodes Comma separated list of nodes that may not be used
+		ExcludedNodes *[]string `json:"excluded_nodes,omitempty"`
+		// Deprecated:
+		Exclusive *[]SlurmV0041PostJobAllocateJSONBodyHetjobExclusive `json:"exclusive,omitempty"`
+
+		// Extra Arbitrary string used for node filtering if extra constraints are enabled
+		Extra *string `json:"extra,omitempty"`
+
+		// Flags Job flags
+		Flags *[]SlurmV0041PostJobAllocateJSONBodyHetjobFlags `json:"flags,omitempty"`
+
+		// GroupId Group ID of the user that owns the job
+		GroupId *string `json:"group_id,omitempty"`
+
+		// HetjobGroup Unique sequence number applied to this component of the heterogeneous job
+		HetjobGroup *int32 `json:"hetjob_group,omitempty"`
+
+		// Hold Hold (true) or release (false) job
+		Hold *bool `json:"hold,omitempty"`
+
+		// Immediate If true, exit if resources are not available within the time period specified
+		Immediate *bool `json:"immediate,omitempty"`
+
+		// JobId Job ID
+		JobId *int32 `json:"job_id,omitempty"`
+
+		// KillOnNodeFail If true, kill job on node failure
+		KillOnNodeFail *bool `json:"kill_on_node_fail,omitempty"`
+
+		// KillWarningDelay Number of seconds before end time to send the warning signal
+		KillWarningDelay *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"kill_warning_delay,omitempty"`
+
+		// KillWarningFlags Flags related to job signals
+		KillWarningFlags *[]SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags `json:"kill_warning_flags,omitempty"`
+
+		// KillWarningSignal Signal to send when approaching end time (e.g. "10" or "USR1")
+		KillWarningSignal *string `json:"kill_warning_signal,omitempty"`
+
+		// Licenses License(s) required by the job
+		Licenses *string `json:"licenses,omitempty"`
+
+		// MailType Mail event type(s)
+		MailType *[]SlurmV0041PostJobAllocateJSONBodyHetjobMailType `json:"mail_type,omitempty"`
+
+		// MailUser User to receive email notifications
+		MailUser *string `json:"mail_user,omitempty"`
+
+		// MaximumCpus Maximum number of CPUs required
+		MaximumCpus *int32 `json:"maximum_cpus,omitempty"`
+
+		// MaximumNodes Maximum node count
+		MaximumNodes *int32 `json:"maximum_nodes,omitempty"`
+
+		// McsLabel Multi-Category Security label on the job
+		McsLabel *string `json:"mcs_label,omitempty"`
+
+		// MemoryBinding Binding map for map/mask_cpu
+		MemoryBinding *string `json:"memory_binding,omitempty"`
+
+		// MemoryBindingType Method for binding tasks to memory
+		MemoryBindingType *[]SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingType `json:"memory_binding_type,omitempty"`
+
+		// MemoryPerCpu Minimum memory in megabytes per allocated CPU
+		MemoryPerCpu *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"memory_per_cpu,omitempty"`
+
+		// MemoryPerNode Minimum memory in megabytes per allocated CPU
+		MemoryPerNode *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"memory_per_node,omitempty"`
+
+		// MemoryPerTres Semicolon delimited list of TRES=# values indicating how much memory in megabytes should be allocated for each specified TRES (currently only used for gres/gpu)
+		MemoryPerTres *string `json:"memory_per_tres,omitempty"`
+
+		// MinimumBoardsPerNode Boards per node required
+		MinimumBoardsPerNode *int32 `json:"minimum_boards_per_node,omitempty"`
+
+		// MinimumCpus Minimum number of CPUs required
+		MinimumCpus *int32 `json:"minimum_cpus,omitempty"`
+
+		// MinimumCpusPerNode Minimum number of CPUs per node
+		MinimumCpusPerNode *int32 `json:"minimum_cpus_per_node,omitempty"`
+
+		// MinimumNodes Minimum node count
+		MinimumNodes *int32 `json:"minimum_nodes,omitempty"`
+
+		// MinimumSocketsPerBoard Sockets per board required
+		MinimumSocketsPerBoard *int32 `json:"minimum_sockets_per_board,omitempty"`
+
+		// Name Job name
+		Name *string `json:"name,omitempty"`
+
+		// Network Network specs for job step
+		Network *string `json:"network,omitempty"`
+
+		// Nice Requested job priority change
+		Nice *int32 `json:"nice,omitempty"`
+
+		// Nodes Node count range specification (e.g. 1-15:4)
+		Nodes *string `json:"nodes,omitempty"`
+
+		// NtasksPerTres Number of tasks that can access each GPU
+		NtasksPerTres *int32 `json:"ntasks_per_tres,omitempty"`
+
+		// OpenMode Open mode used for stdout and stderr files
+		OpenMode *[]SlurmV0041PostJobAllocateJSONBodyHetjobOpenMode `json:"open_mode,omitempty"`
+
+		// Overcommit Overcommit resources
+		Overcommit *bool `json:"overcommit,omitempty"`
+		// Deprecated:
+		Oversubscribe *bool `json:"oversubscribe,omitempty"`
+
+		// Partition Partition assigned to the job
+		Partition *string `json:"partition,omitempty"`
+		// Deprecated:
+		PowerFlags *[]interface{} `json:"power_flags,omitempty"`
+
+		// Prefer Comma separated list of features that are preferred but not required
+		Prefer *string `json:"prefer,omitempty"`
+
+		// Priority Request specific job priority
+		Priority *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"priority,omitempty"`
+
+		// Profile Profile used by the acct_gather_profile plugin
+		Profile *[]SlurmV0041PostJobAllocateJSONBodyHetjobProfile `json:"profile,omitempty"`
+
+		// Qos Quality of Service assigned to the job
+		Qos *string `json:"qos,omitempty"`
+
+		// Reboot Node reboot requested before start
+		Reboot *bool `json:"reboot,omitempty"`
+
+		// Requeue Determines whether the job may be requeued
+		Requeue *bool `json:"requeue,omitempty"`
+
+		// RequiredNodes Comma separated list of required nodes
+		RequiredNodes *[]string `json:"required_nodes,omitempty"`
+
+		// RequiredSwitches Maximum number of switches
+		RequiredSwitches *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"required_switches,omitempty"`
+
+		// Reservation Name of reservation to use
+		Reservation *string `json:"reservation,omitempty"`
+
+		// ReservePorts Port to send various notification msg to
+		ReservePorts *int32 `json:"reserve_ports,omitempty"`
+
+		// ResvMpiPorts Number of reserved communication ports; can only be used if slurmstepd step manager is enabled
+		ResvMpiPorts *int32 `json:"resv_mpi_ports,omitempty"`
+		Rlimits      *struct {
+			// As Address space limit.
+			As *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"as,omitempty"`
+
+			// Core Largest core file that can be created, in bytes.
+			Core *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"core,omitempty"`
+
+			// Cpu Per-process CPU limit, in seconds.
+			Cpu *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"cpu,omitempty"`
+
+			// Data Maximum size of data segment, in bytes.
+			Data *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"data,omitempty"`
+
+			// Fsize Largest file that can be created, in bytes.
+			Fsize *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"fsize,omitempty"`
+
+			// Memlock Locked-in-memory address space
+			Memlock *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"memlock,omitempty"`
+
+			// Nofile Number of open files.
+			Nofile *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"nofile,omitempty"`
+
+			// Nproc Number of processes.
+			Nproc *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"nproc,omitempty"`
+
+			// Rss Largest resident set size, in bytes. This affects swapping; processes that are exceeding their resident set size will be more likely to have physical memory taken from them.
+			Rss *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"rss,omitempty"`
+
+			// Stack Maximum size of stack segment, in bytes.
+			Stack *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"stack,omitempty"`
+		} `json:"rlimits,omitempty"`
+
+		// Script Job batch script; only the first component in a HetJob is populated or honored
+		Script *string `json:"script,omitempty"`
+
+		// SegmentSize Segment size for topology/block
+		SegmentSize *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"segment_size,omitempty"`
+
+		// SelinuxContext SELinux context
+		SelinuxContext *string `json:"selinux_context,omitempty"`
+
+		// Shared How the job can share resources with other jobs, if at all
+		Shared *[]SlurmV0041PostJobAllocateJSONBodyHetjobShared `json:"shared,omitempty"`
+
+		// SiteFactor Site-specific priority factor
+		SiteFactor *int32 `json:"site_factor,omitempty"`
+
+		// SocketsPerNode Sockets per node required
+		SocketsPerNode *int32 `json:"sockets_per_node,omitempty"`
+
+		// SpankEnvironment Environment variables for job prolog/epilog scripts as set by SPANK plugins
+		SpankEnvironment *[]string `json:"spank_environment,omitempty"`
+
+		// StandardError Path to stderr file
+		StandardError *string `json:"standard_error,omitempty"`
+
+		// StandardInput Path to stdin file
+		StandardInput *string `json:"standard_input,omitempty"`
+
+		// StandardOutput Path to stdout file
+		StandardOutput *string `json:"standard_output,omitempty"`
+
+		// Tasks Number of tasks
+		Tasks *int32 `json:"tasks,omitempty"`
+
+		// TasksPerBoard Number of tasks to invoke on each board
+		TasksPerBoard *int32 `json:"tasks_per_board,omitempty"`
+
+		// TasksPerCore Number of tasks to invoke on each core
+		TasksPerCore *int32 `json:"tasks_per_core,omitempty"`
+
+		// TasksPerNode Number of tasks to invoke on each node
+		TasksPerNode *int32 `json:"tasks_per_node,omitempty"`
+
+		// TasksPerSocket Number of tasks to invoke on each socket
+		TasksPerSocket *int32 `json:"tasks_per_socket,omitempty"`
+
+		// TemporaryDiskPerNode Minimum tmp disk space required per node
+		TemporaryDiskPerNode *int32 `json:"temporary_disk_per_node,omitempty"`
+
+		// ThreadSpecification Specialized thread count
+		ThreadSpecification *int32 `json:"thread_specification,omitempty"`
+
+		// ThreadsPerCore Threads per core required
+		ThreadsPerCore *int32 `json:"threads_per_core,omitempty"`
+
+		// TimeLimit Maximum run time in minutes
+		TimeLimit *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"time_limit,omitempty"`
+
+		// TimeMinimum Minimum run time in minutes
+		TimeMinimum *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"time_minimum,omitempty"`
+
+		// TresBind Task to TRES binding directives
+		TresBind *string `json:"tres_bind,omitempty"`
+
+		// TresFreq TRES frequency directives
+		TresFreq *string `json:"tres_freq,omitempty"`
+
+		// TresPerJob Comma separated list of TRES=# values to be allocated for every job
+		TresPerJob *string `json:"tres_per_job,omitempty"`
+
+		// TresPerNode Comma separated list of TRES=# values to be allocated for every node
+		TresPerNode *string `json:"tres_per_node,omitempty"`
+
+		// TresPerSocket Comma separated list of TRES=# values to be allocated for every socket
+		TresPerSocket *string `json:"tres_per_socket,omitempty"`
+
+		// TresPerTask Comma separated list of TRES=# values to be allocated for every task
+		TresPerTask *string `json:"tres_per_task,omitempty"`
+
+		// UserId User ID that owns the job
+		UserId *string `json:"user_id,omitempty"`
+
+		// WaitAllNodes If true, wait to start until after all nodes have booted
+		WaitAllNodes *bool `json:"wait_all_nodes,omitempty"`
+
+		// WaitForSwitch Maximum time to wait for switches in seconds
+		WaitForSwitch *int32 `json:"wait_for_switch,omitempty"`
+
+		// Wckey Workload characterization key
+		Wckey *string `json:"wckey,omitempty"`
+
+		// X11 X11 forwarding options
+		X11 *[]SlurmV0041PostJobAllocateJSONBodyHetjobX11 `json:"x11,omitempty"`
+
+		// X11MagicCookie Magic cookie for X11 forwarding
+		X11MagicCookie *string `json:"x11_magic_cookie,omitempty"`
+
+		// X11TargetHost Hostname or UNIX socket if x11_target_port=0
+		X11TargetHost *string `json:"x11_target_host,omitempty"`
+
+		// X11TargetPort TCP port
+		X11TargetPort *int32 `json:"x11_target_port,omitempty"`
+	} `json:"hetjob,omitempty"`
+
+	// Job Job description
+	Job *struct {
+		// Account Account associated with the job
+		Account *string `json:"account,omitempty"`
+
+		// AccountGatherFrequency Job accounting and profiling sampling intervals in seconds
+		AccountGatherFrequency *string `json:"account_gather_frequency,omitempty"`
+
+		// AdminComment Arbitrary comment made by administrator
+		AdminComment *string `json:"admin_comment,omitempty"`
+
+		// AllocationNodeList Local node making the resource allocation
+		AllocationNodeList *string `json:"allocation_node_list,omitempty"`
+
+		// AllocationNodePort Port to send allocation confirmation to
+		AllocationNodePort *int32 `json:"allocation_node_port,omitempty"`
+
+		// Argv Arguments to the script
+		Argv *[]string `json:"argv,omitempty"`
+
+		// Array Job array index value specification
+		Array *string `json:"array,omitempty"`
+
+		// BatchFeatures Features required for batch script's node
+		BatchFeatures *string `json:"batch_features,omitempty"`
+
+		// BeginTime Defer the allocation of the job until the specified time (UNIX timestamp)
+		BeginTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"begin_time,omitempty"`
+
+		// BurstBuffer Burst buffer specifications
+		BurstBuffer *string `json:"burst_buffer,omitempty"`
+
+		// ClusterConstraint Required features that a federated cluster must have to have a sibling job submitted to it
+		ClusterConstraint *string `json:"cluster_constraint,omitempty"`
+
+		// Clusters Clusters that a federated job can run on
+		Clusters *string `json:"clusters,omitempty"`
+
+		// Comment Arbitrary comment made by user
+		Comment *string `json:"comment,omitempty"`
+
+		// Constraints Comma separated list of features that are required
+		Constraints *string `json:"constraints,omitempty"`
+
+		// Container Absolute path to OCI container bundle
+		Container *string `json:"container,omitempty"`
+
+		// ContainerId OCI container ID
+		ContainerId *string `json:"container_id,omitempty"`
+
+		// Contiguous True if job requires contiguous nodes
+		Contiguous *bool `json:"contiguous,omitempty"`
+
+		// CoreSpecification Specialized core count
+		CoreSpecification *int32 `json:"core_specification,omitempty"`
+
+		// CpuBinding Method for binding tasks to allocated CPUs
+		CpuBinding *string `json:"cpu_binding,omitempty"`
+
+		// CpuBindingFlags Flags for CPU binding
+		CpuBindingFlags *[]SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags `json:"cpu_binding_flags,omitempty"`
+
+		// CpuFrequency Requested CPU frequency range <p1>[-p2][:p3]
+		CpuFrequency *string `json:"cpu_frequency,omitempty"`
+
+		// CpusPerTask Number of CPUs required by each task
+		CpusPerTask *int32 `json:"cpus_per_task,omitempty"`
+
+		// CpusPerTres Semicolon delimited list of TRES=# values values indicating how many CPUs should be allocated for each specified TRES (currently only used for gres/gpu)
+		CpusPerTres *string `json:"cpus_per_tres,omitempty"`
+
+		// Crontab Specification for scrontab job
+		Crontab *struct {
+			// Command Command to run
+			Command *string `json:"command,omitempty"`
+
+			// DayOfMonth Ranged string specifying eligible day of month values (e.g. 0-10,29)
+			DayOfMonth *string `json:"day_of_month,omitempty"`
+
+			// DayOfWeek Ranged string specifying eligible day of week values (e.g.0-3,7)
+			DayOfWeek *string `json:"day_of_week,omitempty"`
+
+			// Flags Flags
+			Flags *[]SlurmV0041PostJobAllocateJSONBodyJobCrontabFlags `json:"flags,omitempty"`
+
+			// Hour Ranged string specifying eligible hour values (e.g. 0-5,23)
+			Hour *string `json:"hour,omitempty"`
+			Line *struct {
+				// End End of this entry in file
+				End *int32 `json:"end,omitempty"`
+
+				// Start Start of this entry in file
+				Start *int32 `json:"start,omitempty"`
+			} `json:"line,omitempty"`
+
+			// Minute Ranged string specifying eligible minute values (e.g. 0-10,50)
+			Minute *string `json:"minute,omitempty"`
+
+			// Month Ranged string specifying eligible month values (e.g. 0-5,12)
+			Month *string `json:"month,omitempty"`
+
+			// Specification Time specification (* means valid for all allowed values) - minute hour day_of_month month day_of_week
+			Specification *string `json:"specification,omitempty"`
+		} `json:"crontab,omitempty"`
+
+		// CurrentWorkingDirectory Working directory to use for the job
+		CurrentWorkingDirectory *string `json:"current_working_directory,omitempty"`
+
+		// Deadline Latest time that the job may start (UNIX timestamp)
+		Deadline *int64 `json:"deadline,omitempty"`
+
+		// DelayBoot Number of seconds after job eligible start that nodes will be rebooted to satisfy feature specification
+		DelayBoot *int32 `json:"delay_boot,omitempty"`
+
+		// Dependency Other jobs that must meet certain criteria before this job can start
+		Dependency *string `json:"dependency,omitempty"`
+
+		// Distribution Layout
+		Distribution *string `json:"distribution,omitempty"`
+
+		// DistributionPlaneSize Plane size specification when distribution specifies plane
+		DistributionPlaneSize *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"distribution_plane_size,omitempty"`
+
+		// EndTime Expected end time (UNIX timestamp)
+		EndTime *int64 `json:"end_time,omitempty"`
+
+		// Environment Environment variables to be set for the job
+		Environment *[]string `json:"environment,omitempty"`
+
+		// ExcludedNodes Comma separated list of nodes that may not be used
+		ExcludedNodes *[]string `json:"excluded_nodes,omitempty"`
+		// Deprecated:
+		Exclusive *[]SlurmV0041PostJobAllocateJSONBodyJobExclusive `json:"exclusive,omitempty"`
+
+		// Extra Arbitrary string used for node filtering if extra constraints are enabled
+		Extra *string `json:"extra,omitempty"`
+
+		// Flags Job flags
+		Flags *[]SlurmV0041PostJobAllocateJSONBodyJobFlags `json:"flags,omitempty"`
+
+		// GroupId Group ID of the user that owns the job
+		GroupId *string `json:"group_id,omitempty"`
+
+		// HetjobGroup Unique sequence number applied to this component of the heterogeneous job
+		HetjobGroup *int32 `json:"hetjob_group,omitempty"`
+
+		// Hold Hold (true) or release (false) job
+		Hold *bool `json:"hold,omitempty"`
+
+		// Immediate If true, exit if resources are not available within the time period specified
+		Immediate *bool `json:"immediate,omitempty"`
+
+		// JobId Job ID
+		JobId *int32 `json:"job_id,omitempty"`
+
+		// KillOnNodeFail If true, kill job on node failure
+		KillOnNodeFail *bool `json:"kill_on_node_fail,omitempty"`
+
+		// KillWarningDelay Number of seconds before end time to send the warning signal
+		KillWarningDelay *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"kill_warning_delay,omitempty"`
+
+		// KillWarningFlags Flags related to job signals
+		KillWarningFlags *[]SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags `json:"kill_warning_flags,omitempty"`
+
+		// KillWarningSignal Signal to send when approaching end time (e.g. "10" or "USR1")
+		KillWarningSignal *string `json:"kill_warning_signal,omitempty"`
+
+		// Licenses License(s) required by the job
+		Licenses *string `json:"licenses,omitempty"`
+
+		// MailType Mail event type(s)
+		MailType *[]SlurmV0041PostJobAllocateJSONBodyJobMailType `json:"mail_type,omitempty"`
+
+		// MailUser User to receive email notifications
+		MailUser *string `json:"mail_user,omitempty"`
+
+		// MaximumCpus Maximum number of CPUs required
+		MaximumCpus *int32 `json:"maximum_cpus,omitempty"`
+
+		// MaximumNodes Maximum node count
+		MaximumNodes *int32 `json:"maximum_nodes,omitempty"`
+
+		// McsLabel Multi-Category Security label on the job
+		McsLabel *string `json:"mcs_label,omitempty"`
+
+		// MemoryBinding Binding map for map/mask_cpu
+		MemoryBinding *string `json:"memory_binding,omitempty"`
+
+		// MemoryBindingType Method for binding tasks to memory
+		MemoryBindingType *[]SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingType `json:"memory_binding_type,omitempty"`
+
+		// MemoryPerCpu Minimum memory in megabytes per allocated CPU
+		MemoryPerCpu *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"memory_per_cpu,omitempty"`
+
+		// MemoryPerNode Minimum memory in megabytes per allocated CPU
+		MemoryPerNode *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"memory_per_node,omitempty"`
+
+		// MemoryPerTres Semicolon delimited list of TRES=# values indicating how much memory in megabytes should be allocated for each specified TRES (currently only used for gres/gpu)
+		MemoryPerTres *string `json:"memory_per_tres,omitempty"`
+
+		// MinimumBoardsPerNode Boards per node required
+		MinimumBoardsPerNode *int32 `json:"minimum_boards_per_node,omitempty"`
+
+		// MinimumCpus Minimum number of CPUs required
+		MinimumCpus *int32 `json:"minimum_cpus,omitempty"`
+
+		// MinimumCpusPerNode Minimum number of CPUs per node
+		MinimumCpusPerNode *int32 `json:"minimum_cpus_per_node,omitempty"`
+
+		// MinimumNodes Minimum node count
+		MinimumNodes *int32 `json:"minimum_nodes,omitempty"`
+
+		// MinimumSocketsPerBoard Sockets per board required
+		MinimumSocketsPerBoard *int32 `json:"minimum_sockets_per_board,omitempty"`
+
+		// Name Job name
+		Name *string `json:"name,omitempty"`
+
+		// Network Network specs for job step
+		Network *string `json:"network,omitempty"`
+
+		// Nice Requested job priority change
+		Nice *int32 `json:"nice,omitempty"`
+
+		// Nodes Node count range specification (e.g. 1-15:4)
+		Nodes *string `json:"nodes,omitempty"`
+
+		// NtasksPerTres Number of tasks that can access each GPU
+		NtasksPerTres *int32 `json:"ntasks_per_tres,omitempty"`
+
+		// OpenMode Open mode used for stdout and stderr files
+		OpenMode *[]SlurmV0041PostJobAllocateJSONBodyJobOpenMode `json:"open_mode,omitempty"`
+
+		// Overcommit Overcommit resources
+		Overcommit *bool `json:"overcommit,omitempty"`
+		// Deprecated:
+		Oversubscribe *bool `json:"oversubscribe,omitempty"`
+
+		// Partition Partition assigned to the job
+		Partition *string `json:"partition,omitempty"`
+		// Deprecated:
+		PowerFlags *[]interface{} `json:"power_flags,omitempty"`
+
+		// Prefer Comma separated list of features that are preferred but not required
+		Prefer *string `json:"prefer,omitempty"`
+
+		// Priority Request specific job priority
+		Priority *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"priority,omitempty"`
+
+		// Profile Profile used by the acct_gather_profile plugin
+		Profile *[]SlurmV0041PostJobAllocateJSONBodyJobProfile `json:"profile,omitempty"`
+
+		// Qos Quality of Service assigned to the job
+		Qos *string `json:"qos,omitempty"`
+
+		// Reboot Node reboot requested before start
+		Reboot *bool `json:"reboot,omitempty"`
+
+		// Requeue Determines whether the job may be requeued
+		Requeue *bool `json:"requeue,omitempty"`
+
+		// RequiredNodes Comma separated list of required nodes
+		RequiredNodes *[]string `json:"required_nodes,omitempty"`
+
+		// RequiredSwitches Maximum number of switches
+		RequiredSwitches *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"required_switches,omitempty"`
+
+		// Reservation Name of reservation to use
+		Reservation *string `json:"reservation,omitempty"`
+
+		// ReservePorts Port to send various notification msg to
+		ReservePorts *int32 `json:"reserve_ports,omitempty"`
+
+		// ResvMpiPorts Number of reserved communication ports; can only be used if slurmstepd step manager is enabled
+		ResvMpiPorts *int32 `json:"resv_mpi_ports,omitempty"`
+		Rlimits      *struct {
+			// As Address space limit.
+			As *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"as,omitempty"`
+
+			// Core Largest core file that can be created, in bytes.
+			Core *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"core,omitempty"`
+
+			// Cpu Per-process CPU limit, in seconds.
+			Cpu *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"cpu,omitempty"`
+
+			// Data Maximum size of data segment, in bytes.
+			Data *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"data,omitempty"`
+
+			// Fsize Largest file that can be created, in bytes.
+			Fsize *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"fsize,omitempty"`
+
+			// Memlock Locked-in-memory address space
+			Memlock *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"memlock,omitempty"`
+
+			// Nofile Number of open files.
+			Nofile *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"nofile,omitempty"`
+
+			// Nproc Number of processes.
+			Nproc *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"nproc,omitempty"`
+
+			// Rss Largest resident set size, in bytes. This affects swapping; processes that are exceeding their resident set size will be more likely to have physical memory taken from them.
+			Rss *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"rss,omitempty"`
+
+			// Stack Maximum size of stack segment, in bytes.
+			Stack *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"stack,omitempty"`
+		} `json:"rlimits,omitempty"`
+
+		// Script Job batch script; only the first component in a HetJob is populated or honored
+		Script *string `json:"script,omitempty"`
+
+		// SegmentSize Segment size for topology/block
+		SegmentSize *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"segment_size,omitempty"`
+
+		// SelinuxContext SELinux context
+		SelinuxContext *string `json:"selinux_context,omitempty"`
+
+		// Shared How the job can share resources with other jobs, if at all
+		Shared *[]SlurmV0041PostJobAllocateJSONBodyJobShared `json:"shared,omitempty"`
+
+		// SiteFactor Site-specific priority factor
+		SiteFactor *int32 `json:"site_factor,omitempty"`
+
+		// SocketsPerNode Sockets per node required
+		SocketsPerNode *int32 `json:"sockets_per_node,omitempty"`
+
+		// SpankEnvironment Environment variables for job prolog/epilog scripts as set by SPANK plugins
+		SpankEnvironment *[]string `json:"spank_environment,omitempty"`
+
+		// StandardError Path to stderr file
+		StandardError *string `json:"standard_error,omitempty"`
+
+		// StandardInput Path to stdin file
+		StandardInput *string `json:"standard_input,omitempty"`
+
+		// StandardOutput Path to stdout file
+		StandardOutput *string `json:"standard_output,omitempty"`
+
+		// Tasks Number of tasks
+		Tasks *int32 `json:"tasks,omitempty"`
+
+		// TasksPerBoard Number of tasks to invoke on each board
+		TasksPerBoard *int32 `json:"tasks_per_board,omitempty"`
+
+		// TasksPerCore Number of tasks to invoke on each core
+		TasksPerCore *int32 `json:"tasks_per_core,omitempty"`
+
+		// TasksPerNode Number of tasks to invoke on each node
+		TasksPerNode *int32 `json:"tasks_per_node,omitempty"`
+
+		// TasksPerSocket Number of tasks to invoke on each socket
+		TasksPerSocket *int32 `json:"tasks_per_socket,omitempty"`
+
+		// TemporaryDiskPerNode Minimum tmp disk space required per node
+		TemporaryDiskPerNode *int32 `json:"temporary_disk_per_node,omitempty"`
+
+		// ThreadSpecification Specialized thread count
+		ThreadSpecification *int32 `json:"thread_specification,omitempty"`
+
+		// ThreadsPerCore Threads per core required
+		ThreadsPerCore *int32 `json:"threads_per_core,omitempty"`
+
+		// TimeLimit Maximum run time in minutes
+		TimeLimit *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"time_limit,omitempty"`
+
+		// TimeMinimum Minimum run time in minutes
+		TimeMinimum *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"time_minimum,omitempty"`
+
+		// TresBind Task to TRES binding directives
+		TresBind *string `json:"tres_bind,omitempty"`
+
+		// TresFreq TRES frequency directives
+		TresFreq *string `json:"tres_freq,omitempty"`
+
+		// TresPerJob Comma separated list of TRES=# values to be allocated for every job
+		TresPerJob *string `json:"tres_per_job,omitempty"`
+
+		// TresPerNode Comma separated list of TRES=# values to be allocated for every node
+		TresPerNode *string `json:"tres_per_node,omitempty"`
+
+		// TresPerSocket Comma separated list of TRES=# values to be allocated for every socket
+		TresPerSocket *string `json:"tres_per_socket,omitempty"`
+
+		// TresPerTask Comma separated list of TRES=# values to be allocated for every task
+		TresPerTask *string `json:"tres_per_task,omitempty"`
+
+		// UserId User ID that owns the job
+		UserId *string `json:"user_id,omitempty"`
+
+		// WaitAllNodes If true, wait to start until after all nodes have booted
+		WaitAllNodes *bool `json:"wait_all_nodes,omitempty"`
+
+		// WaitForSwitch Maximum time to wait for switches in seconds
+		WaitForSwitch *int32 `json:"wait_for_switch,omitempty"`
+
+		// Wckey Workload characterization key
+		Wckey *string `json:"wckey,omitempty"`
+
+		// X11 X11 forwarding options
+		X11 *[]SlurmV0041PostJobAllocateJSONBodyJobX11 `json:"x11,omitempty"`
+
+		// X11MagicCookie Magic cookie for X11 forwarding
+		X11MagicCookie *string `json:"x11_magic_cookie,omitempty"`
+
+		// X11TargetHost Hostname or UNIX socket if x11_target_port=0
+		X11TargetHost *string `json:"x11_target_host,omitempty"`
+
+		// X11TargetPort TCP port
+		X11TargetPort *int32 `json:"x11_target_port,omitempty"`
+	} `json:"job,omitempty"`
 }
 
-// V0038DiagRpcu defines model for v0.0.38_diag_rpcu.
-type V0038DiagRpcu struct {
-	// AverageTime average time
-	AverageTime *int `json:"average_time,omitempty"`
+// SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyHetjobCpuBindingFlags string
 
-	// Count rpc count
-	Count *int `json:"count,omitempty"`
+// SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlags defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyHetjobCrontabFlags string
 
-	// TotalTime total time
-	TotalTime *int `json:"total_time,omitempty"`
+// SlurmV0041PostJobAllocateJSONBodyHetjobExclusive defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyHetjobExclusive string
 
-	// User user
-	User *string `json:"user,omitempty"`
+// SlurmV0041PostJobAllocateJSONBodyHetjobFlags defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyHetjobFlags string
 
-	// UserId user id
-	UserId *int `json:"user_id,omitempty"`
+// SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyHetjobKillWarningFlags string
+
+// SlurmV0041PostJobAllocateJSONBodyHetjobMailType defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyHetjobMailType string
+
+// SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingType defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyHetjobMemoryBindingType string
+
+// SlurmV0041PostJobAllocateJSONBodyHetjobOpenMode defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyHetjobOpenMode string
+
+// SlurmV0041PostJobAllocateJSONBodyHetjobProfile defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyHetjobProfile string
+
+// SlurmV0041PostJobAllocateJSONBodyHetjobShared defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyHetjobShared string
+
+// SlurmV0041PostJobAllocateJSONBodyHetjobX11 defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyHetjobX11 string
+
+// SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyJobCpuBindingFlags string
+
+// SlurmV0041PostJobAllocateJSONBodyJobCrontabFlags defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyJobCrontabFlags string
+
+// SlurmV0041PostJobAllocateJSONBodyJobExclusive defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyJobExclusive string
+
+// SlurmV0041PostJobAllocateJSONBodyJobFlags defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyJobFlags string
+
+// SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyJobKillWarningFlags string
+
+// SlurmV0041PostJobAllocateJSONBodyJobMailType defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyJobMailType string
+
+// SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingType defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyJobMemoryBindingType string
+
+// SlurmV0041PostJobAllocateJSONBodyJobOpenMode defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyJobOpenMode string
+
+// SlurmV0041PostJobAllocateJSONBodyJobProfile defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyJobProfile string
+
+// SlurmV0041PostJobAllocateJSONBodyJobShared defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyJobShared string
+
+// SlurmV0041PostJobAllocateJSONBodyJobX11 defines parameters for SlurmV0041PostJobAllocate.
+type SlurmV0041PostJobAllocateJSONBodyJobX11 string
+
+// SlurmV0041PostJobSubmitJSONBody defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBody struct {
+	// Job Job description
+	Job *struct {
+		// Account Account associated with the job
+		Account *string `json:"account,omitempty"`
+
+		// AccountGatherFrequency Job accounting and profiling sampling intervals in seconds
+		AccountGatherFrequency *string `json:"account_gather_frequency,omitempty"`
+
+		// AdminComment Arbitrary comment made by administrator
+		AdminComment *string `json:"admin_comment,omitempty"`
+
+		// AllocationNodeList Local node making the resource allocation
+		AllocationNodeList *string `json:"allocation_node_list,omitempty"`
+
+		// AllocationNodePort Port to send allocation confirmation to
+		AllocationNodePort *int32 `json:"allocation_node_port,omitempty"`
+
+		// Argv Arguments to the script
+		Argv *[]string `json:"argv,omitempty"`
+
+		// Array Job array index value specification
+		Array *string `json:"array,omitempty"`
+
+		// BatchFeatures Features required for batch script's node
+		BatchFeatures *string `json:"batch_features,omitempty"`
+
+		// BeginTime Defer the allocation of the job until the specified time (UNIX timestamp)
+		BeginTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"begin_time,omitempty"`
+
+		// BurstBuffer Burst buffer specifications
+		BurstBuffer *string `json:"burst_buffer,omitempty"`
+
+		// ClusterConstraint Required features that a federated cluster must have to have a sibling job submitted to it
+		ClusterConstraint *string `json:"cluster_constraint,omitempty"`
+
+		// Clusters Clusters that a federated job can run on
+		Clusters *string `json:"clusters,omitempty"`
+
+		// Comment Arbitrary comment made by user
+		Comment *string `json:"comment,omitempty"`
+
+		// Constraints Comma separated list of features that are required
+		Constraints *string `json:"constraints,omitempty"`
+
+		// Container Absolute path to OCI container bundle
+		Container *string `json:"container,omitempty"`
+
+		// ContainerId OCI container ID
+		ContainerId *string `json:"container_id,omitempty"`
+
+		// Contiguous True if job requires contiguous nodes
+		Contiguous *bool `json:"contiguous,omitempty"`
+
+		// CoreSpecification Specialized core count
+		CoreSpecification *int32 `json:"core_specification,omitempty"`
+
+		// CpuBinding Method for binding tasks to allocated CPUs
+		CpuBinding *string `json:"cpu_binding,omitempty"`
+
+		// CpuBindingFlags Flags for CPU binding
+		CpuBindingFlags *[]SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags `json:"cpu_binding_flags,omitempty"`
+
+		// CpuFrequency Requested CPU frequency range <p1>[-p2][:p3]
+		CpuFrequency *string `json:"cpu_frequency,omitempty"`
+
+		// CpusPerTask Number of CPUs required by each task
+		CpusPerTask *int32 `json:"cpus_per_task,omitempty"`
+
+		// CpusPerTres Semicolon delimited list of TRES=# values values indicating how many CPUs should be allocated for each specified TRES (currently only used for gres/gpu)
+		CpusPerTres *string `json:"cpus_per_tres,omitempty"`
+
+		// Crontab Specification for scrontab job
+		Crontab *struct {
+			// Command Command to run
+			Command *string `json:"command,omitempty"`
+
+			// DayOfMonth Ranged string specifying eligible day of month values (e.g. 0-10,29)
+			DayOfMonth *string `json:"day_of_month,omitempty"`
+
+			// DayOfWeek Ranged string specifying eligible day of week values (e.g.0-3,7)
+			DayOfWeek *string `json:"day_of_week,omitempty"`
+
+			// Flags Flags
+			Flags *[]SlurmV0041PostJobSubmitJSONBodyJobCrontabFlags `json:"flags,omitempty"`
+
+			// Hour Ranged string specifying eligible hour values (e.g. 0-5,23)
+			Hour *string `json:"hour,omitempty"`
+			Line *struct {
+				// End End of this entry in file
+				End *int32 `json:"end,omitempty"`
+
+				// Start Start of this entry in file
+				Start *int32 `json:"start,omitempty"`
+			} `json:"line,omitempty"`
+
+			// Minute Ranged string specifying eligible minute values (e.g. 0-10,50)
+			Minute *string `json:"minute,omitempty"`
+
+			// Month Ranged string specifying eligible month values (e.g. 0-5,12)
+			Month *string `json:"month,omitempty"`
+
+			// Specification Time specification (* means valid for all allowed values) - minute hour day_of_month month day_of_week
+			Specification *string `json:"specification,omitempty"`
+		} `json:"crontab,omitempty"`
+
+		// CurrentWorkingDirectory Working directory to use for the job
+		CurrentWorkingDirectory *string `json:"current_working_directory,omitempty"`
+
+		// Deadline Latest time that the job may start (UNIX timestamp)
+		Deadline *int64 `json:"deadline,omitempty"`
+
+		// DelayBoot Number of seconds after job eligible start that nodes will be rebooted to satisfy feature specification
+		DelayBoot *int32 `json:"delay_boot,omitempty"`
+
+		// Dependency Other jobs that must meet certain criteria before this job can start
+		Dependency *string `json:"dependency,omitempty"`
+
+		// Distribution Layout
+		Distribution *string `json:"distribution,omitempty"`
+
+		// DistributionPlaneSize Plane size specification when distribution specifies plane
+		DistributionPlaneSize *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"distribution_plane_size,omitempty"`
+
+		// EndTime Expected end time (UNIX timestamp)
+		EndTime *int64 `json:"end_time,omitempty"`
+
+		// Environment Environment variables to be set for the job
+		Environment *[]string `json:"environment,omitempty"`
+
+		// ExcludedNodes Comma separated list of nodes that may not be used
+		ExcludedNodes *[]string `json:"excluded_nodes,omitempty"`
+		// Deprecated:
+		Exclusive *[]SlurmV0041PostJobSubmitJSONBodyJobExclusive `json:"exclusive,omitempty"`
+
+		// Extra Arbitrary string used for node filtering if extra constraints are enabled
+		Extra *string `json:"extra,omitempty"`
+
+		// Flags Job flags
+		Flags *[]SlurmV0041PostJobSubmitJSONBodyJobFlags `json:"flags,omitempty"`
+
+		// GroupId Group ID of the user that owns the job
+		GroupId *string `json:"group_id,omitempty"`
+
+		// HetjobGroup Unique sequence number applied to this component of the heterogeneous job
+		HetjobGroup *int32 `json:"hetjob_group,omitempty"`
+
+		// Hold Hold (true) or release (false) job
+		Hold *bool `json:"hold,omitempty"`
+
+		// Immediate If true, exit if resources are not available within the time period specified
+		Immediate *bool `json:"immediate,omitempty"`
+
+		// JobId Job ID
+		JobId *int32 `json:"job_id,omitempty"`
+
+		// KillOnNodeFail If true, kill job on node failure
+		KillOnNodeFail *bool `json:"kill_on_node_fail,omitempty"`
+
+		// KillWarningDelay Number of seconds before end time to send the warning signal
+		KillWarningDelay *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"kill_warning_delay,omitempty"`
+
+		// KillWarningFlags Flags related to job signals
+		KillWarningFlags *[]SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags `json:"kill_warning_flags,omitempty"`
+
+		// KillWarningSignal Signal to send when approaching end time (e.g. "10" or "USR1")
+		KillWarningSignal *string `json:"kill_warning_signal,omitempty"`
+
+		// Licenses License(s) required by the job
+		Licenses *string `json:"licenses,omitempty"`
+
+		// MailType Mail event type(s)
+		MailType *[]SlurmV0041PostJobSubmitJSONBodyJobMailType `json:"mail_type,omitempty"`
+
+		// MailUser User to receive email notifications
+		MailUser *string `json:"mail_user,omitempty"`
+
+		// MaximumCpus Maximum number of CPUs required
+		MaximumCpus *int32 `json:"maximum_cpus,omitempty"`
+
+		// MaximumNodes Maximum node count
+		MaximumNodes *int32 `json:"maximum_nodes,omitempty"`
+
+		// McsLabel Multi-Category Security label on the job
+		McsLabel *string `json:"mcs_label,omitempty"`
+
+		// MemoryBinding Binding map for map/mask_cpu
+		MemoryBinding *string `json:"memory_binding,omitempty"`
+
+		// MemoryBindingType Method for binding tasks to memory
+		MemoryBindingType *[]SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingType `json:"memory_binding_type,omitempty"`
+
+		// MemoryPerCpu Minimum memory in megabytes per allocated CPU
+		MemoryPerCpu *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"memory_per_cpu,omitempty"`
+
+		// MemoryPerNode Minimum memory in megabytes per allocated CPU
+		MemoryPerNode *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"memory_per_node,omitempty"`
+
+		// MemoryPerTres Semicolon delimited list of TRES=# values indicating how much memory in megabytes should be allocated for each specified TRES (currently only used for gres/gpu)
+		MemoryPerTres *string `json:"memory_per_tres,omitempty"`
+
+		// MinimumBoardsPerNode Boards per node required
+		MinimumBoardsPerNode *int32 `json:"minimum_boards_per_node,omitempty"`
+
+		// MinimumCpus Minimum number of CPUs required
+		MinimumCpus *int32 `json:"minimum_cpus,omitempty"`
+
+		// MinimumCpusPerNode Minimum number of CPUs per node
+		MinimumCpusPerNode *int32 `json:"minimum_cpus_per_node,omitempty"`
+
+		// MinimumNodes Minimum node count
+		MinimumNodes *int32 `json:"minimum_nodes,omitempty"`
+
+		// MinimumSocketsPerBoard Sockets per board required
+		MinimumSocketsPerBoard *int32 `json:"minimum_sockets_per_board,omitempty"`
+
+		// Name Job name
+		Name *string `json:"name,omitempty"`
+
+		// Network Network specs for job step
+		Network *string `json:"network,omitempty"`
+
+		// Nice Requested job priority change
+		Nice *int32 `json:"nice,omitempty"`
+
+		// Nodes Node count range specification (e.g. 1-15:4)
+		Nodes *string `json:"nodes,omitempty"`
+
+		// NtasksPerTres Number of tasks that can access each GPU
+		NtasksPerTres *int32 `json:"ntasks_per_tres,omitempty"`
+
+		// OpenMode Open mode used for stdout and stderr files
+		OpenMode *[]SlurmV0041PostJobSubmitJSONBodyJobOpenMode `json:"open_mode,omitempty"`
+
+		// Overcommit Overcommit resources
+		Overcommit *bool `json:"overcommit,omitempty"`
+		// Deprecated:
+		Oversubscribe *bool `json:"oversubscribe,omitempty"`
+
+		// Partition Partition assigned to the job
+		Partition *string `json:"partition,omitempty"`
+		// Deprecated:
+		PowerFlags *[]interface{} `json:"power_flags,omitempty"`
+
+		// Prefer Comma separated list of features that are preferred but not required
+		Prefer *string `json:"prefer,omitempty"`
+
+		// Priority Request specific job priority
+		Priority *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"priority,omitempty"`
+
+		// Profile Profile used by the acct_gather_profile plugin
+		Profile *[]SlurmV0041PostJobSubmitJSONBodyJobProfile `json:"profile,omitempty"`
+
+		// Qos Quality of Service assigned to the job
+		Qos *string `json:"qos,omitempty"`
+
+		// Reboot Node reboot requested before start
+		Reboot *bool `json:"reboot,omitempty"`
+
+		// Requeue Determines whether the job may be requeued
+		Requeue *bool `json:"requeue,omitempty"`
+
+		// RequiredNodes Comma separated list of required nodes
+		RequiredNodes *[]string `json:"required_nodes,omitempty"`
+
+		// RequiredSwitches Maximum number of switches
+		RequiredSwitches *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"required_switches,omitempty"`
+
+		// Reservation Name of reservation to use
+		Reservation *string `json:"reservation,omitempty"`
+
+		// ReservePorts Port to send various notification msg to
+		ReservePorts *int32 `json:"reserve_ports,omitempty"`
+
+		// ResvMpiPorts Number of reserved communication ports; can only be used if slurmstepd step manager is enabled
+		ResvMpiPorts *int32 `json:"resv_mpi_ports,omitempty"`
+		Rlimits      *struct {
+			// As Address space limit.
+			As *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"as,omitempty"`
+
+			// Core Largest core file that can be created, in bytes.
+			Core *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"core,omitempty"`
+
+			// Cpu Per-process CPU limit, in seconds.
+			Cpu *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"cpu,omitempty"`
+
+			// Data Maximum size of data segment, in bytes.
+			Data *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"data,omitempty"`
+
+			// Fsize Largest file that can be created, in bytes.
+			Fsize *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"fsize,omitempty"`
+
+			// Memlock Locked-in-memory address space
+			Memlock *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"memlock,omitempty"`
+
+			// Nofile Number of open files.
+			Nofile *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"nofile,omitempty"`
+
+			// Nproc Number of processes.
+			Nproc *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"nproc,omitempty"`
+
+			// Rss Largest resident set size, in bytes. This affects swapping; processes that are exceeding their resident set size will be more likely to have physical memory taken from them.
+			Rss *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"rss,omitempty"`
+
+			// Stack Maximum size of stack segment, in bytes.
+			Stack *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"stack,omitempty"`
+		} `json:"rlimits,omitempty"`
+
+		// Script Job batch script; only the first component in a HetJob is populated or honored
+		Script *string `json:"script,omitempty"`
+
+		// SegmentSize Segment size for topology/block
+		SegmentSize *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"segment_size,omitempty"`
+
+		// SelinuxContext SELinux context
+		SelinuxContext *string `json:"selinux_context,omitempty"`
+
+		// Shared How the job can share resources with other jobs, if at all
+		Shared *[]SlurmV0041PostJobSubmitJSONBodyJobShared `json:"shared,omitempty"`
+
+		// SiteFactor Site-specific priority factor
+		SiteFactor *int32 `json:"site_factor,omitempty"`
+
+		// SocketsPerNode Sockets per node required
+		SocketsPerNode *int32 `json:"sockets_per_node,omitempty"`
+
+		// SpankEnvironment Environment variables for job prolog/epilog scripts as set by SPANK plugins
+		SpankEnvironment *[]string `json:"spank_environment,omitempty"`
+
+		// StandardError Path to stderr file
+		StandardError *string `json:"standard_error,omitempty"`
+
+		// StandardInput Path to stdin file
+		StandardInput *string `json:"standard_input,omitempty"`
+
+		// StandardOutput Path to stdout file
+		StandardOutput *string `json:"standard_output,omitempty"`
+
+		// Tasks Number of tasks
+		Tasks *int32 `json:"tasks,omitempty"`
+
+		// TasksPerBoard Number of tasks to invoke on each board
+		TasksPerBoard *int32 `json:"tasks_per_board,omitempty"`
+
+		// TasksPerCore Number of tasks to invoke on each core
+		TasksPerCore *int32 `json:"tasks_per_core,omitempty"`
+
+		// TasksPerNode Number of tasks to invoke on each node
+		TasksPerNode *int32 `json:"tasks_per_node,omitempty"`
+
+		// TasksPerSocket Number of tasks to invoke on each socket
+		TasksPerSocket *int32 `json:"tasks_per_socket,omitempty"`
+
+		// TemporaryDiskPerNode Minimum tmp disk space required per node
+		TemporaryDiskPerNode *int32 `json:"temporary_disk_per_node,omitempty"`
+
+		// ThreadSpecification Specialized thread count
+		ThreadSpecification *int32 `json:"thread_specification,omitempty"`
+
+		// ThreadsPerCore Threads per core required
+		ThreadsPerCore *int32 `json:"threads_per_core,omitempty"`
+
+		// TimeLimit Maximum run time in minutes
+		TimeLimit *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"time_limit,omitempty"`
+
+		// TimeMinimum Minimum run time in minutes
+		TimeMinimum *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"time_minimum,omitempty"`
+
+		// TresBind Task to TRES binding directives
+		TresBind *string `json:"tres_bind,omitempty"`
+
+		// TresFreq TRES frequency directives
+		TresFreq *string `json:"tres_freq,omitempty"`
+
+		// TresPerJob Comma separated list of TRES=# values to be allocated for every job
+		TresPerJob *string `json:"tres_per_job,omitempty"`
+
+		// TresPerNode Comma separated list of TRES=# values to be allocated for every node
+		TresPerNode *string `json:"tres_per_node,omitempty"`
+
+		// TresPerSocket Comma separated list of TRES=# values to be allocated for every socket
+		TresPerSocket *string `json:"tres_per_socket,omitempty"`
+
+		// TresPerTask Comma separated list of TRES=# values to be allocated for every task
+		TresPerTask *string `json:"tres_per_task,omitempty"`
+
+		// UserId User ID that owns the job
+		UserId *string `json:"user_id,omitempty"`
+
+		// WaitAllNodes If true, wait to start until after all nodes have booted
+		WaitAllNodes *bool `json:"wait_all_nodes,omitempty"`
+
+		// WaitForSwitch Maximum time to wait for switches in seconds
+		WaitForSwitch *int32 `json:"wait_for_switch,omitempty"`
+
+		// Wckey Workload characterization key
+		Wckey *string `json:"wckey,omitempty"`
+
+		// X11 X11 forwarding options
+		X11 *[]SlurmV0041PostJobSubmitJSONBodyJobX11 `json:"x11,omitempty"`
+
+		// X11MagicCookie Magic cookie for X11 forwarding
+		X11MagicCookie *string `json:"x11_magic_cookie,omitempty"`
+
+		// X11TargetHost Hostname or UNIX socket if x11_target_port=0
+		X11TargetHost *string `json:"x11_target_host,omitempty"`
+
+		// X11TargetPort TCP port
+		X11TargetPort *int32 `json:"x11_target_port,omitempty"`
+	} `json:"job,omitempty"`
+
+	// Jobs HetJob description
+	Jobs *[]struct {
+		// Account Account associated with the job
+		Account *string `json:"account,omitempty"`
+
+		// AccountGatherFrequency Job accounting and profiling sampling intervals in seconds
+		AccountGatherFrequency *string `json:"account_gather_frequency,omitempty"`
+
+		// AdminComment Arbitrary comment made by administrator
+		AdminComment *string `json:"admin_comment,omitempty"`
+
+		// AllocationNodeList Local node making the resource allocation
+		AllocationNodeList *string `json:"allocation_node_list,omitempty"`
+
+		// AllocationNodePort Port to send allocation confirmation to
+		AllocationNodePort *int32 `json:"allocation_node_port,omitempty"`
+
+		// Argv Arguments to the script
+		Argv *[]string `json:"argv,omitempty"`
+
+		// Array Job array index value specification
+		Array *string `json:"array,omitempty"`
+
+		// BatchFeatures Features required for batch script's node
+		BatchFeatures *string `json:"batch_features,omitempty"`
+
+		// BeginTime Defer the allocation of the job until the specified time (UNIX timestamp)
+		BeginTime *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"begin_time,omitempty"`
+
+		// BurstBuffer Burst buffer specifications
+		BurstBuffer *string `json:"burst_buffer,omitempty"`
+
+		// ClusterConstraint Required features that a federated cluster must have to have a sibling job submitted to it
+		ClusterConstraint *string `json:"cluster_constraint,omitempty"`
+
+		// Clusters Clusters that a federated job can run on
+		Clusters *string `json:"clusters,omitempty"`
+
+		// Comment Arbitrary comment made by user
+		Comment *string `json:"comment,omitempty"`
+
+		// Constraints Comma separated list of features that are required
+		Constraints *string `json:"constraints,omitempty"`
+
+		// Container Absolute path to OCI container bundle
+		Container *string `json:"container,omitempty"`
+
+		// ContainerId OCI container ID
+		ContainerId *string `json:"container_id,omitempty"`
+
+		// Contiguous True if job requires contiguous nodes
+		Contiguous *bool `json:"contiguous,omitempty"`
+
+		// CoreSpecification Specialized core count
+		CoreSpecification *int32 `json:"core_specification,omitempty"`
+
+		// CpuBinding Method for binding tasks to allocated CPUs
+		CpuBinding *string `json:"cpu_binding,omitempty"`
+
+		// CpuBindingFlags Flags for CPU binding
+		CpuBindingFlags *[]SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags `json:"cpu_binding_flags,omitempty"`
+
+		// CpuFrequency Requested CPU frequency range <p1>[-p2][:p3]
+		CpuFrequency *string `json:"cpu_frequency,omitempty"`
+
+		// CpusPerTask Number of CPUs required by each task
+		CpusPerTask *int32 `json:"cpus_per_task,omitempty"`
+
+		// CpusPerTres Semicolon delimited list of TRES=# values values indicating how many CPUs should be allocated for each specified TRES (currently only used for gres/gpu)
+		CpusPerTres *string `json:"cpus_per_tres,omitempty"`
+
+		// Crontab Specification for scrontab job
+		Crontab *struct {
+			// Command Command to run
+			Command *string `json:"command,omitempty"`
+
+			// DayOfMonth Ranged string specifying eligible day of month values (e.g. 0-10,29)
+			DayOfMonth *string `json:"day_of_month,omitempty"`
+
+			// DayOfWeek Ranged string specifying eligible day of week values (e.g.0-3,7)
+			DayOfWeek *string `json:"day_of_week,omitempty"`
+
+			// Flags Flags
+			Flags *[]SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlags `json:"flags,omitempty"`
+
+			// Hour Ranged string specifying eligible hour values (e.g. 0-5,23)
+			Hour *string `json:"hour,omitempty"`
+			Line *struct {
+				// End End of this entry in file
+				End *int32 `json:"end,omitempty"`
+
+				// Start Start of this entry in file
+				Start *int32 `json:"start,omitempty"`
+			} `json:"line,omitempty"`
+
+			// Minute Ranged string specifying eligible minute values (e.g. 0-10,50)
+			Minute *string `json:"minute,omitempty"`
+
+			// Month Ranged string specifying eligible month values (e.g. 0-5,12)
+			Month *string `json:"month,omitempty"`
+
+			// Specification Time specification (* means valid for all allowed values) - minute hour day_of_month month day_of_week
+			Specification *string `json:"specification,omitempty"`
+		} `json:"crontab,omitempty"`
+
+		// CurrentWorkingDirectory Working directory to use for the job
+		CurrentWorkingDirectory *string `json:"current_working_directory,omitempty"`
+
+		// Deadline Latest time that the job may start (UNIX timestamp)
+		Deadline *int64 `json:"deadline,omitempty"`
+
+		// DelayBoot Number of seconds after job eligible start that nodes will be rebooted to satisfy feature specification
+		DelayBoot *int32 `json:"delay_boot,omitempty"`
+
+		// Dependency Other jobs that must meet certain criteria before this job can start
+		Dependency *string `json:"dependency,omitempty"`
+
+		// Distribution Layout
+		Distribution *string `json:"distribution,omitempty"`
+
+		// DistributionPlaneSize Plane size specification when distribution specifies plane
+		DistributionPlaneSize *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"distribution_plane_size,omitempty"`
+
+		// EndTime Expected end time (UNIX timestamp)
+		EndTime *int64 `json:"end_time,omitempty"`
+
+		// Environment Environment variables to be set for the job
+		Environment *[]string `json:"environment,omitempty"`
+
+		// ExcludedNodes Comma separated list of nodes that may not be used
+		ExcludedNodes *[]string `json:"excluded_nodes,omitempty"`
+		// Deprecated:
+		Exclusive *[]SlurmV0041PostJobSubmitJSONBodyJobsExclusive `json:"exclusive,omitempty"`
+
+		// Extra Arbitrary string used for node filtering if extra constraints are enabled
+		Extra *string `json:"extra,omitempty"`
+
+		// Flags Job flags
+		Flags *[]SlurmV0041PostJobSubmitJSONBodyJobsFlags `json:"flags,omitempty"`
+
+		// GroupId Group ID of the user that owns the job
+		GroupId *string `json:"group_id,omitempty"`
+
+		// HetjobGroup Unique sequence number applied to this component of the heterogeneous job
+		HetjobGroup *int32 `json:"hetjob_group,omitempty"`
+
+		// Hold Hold (true) or release (false) job
+		Hold *bool `json:"hold,omitempty"`
+
+		// Immediate If true, exit if resources are not available within the time period specified
+		Immediate *bool `json:"immediate,omitempty"`
+
+		// JobId Job ID
+		JobId *int32 `json:"job_id,omitempty"`
+
+		// KillOnNodeFail If true, kill job on node failure
+		KillOnNodeFail *bool `json:"kill_on_node_fail,omitempty"`
+
+		// KillWarningDelay Number of seconds before end time to send the warning signal
+		KillWarningDelay *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"kill_warning_delay,omitempty"`
+
+		// KillWarningFlags Flags related to job signals
+		KillWarningFlags *[]SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags `json:"kill_warning_flags,omitempty"`
+
+		// KillWarningSignal Signal to send when approaching end time (e.g. "10" or "USR1")
+		KillWarningSignal *string `json:"kill_warning_signal,omitempty"`
+
+		// Licenses License(s) required by the job
+		Licenses *string `json:"licenses,omitempty"`
+
+		// MailType Mail event type(s)
+		MailType *[]SlurmV0041PostJobSubmitJSONBodyJobsMailType `json:"mail_type,omitempty"`
+
+		// MailUser User to receive email notifications
+		MailUser *string `json:"mail_user,omitempty"`
+
+		// MaximumCpus Maximum number of CPUs required
+		MaximumCpus *int32 `json:"maximum_cpus,omitempty"`
+
+		// MaximumNodes Maximum node count
+		MaximumNodes *int32 `json:"maximum_nodes,omitempty"`
+
+		// McsLabel Multi-Category Security label on the job
+		McsLabel *string `json:"mcs_label,omitempty"`
+
+		// MemoryBinding Binding map for map/mask_cpu
+		MemoryBinding *string `json:"memory_binding,omitempty"`
+
+		// MemoryBindingType Method for binding tasks to memory
+		MemoryBindingType *[]SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingType `json:"memory_binding_type,omitempty"`
+
+		// MemoryPerCpu Minimum memory in megabytes per allocated CPU
+		MemoryPerCpu *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"memory_per_cpu,omitempty"`
+
+		// MemoryPerNode Minimum memory in megabytes per allocated CPU
+		MemoryPerNode *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"memory_per_node,omitempty"`
+
+		// MemoryPerTres Semicolon delimited list of TRES=# values indicating how much memory in megabytes should be allocated for each specified TRES (currently only used for gres/gpu)
+		MemoryPerTres *string `json:"memory_per_tres,omitempty"`
+
+		// MinimumBoardsPerNode Boards per node required
+		MinimumBoardsPerNode *int32 `json:"minimum_boards_per_node,omitempty"`
+
+		// MinimumCpus Minimum number of CPUs required
+		MinimumCpus *int32 `json:"minimum_cpus,omitempty"`
+
+		// MinimumCpusPerNode Minimum number of CPUs per node
+		MinimumCpusPerNode *int32 `json:"minimum_cpus_per_node,omitempty"`
+
+		// MinimumNodes Minimum node count
+		MinimumNodes *int32 `json:"minimum_nodes,omitempty"`
+
+		// MinimumSocketsPerBoard Sockets per board required
+		MinimumSocketsPerBoard *int32 `json:"minimum_sockets_per_board,omitempty"`
+
+		// Name Job name
+		Name *string `json:"name,omitempty"`
+
+		// Network Network specs for job step
+		Network *string `json:"network,omitempty"`
+
+		// Nice Requested job priority change
+		Nice *int32 `json:"nice,omitempty"`
+
+		// Nodes Node count range specification (e.g. 1-15:4)
+		Nodes *string `json:"nodes,omitempty"`
+
+		// NtasksPerTres Number of tasks that can access each GPU
+		NtasksPerTres *int32 `json:"ntasks_per_tres,omitempty"`
+
+		// OpenMode Open mode used for stdout and stderr files
+		OpenMode *[]SlurmV0041PostJobSubmitJSONBodyJobsOpenMode `json:"open_mode,omitempty"`
+
+		// Overcommit Overcommit resources
+		Overcommit *bool `json:"overcommit,omitempty"`
+		// Deprecated:
+		Oversubscribe *bool `json:"oversubscribe,omitempty"`
+
+		// Partition Partition assigned to the job
+		Partition *string `json:"partition,omitempty"`
+		// Deprecated:
+		PowerFlags *[]interface{} `json:"power_flags,omitempty"`
+
+		// Prefer Comma separated list of features that are preferred but not required
+		Prefer *string `json:"prefer,omitempty"`
+
+		// Priority Request specific job priority
+		Priority *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"priority,omitempty"`
+
+		// Profile Profile used by the acct_gather_profile plugin
+		Profile *[]SlurmV0041PostJobSubmitJSONBodyJobsProfile `json:"profile,omitempty"`
+
+		// Qos Quality of Service assigned to the job
+		Qos *string `json:"qos,omitempty"`
+
+		// Reboot Node reboot requested before start
+		Reboot *bool `json:"reboot,omitempty"`
+
+		// Requeue Determines whether the job may be requeued
+		Requeue *bool `json:"requeue,omitempty"`
+
+		// RequiredNodes Comma separated list of required nodes
+		RequiredNodes *[]string `json:"required_nodes,omitempty"`
+
+		// RequiredSwitches Maximum number of switches
+		RequiredSwitches *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"required_switches,omitempty"`
+
+		// Reservation Name of reservation to use
+		Reservation *string `json:"reservation,omitempty"`
+
+		// ReservePorts Port to send various notification msg to
+		ReservePorts *int32 `json:"reserve_ports,omitempty"`
+
+		// ResvMpiPorts Number of reserved communication ports; can only be used if slurmstepd step manager is enabled
+		ResvMpiPorts *int32 `json:"resv_mpi_ports,omitempty"`
+		Rlimits      *struct {
+			// As Address space limit.
+			As *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"as,omitempty"`
+
+			// Core Largest core file that can be created, in bytes.
+			Core *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"core,omitempty"`
+
+			// Cpu Per-process CPU limit, in seconds.
+			Cpu *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"cpu,omitempty"`
+
+			// Data Maximum size of data segment, in bytes.
+			Data *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"data,omitempty"`
+
+			// Fsize Largest file that can be created, in bytes.
+			Fsize *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"fsize,omitempty"`
+
+			// Memlock Locked-in-memory address space
+			Memlock *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"memlock,omitempty"`
+
+			// Nofile Number of open files.
+			Nofile *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"nofile,omitempty"`
+
+			// Nproc Number of processes.
+			Nproc *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"nproc,omitempty"`
+
+			// Rss Largest resident set size, in bytes. This affects swapping; processes that are exceeding their resident set size will be more likely to have physical memory taken from them.
+			Rss *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"rss,omitempty"`
+
+			// Stack Maximum size of stack segment, in bytes.
+			Stack *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int64 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"stack,omitempty"`
+		} `json:"rlimits,omitempty"`
+
+		// Script Job batch script; only the first component in a HetJob is populated or honored
+		Script *string `json:"script,omitempty"`
+
+		// SegmentSize Segment size for topology/block
+		SegmentSize *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"segment_size,omitempty"`
+
+		// SelinuxContext SELinux context
+		SelinuxContext *string `json:"selinux_context,omitempty"`
+
+		// Shared How the job can share resources with other jobs, if at all
+		Shared *[]SlurmV0041PostJobSubmitJSONBodyJobsShared `json:"shared,omitempty"`
+
+		// SiteFactor Site-specific priority factor
+		SiteFactor *int32 `json:"site_factor,omitempty"`
+
+		// SocketsPerNode Sockets per node required
+		SocketsPerNode *int32 `json:"sockets_per_node,omitempty"`
+
+		// SpankEnvironment Environment variables for job prolog/epilog scripts as set by SPANK plugins
+		SpankEnvironment *[]string `json:"spank_environment,omitempty"`
+
+		// StandardError Path to stderr file
+		StandardError *string `json:"standard_error,omitempty"`
+
+		// StandardInput Path to stdin file
+		StandardInput *string `json:"standard_input,omitempty"`
+
+		// StandardOutput Path to stdout file
+		StandardOutput *string `json:"standard_output,omitempty"`
+
+		// Tasks Number of tasks
+		Tasks *int32 `json:"tasks,omitempty"`
+
+		// TasksPerBoard Number of tasks to invoke on each board
+		TasksPerBoard *int32 `json:"tasks_per_board,omitempty"`
+
+		// TasksPerCore Number of tasks to invoke on each core
+		TasksPerCore *int32 `json:"tasks_per_core,omitempty"`
+
+		// TasksPerNode Number of tasks to invoke on each node
+		TasksPerNode *int32 `json:"tasks_per_node,omitempty"`
+
+		// TasksPerSocket Number of tasks to invoke on each socket
+		TasksPerSocket *int32 `json:"tasks_per_socket,omitempty"`
+
+		// TemporaryDiskPerNode Minimum tmp disk space required per node
+		TemporaryDiskPerNode *int32 `json:"temporary_disk_per_node,omitempty"`
+
+		// ThreadSpecification Specialized thread count
+		ThreadSpecification *int32 `json:"thread_specification,omitempty"`
+
+		// ThreadsPerCore Threads per core required
+		ThreadsPerCore *int32 `json:"threads_per_core,omitempty"`
+
+		// TimeLimit Maximum run time in minutes
+		TimeLimit *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"time_limit,omitempty"`
+
+		// TimeMinimum Minimum run time in minutes
+		TimeMinimum *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int32 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"time_minimum,omitempty"`
+
+		// TresBind Task to TRES binding directives
+		TresBind *string `json:"tres_bind,omitempty"`
+
+		// TresFreq TRES frequency directives
+		TresFreq *string `json:"tres_freq,omitempty"`
+
+		// TresPerJob Comma separated list of TRES=# values to be allocated for every job
+		TresPerJob *string `json:"tres_per_job,omitempty"`
+
+		// TresPerNode Comma separated list of TRES=# values to be allocated for every node
+		TresPerNode *string `json:"tres_per_node,omitempty"`
+
+		// TresPerSocket Comma separated list of TRES=# values to be allocated for every socket
+		TresPerSocket *string `json:"tres_per_socket,omitempty"`
+
+		// TresPerTask Comma separated list of TRES=# values to be allocated for every task
+		TresPerTask *string `json:"tres_per_task,omitempty"`
+
+		// UserId User ID that owns the job
+		UserId *string `json:"user_id,omitempty"`
+
+		// WaitAllNodes If true, wait to start until after all nodes have booted
+		WaitAllNodes *bool `json:"wait_all_nodes,omitempty"`
+
+		// WaitForSwitch Maximum time to wait for switches in seconds
+		WaitForSwitch *int32 `json:"wait_for_switch,omitempty"`
+
+		// Wckey Workload characterization key
+		Wckey *string `json:"wckey,omitempty"`
+
+		// X11 X11 forwarding options
+		X11 *[]SlurmV0041PostJobSubmitJSONBodyJobsX11 `json:"x11,omitempty"`
+
+		// X11MagicCookie Magic cookie for X11 forwarding
+		X11MagicCookie *string `json:"x11_magic_cookie,omitempty"`
+
+		// X11TargetHost Hostname or UNIX socket if x11_target_port=0
+		X11TargetHost *string `json:"x11_target_host,omitempty"`
+
+		// X11TargetPort TCP port
+		X11TargetPort *int32 `json:"x11_target_port,omitempty"`
+	} `json:"jobs,omitempty"`
+
+	// Script Deprecated; Populate script field in jobs[0] or job
+	// Deprecated:
+	Script *string `json:"script,omitempty"`
 }
 
-// V0038Error defines model for v0.0.38_error.
-type V0038Error struct {
-	// Error error message
-	Error *string `json:"error,omitempty"`
+// SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobCpuBindingFlags string
 
-	// ErrorNumber Slurm internal error number
-	ErrorNumber *int `json:"error_number,omitempty"`
+// SlurmV0041PostJobSubmitJSONBodyJobCrontabFlags defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobCrontabFlags string
+
+// SlurmV0041PostJobSubmitJSONBodyJobExclusive defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobExclusive string
+
+// SlurmV0041PostJobSubmitJSONBodyJobFlags defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobFlags string
+
+// SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobKillWarningFlags string
+
+// SlurmV0041PostJobSubmitJSONBodyJobMailType defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobMailType string
+
+// SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingType defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobMemoryBindingType string
+
+// SlurmV0041PostJobSubmitJSONBodyJobOpenMode defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobOpenMode string
+
+// SlurmV0041PostJobSubmitJSONBodyJobProfile defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobProfile string
+
+// SlurmV0041PostJobSubmitJSONBodyJobShared defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobShared string
+
+// SlurmV0041PostJobSubmitJSONBodyJobX11 defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobX11 string
+
+// SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobsCpuBindingFlags string
+
+// SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlags defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobsCrontabFlags string
+
+// SlurmV0041PostJobSubmitJSONBodyJobsExclusive defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobsExclusive string
+
+// SlurmV0041PostJobSubmitJSONBodyJobsFlags defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobsFlags string
+
+// SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobsKillWarningFlags string
+
+// SlurmV0041PostJobSubmitJSONBodyJobsMailType defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobsMailType string
+
+// SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingType defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobsMemoryBindingType string
+
+// SlurmV0041PostJobSubmitJSONBodyJobsOpenMode defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobsOpenMode string
+
+// SlurmV0041PostJobSubmitJSONBodyJobsProfile defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobsProfile string
+
+// SlurmV0041PostJobSubmitJSONBodyJobsShared defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobsShared string
+
+// SlurmV0041PostJobSubmitJSONBodyJobsX11 defines parameters for SlurmV0041PostJobSubmit.
+type SlurmV0041PostJobSubmitJSONBodyJobsX11 string
+
+// SlurmV0041DeleteJobParams defines parameters for SlurmV0041DeleteJob.
+type SlurmV0041DeleteJobParams struct {
+	// Signal Signal to send to Job
+	Signal *string `form:"signal,omitempty" json:"signal,omitempty"`
+
+	// Flags Signalling flags
+	Flags *SlurmV0041DeleteJobParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
 }
 
-// V0038Errors Slurm errors
-type V0038Errors = []V0038Error
+// SlurmV0041DeleteJobParamsFlags defines parameters for SlurmV0041DeleteJob.
+type SlurmV0041DeleteJobParamsFlags string
 
-// V0038JobProperties defines model for v0.0.38_job_properties.
-type V0038JobProperties struct {
-	// Account Charge resources used by this job to specified account.
+// SlurmV0041GetJobParams defines parameters for SlurmV0041GetJob.
+type SlurmV0041GetJobParams struct {
+	// UpdateTime Filter jobs since update timestamp
+	UpdateTime *string `form:"update_time,omitempty" json:"update_time,omitempty"`
+
+	// Flags Query flags
+	Flags *SlurmV0041GetJobParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
+}
+
+// SlurmV0041GetJobParamsFlags defines parameters for SlurmV0041GetJob.
+type SlurmV0041GetJobParamsFlags string
+
+// SlurmV0041PostJobJSONBody defines parameters for SlurmV0041PostJob.
+type SlurmV0041PostJobJSONBody struct {
+	// Account Account associated with the job
 	Account *string `json:"account,omitempty"`
 
-	// AccountGatherFrequency Define the job accounting and profiling sampling intervals.
+	// AccountGatherFrequency Job accounting and profiling sampling intervals in seconds
 	AccountGatherFrequency *string `json:"account_gather_frequency,omitempty"`
 
-	// Argv Arguments to the script.
-	Argv *[]string `json:"argv,omitempty"`
-
-	// Array Submit a job array, multiple jobs to be executed with identical parameters. The indexes specification identifies what array index values should be used.
-	Array *string `json:"array,omitempty"`
-
-	// BatchFeatures features required for batch script's node
-	BatchFeatures *string `json:"batch_features,omitempty"`
-
-	// BeginTime Submit the batch script to the Slurm controller immediately, like normal, but tell the controller to defer the allocation of the job until the specified time.
-	BeginTime *int64 `json:"begin_time,omitempty"`
-
-	// BurstBuffer Burst buffer specification.
-	BurstBuffer *string `json:"burst_buffer,omitempty"`
-
-	// ClusterConstraint Specifies features that a federated cluster must have to have a sibling job submitted to it.
-	ClusterConstraint *string `json:"cluster_constraint,omitempty"`
-
-	// Comment An arbitrary comment.
-	Comment *string `json:"comment,omitempty"`
-
-	// Constraints node features required by job.
-	Constraints *string `json:"constraints,omitempty"`
-
-	// Container absolute path to OCI container bundle
-	Container *string `json:"container,omitempty"`
-
-	// CoreSpecification Count of specialized threads per node reserved by the job for system operations and not used by the application.
-	CoreSpecification *int `json:"core_specification,omitempty"`
-
-	// CoresPerSocket Restrict node selection to nodes with at least the specified number of cores per socket.
-	CoresPerSocket *int `json:"cores_per_socket,omitempty"`
-
-	// CpuBinding Cpu binding
-	CpuBinding *string `json:"cpu_binding,omitempty"`
-
-	// CpuBindingHint Cpu binding hint
-	CpuBindingHint *string `json:"cpu_binding_hint,omitempty"`
-
-	// CpuFrequency Request that job steps initiated by srun commands inside this sbatch script be run at some requested frequency if possible, on the CPUs selected for the step on the compute node(s).
-	CpuFrequency *string `json:"cpu_frequency,omitempty"`
-
-	// CpusPerGpu Number of CPUs requested per allocated GPU.
-	CpusPerGpu *string `json:"cpus_per_gpu,omitempty"`
-
-	// CpusPerTask Advise the Slurm controller that ensuing job steps will require ncpus number of processors per task.
-	CpusPerTask *int `json:"cpus_per_task,omitempty"`
-
-	// CurrentWorkingDirectory Instruct Slurm to connect the batch script's standard output directly to the file name.
-	CurrentWorkingDirectory *string `json:"current_working_directory,omitempty"`
-
-	// Deadline Remove the job if no ending is possible before this deadline (start > (deadline - time[-min])).
-	Deadline *string `json:"deadline,omitempty"`
-
-	// DelayBoot Do not reboot nodes in order to satisfied this job's feature specification if the job has been eligible to run for less than this time period.
-	DelayBoot *int `json:"delay_boot,omitempty"`
-
-	// Dependency Defer the start of this job until the specified dependencies have been satisfied completed.
-	Dependency *string `json:"dependency,omitempty"`
-
-	// Distribution Specify alternate distribution methods for remote processes.
-	Distribution *string `json:"distribution,omitempty"`
-
-	// Environment Dictionary of environment entries.
-	Environment map[string]interface{} `json:"environment"`
-
-	// Exclusive The job allocation can share nodes just other users with the "user" option or with the "mcs" option).
-	Exclusive *V0038JobPropertiesExclusive `json:"exclusive,omitempty"`
-
-	// GetUserEnvironment Load new login environment for user on job node.
-	GetUserEnvironment *bool `json:"get_user_environment,omitempty"`
-
-	// GpuBinding Requested binding of tasks to GPU.
-	GpuBinding *string `json:"gpu_binding,omitempty"`
-
-	// GpuFrequency Requested GPU frequency.
-	GpuFrequency *string `json:"gpu_frequency,omitempty"`
-
-	// Gpus GPUs per job.
-	Gpus *string `json:"gpus,omitempty"`
-
-	// GpusPerNode GPUs per node.
-	GpusPerNode *string `json:"gpus_per_node,omitempty"`
-
-	// GpusPerSocket GPUs per socket.
-	GpusPerSocket *string `json:"gpus_per_socket,omitempty"`
-
-	// GpusPerTask GPUs per task.
-	GpusPerTask *string `json:"gpus_per_task,omitempty"`
-
-	// Gres Specifies a comma delimited list of generic consumable resources.
-	Gres *string `json:"gres,omitempty"`
-
-	// GresFlags Specify generic resource task binding options.
-	GresFlags *V0038JobPropertiesGresFlags `json:"gres_flags,omitempty"`
-
-	// Hold Specify the job is to be submitted in a held state (priority of zero).
-	Hold *bool `json:"hold,omitempty"`
-
-	// KillOnInvalidDependency If a job has an invalid dependency, then Slurm is to terminate it.
-	KillOnInvalidDependency *bool `json:"kill_on_invalid_dependency,omitempty"`
-
-	// Licenses Specification of licenses (or other resources available on all nodes of the cluster) which must be allocated to this job.
-	Licenses *string `json:"licenses,omitempty"`
-
-	// MailType Notify user by email when certain event types occur.
-	MailType *string `json:"mail_type,omitempty"`
-
-	// MailUser User to receive email notification of state changes as defined by mail_type.
-	MailUser *string `json:"mail_user,omitempty"`
-
-	// McsLabel This parameter is a group among the groups of the user.
-	McsLabel *string `json:"mcs_label,omitempty"`
-
-	// MemoryBinding Bind tasks to memory.
-	MemoryBinding *string `json:"memory_binding,omitempty"`
-
-	// MemoryPerCpu Minimum real memory per cpu (MB).
-	MemoryPerCpu *int `json:"memory_per_cpu,omitempty"`
-
-	// MemoryPerGpu Minimum memory required per allocated GPU.
-	MemoryPerGpu *int `json:"memory_per_gpu,omitempty"`
-
-	// MemoryPerNode Minimum real memory per node (MB).
-	MemoryPerNode *int `json:"memory_per_node,omitempty"`
-
-	// MinimumCpusPerNode Minimum number of CPUs per node.
-	MinimumCpusPerNode *int `json:"minimum_cpus_per_node,omitempty"`
-
-	// MinimumNodes If a range of node counts is given, prefer the smaller count.
-	MinimumNodes *bool `json:"minimum_nodes,omitempty"`
-
-	// Name Specify a name for the job allocation.
-	Name *string `json:"name,omitempty"`
-
-	// Nice Run the job with an adjusted scheduling priority within Slurm.
-	Nice *int `json:"nice,omitempty"`
-
-	// NoKill Do not automatically terminate a job if one of the nodes it has been allocated fails.
-	NoKill *bool `json:"no_kill,omitempty"`
-
-	// Nodes Request that a minimum of minnodes nodes and a maximum node count.
-	Nodes *[]int `json:"nodes,omitempty"`
-
-	// OpenMode Open the output and error files using append or truncate mode as specified.
-	OpenMode *V0038JobPropertiesOpenMode `json:"open_mode,omitempty"`
-
-	// Oversubscribe The job allocation can over-subscribe resources with other running jobs.
-	Oversubscribe *bool `json:"oversubscribe,omitempty"`
-
-	// Partition Request a specific partition for the resource allocation.
-	Partition *string `json:"partition,omitempty"`
-
-	// Prefer Comma delimited list of features for scheduler to prefer but not a strict requirement like a constraint. Value can be used for job submission but is only displayed for PENDING jobs.
-	Prefer *string `json:"prefer,omitempty"`
-
-	// Priority Request a specific job priority.
-	Priority *string `json:"priority,omitempty"`
-
-	// Qos Request a quality of service for the job.
-	Qos *string `json:"qos,omitempty"`
-
-	// Requeue Specifies that the batch job should eligible to being requeue.
-	Requeue *bool `json:"requeue,omitempty"`
-
-	// Reservation Allocate resources for the job from the named reservation.
-	Reservation *string `json:"reservation,omitempty"`
-
-	// Signal When a job is within sig_time seconds of its end time, send it the signal sig_num.
-	Signal *string `json:"signal,omitempty"`
-
-	// SocketsPerNode Restrict node selection to nodes with at least the specified number of sockets.
-	SocketsPerNode *int `json:"sockets_per_node,omitempty"`
-
-	// SpreadJob Spread the job allocation over as many nodes as possible and attempt to evenly distribute tasks across the allocated nodes.
-	SpreadJob *bool `json:"spread_job,omitempty"`
-
-	// StandardError Instruct Slurm to connect the batch script's standard error directly to the file name.
-	StandardError *string `json:"standard_error,omitempty"`
-
-	// StandardInput Instruct Slurm to connect the batch script's standard input directly to the file name specified.
-	StandardInput *string `json:"standard_input,omitempty"`
-
-	// StandardOutput Instruct Slurm to connect the batch script's standard output directly to the file name.
-	StandardOutput *string `json:"standard_output,omitempty"`
-
-	// Tasks Advises the Slurm controller that job steps run within the allocation will launch a maximum of number tasks and to provide for sufficient resources.
-	Tasks *int `json:"tasks,omitempty"`
-
-	// TasksPerCore Request the maximum ntasks be invoked on each core.
-	TasksPerCore *int `json:"tasks_per_core,omitempty"`
-
-	// TasksPerNode Request the maximum ntasks be invoked on each node.
-	TasksPerNode *int `json:"tasks_per_node,omitempty"`
-
-	// TasksPerSocket Request the maximum ntasks be invoked on each socket.
-	TasksPerSocket *int `json:"tasks_per_socket,omitempty"`
-
-	// ThreadSpecification Count of specialized threads per node reserved by the job for system operations and not used by the application.
-	ThreadSpecification *int `json:"thread_specification,omitempty"`
-
-	// ThreadsPerCore Restrict node selection to nodes with at least the specified number of threads per core.
-	ThreadsPerCore *int `json:"threads_per_core,omitempty"`
-
-	// TimeLimit Step time limit in minutes.
-	TimeLimit *int `json:"time_limit,omitempty"`
-
-	// TimeMinimum Minimum run time in minutes.
-	TimeMinimum *int `json:"time_minimum,omitempty"`
-
-	// WaitAllNodes Do not begin execution until all nodes are ready for use.
-	WaitAllNodes *bool `json:"wait_all_nodes,omitempty"`
-
-	// Wckey Specify wckey to be used with job.
-	Wckey *string `json:"wckey,omitempty"`
-}
-
-// V0038JobPropertiesExclusive The job allocation can share nodes just other users with the "user" option or with the "mcs" option).
-type V0038JobPropertiesExclusive string
-
-// V0038JobPropertiesGresFlags Specify generic resource task binding options.
-type V0038JobPropertiesGresFlags string
-
-// V0038JobPropertiesOpenMode Open the output and error files using append or truncate mode as specified.
-type V0038JobPropertiesOpenMode string
-
-// V0038JobResources defines model for v0.0.38_job_resources.
-type V0038JobResources struct {
-	// AllocatedCpus number of assigned job cpus
-	AllocatedCpus *int `json:"allocated_cpus,omitempty"`
-
-	// AllocatedHosts number of assigned job hosts
-	AllocatedHosts *int `json:"allocated_hosts,omitempty"`
-
-	// AllocatedNodes array of allocated nodes
-	AllocatedNodes *[]V0038NodeAllocation `json:"allocated_nodes,omitempty"`
-
-	// Nodes list of assigned job nodes
-	Nodes *string `json:"nodes,omitempty"`
-}
-
-// V0038JobResponseProperties defines model for v0.0.38_job_response_properties.
-type V0038JobResponseProperties struct {
-	// Account Charge resources used by this job to specified account
-	Account *string `json:"account,omitempty"`
-
-	// AccrueTime time job is eligible for running
-	AccrueTime *int64 `json:"accrue_time,omitempty"`
-
-	// AdminComment administrator's arbitrary comment
+	// AdminComment Arbitrary comment made by administrator
 	AdminComment *string `json:"admin_comment,omitempty"`
 
-	// ArrayJobId job_id of a job array or 0 if N/A
-	ArrayJobId *int `json:"array_job_id,omitempty"`
+	// AllocationNodeList Local node making the resource allocation
+	AllocationNodeList *string `json:"allocation_node_list,omitempty"`
 
-	// ArrayMaxTasks Maximum number of running array tasks
-	ArrayMaxTasks *int `json:"array_max_tasks,omitempty"`
+	// AllocationNodePort Port to send allocation confirmation to
+	AllocationNodePort *int32 `json:"allocation_node_port,omitempty"`
 
-	// ArrayTaskId task_id of a job array
-	ArrayTaskId *int `json:"array_task_id,omitempty"`
+	// Argv Arguments to the script
+	Argv *[]string `json:"argv,omitempty"`
 
-	// ArrayTaskString string expression of task IDs in this record
-	ArrayTaskString *string `json:"array_task_string,omitempty"`
+	// Array Job array index value specification
+	Array *string `json:"array,omitempty"`
 
-	// AssociationId association id for job
-	AssociationId *int `json:"association_id,omitempty"`
-
-	// BatchFeatures features required for batch script's node
+	// BatchFeatures Features required for batch script's node
 	BatchFeatures *string `json:"batch_features,omitempty"`
 
-	// BatchFlag if batch: queued job with script
-	BatchFlag *bool `json:"batch_flag,omitempty"`
+	// BeginTime Defer the allocation of the job until the specified time (UNIX timestamp)
+	BeginTime *struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
 
-	// BatchHost name of host running batch script
-	BatchHost *string `json:"batch_host,omitempty"`
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int64 `json:"number,omitempty"`
 
-	// BillableTres billable TRES
-	BillableTres *float32 `json:"billable_tres,omitempty"`
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"begin_time,omitempty"`
 
-	// BurstBuffer burst buffer specifications
+	// BurstBuffer Burst buffer specifications
 	BurstBuffer *string `json:"burst_buffer,omitempty"`
 
-	// BurstBufferState burst buffer state info
-	BurstBufferState *string `json:"burst_buffer_state,omitempty"`
+	// ClusterConstraint Required features that a federated cluster must have to have a sibling job submitted to it
+	ClusterConstraint *string `json:"cluster_constraint,omitempty"`
 
-	// Cluster name of cluster that the job is on
-	Cluster *string `json:"cluster,omitempty"`
+	// Clusters Clusters that a federated job can run on
+	Clusters *string `json:"clusters,omitempty"`
 
-	// ClusterFeatures comma separated list of required cluster features
-	ClusterFeatures *string `json:"cluster_features,omitempty"`
-
-	// Command command to be executed
-	Command *string `json:"command,omitempty"`
-
-	// Comment arbitrary comment
+	// Comment Arbitrary comment made by user
 	Comment *string `json:"comment,omitempty"`
 
-	// Container absolute path to OCI container bundle
+	// Constraints Comma separated list of features that are required
+	Constraints *string `json:"constraints,omitempty"`
+
+	// Container Absolute path to OCI container bundle
 	Container *string `json:"container,omitempty"`
 
-	// Contiguous job requires contiguous nodes
+	// ContainerId OCI container ID
+	ContainerId *string `json:"container_id,omitempty"`
+
+	// Contiguous True if job requires contiguous nodes
 	Contiguous *bool `json:"contiguous,omitempty"`
 
-	// CoreSpec specialized core count
-	CoreSpec *string `json:"core_spec,omitempty"`
+	// CoreSpecification Specialized core count
+	CoreSpecification *int32 `json:"core_specification,omitempty"`
 
-	// CoresPerSocket cores per socket required by job
-	CoresPerSocket *string `json:"cores_per_socket,omitempty"`
+	// CpuBinding Method for binding tasks to allocated CPUs
+	CpuBinding *string `json:"cpu_binding,omitempty"`
 
-	// CpuFrequencyGovernor cpu frequency governor
-	CpuFrequencyGovernor *string `json:"cpu_frequency_governor,omitempty"`
+	// CpuBindingFlags Flags for CPU binding
+	CpuBindingFlags *[]SlurmV0041PostJobJSONBodyCpuBindingFlags `json:"cpu_binding_flags,omitempty"`
 
-	// CpuFrequencyMaximum Maximum cpu frequency
-	CpuFrequencyMaximum *string `json:"cpu_frequency_maximum,omitempty"`
+	// CpuFrequency Requested CPU frequency range <p1>[-p2][:p3]
+	CpuFrequency *string `json:"cpu_frequency,omitempty"`
 
-	// CpuFrequencyMinimum Minimum cpu frequency
-	CpuFrequencyMinimum *string `json:"cpu_frequency_minimum,omitempty"`
+	// CpusPerTask Number of CPUs required by each task
+	CpusPerTask *int32 `json:"cpus_per_task,omitempty"`
 
-	// Cpus minimum number of cpus required by job
-	Cpus *int `json:"cpus,omitempty"`
-
-	// CpusPerTask number of processors required for each task
-	CpusPerTask *string `json:"cpus_per_task,omitempty"`
-
-	// CpusPerTres semicolon delimited list of TRES=# values
+	// CpusPerTres Semicolon delimited list of TRES=# values values indicating how many CPUs should be allocated for each specified TRES (currently only used for gres/gpu)
 	CpusPerTres *string `json:"cpus_per_tres,omitempty"`
 
-	// CurrentWorkingDirectory pathname of working directory
+	// Crontab Specification for scrontab job
+	Crontab *struct {
+		// Command Command to run
+		Command *string `json:"command,omitempty"`
+
+		// DayOfMonth Ranged string specifying eligible day of month values (e.g. 0-10,29)
+		DayOfMonth *string `json:"day_of_month,omitempty"`
+
+		// DayOfWeek Ranged string specifying eligible day of week values (e.g.0-3,7)
+		DayOfWeek *string `json:"day_of_week,omitempty"`
+
+		// Flags Flags
+		Flags *[]SlurmV0041PostJobJSONBodyCrontabFlags `json:"flags,omitempty"`
+
+		// Hour Ranged string specifying eligible hour values (e.g. 0-5,23)
+		Hour *string `json:"hour,omitempty"`
+		Line *struct {
+			// End End of this entry in file
+			End *int32 `json:"end,omitempty"`
+
+			// Start Start of this entry in file
+			Start *int32 `json:"start,omitempty"`
+		} `json:"line,omitempty"`
+
+		// Minute Ranged string specifying eligible minute values (e.g. 0-10,50)
+		Minute *string `json:"minute,omitempty"`
+
+		// Month Ranged string specifying eligible month values (e.g. 0-5,12)
+		Month *string `json:"month,omitempty"`
+
+		// Specification Time specification (* means valid for all allowed values) - minute hour day_of_month month day_of_week
+		Specification *string `json:"specification,omitempty"`
+	} `json:"crontab,omitempty"`
+
+	// CurrentWorkingDirectory Working directory to use for the job
 	CurrentWorkingDirectory *string `json:"current_working_directory,omitempty"`
 
-	// Deadline job start deadline
-	Deadline *int `json:"deadline,omitempty"`
+	// Deadline Latest time that the job may start (UNIX timestamp)
+	Deadline *int64 `json:"deadline,omitempty"`
 
-	// DelayBoot command to be executed
-	DelayBoot *int `json:"delay_boot,omitempty"`
+	// DelayBoot Number of seconds after job eligible start that nodes will be rebooted to satisfy feature specification
+	DelayBoot *int32 `json:"delay_boot,omitempty"`
 
-	// Dependency synchronize job execution with other jobs
+	// Dependency Other jobs that must meet certain criteria before this job can start
 	Dependency *string `json:"dependency,omitempty"`
 
-	// DerivedExitCode highest exit code of all job steps
-	DerivedExitCode *int `json:"derived_exit_code,omitempty"`
+	// Distribution Layout
+	Distribution *string `json:"distribution,omitempty"`
 
-	// EligibleTime time job is eligible for running
-	EligibleTime *int64 `json:"eligible_time,omitempty"`
+	// DistributionPlaneSize Plane size specification when distribution specifies plane
+	DistributionPlaneSize *struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
 
-	// EndTime time of termination, actual or expected
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int32 `json:"number,omitempty"`
+
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"distribution_plane_size,omitempty"`
+
+	// EndTime Expected end time (UNIX timestamp)
 	EndTime *int64 `json:"end_time,omitempty"`
 
-	// ExcludedNodes comma separated list of excluded nodes
-	ExcludedNodes *string `json:"excluded_nodes,omitempty"`
+	// Environment Environment variables to be set for the job
+	Environment *[]string `json:"environment,omitempty"`
 
-	// ExitCode exit code for job
-	ExitCode *int `json:"exit_code,omitempty"`
+	// ExcludedNodes Comma separated list of nodes that may not be used
+	ExcludedNodes *[]string `json:"excluded_nodes,omitempty"`
+	// Deprecated:
+	Exclusive *[]SlurmV0041PostJobJSONBodyExclusive `json:"exclusive,omitempty"`
 
-	// Features comma separated list of required features
-	Features *string `json:"features,omitempty"`
-
-	// FederationOrigin Origin cluster's name
-	FederationOrigin *string `json:"federation_origin,omitempty"`
-
-	// FederationSiblingsActive string of active sibling names
-	FederationSiblingsActive *string `json:"federation_siblings_active,omitempty"`
-
-	// FederationSiblingsViable string of viable sibling names
-	FederationSiblingsViable *string `json:"federation_siblings_viable,omitempty"`
+	// Extra Arbitrary string used for node filtering if extra constraints are enabled
+	Extra *string `json:"extra,omitempty"`
 
 	// Flags Job flags
-	Flags *[]string `json:"flags,omitempty"`
+	Flags *[]SlurmV0041PostJobJSONBodyFlags `json:"flags,omitempty"`
 
-	// GresDetail Job flags
-	GresDetail *[]string `json:"gres_detail,omitempty"`
+	// GroupId Group ID of the user that owns the job
+	GroupId *string `json:"group_id,omitempty"`
 
-	// GroupId group job submitted as
-	GroupId *int `json:"group_id,omitempty"`
+	// HetjobGroup Unique sequence number applied to this component of the heterogeneous job
+	HetjobGroup *int32 `json:"hetjob_group,omitempty"`
 
-	// HetJobId job ID of hetjob leader
-	HetJobId *int `json:"het_job_id,omitempty"`
+	// Hold Hold (true) or release (false) job
+	Hold *bool `json:"hold,omitempty"`
 
-	// HetJobIdSet job IDs for all components
-	HetJobIdSet *string `json:"het_job_id_set,omitempty"`
+	// Immediate If true, exit if resources are not available within the time period specified
+	Immediate *bool `json:"immediate,omitempty"`
 
-	// HetJobOffset HetJob component offset from leader
-	HetJobOffset *int `json:"het_job_offset,omitempty"`
+	// JobId Job ID
+	JobId *int32 `json:"job_id,omitempty"`
 
-	// JobId job ID
-	JobId        *int               `json:"job_id,omitempty"`
-	JobResources *V0038JobResources `json:"job_resources,omitempty"`
+	// KillOnNodeFail If true, kill job on node failure
+	KillOnNodeFail *bool `json:"kill_on_node_fail,omitempty"`
 
-	// JobState state of the job
-	JobState *string `json:"job_state,omitempty"`
+	// KillWarningDelay Number of seconds before end time to send the warning signal
+	KillWarningDelay *struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
 
-	// LastSchedEvaluation last time job was evaluated for scheduling
-	LastSchedEvaluation *int `json:"last_sched_evaluation,omitempty"`
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int32 `json:"number,omitempty"`
 
-	// Licenses licenses required by the job
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"kill_warning_delay,omitempty"`
+
+	// KillWarningFlags Flags related to job signals
+	KillWarningFlags *[]SlurmV0041PostJobJSONBodyKillWarningFlags `json:"kill_warning_flags,omitempty"`
+
+	// KillWarningSignal Signal to send when approaching end time (e.g. "10" or "USR1")
+	KillWarningSignal *string `json:"kill_warning_signal,omitempty"`
+
+	// Licenses License(s) required by the job
 	Licenses *string `json:"licenses,omitempty"`
 
-	// MaxCpus maximum number of cpus usable by job
-	MaxCpus *int `json:"max_cpus,omitempty"`
+	// MailType Mail event type(s)
+	MailType *[]SlurmV0041PostJobJSONBodyMailType `json:"mail_type,omitempty"`
 
-	// MaxNodes maximum number of nodes usable by job
-	MaxNodes *int `json:"max_nodes,omitempty"`
+	// MailUser User to receive email notifications
+	MailUser *string `json:"mail_user,omitempty"`
 
-	// McsLabel mcs_label if mcs plugin in use
+	// MaximumCpus Maximum number of CPUs required
+	MaximumCpus *int32 `json:"maximum_cpus,omitempty"`
+
+	// MaximumNodes Maximum node count
+	MaximumNodes *int32 `json:"maximum_nodes,omitempty"`
+
+	// McsLabel Multi-Category Security label on the job
 	McsLabel *string `json:"mcs_label,omitempty"`
 
-	// MemoryPerCpu minimum real memory per cpu
-	MemoryPerCpu *int `json:"memory_per_cpu,omitempty"`
+	// MemoryBinding Binding map for map/mask_cpu
+	MemoryBinding *string `json:"memory_binding,omitempty"`
 
-	// MemoryPerNode minimum real memory per node
-	MemoryPerNode *int `json:"memory_per_node,omitempty"`
+	// MemoryBindingType Method for binding tasks to memory
+	MemoryBindingType *[]SlurmV0041PostJobJSONBodyMemoryBindingType `json:"memory_binding_type,omitempty"`
 
-	// MemoryPerTres semicolon delimited list of TRES=# values
+	// MemoryPerCpu Minimum memory in megabytes per allocated CPU
+	MemoryPerCpu *struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
+
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int64 `json:"number,omitempty"`
+
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"memory_per_cpu,omitempty"`
+
+	// MemoryPerNode Minimum memory in megabytes per allocated CPU
+	MemoryPerNode *struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
+
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int64 `json:"number,omitempty"`
+
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"memory_per_node,omitempty"`
+
+	// MemoryPerTres Semicolon delimited list of TRES=# values indicating how much memory in megabytes should be allocated for each specified TRES (currently only used for gres/gpu)
 	MemoryPerTres *string `json:"memory_per_tres,omitempty"`
 
-	// MinimumCpusPerNode minimum # CPUs per node
-	MinimumCpusPerNode *int `json:"minimum_cpus_per_node,omitempty"`
+	// MinimumBoardsPerNode Boards per node required
+	MinimumBoardsPerNode *int32 `json:"minimum_boards_per_node,omitempty"`
 
-	// MinimumTmpDiskPerNode minimum tmp disk per node
-	MinimumTmpDiskPerNode *int `json:"minimum_tmp_disk_per_node,omitempty"`
+	// MinimumCpus Minimum number of CPUs required
+	MinimumCpus *int32 `json:"minimum_cpus,omitempty"`
 
-	// Name name of the job
+	// MinimumCpusPerNode Minimum number of CPUs per node
+	MinimumCpusPerNode *int32 `json:"minimum_cpus_per_node,omitempty"`
+
+	// MinimumNodes Minimum node count
+	MinimumNodes *int32 `json:"minimum_nodes,omitempty"`
+
+	// MinimumSocketsPerBoard Sockets per board required
+	MinimumSocketsPerBoard *int32 `json:"minimum_sockets_per_board,omitempty"`
+
+	// Name Job name
 	Name *string `json:"name,omitempty"`
 
-	// Nice requested priority change
-	Nice *int `json:"nice,omitempty"`
+	// Network Network specs for job step
+	Network *string `json:"network,omitempty"`
 
-	// NodeCount minimum number of nodes required by job
-	NodeCount *int `json:"node_count,omitempty"`
+	// Nice Requested job priority change
+	Nice *int32 `json:"nice,omitempty"`
 
-	// Nodes list of nodes allocated to job
+	// Nodes Node count range specification (e.g. 1-15:4)
 	Nodes *string `json:"nodes,omitempty"`
 
-	// Partition name of assigned partition
+	// NtasksPerTres Number of tasks that can access each GPU
+	NtasksPerTres *int32 `json:"ntasks_per_tres,omitempty"`
+
+	// OpenMode Open mode used for stdout and stderr files
+	OpenMode *[]SlurmV0041PostJobJSONBodyOpenMode `json:"open_mode,omitempty"`
+
+	// Overcommit Overcommit resources
+	Overcommit *bool `json:"overcommit,omitempty"`
+	// Deprecated:
+	Oversubscribe *bool `json:"oversubscribe,omitempty"`
+
+	// Partition Partition assigned to the job
 	Partition *string `json:"partition,omitempty"`
+	// Deprecated:
+	PowerFlags *[]interface{} `json:"power_flags,omitempty"`
 
-	// PreSusTime time job ran prior to last suspend
-	PreSusTime *int64 `json:"pre_sus_time,omitempty"`
+	// Prefer Comma separated list of features that are preferred but not required
+	Prefer *string `json:"prefer,omitempty"`
 
-	// PreemptTime preemption signal time
-	PreemptTime *int64 `json:"preempt_time,omitempty"`
+	// Priority Request specific job priority
+	Priority *struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
 
-	// Priority relative priority of the job
-	Priority *int `json:"priority,omitempty"`
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int32 `json:"number,omitempty"`
 
-	// Profile Job profiling requested
-	Profile *[]string `json:"profile,omitempty"`
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"priority,omitempty"`
 
-	// Qos Quality of Service
+	// Profile Profile used by the acct_gather_profile plugin
+	Profile *[]SlurmV0041PostJobJSONBodyProfile `json:"profile,omitempty"`
+
+	// Qos Quality of Service assigned to the job
 	Qos *string `json:"qos,omitempty"`
 
-	// Reboot node reboot requested before start
+	// Reboot Node reboot requested before start
 	Reboot *bool `json:"reboot,omitempty"`
 
-	// Requeue enable or disable job requeue option
+	// Requeue Determines whether the job may be requeued
 	Requeue *bool `json:"requeue,omitempty"`
 
-	// RequiredNodes comma separated list of required nodes
-	RequiredNodes *string `json:"required_nodes,omitempty"`
+	// RequiredNodes Comma separated list of required nodes
+	RequiredNodes *[]string `json:"required_nodes,omitempty"`
 
-	// ResizeTime time of latest size change
-	ResizeTime *int64 `json:"resize_time,omitempty"`
+	// RequiredSwitches Maximum number of switches
+	RequiredSwitches *struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
 
-	// RestartCnt count of job restarts
-	RestartCnt *int `json:"restart_cnt,omitempty"`
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int32 `json:"number,omitempty"`
 
-	// ResvName reservation name
-	ResvName *string `json:"resv_name,omitempty"`
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"required_switches,omitempty"`
 
-	// Shared type and if job can share nodes with other jobs
-	Shared *string `json:"shared,omitempty"`
+	// Reservation Name of reservation to use
+	Reservation *string `json:"reservation,omitempty"`
 
-	// ShowFlags details requested
-	ShowFlags *[]string `json:"show_flags,omitempty"`
+	// ReservePorts Port to send various notification msg to
+	ReservePorts *int32 `json:"reserve_ports,omitempty"`
 
-	// SocketsPerBoard sockets per board required by job
-	SocketsPerBoard *int `json:"sockets_per_board,omitempty"`
+	// ResvMpiPorts Number of reserved communication ports; can only be used if slurmstepd step manager is enabled
+	ResvMpiPorts *int32 `json:"resv_mpi_ports,omitempty"`
+	Rlimits      *struct {
+		// As Address space limit.
+		As *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
 
-	// SocketsPerNode sockets per node required by job
-	SocketsPerNode *int `json:"sockets_per_node,omitempty"`
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
 
-	// StandardError pathname of job's stderr file
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"as,omitempty"`
+
+		// Core Largest core file that can be created, in bytes.
+		Core *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"core,omitempty"`
+
+		// Cpu Per-process CPU limit, in seconds.
+		Cpu *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"cpu,omitempty"`
+
+		// Data Maximum size of data segment, in bytes.
+		Data *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"data,omitempty"`
+
+		// Fsize Largest file that can be created, in bytes.
+		Fsize *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"fsize,omitempty"`
+
+		// Memlock Locked-in-memory address space
+		Memlock *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"memlock,omitempty"`
+
+		// Nofile Number of open files.
+		Nofile *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"nofile,omitempty"`
+
+		// Nproc Number of processes.
+		Nproc *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"nproc,omitempty"`
+
+		// Rss Largest resident set size, in bytes. This affects swapping; processes that are exceeding their resident set size will be more likely to have physical memory taken from them.
+		Rss *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"rss,omitempty"`
+
+		// Stack Maximum size of stack segment, in bytes.
+		Stack *struct {
+			// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+			Infinite *bool `json:"infinite,omitempty"`
+
+			// Number If "set" is True the number will be set with value; otherwise ignore number contents
+			Number *int64 `json:"number,omitempty"`
+
+			// Set True if number has been set; False if number is unset
+			Set *bool `json:"set,omitempty"`
+		} `json:"stack,omitempty"`
+	} `json:"rlimits,omitempty"`
+
+	// Script Job batch script; only the first component in a HetJob is populated or honored
+	Script *string `json:"script,omitempty"`
+
+	// SegmentSize Segment size for topology/block
+	SegmentSize *struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
+
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int32 `json:"number,omitempty"`
+
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"segment_size,omitempty"`
+
+	// SelinuxContext SELinux context
+	SelinuxContext *string `json:"selinux_context,omitempty"`
+
+	// Shared How the job can share resources with other jobs, if at all
+	Shared *[]SlurmV0041PostJobJSONBodyShared `json:"shared,omitempty"`
+
+	// SiteFactor Site-specific priority factor
+	SiteFactor *int32 `json:"site_factor,omitempty"`
+
+	// SocketsPerNode Sockets per node required
+	SocketsPerNode *int32 `json:"sockets_per_node,omitempty"`
+
+	// SpankEnvironment Environment variables for job prolog/epilog scripts as set by SPANK plugins
+	SpankEnvironment *[]string `json:"spank_environment,omitempty"`
+
+	// StandardError Path to stderr file
 	StandardError *string `json:"standard_error,omitempty"`
 
-	// StandardInput pathname of job's stdin file
+	// StandardInput Path to stdin file
 	StandardInput *string `json:"standard_input,omitempty"`
 
-	// StandardOutput pathname of job's stdout file
+	// StandardOutput Path to stdout file
 	StandardOutput *string `json:"standard_output,omitempty"`
 
-	// StartTime time execution begins, actual or expected
-	StartTime *int64 `json:"start_time,omitempty"`
+	// Tasks Number of tasks
+	Tasks *int32 `json:"tasks,omitempty"`
 
-	// StateDescription optional details for state_reason
-	StateDescription *string `json:"state_description,omitempty"`
+	// TasksPerBoard Number of tasks to invoke on each board
+	TasksPerBoard *int32 `json:"tasks_per_board,omitempty"`
 
-	// StateReason reason job still pending or failed
-	StateReason *string `json:"state_reason,omitempty"`
+	// TasksPerCore Number of tasks to invoke on each core
+	TasksPerCore *int32 `json:"tasks_per_core,omitempty"`
 
-	// SubmitTime time of job submission
-	SubmitTime *int64 `json:"submit_time,omitempty"`
+	// TasksPerNode Number of tasks to invoke on each node
+	TasksPerNode *int32 `json:"tasks_per_node,omitempty"`
 
-	// SuspendTime time job last suspended or resumed
-	SuspendTime *int64 `json:"suspend_time,omitempty"`
+	// TasksPerSocket Number of tasks to invoke on each socket
+	TasksPerSocket *int32 `json:"tasks_per_socket,omitempty"`
 
-	// SystemComment slurmctld's arbitrary comment
-	SystemComment *string `json:"system_comment,omitempty"`
+	// TemporaryDiskPerNode Minimum tmp disk space required per node
+	TemporaryDiskPerNode *int32 `json:"temporary_disk_per_node,omitempty"`
 
-	// Tasks requested task count
-	Tasks *int `json:"tasks,omitempty"`
+	// ThreadSpecification Specialized thread count
+	ThreadSpecification *int32 `json:"thread_specification,omitempty"`
 
-	// TasksPerBoard number of tasks to invoke on each board
-	TasksPerBoard *int `json:"tasks_per_board,omitempty"`
+	// ThreadsPerCore Threads per core required
+	ThreadsPerCore *int32 `json:"threads_per_core,omitempty"`
 
-	// TasksPerCore number of tasks to invoke on each core
-	TasksPerCore *int `json:"tasks_per_core,omitempty"`
+	// TimeLimit Maximum run time in minutes
+	TimeLimit *struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
 
-	// TasksPerSocket number of tasks to invoke on each socket
-	TasksPerSocket *int `json:"tasks_per_socket,omitempty"`
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int32 `json:"number,omitempty"`
 
-	// ThreadSpec specialized thread count
-	ThreadSpec *string `json:"thread_spec,omitempty"`
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"time_limit,omitempty"`
 
-	// ThreadsPerCore threads per core required by job
-	ThreadsPerCore *int `json:"threads_per_core,omitempty"`
+	// TimeMinimum Minimum run time in minutes
+	TimeMinimum *struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
 
-	// TimeLimit maximum run time in minutes
-	TimeLimit *int64 `json:"time_limit,omitempty"`
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int32 `json:"number,omitempty"`
 
-	// TimeMinimum minimum run time in minutes
-	TimeMinimum *int64 `json:"time_minimum,omitempty"`
-
-	// TresAllocStr tres used in the job
-	TresAllocStr *string `json:"tres_alloc_str,omitempty"`
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"time_minimum,omitempty"`
 
 	// TresBind Task to TRES binding directives
 	TresBind *string `json:"tres_bind,omitempty"`
@@ -2799,4542 +10233,276 @@ type V0038JobResponseProperties struct {
 	// TresFreq TRES frequency directives
 	TresFreq *string `json:"tres_freq,omitempty"`
 
-	// TresPerJob semicolon delimited list of TRES=# values
+	// TresPerJob Comma separated list of TRES=# values to be allocated for every job
 	TresPerJob *string `json:"tres_per_job,omitempty"`
 
-	// TresPerNode semicolon delimited list of TRES=# values
+	// TresPerNode Comma separated list of TRES=# values to be allocated for every node
 	TresPerNode *string `json:"tres_per_node,omitempty"`
 
-	// TresPerSocket semicolon delimited list of TRES=# values
+	// TresPerSocket Comma separated list of TRES=# values to be allocated for every socket
 	TresPerSocket *string `json:"tres_per_socket,omitempty"`
 
-	// TresPerTask semicolon delimited list of TRES=# values
+	// TresPerTask Comma separated list of TRES=# values to be allocated for every task
 	TresPerTask *string `json:"tres_per_task,omitempty"`
 
-	// TresReqStr tres requested in the job
-	TresReqStr *string `json:"tres_req_str,omitempty"`
+	// UserId User ID that owns the job
+	UserId *string `json:"user_id,omitempty"`
 
-	// UserId user id the job runs as
-	UserId *int64 `json:"user_id,omitempty"`
+	// WaitAllNodes If true, wait to start until after all nodes have booted
+	WaitAllNodes *bool `json:"wait_all_nodes,omitempty"`
 
-	// UserName user the job runs as
-	UserName *string `json:"user_name,omitempty"`
+	// WaitForSwitch Maximum time to wait for switches in seconds
+	WaitForSwitch *int32 `json:"wait_for_switch,omitempty"`
 
-	// Wckey wckey for job
+	// Wckey Workload characterization key
 	Wckey *string `json:"wckey,omitempty"`
+
+	// X11 X11 forwarding options
+	X11 *[]SlurmV0041PostJobJSONBodyX11 `json:"x11,omitempty"`
+
+	// X11MagicCookie Magic cookie for X11 forwarding
+	X11MagicCookie *string `json:"x11_magic_cookie,omitempty"`
+
+	// X11TargetHost Hostname or UNIX socket if x11_target_port=0
+	X11TargetHost *string `json:"x11_target_host,omitempty"`
+
+	// X11TargetPort TCP port
+	X11TargetPort *int32 `json:"x11_target_port,omitempty"`
 }
 
-// V0038JobSubmission defines model for v0.0.38_job_submission.
-type V0038JobSubmission struct {
-	Job *V0038JobProperties `json:"job,omitempty"`
-
-	// Jobs Properties of an HetJob
-	Jobs *[]V0038JobProperties `json:"jobs,omitempty"`
-
-	// Script Executable script (full contents) to run in batch step
-	Script string `json:"script"`
-}
-
-// V0038JobSubmissionResponse defines model for v0.0.38_job_submission_response.
-type V0038JobSubmissionResponse struct {
-	// Errors slurm errors
-	Errors *[]V0038Error `json:"errors,omitempty"`
-
-	// JobId new job ID
-	JobId *int `json:"job_id,omitempty"`
-
-	// JobSubmitUserMsg Message to user from job_submit plugin
-	JobSubmitUserMsg *string    `json:"job_submit_user_msg,omitempty"`
-	Meta             *V0038Meta `json:"meta,omitempty"`
-
-	// StepId new job step ID
-	StepId *string `json:"step_id,omitempty"`
-}
-
-// V0038JobsResponse defines model for v0.0.38_jobs_response.
-type V0038JobsResponse struct {
-	// Errors slurm errors
-	Errors *[]V0038Error `json:"errors,omitempty"`
-
-	// Jobs job descriptions
-	Jobs *[]V0038JobResponseProperties `json:"jobs,omitempty"`
-	Meta *V0038Meta                    `json:"meta,omitempty"`
-}
+// SlurmV0041PostJobJSONBodyCpuBindingFlags defines parameters for SlurmV0041PostJob.
+type SlurmV0041PostJobJSONBodyCpuBindingFlags string
 
-// V0038License defines model for v0.0.38_license.
-type V0038License struct {
-	// Free number of licenses available
-	Free *int `json:"Free,omitempty"`
-
-	// LicenseName name of license
-	LicenseName *string `json:"LicenseName,omitempty"`
+// SlurmV0041PostJobJSONBodyCrontabFlags defines parameters for SlurmV0041PostJob.
+type SlurmV0041PostJobJSONBodyCrontabFlags string
 
-	// Remote license is remote
-	Remote *bool `json:"Remote,omitempty"`
+// SlurmV0041PostJobJSONBodyExclusive defines parameters for SlurmV0041PostJob.
+type SlurmV0041PostJobJSONBodyExclusive string
 
-	// Reserved number of licenses reserved
-	Reserved *int `json:"Reserved,omitempty"`
+// SlurmV0041PostJobJSONBodyFlags defines parameters for SlurmV0041PostJob.
+type SlurmV0041PostJobJSONBodyFlags string
 
-	// Total total number of licenses
-	Total *int `json:"Total,omitempty"`
+// SlurmV0041PostJobJSONBodyKillWarningFlags defines parameters for SlurmV0041PostJob.
+type SlurmV0041PostJobJSONBodyKillWarningFlags string
 
-	// Used number of licenses in use
-	Used *int `json:"Used,omitempty"`
-}
+// SlurmV0041PostJobJSONBodyMailType defines parameters for SlurmV0041PostJob.
+type SlurmV0041PostJobJSONBodyMailType string
 
-// V0038Licenses defines model for v0.0.38_licenses.
-type V0038Licenses struct {
-	// Errors slurm errors
-	Errors *[]V0038Error `json:"errors,omitempty"`
+// SlurmV0041PostJobJSONBodyMemoryBindingType defines parameters for SlurmV0041PostJob.
+type SlurmV0041PostJobJSONBodyMemoryBindingType string
 
-	// Licenses licenses info
-	Licenses *[]V0038License `json:"licenses,omitempty"`
-}
+// SlurmV0041PostJobJSONBodyOpenMode defines parameters for SlurmV0041PostJob.
+type SlurmV0041PostJobJSONBodyOpenMode string
 
-// V0038Meta defines model for v0.0.38_meta.
-type V0038Meta struct {
-	// Slurm Slurm information
-	Slurm *struct {
-		// Release version specifier
-		Release *string `json:"release,omitempty"`
-		Version *struct {
-			Major *string `json:"major,omitempty"`
-			Micro *string `json:"micro,omitempty"`
-			Minor *string `json:"minor,omitempty"`
-		} `json:"version,omitempty"`
-	} `json:"Slurm,omitempty"`
-	Plugin *struct {
-		Name *string `json:"name,omitempty"`
-		Type *string `json:"type,omitempty"`
-	} `json:"plugin,omitempty"`
-}
+// SlurmV0041PostJobJSONBodyProfile defines parameters for SlurmV0041PostJob.
+type SlurmV0041PostJobJSONBodyProfile string
 
-// V0038Node defines model for v0.0.38_node.
-type V0038Node struct {
-	// ActiveFeatures list of a node's available features
-	ActiveFeatures *string `json:"active_features,omitempty"`
+// SlurmV0041PostJobJSONBodyShared defines parameters for SlurmV0041PostJob.
+type SlurmV0041PostJobJSONBodyShared string
 
-	// Address state after reboot
-	Address *string `json:"address,omitempty"`
+// SlurmV0041PostJobJSONBodyX11 defines parameters for SlurmV0041PostJob.
+type SlurmV0041PostJobJSONBodyX11 string
 
-	// AllocCpus Allocated CPUs
-	AllocCpus *int64 `json:"alloc_cpus,omitempty"`
+// SlurmV0041DeleteJobsJSONBody defines parameters for SlurmV0041DeleteJobs.
+type SlurmV0041DeleteJobsJSONBody struct {
+	// Account Filter jobs to a specific account
+	Account *string `json:"account,omitempty"`
 
-	// AllocMemory Allocated memory (MB)
-	AllocMemory *int64 `json:"alloc_memory,omitempty"`
+	// Flags Filter jobs according to flags
+	Flags *[]SlurmV0041DeleteJobsJSONBodyFlags `json:"flags,omitempty"`
 
-	// Architecture computer architecture
-	Architecture *string `json:"architecture,omitempty"`
+	// JobName Filter jobs to a specific name
+	JobName *string `json:"job_name,omitempty"`
 
-	// Boards total number of boards per node
-	Boards *int `json:"boards,omitempty"`
+	// JobState Filter jobs to a specific state
+	JobState *[]SlurmV0041DeleteJobsJSONBodyJobState `json:"job_state,omitempty"`
 
-	// BootTime timestamp of node boot
-	BootTime *int64 `json:"boot_time,omitempty"`
+	// Jobs List of jobs to signal
+	Jobs *[]string `json:"jobs,omitempty"`
 
-	// BurstbufferNetworkAddress BcastAddr
-	BurstbufferNetworkAddress *string `json:"burstbuffer_network_address,omitempty"`
+	// Nodes Filter jobs to a set of nodes
+	Nodes *[]string `json:"nodes,omitempty"`
 
-	// Cores number of cores per socket
-	Cores *int `json:"cores,omitempty"`
+	// Partition Filter jobs to a specific partition
+	Partition *string `json:"partition,omitempty"`
 
-	// CpuBinding Default task binding
-	CpuBinding *int `json:"cpu_binding,omitempty"`
-
-	// CpuLoad CPU load * 100
-	CpuLoad *int64 `json:"cpu_load,omitempty"`
-
-	// Cpus configured count of cpus running on the node
-	Cpus     *int    `json:"cpus,omitempty"`
-	Features *string `json:"features,omitempty"`
-
-	// FreeMemory free memory in MiB
-	FreeMemory *int `json:"free_memory,omitempty"`
-
-	// Gres list of a node's generic resources
-	Gres *string `json:"gres,omitempty"`
-
-	// GresDrained list of drained GRES
-	GresDrained *string `json:"gres_drained,omitempty"`
-
-	// GresUsed list of GRES in current use
-	GresUsed *string `json:"gres_used,omitempty"`
-
-	// Hostname node's hostname
-	Hostname *string `json:"hostname,omitempty"`
-
-	// IdleCpus Idle CPUs
-	IdleCpus *int64 `json:"idle_cpus,omitempty"`
-
-	// McsLabel mcs label if mcs plugin in use
-	McsLabel *string `json:"mcs_label,omitempty"`
-
-	// Name node name to slurm
-	Name *string `json:"name,omitempty"`
-
-	// NextStateAfterReboot state after reboot
-	NextStateAfterReboot *string `json:"next_state_after_reboot,omitempty"`
-
-	// NextStateAfterRebootFlags node state flags
-	NextStateAfterRebootFlags *[]string `json:"next_state_after_reboot_flags,omitempty"`
-
-	// OperatingSystem operating system
-	OperatingSystem *string `json:"operating_system,omitempty"`
-
-	// Owner User allowed to use this node
-	Owner *string `json:"owner,omitempty"`
-
-	// Partitions assigned partitions
-	Partitions *[]string `json:"partitions,omitempty"`
-
-	// Port TCP port number of the slurmd
-	Port *int `json:"port,omitempty"`
-
-	// RealMemory configured MB of real memory on the node
-	RealMemory *int `json:"real_memory,omitempty"`
-
-	// Reason reason for node being DOWN or DRAINING
-	Reason *string `json:"reason,omitempty"`
-
-	// ReasonChangedAt Time stamp when reason was set
-	ReasonChangedAt *int `json:"reason_changed_at,omitempty"`
-
-	// ReasonSetByUser User that set the reason
-	ReasonSetByUser *string `json:"reason_set_by_user,omitempty"`
-
-	// SlurmdStartTime timestamp of slurmd startup
-	SlurmdStartTime *int64 `json:"slurmd_start_time,omitempty"`
-
-	// SlurmdVersion Slurmd version
-	SlurmdVersion *string `json:"slurmd_version,omitempty"`
-
-	// Sockets total number of sockets per node
-	Sockets *int `json:"sockets,omitempty"`
-
-	// State current node state
-	State *string `json:"state,omitempty"`
-
-	// StateFlags node state flags
-	StateFlags *[]string `json:"state_flags,omitempty"`
-
-	// TemporaryDisk configured MB of total disk in TMP_FS
-	TemporaryDisk *int `json:"temporary_disk,omitempty"`
-
-	// Threads number of threads per core
-	Threads *int `json:"threads,omitempty"`
-
-	// Tres TRES on node
-	Tres *string `json:"tres,omitempty"`
-
-	// TresUsed TRES used on node
-	TresUsed *string `json:"tres_used,omitempty"`
-
-	// TresWeighted TRES weight used on node
-	TresWeighted *float64 `json:"tres_weighted,omitempty"`
-
-	// Weight arbitrary priority of node for scheduling
-	Weight *int `json:"weight,omitempty"`
-}
-
-// V0038NodeAllocation defines model for v0.0.38_node_allocation.
-type V0038NodeAllocation struct {
-	// Cpus number of assigned job CPUs
-	Cpus *int `json:"cpus,omitempty"`
-
-	// Memory amount of assigned job memory
-	Memory *int `json:"memory,omitempty"`
-
-	// Nodename node name
-	Nodename *string `json:"nodename,omitempty"`
-
-	// Sockets assignment status of each socket by numeric socket id
-	Sockets *struct {
-		// Cores assignment status of each core by core id in each socket
-		Cores *map[string]interface{} `json:"cores,omitempty"`
-	} `json:"sockets,omitempty"`
-}
-
-// V0038NodesResponse defines model for v0.0.38_nodes_response.
-type V0038NodesResponse struct {
-	// Errors slurm errors
-	Errors *[]V0038Error `json:"errors,omitempty"`
-	Meta   *V0038Meta    `json:"meta,omitempty"`
-
-	// Nodes nodes info
-	Nodes *[]V0038Node `json:"nodes,omitempty"`
-}
-
-// V0038Partition defines model for v0.0.38_partition.
-type V0038Partition struct {
-	// AllowedAccounts comma delimited list of accounts
-	AllowedAccounts *string `json:"allowed_accounts,omitempty"`
-
-	// AllowedAllocationNodes list names of allowed allocating nodes
-	AllowedAllocationNodes *string `json:"allowed_allocation_nodes,omitempty"`
-
-	// AllowedGroups comma delimited list of groups
-	AllowedGroups *string `json:"allowed_groups,omitempty"`
-
-	// AllowedQos comma delimited list of qos
-	AllowedQos *string `json:"allowed_qos,omitempty"`
-
-	// Alternative name of alternate partition
-	Alternative *string `json:"alternative,omitempty"`
-
-	// BillingWeights TRES billing weights
-	BillingWeights *string `json:"billing_weights,omitempty"`
-
-	// DefaultMemoryPerCpu default MB memory per allocated CPU
-	DefaultMemoryPerCpu *int64 `json:"default_memory_per_cpu,omitempty"`
-
-	// DefaultMemoryPerNode default MB memory per allocated node
-	DefaultMemoryPerNode *int64 `json:"default_memory_per_node,omitempty"`
-
-	// DefaultTimeLimit default time limit (minutes)
-	DefaultTimeLimit *int64 `json:"default_time_limit,omitempty"`
-
-	// DeniedAccounts comma delimited list of denied accounts
-	DeniedAccounts *string `json:"denied_accounts,omitempty"`
-
-	// DeniedQos comma delimited list of denied qos
-	DeniedQos *string `json:"denied_qos,omitempty"`
-
-	// Flags partition options
-	Flags *[]string `json:"flags,omitempty"`
-
-	// MaxTimeLimit Max time limit per job
-	MaxTimeLimit *int64 `json:"max_time_limit,omitempty"`
-
-	// MaximumCpusPerNode maximum allocated CPUs per node
-	MaximumCpusPerNode *int `json:"maximum_cpus_per_node,omitempty"`
-
-	// MaximumMemoryPerCpu maximum memory per allocated CPU (MiB)
-	MaximumMemoryPerCpu *int64 `json:"maximum_memory_per_cpu,omitempty"`
-
-	// MaximumMemoryPerNode maximum memory per allocated node (MiB)
-	MaximumMemoryPerNode *int64 `json:"maximum_memory_per_node,omitempty"`
-
-	// MaximumNodesPerJob Max nodes per job
-	MaximumNodesPerJob *int `json:"maximum_nodes_per_job,omitempty"`
-
-	// MinNodesPerJob Min number of nodes per job
-	MinNodesPerJob *int `json:"min_nodes_per_job,omitempty"`
-
-	// Name Partition name
-	Name *string `json:"name,omitempty"`
-
-	// Nodes list names of nodes in partition
-	Nodes *string `json:"nodes,omitempty"`
-
-	// OverTimeLimit job's time limit can be exceeded by this number of minutes before cancellation
-	OverTimeLimit *int `json:"over_time_limit,omitempty"`
-
-	// PreemptionGraceTime preemption grace time (seconds)
-	PreemptionGraceTime *int64 `json:"preemption_grace_time,omitempty"`
-
-	// PreemptionMode preemption type
-	PreemptionMode *[]string `json:"preemption_mode,omitempty"`
-
-	// PriorityJobFactor job priority weight factor
-	PriorityJobFactor *int `json:"priority_job_factor,omitempty"`
-
-	// PriorityTier tier for scheduling and preemption
-	PriorityTier *int `json:"priority_tier,omitempty"`
-
-	// Qos partition QOS name
+	// Qos Filter jobs to a specific QOS
 	Qos *string `json:"qos,omitempty"`
 
-	// State Partition state
-	State *string `json:"state,omitempty"`
+	// Reservation Filter jobs to a specific reservation
+	Reservation *string `json:"reservation,omitempty"`
 
-	// TotalCpus Total cpus in partition
-	TotalCpus *int `json:"total_cpus,omitempty"`
+	// Signal Signal to send to jobs
+	Signal *string `json:"signal,omitempty"`
 
-	// TotalNodes Total number of nodes in partition
-	TotalNodes *int `json:"total_nodes,omitempty"`
+	// UserId Filter jobs to a specific numeric user id
+	UserId *string `json:"user_id,omitempty"`
 
-	// Tres configured TRES in partition
-	Tres *string `json:"tres,omitempty"`
-}
+	// UserName Filter jobs to a specific user name
+	UserName *string `json:"user_name,omitempty"`
 
-// V0038PartitionsResponse defines model for v0.0.38_partitions_response.
-type V0038PartitionsResponse struct {
-	// Errors slurm errors
-	Errors *[]V0038Error `json:"errors,omitempty"`
-	Meta   *V0038Meta    `json:"meta,omitempty"`
-
-	// Partitions partition info
-	Partitions *[]V0038Partition `json:"partitions,omitempty"`
-}
-
-// V0038Ping defines model for v0.0.38_ping.
-type V0038Ping struct {
-	// Hostname slurm controller hostname
-	Hostname *string `json:"hostname,omitempty"`
-
-	// Mode slurm controller mode
-	Mode *string `json:"mode,omitempty"`
-
-	// Ping slurm controller host up
-	Ping *V0038PingPing `json:"ping,omitempty"`
-
-	// Status slurm controller status
-	Status *int `json:"status,omitempty"`
-}
-
-// V0038PingPing slurm controller host up
-type V0038PingPing string
-
-// V0038Pings defines model for v0.0.38_pings.
-type V0038Pings struct {
-	// Errors slurm errors
-	Errors *[]V0038Error `json:"errors,omitempty"`
-	Meta   *V0038Meta    `json:"meta,omitempty"`
-
-	// Pings slurm controller pings
-	Pings *[]V0038Ping `json:"pings,omitempty"`
-}
-
-// V0038Reservation defines model for v0.0.38_reservation.
-type V0038Reservation struct {
-	// Accounts Allowed accounts
-	Accounts *string `json:"accounts,omitempty"`
-
-	// BurstBuffer Reserved burst buffer
-	BurstBuffer *string `json:"burst_buffer,omitempty"`
-
-	// CoreCount Number of reserved cores
-	CoreCount *int `json:"core_count,omitempty"`
-
-	// CoreSpecCnt Number of reserved specialized cores
-	CoreSpecCnt *int `json:"core_spec_cnt,omitempty"`
-
-	// EndTime End time of the reservation
-	EndTime *int `json:"end_time,omitempty"`
-
-	// Features List of features
-	Features *string `json:"features,omitempty"`
-
-	// Flags Reservation options
-	Flags *[]string `json:"flags,omitempty"`
-
-	// Groups List of groups permitted to use the reserved nodes
-	Groups *string `json:"groups,omitempty"`
-
-	// Licenses List of licenses
-	Licenses *string `json:"licenses,omitempty"`
-
-	// MaxStartDelay Maximum delay in which jobs outside of the reservation will be permitted to overlap once any jobs are queued for the reservation
-	MaxStartDelay *int `json:"max_start_delay,omitempty"`
-
-	// Name Reservationn name
-	Name *string `json:"name,omitempty"`
-
-	// NodeCount Count of nodes reserved
-	NodeCount *int `json:"node_count,omitempty"`
-
-	// NodeList List of reserved nodes
-	NodeList *string `json:"node_list,omitempty"`
-
-	// Partition Partition
-	Partition *string `json:"partition,omitempty"`
-
-	// PurgeCompleted If PURGE_COMP flag is set the amount of seconds this reservation will sit idle until it is revoked
-	PurgeCompleted *struct {
-		// Time amount of seconds this reservation will sit idle until it is revoked
-		Time *int `json:"time,omitempty"`
-	} `json:"purge_completed,omitempty"`
-
-	// StartTime Start time of reservation
-	StartTime *int `json:"start_time,omitempty"`
-
-	// Tres List of TRES
-	Tres *string `json:"tres,omitempty"`
-
-	// Users List of users
-	Users *string `json:"users,omitempty"`
-
-	// Watts amount of power to reserve in watts
-	Watts *int `json:"watts,omitempty"`
-}
-
-// V0038ReservationsResponse defines model for v0.0.38_reservations_response.
-type V0038ReservationsResponse struct {
-	// Errors slurm errors
-	Errors *[]V0038Error `json:"errors,omitempty"`
-	Meta   *V0038Meta    `json:"meta,omitempty"`
-
-	// Reservations reservation info
-	Reservations *[]V0038Reservation `json:"reservations,omitempty"`
-}
-
-// V0038Signal POSIX signal name
-type V0038Signal string
-
-// V0039Account defines model for v0.0.39_account.
-type V0039Account struct {
-	Associations *V0039AssocShortList `json:"associations,omitempty"`
-	Coordinators *V0039CoordList      `json:"coordinators,omitempty"`
-	Description  string               `json:"description"`
-	Flags        *[]V0039AccountFlags `json:"flags,omitempty"`
-	Name         string               `json:"name"`
-	Organization string               `json:"organization"`
-}
-
-// V0039AccountFlags flags
-type V0039AccountFlags string
-
-// V0039AccountList defines model for v0.0.39_account_list.
-type V0039AccountList = []V0039Account
-
-// V0039Accounting defines model for v0.0.39_accounting.
-type V0039Accounting struct {
-	TRES      *V0039Tres `json:"TRES,omitempty"`
-	Allocated *struct {
-		Seconds *int64 `json:"seconds,omitempty"`
-	} `json:"allocated,omitempty"`
-	Id    *int32 `json:"id,omitempty"`
-	Start *int64 `json:"start,omitempty"`
-}
-
-// V0039AccountingList defines model for v0.0.39_accounting_list.
-type V0039AccountingList = []V0039Accounting
-
-// V0039AcctGatherEnergy defines model for v0.0.39_acct_gather_energy.
-type V0039AcctGatherEnergy struct {
-	AverageWatts       *int32 `json:"average_watts,omitempty"`
-	BaseConsumedEnergy *int64 `json:"base_consumed_energy,omitempty"`
-	ConsumedEnergy     *int64 `json:"consumed_energy,omitempty"`
-
-	// CurrentWatts Integer number with flags
-	CurrentWatts           *V0039Uint32NoVal `json:"current_watts,omitempty"`
-	LastCollected          *int64            `json:"last_collected,omitempty"`
-	PreviousConsumedEnergy *int64            `json:"previous_consumed_energy,omitempty"`
-}
-
-// V0039AcctGatherEnergyPtr defines model for v0.0.39_acct_gather_energy_ptr.
-type V0039AcctGatherEnergyPtr = V0039AcctGatherEnergy
-
-// V0039Assoc defines model for v0.0.39_assoc.
-type V0039Assoc struct {
-	Account *string `json:"account,omitempty"`
-	Cluster *string `json:"cluster,omitempty"`
-	Default *struct {
-		Qos *string `json:"qos,omitempty"`
-	} `json:"default,omitempty"`
-	Flags     *[]V0039AssocFlags `json:"flags,omitempty"`
-	IsDefault *bool              `json:"is_default,omitempty"`
-	Max       *struct {
-		Jobs *struct {
-			// Accruing Integer number with flags
-			Accruing *V0039Uint32NoVal `json:"accruing,omitempty"`
-
-			// Active Integer number with flags
-			Active *V0039Uint32NoVal `json:"active,omitempty"`
-			Per    *struct {
-				// Accruing Integer number with flags
-				Accruing *V0039Uint32NoVal `json:"accruing,omitempty"`
-
-				// Count Integer number with flags
-				Count *V0039Uint32NoVal `json:"count,omitempty"`
-
-				// Submitted Integer number with flags
-				Submitted *V0039Uint32NoVal `json:"submitted,omitempty"`
-
-				// WallClock Integer number with flags
-				WallClock *V0039Uint32NoVal `json:"wall_clock,omitempty"`
-			} `json:"per,omitempty"`
-
-			// Total Integer number with flags
-			Total *V0039Uint32NoVal `json:"total,omitempty"`
-		} `json:"jobs,omitempty"`
-		Per *struct {
-			Account *struct {
-				// WallClock Integer number with flags
-				WallClock *V0039Uint32NoVal `json:"wall_clock,omitempty"`
-			} `json:"account,omitempty"`
-		} `json:"per,omitempty"`
-		Tres *struct {
-			Group *struct {
-				Active  *V0039TresStr `json:"active,omitempty"`
-				Minutes *V0039TresStr `json:"minutes,omitempty"`
-			} `json:"group,omitempty"`
-			Minutes *struct {
-				Per *struct {
-					Job *V0039TresStr `json:"job,omitempty"`
-				} `json:"per,omitempty"`
-				Total *V0039TresStr `json:"total,omitempty"`
-			} `json:"minutes,omitempty"`
-			Per *struct {
-				Job  *V0039TresStr `json:"job,omitempty"`
-				Node *V0039TresStr `json:"node,omitempty"`
-			} `json:"per,omitempty"`
-			Total *V0039TresStr `json:"total,omitempty"`
-		} `json:"tres,omitempty"`
-	} `json:"max,omitempty"`
-	Min *struct {
-		// PriorityThreshold Integer number with flags
-		PriorityThreshold *V0039Uint32NoVal `json:"priority_threshold,omitempty"`
-	} `json:"min,omitempty"`
-	ParentAccount *string `json:"parent_account,omitempty"`
-	Partition     *string `json:"partition,omitempty"`
-
-	// Priority Integer number with flags
-	Priority *V0039Uint32NoVal `json:"priority,omitempty"`
-
-	// Qos List of QOS names
-	Qos       *V0039QosStringIdList `json:"qos,omitempty"`
-	SharesRaw *int32                `json:"shares_raw,omitempty"`
-	Usage     *V0039AssocUsagePtr   `json:"usage,omitempty"`
-	User      string                `json:"user"`
-}
-
-// V0039AssocFlags flags
-type V0039AssocFlags string
-
-// V0039AssocList defines model for v0.0.39_assoc_list.
-type V0039AssocList = []V0039Assoc
-
-// V0039AssocShort defines model for v0.0.39_assoc_short.
-type V0039AssocShort struct {
-	Account   *string `json:"account,omitempty"`
-	Cluster   *string `json:"cluster,omitempty"`
-	Partition *string `json:"partition,omitempty"`
-	User      string  `json:"user"`
-}
-
-// V0039AssocShortList defines model for v0.0.39_assoc_short_list.
-type V0039AssocShortList = []V0039AssocShort
-
-// V0039AssocShortPtr defines model for v0.0.39_assoc_short_ptr.
-type V0039AssocShortPtr = V0039AssocShort
-
-// V0039AssocUsage defines model for v0.0.39_assoc_usage.
-type V0039AssocUsage struct {
-	AccrueJobCount           *int32   `json:"accrue_job_count,omitempty"`
-	ActiveJobs               *int32   `json:"active_jobs,omitempty"`
-	EffectiveNormalizedUsage *float32 `json:"effective_normalized_usage,omitempty"`
-	FairshareFactor          *float64 `json:"fairshare_factor,omitempty"`
-	FairshareLevel           *float32 `json:"fairshare_level,omitempty"`
-	FairshareShares          *int32   `json:"fairshare_shares,omitempty"`
-	GroupUsedWallclock       *float64 `json:"group_used_wallclock,omitempty"`
-	JobCount                 *int32   `json:"job_count,omitempty"`
-	NormalizedPriority       *float64 `json:"normalized_priority,omitempty"`
-	NormalizedShares         *float64 `json:"normalized_shares,omitempty"`
-	NormalizedUsage          *float32 `json:"normalized_usage,omitempty"`
-	RawUsage                 *float32 `json:"raw_usage,omitempty"`
-}
-
-// V0039AssocUsagePtr defines model for v0.0.39_assoc_usage_ptr.
-type V0039AssocUsagePtr = V0039AssocUsage
-
-// V0039ClusterRec defines model for v0.0.39_cluster_rec.
-type V0039ClusterRec struct {
-	Associations *struct {
-		Root *V0039AssocShortPtr `json:"root,omitempty"`
-	} `json:"associations,omitempty"`
-	Controller *struct {
-		Host *string `json:"host,omitempty"`
-		Port *int32  `json:"port,omitempty"`
-	} `json:"controller,omitempty"`
-	Flags        *[]V0039ClusterRecFlags `json:"flags,omitempty"`
-	Name         *string                 `json:"name,omitempty"`
-	Nodes        *string                 `json:"nodes,omitempty"`
-	RpcVersion   *int32                  `json:"rpc_version,omitempty"`
-	SelectPlugin *string                 `json:"select_plugin,omitempty"`
-	Tres         *V0039TresStr           `json:"tres,omitempty"`
-}
-
-// V0039ClusterRecFlags flags
-type V0039ClusterRecFlags string
-
-// V0039ClusterRecList defines model for v0.0.39_cluster_rec_list.
-type V0039ClusterRecList = []V0039ClusterRec
-
-// V0039ControllerPing defines model for v0.0.39_controller_ping.
-type V0039ControllerPing struct {
-	Hostname *string `json:"hostname,omitempty"`
-	Latency  *int64  `json:"latency,omitempty"`
-	Mode     *string `json:"mode,omitempty"`
-	Pinged   *string `json:"pinged,omitempty"`
-}
-
-// V0039ControllerPingArray defines model for v0.0.39_controller_ping_array.
-type V0039ControllerPingArray = []V0039ControllerPing
-
-// V0039Coord defines model for v0.0.39_coord.
-type V0039Coord struct {
-	Direct *bool  `json:"direct,omitempty"`
-	Name   string `json:"name"`
-}
-
-// V0039CoordList defines model for v0.0.39_coord_list.
-type V0039CoordList = []V0039Coord
-
-// V0039CronEntry defines model for v0.0.39_cron_entry.
-type V0039CronEntry struct {
-	Command    *string                `json:"command,omitempty"`
-	DayOfMonth *string                `json:"day_of_month,omitempty"`
-	DayOfWeek  *string                `json:"day_of_week,omitempty"`
-	Flags      *[]V0039CronEntryFlags `json:"flags,omitempty"`
-	Hour       *string                `json:"hour,omitempty"`
-	Line       *struct {
-		End   *int32 `json:"end,omitempty"`
-		Start *int32 `json:"start,omitempty"`
-	} `json:"line,omitempty"`
-	Minute        *string `json:"minute,omitempty"`
-	Month         *string `json:"month,omitempty"`
-	Specification *string `json:"specification,omitempty"`
-}
-
-// V0039CronEntryFlags flags
-type V0039CronEntryFlags string
-
-// V0039CronEntryPtr defines model for v0.0.39_cron_entry_ptr.
-type V0039CronEntryPtr = V0039CronEntry
-
-// V0039CsvString defines model for v0.0.39_csv_string.
-type V0039CsvString = []string
-
-// V0039Diag defines model for v0.0.39_diag.
-type V0039Diag struct {
-	// Errors Slurm errors
-	Errors     *V0039Errors   `json:"errors,omitempty"`
-	Meta       *V0039Meta     `json:"meta,omitempty"`
-	Statistics *V0039StatsMsg `json:"statistics,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *V0039Warnings `json:"warnings,omitempty"`
-}
-
-// V0039Error defines model for v0.0.39_error.
-type V0039Error struct {
-	// Description Explanation of cause of error
-	Description *string `json:"description,omitempty"`
-
-	// Error Error message
-	Error *string `json:"error,omitempty"`
-
-	// ErrorNumber Slurm internal error number
-	ErrorNumber *int `json:"error_number,omitempty"`
-
-	// Source Where error occurred in the source
-	Source *string `json:"source,omitempty"`
-}
-
-// V0039Errors Slurm errors
-type V0039Errors = []V0039Error
-
-// V0039ExtSensorsData defines model for v0.0.39_ext_sensors_data.
-type V0039ExtSensorsData struct {
-	// ConsumedEnergy Integer number with flags
-	ConsumedEnergy   *V0039Uint64NoVal `json:"consumed_energy,omitempty"`
-	CurrentWatts     *int32            `json:"current_watts,omitempty"`
-	EnergyUpdateTime *int64            `json:"energy_update_time,omitempty"`
-
-	// Temperature Integer number with flags
-	Temperature *V0039Uint32NoVal `json:"temperature,omitempty"`
-}
-
-// V0039ExtSensorsDataPtr defines model for v0.0.39_ext_sensors_data_ptr.
-type V0039ExtSensorsDataPtr = V0039ExtSensorsData
-
-// V0039Float64NoVal 64 bit floating point number with flags
-type V0039Float64NoVal struct {
-	// Infinite True if number has been set to infinite. "set" and "number" will be ignored.
-	Infinite *bool `json:"infinite,omitempty"`
-
-	// Number If set is True the number will be set with value. Otherwise ignore number contents.
-	Number *float64 `json:"number,omitempty"`
-
-	// Set True if number has been set. False if number is unset
-	Set *bool `json:"set,omitempty"`
-}
-
-// V0039Hostlist defines model for v0.0.39_hostlist.
-type V0039Hostlist = []string
-
-// V0039HostlistString defines model for v0.0.39_hostlist_string.
-type V0039HostlistString = []string
-
-// V0039Job defines model for v0.0.39_job.
-type V0039Job struct {
-	Account         *string `json:"account,omitempty"`
-	AllocationNodes *int32  `json:"allocation_nodes,omitempty"`
-	Array           *struct {
-		JobId  *int32 `json:"job_id,omitempty"`
-		Limits *struct {
-			Max *struct {
-				Running *struct {
-					Tasks *int32 `json:"tasks,omitempty"`
-				} `json:"running,omitempty"`
-			} `json:"max,omitempty"`
-		} `json:"limits,omitempty"`
-		Task *string `json:"task,omitempty"`
-
-		// TaskId Integer number with flags
-		TaskId *V0039Uint32NoVal `json:"task_id,omitempty"`
-	} `json:"array,omitempty"`
-	Association *V0039JobAssocId `json:"association,omitempty"`
-	Block       *string          `json:"block,omitempty"`
-	Cluster     *string          `json:"cluster,omitempty"`
-	Comment     *struct {
-		Administrator *string `json:"administrator,omitempty"`
-		Job           *string `json:"job,omitempty"`
-		System        *string `json:"system,omitempty"`
-	} `json:"comment,omitempty"`
-	Constraints *string `json:"constraints,omitempty"`
-	Container   *string `json:"container,omitempty"`
-
-	// DerivedExitCode job exit details
-	DerivedExitCode *V0039JobExitCode `json:"derived_exit_code,omitempty"`
-
-	// ExitCode job exit details
-	ExitCode   *V0039JobExitCode `json:"exit_code,omitempty"`
-	Extra      *string           `json:"extra,omitempty"`
-	FailedNode *string           `json:"failed_node,omitempty"`
-	Flags      *[]V0039JobFlags  `json:"flags,omitempty"`
-	Group      *string           `json:"group,omitempty"`
-	Het        *struct {
-		JobId *int32 `json:"job_id,omitempty"`
-
-		// JobOffset Integer number with flags
-		JobOffset *V0039Uint32NoVal `json:"job_offset,omitempty"`
-	} `json:"het,omitempty"`
-
-	// Hold Hold (true) or release (false) job
-	Hold            *bool   `json:"hold,omitempty"`
-	JobId           *int32  `json:"job_id,omitempty"`
-	KillRequestUser *string `json:"kill_request_user,omitempty"`
-	Licenses        *string `json:"licenses,omitempty"`
-	Mcs             *struct {
-		Label *string `json:"label,omitempty"`
-	} `json:"mcs,omitempty"`
-	Name      *string `json:"name,omitempty"`
-	Nodes     *string `json:"nodes,omitempty"`
-	Partition *string `json:"partition,omitempty"`
-
-	// Priority Integer number with flags
-	Priority *V0039Uint32NoVal `json:"priority,omitempty"`
-	Qos      *string           `json:"qos,omitempty"`
-	Required *struct {
-		CPUs   *int32 `json:"CPUs,omitempty"`
-		Memory *int64 `json:"memory,omitempty"`
-
-		// MemoryPerCpu Integer number with flags
-		MemoryPerCpu *V0039MemPerCpus `json:"memory_per_cpu,omitempty"`
-
-		// MemoryPerNode Integer number with flags
-		MemoryPerNode *V0039MemPerNode `json:"memory_per_node,omitempty"`
-	} `json:"required,omitempty"`
-	Reservation *struct {
-		Id   *int32  `json:"id,omitempty"`
-		Name *string `json:"name,omitempty"`
-	} `json:"reservation,omitempty"`
-	Script *string `json:"script,omitempty"`
-	State  *struct {
-		Current *string `json:"current,omitempty"`
-		Reason  *string `json:"reason,omitempty"`
-	} `json:"state,omitempty"`
-	Steps      *V0039StepList `json:"steps,omitempty"`
-	SubmitLine *string        `json:"submit_line,omitempty"`
-	Time       *struct {
-		Elapsed  *int32 `json:"elapsed,omitempty"`
-		Eligible *int64 `json:"eligible,omitempty"`
-		End      *int64 `json:"end,omitempty"`
-
-		// Limit Integer number with flags
-		Limit      *V0039Uint32NoVal `json:"limit,omitempty"`
-		Start      *int64            `json:"start,omitempty"`
-		Submission *int64            `json:"submission,omitempty"`
-		Suspended  *int32            `json:"suspended,omitempty"`
-		System     *struct {
-			Microseconds *int64 `json:"microseconds,omitempty"`
-			Seconds      *int64 `json:"seconds,omitempty"`
-		} `json:"system,omitempty"`
-		Total *struct {
-			Microseconds *int64 `json:"microseconds,omitempty"`
-			Seconds      *int64 `json:"seconds,omitempty"`
-		} `json:"total,omitempty"`
-		User *struct {
-			Microseconds *int64 `json:"microseconds,omitempty"`
-			Seconds      *int64 `json:"seconds,omitempty"`
-		} `json:"user,omitempty"`
-	} `json:"time,omitempty"`
-	Tres *struct {
-		Allocated *V0039TresStr `json:"allocated,omitempty"`
-		Requested *V0039TresStr `json:"requested,omitempty"`
-	} `json:"tres,omitempty"`
-	UsedGres *string `json:"used_gres,omitempty"`
-	User     *string `json:"user,omitempty"`
-
-	// Wckey wckey details
-	Wckey            *V0039WckeyTag `json:"wckey,omitempty"`
-	WorkingDirectory *string        `json:"working_directory,omitempty"`
-}
-
-// V0039JobFlags flags
-type V0039JobFlags string
-
-// V0039JobArrayResponseMsg Result per ArrayJob
-type V0039JobArrayResponseMsg = []struct {
-	// Error error code description
-	Error *string `json:"error,omitempty"`
-
-	// ErrorCode numeric error code
-	ErrorCode *int32 `json:"error_code,omitempty"`
-
-	// JobId JobId
-	JobId *int32 `json:"job_id,omitempty"`
-
-	// Why error message
-	Why *string `json:"why,omitempty"`
-}
-
-// V0039JobArrayResponseMsgPtr Result per ArrayJob
-type V0039JobArrayResponseMsgPtr = V0039JobArrayResponseMsg
-
-// V0039JobAssocId defines model for v0.0.39_job_assoc_id.
-type V0039JobAssocId = V0039AssocShortPtr
-
-// V0039JobDescMsg defines model for v0.0.39_job_desc_msg.
-type V0039JobDescMsg struct {
-	Account                 *string                           `json:"account,omitempty"`
-	AccountGatherFrequency  *string                           `json:"account_gather_frequency,omitempty"`
-	AdminComment            *string                           `json:"admin_comment,omitempty"`
-	AllocationNodeList      *string                           `json:"allocation_node_list,omitempty"`
-	AllocationNodePort      *int32                            `json:"allocation_node_port,omitempty"`
-	Argv                    *V0039JobDescMsgArgv              `json:"argv,omitempty"`
-	Array                   *string                           `json:"array,omitempty"`
-	BatchFeatures           *string                           `json:"batch_features,omitempty"`
-	BeginTime               *int64                            `json:"begin_time,omitempty"`
-	BurstBuffer             *string                           `json:"burst_buffer,omitempty"`
-	ClusterConstraint       *string                           `json:"cluster_constraint,omitempty"`
-	Clusters                *string                           `json:"clusters,omitempty"`
-	Comment                 *string                           `json:"comment,omitempty"`
-	Constraints             *string                           `json:"constraints,omitempty"`
-	Container               *string                           `json:"container,omitempty"`
-	ContainerId             *string                           `json:"container_id,omitempty"`
-	Contiguous              *bool                             `json:"contiguous,omitempty"`
-	CoreSpecification       *int32                            `json:"core_specification,omitempty"`
-	CpuBinding              *string                           `json:"cpu_binding,omitempty"`
-	CpuBindingFlags         *[]V0039JobDescMsgCpuBindingFlags `json:"cpu_binding_flags,omitempty"`
-	CpuFrequency            *string                           `json:"cpu_frequency,omitempty"`
-	CpusPerTask             *int32                            `json:"cpus_per_task,omitempty"`
-	CpusPerTres             *string                           `json:"cpus_per_tres,omitempty"`
-	Crontab                 *V0039CronEntryPtr                `json:"crontab,omitempty"`
-	CurrentWorkingDirectory *string                           `json:"current_working_directory,omitempty"`
-	Deadline                *int64                            `json:"deadline,omitempty"`
-	DelayBoot               *int32                            `json:"delay_boot,omitempty"`
-	Dependency              *string                           `json:"dependency,omitempty"`
-	Distribution            *string                           `json:"distribution,omitempty"`
-	DistributionPlaneSize   *int32                            `json:"distribution_plane_size,omitempty"`
-	EndTime                 *int64                            `json:"end_time,omitempty"`
-	Environment             V0039JobDescMsgEnv                `json:"environment"`
-	ExcludedNodes           *V0039CsvString                   `json:"excluded_nodes,omitempty"`
-	Exclusive               *V0039JobExclusive                `json:"exclusive,omitempty"`
-	Extra                   *string                           `json:"extra,omitempty"`
-	Flags                   *[]V0039JobDescMsgFlags           `json:"flags,omitempty"`
-	GroupId                 *string                           `json:"group_id,omitempty"`
-	HetjobGroup             *int32                            `json:"hetjob_group,omitempty"`
-
-	// Hold Hold (true) or release (false) job
-	Hold           *bool  `json:"hold,omitempty"`
-	Immediate      *bool  `json:"immediate,omitempty"`
-	JobId          *int32 `json:"job_id,omitempty"`
-	KillOnNodeFail *bool  `json:"kill_on_node_fail,omitempty"`
-
-	// KillWarningDelay Integer number with flags
-	KillWarningDelay  *V0039Uint16NoVal                   `json:"kill_warning_delay,omitempty"`
-	KillWarningFlags  *[]V0039JobDescMsgKillWarningFlags  `json:"kill_warning_flags,omitempty"`
-	KillWarningSignal *string                             `json:"kill_warning_signal,omitempty"`
-	Licenses          *string                             `json:"licenses,omitempty"`
-	MailType          *[]V0039JobDescMsgMailType          `json:"mail_type,omitempty"`
-	MailUser          *string                             `json:"mail_user,omitempty"`
-	MaximumCpus       *int32                              `json:"maximum_cpus,omitempty"`
-	MaximumNodes      *int32                              `json:"maximum_nodes,omitempty"`
-	McsLabel          *string                             `json:"mcs_label,omitempty"`
-	MemoryBinding     *string                             `json:"memory_binding,omitempty"`
-	MemoryBindingType *[]V0039JobDescMsgMemoryBindingType `json:"memory_binding_type,omitempty"`
-
-	// MemoryPerCpu Integer number with flags
-	MemoryPerCpu *V0039MemPerCpus `json:"memory_per_cpu,omitempty"`
-
-	// MemoryPerNode Integer number with flags
-	MemoryPerNode          *V0039MemPerNode             `json:"memory_per_node,omitempty"`
-	MemoryPerTres          *string                      `json:"memory_per_tres,omitempty"`
-	MinimumBoardsPerNode   *int32                       `json:"minimum_boards_per_node,omitempty"`
-	MinimumCpus            *int32                       `json:"minimum_cpus,omitempty"`
-	MinimumCpusPerNode     *int32                       `json:"minimum_cpus_per_node,omitempty"`
-	MinimumNodes           *int32                       `json:"minimum_nodes,omitempty"`
-	MinimumSocketsPerBoard *int32                       `json:"minimum_sockets_per_board,omitempty"`
-	Name                   *string                      `json:"name,omitempty"`
-	Network                *string                      `json:"network,omitempty"`
-	Nice                   *int32                       `json:"nice,omitempty"`
-	Nodes                  *string                      `json:"nodes,omitempty"`
-	NtasksPerTres          *int32                       `json:"ntasks_per_tres,omitempty"`
-	OpenMode               *[]V0039JobDescMsgOpenMode   `json:"open_mode,omitempty"`
-	Overcommit             *bool                        `json:"overcommit,omitempty"`
-	Oversubscribe          *bool                        `json:"oversubscribe,omitempty"`
-	Partition              *string                      `json:"partition,omitempty"`
-	PowerFlags             *[]V0039JobDescMsgPowerFlags `json:"power_flags,omitempty"`
-	Prefer                 *string                      `json:"prefer,omitempty"`
-
-	// Priority Integer number with flags
-	Priority      *V0039Uint32NoVal         `json:"priority,omitempty"`
-	Profile       *[]V0039JobDescMsgProfile `json:"profile,omitempty"`
-	Qos           *string                   `json:"qos,omitempty"`
-	Reboot        *bool                     `json:"reboot,omitempty"`
-	Requeue       *bool                     `json:"requeue,omitempty"`
-	RequiredNodes *V0039CsvString           `json:"required_nodes,omitempty"`
-
-	// RequiredSwitches Integer number with flags
-	RequiredSwitches     *V0039Uint32NoVal        `json:"required_switches,omitempty"`
-	Reservation          *string                  `json:"reservation,omitempty"`
-	ReservePorts         *int32                   `json:"reserve_ports,omitempty"`
-	Script               *string                  `json:"script,omitempty"`
-	SelinuxContext       *string                  `json:"selinux_context,omitempty"`
-	Shared               *[]V0039JobDescMsgShared `json:"shared,omitempty"`
-	SiteFactor           *int32                   `json:"site_factor,omitempty"`
-	SocketsPerNode       *int32                   `json:"sockets_per_node,omitempty"`
-	SpankEnvironment     *V0039JobDescMsgSpankEnv `json:"spank_environment,omitempty"`
-	StandardError        *string                  `json:"standard_error,omitempty"`
-	StandardInput        *string                  `json:"standard_input,omitempty"`
-	StandardOutput       *string                  `json:"standard_output,omitempty"`
-	Tasks                *int32                   `json:"tasks,omitempty"`
-	TasksPerBoard        *int32                   `json:"tasks_per_board,omitempty"`
-	TasksPerCore         *int32                   `json:"tasks_per_core,omitempty"`
-	TasksPerNode         *int32                   `json:"tasks_per_node,omitempty"`
-	TasksPerSocket       *int32                   `json:"tasks_per_socket,omitempty"`
-	TemporaryDiskPerNode *int32                   `json:"temporary_disk_per_node,omitempty"`
-	ThreadSpecification  *int32                   `json:"thread_specification,omitempty"`
-	ThreadsPerCore       *int32                   `json:"threads_per_core,omitempty"`
-
-	// TimeLimit Integer number with flags
-	TimeLimit *V0039Uint32NoVal `json:"time_limit,omitempty"`
-
-	// TimeMinimum Integer number with flags
-	TimeMinimum    *V0039Uint32NoVal     `json:"time_minimum,omitempty"`
-	TresBind       *string               `json:"tres_bind,omitempty"`
-	TresFreq       *string               `json:"tres_freq,omitempty"`
-	TresPerJob     *string               `json:"tres_per_job,omitempty"`
-	TresPerNode    *string               `json:"tres_per_node,omitempty"`
-	TresPerSocket  *string               `json:"tres_per_socket,omitempty"`
-	TresPerTask    *string               `json:"tres_per_task,omitempty"`
-	UserId         *string               `json:"user_id,omitempty"`
-	WaitAllNodes   *bool                 `json:"wait_all_nodes,omitempty"`
-	WaitForSwitch  *int32                `json:"wait_for_switch,omitempty"`
-	Wckey          *string               `json:"wckey,omitempty"`
-	X11            *[]V0039JobDescMsgX11 `json:"x11,omitempty"`
-	X11MagicCookie *string               `json:"x11_magic_cookie,omitempty"`
-	X11TargetHost  *string               `json:"x11_target_host,omitempty"`
-	X11TargetPort  *int32                `json:"x11_target_port,omitempty"`
-}
-
-// V0039JobDescMsgCpuBindingFlags flags
-type V0039JobDescMsgCpuBindingFlags string
-
-// V0039JobDescMsgFlags flags
-type V0039JobDescMsgFlags string
-
-// V0039JobDescMsgKillWarningFlags flags
-type V0039JobDescMsgKillWarningFlags string
-
-// V0039JobDescMsgMailType flags
-type V0039JobDescMsgMailType string
-
-// V0039JobDescMsgMemoryBindingType flags
-type V0039JobDescMsgMemoryBindingType string
-
-// V0039JobDescMsgOpenMode flags
-type V0039JobDescMsgOpenMode string
-
-// V0039JobDescMsgPowerFlags flags
-type V0039JobDescMsgPowerFlags string
-
-// V0039JobDescMsgProfile flags
-type V0039JobDescMsgProfile string
-
-// V0039JobDescMsgShared flags
-type V0039JobDescMsgShared string
-
-// V0039JobDescMsgX11 flags
-type V0039JobDescMsgX11 string
-
-// V0039JobDescMsgArgv defines model for v0.0.39_job_desc_msg_argv.
-type V0039JobDescMsgArgv = V0039StringArray
-
-// V0039JobDescMsgEnv defines model for v0.0.39_job_desc_msg_env.
-type V0039JobDescMsgEnv = V0039StringArray
-
-// V0039JobDescMsgList defines model for v0.0.39_job_desc_msg_list.
-type V0039JobDescMsgList = []V0039JobDescMsg
-
-// V0039JobDescMsgSpankEnv defines model for v0.0.39_job_desc_msg_spank_env.
-type V0039JobDescMsgSpankEnv = V0039StringArray
-
-// V0039JobExclusive defines model for v0.0.39_job_exclusive.
-type V0039JobExclusive = []string
-
-// V0039JobExitCode job exit details
-type V0039JobExitCode struct {
-	// ReturnCode return code (numeric)
-	ReturnCode *int32 `json:"return_code,omitempty"`
-
-	// Signal Job exited due to signal
-	Signal *struct {
-		// Name signal name
-		Name *string `json:"name,omitempty"`
-
-		// SignalId signal numeric ID
-		SignalId *int32 `json:"signal_id,omitempty"`
-	} `json:"signal,omitempty"`
-
-	// Status exit status
-	Status *string `json:"status,omitempty"`
-}
-
-// V0039JobInfo defines model for v0.0.39_job_info.
-type V0039JobInfo struct {
-	Account        *string `json:"account,omitempty"`
-	AccrueTime     *int64  `json:"accrue_time,omitempty"`
-	AdminComment   *string `json:"admin_comment,omitempty"`
-	AllocatingNode *string `json:"allocating_node,omitempty"`
-
-	// ArrayJobId Integer number with flags
-	ArrayJobId *V0039Uint32NoVal `json:"array_job_id,omitempty"`
-
-	// ArrayMaxTasks Integer number with flags
-	ArrayMaxTasks *V0039Uint32NoVal `json:"array_max_tasks,omitempty"`
-
-	// ArrayTaskId Integer number with flags
-	ArrayTaskId     *V0039Uint32NoVal `json:"array_task_id,omitempty"`
-	ArrayTaskString *string           `json:"array_task_string,omitempty"`
-	AssociationId   *int32            `json:"association_id,omitempty"`
-	BatchFeatures   *string           `json:"batch_features,omitempty"`
-	BatchFlag       *bool             `json:"batch_flag,omitempty"`
-	BatchHost       *string           `json:"batch_host,omitempty"`
-
-	// BillableTres 64 bit floating point number with flags
-	BillableTres     *V0039Float64NoVal `json:"billable_tres,omitempty"`
-	BurstBuffer      *string            `json:"burst_buffer,omitempty"`
-	BurstBufferState *string            `json:"burst_buffer_state,omitempty"`
-	Cluster          *string            `json:"cluster,omitempty"`
-	ClusterFeatures  *string            `json:"cluster_features,omitempty"`
-	Command          *string            `json:"command,omitempty"`
-	Comment          *string            `json:"comment,omitempty"`
-	Container        *string            `json:"container,omitempty"`
-	ContainerId      *string            `json:"container_id,omitempty"`
-	Contiguous       *bool              `json:"contiguous,omitempty"`
-	CoreSpec         *int32             `json:"core_spec,omitempty"`
-
-	// CoresPerSocket Integer number with flags
-	CoresPerSocket *V0039Uint16NoVal `json:"cores_per_socket,omitempty"`
-
-	// CpuFrequencyGovernor Integer number with flags
-	CpuFrequencyGovernor *V0039Uint32NoVal `json:"cpu_frequency_governor,omitempty"`
-
-	// CpuFrequencyMaximum Integer number with flags
-	CpuFrequencyMaximum *V0039Uint32NoVal `json:"cpu_frequency_maximum,omitempty"`
-
-	// CpuFrequencyMinimum Integer number with flags
-	CpuFrequencyMinimum *V0039Uint32NoVal `json:"cpu_frequency_minimum,omitempty"`
-
-	// Cpus Integer number with flags
-	Cpus *V0039Uint32NoVal `json:"cpus,omitempty"`
-
-	// CpusPerTask Integer number with flags
-	CpusPerTask             *V0039Uint16NoVal `json:"cpus_per_task,omitempty"`
-	CpusPerTres             *string           `json:"cpus_per_tres,omitempty"`
-	Cron                    *string           `json:"cron,omitempty"`
-	CurrentWorkingDirectory *string           `json:"current_working_directory,omitempty"`
-	Deadline                *int64            `json:"deadline,omitempty"`
-
-	// DelayBoot Integer number with flags
-	DelayBoot  *V0039Uint32NoVal `json:"delay_boot,omitempty"`
-	Dependency *string           `json:"dependency,omitempty"`
-
-	// DerivedExitCode Integer number with flags
-	DerivedExitCode *V0039Uint32NoVal  `json:"derived_exit_code,omitempty"`
-	EligibleTime    *int64             `json:"eligible_time,omitempty"`
-	EndTime         *int64             `json:"end_time,omitempty"`
-	ExcludedNodes   *string            `json:"excluded_nodes,omitempty"`
-	Exclusive       *V0039JobExclusive `json:"exclusive,omitempty"`
-
-	// ExitCode Integer number with flags
-	ExitCode                 *V0039Uint32NoVal       `json:"exit_code,omitempty"`
-	Extra                    *string                 `json:"extra,omitempty"`
-	FailedNode               *string                 `json:"failed_node,omitempty"`
-	Features                 *string                 `json:"features,omitempty"`
-	FederationOrigin         *string                 `json:"federation_origin,omitempty"`
-	FederationSiblingsActive *string                 `json:"federation_siblings_active,omitempty"`
-	FederationSiblingsViable *string                 `json:"federation_siblings_viable,omitempty"`
-	Flags                    *[]V0039JobInfoFlags    `json:"flags,omitempty"`
-	GresDetail               *V0039JobInfoGresDetail `json:"gres_detail,omitempty"`
-	GroupId                  *int32                  `json:"group_id,omitempty"`
-	GroupName                *string                 `json:"group_name,omitempty"`
-
-	// HetJobId Integer number with flags
-	HetJobId    *V0039Uint32NoVal `json:"het_job_id,omitempty"`
-	HetJobIdSet *string           `json:"het_job_id_set,omitempty"`
-
-	// HetJobOffset Integer number with flags
-	HetJobOffset *V0039Uint32NoVal `json:"het_job_offset,omitempty"`
-
-	// Hold Hold (true) or release (false) job
-	Hold                *bool                   `json:"hold,omitempty"`
-	JobId               *int32                  `json:"job_id,omitempty"`
-	JobResources        *V0039JobResPtr         `json:"job_resources,omitempty"`
-	JobSizeStr          *V0039CsvString         `json:"job_size_str,omitempty"`
-	JobState            *string                 `json:"job_state,omitempty"`
-	LastSchedEvaluation *int64                  `json:"last_sched_evaluation,omitempty"`
-	Licenses            *string                 `json:"licenses,omitempty"`
-	MailType            *[]V0039JobInfoMailType `json:"mail_type,omitempty"`
-	MailUser            *string                 `json:"mail_user,omitempty"`
-
-	// MaxCpus Integer number with flags
-	MaxCpus *V0039Uint32NoVal `json:"max_cpus,omitempty"`
-
-	// MaxNodes Integer number with flags
-	MaxNodes              *V0039Uint32NoVal `json:"max_nodes,omitempty"`
-	MaximumSwitchWaitTime *int32            `json:"maximum_switch_wait_time,omitempty"`
-	McsLabel              *string           `json:"mcs_label,omitempty"`
-
-	// MemoryPerCpu Integer number with flags
-	MemoryPerCpu *V0039MemPerCpus `json:"memory_per_cpu,omitempty"`
-
-	// MemoryPerNode Integer number with flags
-	MemoryPerNode *V0039MemPerNode `json:"memory_per_node,omitempty"`
-	MemoryPerTres *string          `json:"memory_per_tres,omitempty"`
-
-	// MinimumCpusPerNode Integer number with flags
-	MinimumCpusPerNode *V0039Uint16NoVal `json:"minimum_cpus_per_node,omitempty"`
-	MinimumSwitches    *int32            `json:"minimum_switches,omitempty"`
-
-	// MinimumTmpDiskPerNode Integer number with flags
-	MinimumTmpDiskPerNode *V0039Uint32NoVal `json:"minimum_tmp_disk_per_node,omitempty"`
-	Name                  *string           `json:"name,omitempty"`
-	Network               *string           `json:"network,omitempty"`
-	Nice                  *int32            `json:"nice,omitempty"`
-
-	// NodeCount Integer number with flags
-	NodeCount     *V0039Uint32NoVal `json:"node_count,omitempty"`
-	Nodes         *string           `json:"nodes,omitempty"`
-	Oversubscribe *bool             `json:"oversubscribe,omitempty"`
-	Partition     *string           `json:"partition,omitempty"`
-	Power         *struct {
-		Flags *[]V0039JobInfoPowerFlags `json:"flags,omitempty"`
-	} `json:"power,omitempty"`
-	PreSusTime      *int64  `json:"pre_sus_time,omitempty"`
-	PreemptTime     *int64  `json:"preempt_time,omitempty"`
-	PreemptableTime *int64  `json:"preemptable_time,omitempty"`
-	Prefer          *string `json:"prefer,omitempty"`
-
-	// Priority Integer number with flags
-	Priority        *V0039Uint32NoVal        `json:"priority,omitempty"`
-	Profile         *[]V0039JobInfoProfile   `json:"profile,omitempty"`
-	Qos             *string                  `json:"qos,omitempty"`
-	Reboot          *bool                    `json:"reboot,omitempty"`
-	Requeue         *bool                    `json:"requeue,omitempty"`
-	RequiredNodes   *string                  `json:"required_nodes,omitempty"`
-	ResizeTime      *int64                   `json:"resize_time,omitempty"`
-	RestartCnt      *int32                   `json:"restart_cnt,omitempty"`
-	ResvName        *string                  `json:"resv_name,omitempty"`
-	ScheduledNodes  *string                  `json:"scheduled_nodes,omitempty"`
-	SelinuxContext  *string                  `json:"selinux_context,omitempty"`
-	Shared          *[]V0039JobInfoShared    `json:"shared,omitempty"`
-	ShowFlags       *[]V0039JobInfoShowFlags `json:"show_flags,omitempty"`
-	SocketsPerBoard *int32                   `json:"sockets_per_board,omitempty"`
-
-	// SocketsPerNode Integer number with flags
-	SocketsPerNode   *V0039Uint16NoVal `json:"sockets_per_node,omitempty"`
-	StandardError    *string           `json:"standard_error,omitempty"`
-	StandardInput    *string           `json:"standard_input,omitempty"`
-	StandardOutput   *string           `json:"standard_output,omitempty"`
-	StartTime        *int64            `json:"start_time,omitempty"`
-	StateDescription *string           `json:"state_description,omitempty"`
-	StateReason      *string           `json:"state_reason,omitempty"`
-	SubmitTime       *int64            `json:"submit_time,omitempty"`
-	SuspendTime      *int64            `json:"suspend_time,omitempty"`
-	SystemComment    *string           `json:"system_comment,omitempty"`
-
-	// Tasks Integer number with flags
-	Tasks *V0039Uint32NoVal `json:"tasks,omitempty"`
-
-	// TasksPerBoard Integer number with flags
-	TasksPerBoard *V0039Uint16NoVal `json:"tasks_per_board,omitempty"`
-
-	// TasksPerCore Integer number with flags
-	TasksPerCore *V0039Uint16NoVal `json:"tasks_per_core,omitempty"`
-
-	// TasksPerNode Integer number with flags
-	TasksPerNode *V0039Uint16NoVal `json:"tasks_per_node,omitempty"`
-
-	// TasksPerSocket Integer number with flags
-	TasksPerSocket *V0039Uint16NoVal `json:"tasks_per_socket,omitempty"`
-
-	// TasksPerTres Integer number with flags
-	TasksPerTres *V0039Uint16NoVal `json:"tasks_per_tres,omitempty"`
-	ThreadSpec   *int32            `json:"thread_spec,omitempty"`
-
-	// ThreadsPerCore Integer number with flags
-	ThreadsPerCore *V0039Uint16NoVal `json:"threads_per_core,omitempty"`
-
-	// TimeLimit Integer number with flags
-	TimeLimit *V0039Uint32NoVal `json:"time_limit,omitempty"`
-
-	// TimeMinimum Integer number with flags
-	TimeMinimum   *V0039Uint32NoVal `json:"time_minimum,omitempty"`
-	TresAllocStr  *string           `json:"tres_alloc_str,omitempty"`
-	TresBind      *string           `json:"tres_bind,omitempty"`
-	TresFreq      *string           `json:"tres_freq,omitempty"`
-	TresPerJob    *string           `json:"tres_per_job,omitempty"`
-	TresPerNode   *string           `json:"tres_per_node,omitempty"`
-	TresPerSocket *string           `json:"tres_per_socket,omitempty"`
-	TresPerTask   *string           `json:"tres_per_task,omitempty"`
-	TresReqStr    *string           `json:"tres_req_str,omitempty"`
-	UserId        *int32            `json:"user_id,omitempty"`
-	UserName      *string           `json:"user_name,omitempty"`
-	Wckey         *string           `json:"wckey,omitempty"`
-}
-
-// V0039JobInfoFlags flags
-type V0039JobInfoFlags string
-
-// V0039JobInfoMailType flags
-type V0039JobInfoMailType string
-
-// V0039JobInfoPowerFlags flags
-type V0039JobInfoPowerFlags string
-
-// V0039JobInfoProfile flags
-type V0039JobInfoProfile string
-
-// V0039JobInfoShared flags
-type V0039JobInfoShared string
-
-// V0039JobInfoShowFlags flags
-type V0039JobInfoShowFlags string
-
-// V0039JobInfoGresDetail defines model for v0.0.39_job_info_gres_detail.
-type V0039JobInfoGresDetail = []string
-
-// V0039JobInfoMsg defines model for v0.0.39_job_info_msg.
-type V0039JobInfoMsg = []V0039JobInfo
-
-// V0039JobList defines model for v0.0.39_job_list.
-type V0039JobList = []V0039Job
-
-// V0039JobRes defines model for v0.0.39_job_res.
-type V0039JobRes struct {
-	AllocatedCores *int32 `json:"allocated_cores,omitempty"`
-	AllocatedCpus  *int32 `json:"allocated_cpus,omitempty"`
-	AllocatedHosts *int32 `json:"allocated_hosts,omitempty"`
-
-	// AllocatedNodes job node resources
-	AllocatedNodes *V0039JobResNodes `json:"allocated_nodes,omitempty"`
-	Nodes          *string           `json:"nodes,omitempty"`
-}
-
-// V0039JobResNodes job node resources
-type V0039JobResNodes = []interface{}
-
-// V0039JobResPtr defines model for v0.0.39_job_res_ptr.
-type V0039JobResPtr = V0039JobRes
-
-// V0039JobSubmission defines model for v0.0.39_job_submission.
-type V0039JobSubmission struct {
-	Job  *V0039JobDescMsg     `json:"job,omitempty"`
-	Jobs *V0039JobDescMsgList `json:"jobs,omitempty"`
-
-	// Script Executable script (full contents) to run in batch step for all job components
-	Script *string `json:"script,omitempty"`
-}
-
-// V0039JobSubmissionResponse defines model for v0.0.39_job_submission_response.
-type V0039JobSubmissionResponse struct {
-	// Errors Slurm errors
-	Errors *V0039Errors `json:"errors,omitempty"`
-
-	// JobId new job ID
-	JobId *int `json:"job_id,omitempty"`
-
-	// JobSubmitUserMsg Message to user from job_submit plugin
-	JobSubmitUserMsg *string    `json:"job_submit_user_msg,omitempty"`
-	Meta             *V0039Meta `json:"meta,omitempty"`
-
-	// StepId new job step ID
-	StepId *string `json:"step_id,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *V0039Warnings `json:"warnings,omitempty"`
-}
-
-// V0039JobUpdateResponse defines model for v0.0.39_job_update_response.
-type V0039JobUpdateResponse struct {
-	// Errors Slurm errors
-	Errors *V0039Errors `json:"errors,omitempty"`
-	Meta   *V0039Meta   `json:"meta,omitempty"`
-
-	// Results Result per ArrayJob
-	Results *V0039JobArrayResponseMsgPtr `json:"results,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *V0039Warnings `json:"warnings,omitempty"`
-}
-
-// V0039JobsResponse defines model for v0.0.39_jobs_response.
-type V0039JobsResponse struct {
-	// Errors Slurm errors
-	Errors *V0039Errors     `json:"errors,omitempty"`
-	Jobs   *V0039JobInfoMsg `json:"jobs,omitempty"`
-	Meta   *V0039Meta       `json:"meta,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *V0039Warnings `json:"warnings,omitempty"`
-}
-
-// V0039License defines model for v0.0.39_license.
-type V0039License struct {
-	Free         *int32  `json:"Free,omitempty"`
-	LastConsumed *int32  `json:"LastConsumed,omitempty"`
-	LastDeficit  *int32  `json:"LastDeficit,omitempty"`
-	LastUpdate   *int64  `json:"LastUpdate,omitempty"`
-	LicenseName  *string `json:"LicenseName,omitempty"`
-	Remote       *bool   `json:"Remote,omitempty"`
-	Reserved     *int32  `json:"Reserved,omitempty"`
-	Total        *int32  `json:"Total,omitempty"`
-	Used         *int32  `json:"Used,omitempty"`
-}
-
-// V0039Licenses defines model for v0.0.39_licenses.
-type V0039Licenses = []V0039License
-
-// V0039LicensesInfo defines model for v0.0.39_licenses_info.
-type V0039LicensesInfo struct {
-	// Errors Slurm errors
-	Errors   *V0039Errors   `json:"errors,omitempty"`
-	Licenses *V0039Licenses `json:"licenses,omitempty"`
-	Meta     *V0039Meta     `json:"meta,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *V0039Warnings `json:"warnings,omitempty"`
-}
-
-// V0039MemPerCpus Integer number with flags
-type V0039MemPerCpus = V0039Uint64NoVal
-
-// V0039MemPerNode Integer number with flags
-type V0039MemPerNode = V0039Uint64NoVal
-
-// V0039Meta defines model for v0.0.39_meta.
-type V0039Meta struct {
-	// Slurm Slurm information
-	Slurm *struct {
-		// Release version specifier
-		Release *string `json:"release,omitempty"`
-		Version *struct {
-			Major *int `json:"major,omitempty"`
-			Micro *int `json:"micro,omitempty"`
-			Minor *int `json:"minor,omitempty"`
-		} `json:"version,omitempty"`
-	} `json:"Slurm,omitempty"`
-	Plugin *struct {
-		Name *string `json:"name,omitempty"`
-		Type *string `json:"type,omitempty"`
-	} `json:"plugin,omitempty"`
-}
-
-// V0039Node defines model for v0.0.39_node.
-type V0039Node struct {
-	ActiveFeatures            *V0039CsvString `json:"active_features,omitempty"`
-	Address                   *string         `json:"address,omitempty"`
-	AllocCpus                 *int32          `json:"alloc_cpus,omitempty"`
-	AllocIdleCpus             *int32          `json:"alloc_idle_cpus,omitempty"`
-	AllocMemory               *int64          `json:"alloc_memory,omitempty"`
-	Architecture              *string         `json:"architecture,omitempty"`
-	Boards                    *int32          `json:"boards,omitempty"`
-	BootTime                  *int64          `json:"boot_time,omitempty"`
-	BurstbufferNetworkAddress *string         `json:"burstbuffer_network_address,omitempty"`
-	ClusterName               *string         `json:"cluster_name,omitempty"`
-	Comment                   *string         `json:"comment,omitempty"`
-	Cores                     *int32          `json:"cores,omitempty"`
-	CpuBinding                *int32          `json:"cpu_binding,omitempty"`
-
-	// CpuLoad Integer number with flags
-	CpuLoad         *V0039Uint32NoVal         `json:"cpu_load,omitempty"`
-	Cpus            *int32                    `json:"cpus,omitempty"`
-	EffectiveCpus   *int32                    `json:"effective_cpus,omitempty"`
-	Energy          *V0039AcctGatherEnergyPtr `json:"energy,omitempty"`
-	ExternalSensors *V0039ExtSensorsDataPtr   `json:"external_sensors,omitempty"`
-	Extra           *string                   `json:"extra,omitempty"`
-	Features        *V0039CsvString           `json:"features,omitempty"`
-
-	// FreeMem Integer number with flags
-	FreeMem              *V0039Uint64NoVal                `json:"free_mem,omitempty"`
-	Gres                 *string                          `json:"gres,omitempty"`
-	GresDrained          *string                          `json:"gres_drained,omitempty"`
-	GresUsed             *string                          `json:"gres_used,omitempty"`
-	Hostname             *string                          `json:"hostname,omitempty"`
-	LastBusy             *int64                           `json:"last_busy,omitempty"`
-	McsLabel             *string                          `json:"mcs_label,omitempty"`
-	Name                 *string                          `json:"name,omitempty"`
-	NextStateAfterReboot *[]V0039NodeNextStateAfterReboot `json:"next_state_after_reboot,omitempty"`
-	OperatingSystem      *string                          `json:"operating_system,omitempty"`
-	Owner                *string                          `json:"owner,omitempty"`
-	Partitions           *V0039CsvString                  `json:"partitions,omitempty"`
-	Port                 *int32                           `json:"port,omitempty"`
-	Power                *V0039PowerMgmtDataPtr           `json:"power,omitempty"`
-	RealMemory           *int64                           `json:"real_memory,omitempty"`
-	Reason               *string                          `json:"reason,omitempty"`
-	ReasonChangedAt      *int64                           `json:"reason_changed_at,omitempty"`
-	ReasonSetByUser      *string                          `json:"reason_set_by_user,omitempty"`
-	Reservation          *string                          `json:"reservation,omitempty"`
-
-	// ResumeAfter Integer number with flags
-	ResumeAfter       *V0039Uint64NoVal `json:"resume_after,omitempty"`
-	SlurmdStartTime   *int64            `json:"slurmd_start_time,omitempty"`
-	Sockets           *int32            `json:"sockets,omitempty"`
-	SpecializedCores  *int32            `json:"specialized_cores,omitempty"`
-	SpecializedCpus   *string           `json:"specialized_cpus,omitempty"`
-	SpecializedMemory *int64            `json:"specialized_memory,omitempty"`
-	State             *[]V0039NodeState `json:"state,omitempty"`
-	TemporaryDisk     *int32            `json:"temporary_disk,omitempty"`
-	Threads           *int32            `json:"threads,omitempty"`
-	Tres              *string           `json:"tres,omitempty"`
-	TresUsed          *string           `json:"tres_used,omitempty"`
-	TresWeighted      *float64          `json:"tres_weighted,omitempty"`
-	Version           *string           `json:"version,omitempty"`
-	Weight            *int32            `json:"weight,omitempty"`
-}
-
-// V0039NodeNextStateAfterReboot flags
-type V0039NodeNextStateAfterReboot string
-
-// V0039NodeState flags
-type V0039NodeState string
-
-// V0039Nodes defines model for v0.0.39_nodes.
-type V0039Nodes = []V0039Node
-
-// V0039NodesResponse defines model for v0.0.39_nodes_response.
-type V0039NodesResponse struct {
-	// Errors Slurm errors
-	Errors *V0039Errors `json:"errors,omitempty"`
-	Meta   *V0039Meta   `json:"meta,omitempty"`
-	Nodes  *V0039Nodes  `json:"nodes,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *V0039Warnings `json:"warnings,omitempty"`
-}
-
-// V0039PartitionInfo defines model for v0.0.39_partition_info.
-type V0039PartitionInfo struct {
-	Accounts *struct {
-		Allowed *string `json:"allowed,omitempty"`
-		Deny    *string `json:"deny,omitempty"`
-	} `json:"accounts,omitempty"`
-	Alternate *string `json:"alternate,omitempty"`
-	Cluster   *string `json:"cluster,omitempty"`
-	Cpus      *struct {
-		TaskBinding *int32 `json:"task_binding,omitempty"`
-		Total       *int32 `json:"total,omitempty"`
-	} `json:"cpus,omitempty"`
-	Defaults *struct {
-		Job          *string `json:"job,omitempty"`
-		MemoryPerCpu *int64  `json:"memory_per_cpu,omitempty"`
-
-		// Time Integer number with flags
-		Time *V0039Uint32NoVal `json:"time,omitempty"`
-	} `json:"defaults,omitempty"`
-	GraceTime *int32 `json:"grace_time,omitempty"`
-	Groups    *struct {
-		Allowed *string `json:"allowed,omitempty"`
-	} `json:"groups,omitempty"`
-	Maximums *struct {
-		// CpusPerNode Integer number with flags
-		CpusPerNode *V0039Uint32NoVal `json:"cpus_per_node,omitempty"`
-
-		// CpusPerSocket Integer number with flags
-		CpusPerSocket *V0039Uint32NoVal `json:"cpus_per_socket,omitempty"`
-		MemoryPerCpu  *int64            `json:"memory_per_cpu,omitempty"`
-
-		// Nodes Integer number with flags
-		Nodes *V0039Uint32NoVal `json:"nodes,omitempty"`
-
-		// OverTimeLimit Integer number with flags
-		OverTimeLimit *V0039Uint16NoVal `json:"over_time_limit,omitempty"`
-		Shares        *int32            `json:"shares,omitempty"`
-
-		// Time Integer number with flags
-		Time *V0039Uint32NoVal `json:"time,omitempty"`
-	} `json:"maximums,omitempty"`
-	Minimums *struct {
-		Nodes *int32 `json:"nodes,omitempty"`
-	} `json:"minimums,omitempty"`
-	Name     *string `json:"name,omitempty"`
-	NodeSets *string `json:"node_sets,omitempty"`
-	Nodes    *struct {
-		AllowedAllocation *string `json:"allowed_allocation,omitempty"`
-		Configured        *string `json:"configured,omitempty"`
-		Total             *int32  `json:"total,omitempty"`
-	} `json:"nodes,omitempty"`
-	Priority *struct {
-		JobFactor *int32 `json:"job_factor,omitempty"`
-		Tier      *int32 `json:"tier,omitempty"`
-	} `json:"priority,omitempty"`
-	Qos *struct {
-		Allowed  *string `json:"allowed,omitempty"`
-		Assigned *string `json:"assigned,omitempty"`
-		Deny     *string `json:"deny,omitempty"`
-	} `json:"qos,omitempty"`
-
-	// SuspendTime Integer number with flags
-	SuspendTime *V0039Uint32NoVal `json:"suspend_time,omitempty"`
-	Timeouts    *struct {
-		// Resume Integer number with flags
-		Resume *V0039Uint16NoVal `json:"resume,omitempty"`
-
-		// Suspend Integer number with flags
-		Suspend *V0039Uint16NoVal `json:"suspend,omitempty"`
-	} `json:"timeouts,omitempty"`
-	Tres *struct {
-		BillingWeights *string `json:"billing_weights,omitempty"`
-		Configured     *string `json:"configured,omitempty"`
-	} `json:"tres,omitempty"`
-}
-
-// V0039PartitionInfoArray defines model for v0.0.39_partition_info_array.
-type V0039PartitionInfoArray = []V0039PartitionInfo
-
-// V0039PartitionsResponse defines model for v0.0.39_partitions_response.
-type V0039PartitionsResponse struct {
-	// Errors Slurm errors
-	Errors     *V0039Errors             `json:"errors,omitempty"`
-	Meta       *V0039Meta               `json:"meta,omitempty"`
-	Partitions *V0039PartitionInfoArray `json:"partitions,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *V0039Warnings `json:"warnings,omitempty"`
-}
-
-// V0039Pings defines model for v0.0.39_pings.
-type V0039Pings struct {
-	// Errors Slurm errors
-	Errors *V0039Errors              `json:"errors,omitempty"`
-	Meta   *V0039Meta                `json:"meta,omitempty"`
-	Pings  *V0039ControllerPingArray `json:"pings,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *V0039Warnings `json:"warnings,omitempty"`
-}
-
-// V0039PowerMgmtData defines model for v0.0.39_power_mgmt_data.
-type V0039PowerMgmtData struct {
-	CurrentWatts *int32 `json:"current_watts,omitempty"`
-	LowestWatts  *int32 `json:"lowest_watts,omitempty"`
-
-	// MaximumWatts Integer number with flags
-	MaximumWatts    *V0039Uint32NoVal `json:"maximum_watts,omitempty"`
-	NewJobTime      *int64            `json:"new_job_time,omitempty"`
-	NewMaximumWatts *int32            `json:"new_maximum_watts,omitempty"`
-	PeakWatts       *int32            `json:"peak_watts,omitempty"`
-	State           *int32            `json:"state,omitempty"`
-	TimeStartDay    *int64            `json:"time_start_day,omitempty"`
-	TotalEnergy     *int64            `json:"total_energy,omitempty"`
-}
-
-// V0039PowerMgmtDataPtr defines model for v0.0.39_power_mgmt_data_ptr.
-type V0039PowerMgmtDataPtr = V0039PowerMgmtData
-
-// V0039Qos defines model for v0.0.39_qos.
-type V0039Qos struct {
-	Description *string          `json:"description,omitempty"`
-	Flags       *[]V0039QosFlags `json:"flags,omitempty"`
-	Id          *int32           `json:"id,omitempty"`
-	Limits      *struct {
-		Factor *float64 `json:"factor,omitempty"`
-
-		// GraceTime Integer number with flags
-		GraceTime *V0039Uint32NoVal `json:"grace_time,omitempty"`
-		Max       *struct {
-			Accruing *struct {
-				Per *struct {
-					// Account Integer number with flags
-					Account *V0039Uint32NoVal `json:"account,omitempty"`
-
-					// User Integer number with flags
-					User *V0039Uint32NoVal `json:"user,omitempty"`
-				} `json:"per,omitempty"`
-			} `json:"accruing,omitempty"`
-			ActiveJobs *struct {
-				// Accruing Integer number with flags
-				Accruing *V0039Uint32NoVal `json:"accruing,omitempty"`
-
-				// Count Integer number with flags
-				Count *V0039Uint32NoVal `json:"count,omitempty"`
-			} `json:"active_jobs,omitempty"`
-			Jobs *struct {
-				ActiveJobs *struct {
-					Per *struct {
-						// Account Integer number with flags
-						Account *V0039Uint32NoVal `json:"account,omitempty"`
-
-						// User Integer number with flags
-						User *V0039Uint32NoVal `json:"user,omitempty"`
-					} `json:"per,omitempty"`
-				} `json:"active_jobs,omitempty"`
-				Per *struct {
-					// Account Integer number with flags
-					Account *V0039Uint32NoVal `json:"account,omitempty"`
-
-					// User Integer number with flags
-					User *V0039Uint32NoVal `json:"user,omitempty"`
-				} `json:"per,omitempty"`
-			} `json:"jobs,omitempty"`
-			Tres *struct {
-				Minutes *struct {
-					Per *struct {
-						Account *V0039TresStr `json:"account,omitempty"`
-						Job     *V0039TresStr `json:"job,omitempty"`
-						Qos     *V0039TresStr `json:"qos,omitempty"`
-						User    *V0039TresStr `json:"user,omitempty"`
-					} `json:"per,omitempty"`
-				} `json:"minutes,omitempty"`
-				Per *struct {
-					Account *V0039TresStr `json:"account,omitempty"`
-					Job     *V0039TresStr `json:"job,omitempty"`
-					Node    *V0039TresStr `json:"node,omitempty"`
-					User    *V0039TresStr `json:"user,omitempty"`
-				} `json:"per,omitempty"`
-				Total *V0039TresStr `json:"total,omitempty"`
-			} `json:"tres,omitempty"`
-			WallClock *struct {
-				Per *struct {
-					// Job Integer number with flags
-					Job *V0039Uint32NoVal `json:"job,omitempty"`
-
-					// Qos Integer number with flags
-					Qos *V0039Uint32NoVal `json:"qos,omitempty"`
-				} `json:"per,omitempty"`
-			} `json:"wall_clock,omitempty"`
-		} `json:"max,omitempty"`
-		Min *struct {
-			// PriorityThreshold Integer number with flags
-			PriorityThreshold *V0039Uint32NoVal `json:"priority_threshold,omitempty"`
-			Tres              *struct {
-				Per *struct {
-					Job *V0039TresStr `json:"job,omitempty"`
-				} `json:"per,omitempty"`
-			} `json:"tres,omitempty"`
-		} `json:"min,omitempty"`
-	} `json:"limits,omitempty"`
-	Name    *string `json:"name,omitempty"`
-	Preempt *struct {
-		// ExemptTime Integer number with flags
-		ExemptTime *V0039Uint32NoVal      `json:"exempt_time,omitempty"`
-		List       *V0039QosPreemptList   `json:"list,omitempty"`
-		Mode       *[]V0039QosPreemptMode `json:"mode,omitempty"`
-	} `json:"preempt,omitempty"`
-
-	// Priority Integer number with flags
-	Priority *V0039Uint32NoVal `json:"priority,omitempty"`
-
-	// UsageFactor 64 bit floating point number with flags
-	UsageFactor *V0039Float64NoVal `json:"usage_factor,omitempty"`
-
-	// UsageThreshold 64 bit floating point number with flags
-	UsageThreshold *V0039Float64NoVal `json:"usage_threshold,omitempty"`
-}
-
-// V0039QosFlags flags
-type V0039QosFlags string
-
-// V0039QosPreemptMode flags
-type V0039QosPreemptMode string
-
-// V0039QosList defines model for v0.0.39_qos_list.
-type V0039QosList = []V0039Qos
-
-// V0039QosPreemptList defines model for v0.0.39_qos_preempt_list.
-type V0039QosPreemptList = []string
-
-// V0039QosStringIdList List of QOS names
-type V0039QosStringIdList = []string
-
-// V0039ReservationCoreSpec defines model for v0.0.39_reservation_core_spec.
-type V0039ReservationCoreSpec struct {
-	Core *string `json:"core,omitempty"`
-	Node *string `json:"node,omitempty"`
-}
-
-// V0039ReservationInfo defines model for v0.0.39_reservation_info.
-type V0039ReservationInfo struct {
-	Accounts            *string                       `json:"accounts,omitempty"`
-	BurstBuffer         *string                       `json:"burst_buffer,omitempty"`
-	CoreCount           *int32                        `json:"core_count,omitempty"`
-	CoreSpecializations *V0039ReservationInfoCoreSpec `json:"core_specializations,omitempty"`
-	EndTime             *int64                        `json:"end_time,omitempty"`
-	Features            *string                       `json:"features,omitempty"`
-	Flags               *[]V0039ReservationInfoFlags  `json:"flags,omitempty"`
-	Groups              *string                       `json:"groups,omitempty"`
-	Licenses            *string                       `json:"licenses,omitempty"`
-	MaxStartDelay       *int32                        `json:"max_start_delay,omitempty"`
-	Name                *string                       `json:"name,omitempty"`
-	NodeCount           *int32                        `json:"node_count,omitempty"`
-	NodeList            *string                       `json:"node_list,omitempty"`
-	Partition           *string                       `json:"partition,omitempty"`
-	PurgeCompleted      *struct {
-		// Time Integer number with flags
-		Time *V0039Uint32NoVal `json:"time,omitempty"`
-	} `json:"purge_completed,omitempty"`
-	StartTime *int64  `json:"start_time,omitempty"`
-	Tres      *string `json:"tres,omitempty"`
-	Users     *string `json:"users,omitempty"`
-
-	// Watts Integer number with flags
-	Watts *V0039Uint32NoVal `json:"watts,omitempty"`
-}
-
-// V0039ReservationInfoFlags flags
-type V0039ReservationInfoFlags string
-
-// V0039ReservationInfoArray defines model for v0.0.39_reservation_info_array.
-type V0039ReservationInfoArray = []V0039ReservationInfo
-
-// V0039ReservationInfoCoreSpec defines model for v0.0.39_reservation_info_core_spec.
-type V0039ReservationInfoCoreSpec = []V0039ReservationCoreSpec
-
-// V0039ReservationsResponse defines model for v0.0.39_reservations_response.
-type V0039ReservationsResponse struct {
-	// Errors Slurm errors
-	Errors       *V0039Errors               `json:"errors,omitempty"`
-	Meta         *V0039Meta                 `json:"meta,omitempty"`
-	Reservations *V0039ReservationInfoArray `json:"reservations,omitempty"`
-
-	// Warnings Slurm warnings
-	Warnings *V0039Warnings `json:"warnings,omitempty"`
-}
-
-// V0039RollupStats list of recorded rollup statistics
-type V0039RollupStats = []struct {
-	// LastRun Last time rollup ran (UNIX timestamp)
-	LastRun *int32 `json:"last run,omitempty"`
-
-	// MaxCycle longest rollup time (seconds)
-	MaxCycle *int64 `json:"max_cycle,omitempty"`
-
-	// MeanCycles average time for rollup (seconds)
-	MeanCycles *int64 `json:"mean_cycles,omitempty"`
-
-	// TotalCycles number of rollups since last_run
-	TotalCycles *int64 `json:"total_cycles,omitempty"`
-
-	// TotalTime total time spent doing rollups (seconds)
-	TotalTime *int64 `json:"total_time,omitempty"`
-
-	// Type type
-	Type *V0039RollupStatsType `json:"type,omitempty"`
-}
-
-// V0039RollupStatsType type
-type V0039RollupStatsType string
-
-// V0039RollupStatsPtr list of recorded rollup statistics
-type V0039RollupStatsPtr = V0039RollupStats
-
-// V0039SlurmStepId step details
-type V0039SlurmStepId struct {
-	// JobId JobID
-	JobId *int32 `json:"job_id,omitempty"`
-
-	// StepHetComponent HetStep
-	StepHetComponent *int32  `json:"step_het_component,omitempty"`
-	StepId           *string `json:"step_id,omitempty"`
-}
-
-// V0039StatsMsg defines model for v0.0.39_stats_msg.
-type V0039StatsMsg struct {
-	AgentCount           *int32 `json:"agent_count,omitempty"`
-	AgentQueueSize       *int32 `json:"agent_queue_size,omitempty"`
-	AgentThreadCount     *int32 `json:"agent_thread_count,omitempty"`
-	BfActive             *bool  `json:"bf_active,omitempty"`
-	BfBackfilledHetJobs  *int32 `json:"bf_backfilled_het_jobs,omitempty"`
-	BfBackfilledJobs     *int32 `json:"bf_backfilled_jobs,omitempty"`
-	BfCycleCounter       *int32 `json:"bf_cycle_counter,omitempty"`
-	BfCycleLast          *int32 `json:"bf_cycle_last,omitempty"`
-	BfCycleMean          *int64 `json:"bf_cycle_mean,omitempty"`
-	BfCycleSum           *int64 `json:"bf_cycle_sum,omitempty"`
-	BfDepthMean          *int64 `json:"bf_depth_mean,omitempty"`
-	BfDepthMeanTry       *int64 `json:"bf_depth_mean_try,omitempty"`
-	BfDepthSum           *int32 `json:"bf_depth_sum,omitempty"`
-	BfDepthTrySum        *int32 `json:"bf_depth_try_sum,omitempty"`
-	BfLastBackfilledJobs *int32 `json:"bf_last_backfilled_jobs,omitempty"`
-	BfLastDepth          *int32 `json:"bf_last_depth,omitempty"`
-	BfLastDepthTry       *int32 `json:"bf_last_depth_try,omitempty"`
-	BfQueueLen           *int32 `json:"bf_queue_len,omitempty"`
-	BfQueueLenMean       *int64 `json:"bf_queue_len_mean,omitempty"`
-	BfQueueLenSum        *int32 `json:"bf_queue_len_sum,omitempty"`
-	BfTableSize          *int32 `json:"bf_table_size,omitempty"`
-	BfTableSizeMean      *int64 `json:"bf_table_size_mean,omitempty"`
-	BfWhenLastCycle      *int64 `json:"bf_when_last_cycle,omitempty"`
-	DbdAgentQueueSize    *int32 `json:"dbd_agent_queue_size,omitempty"`
-	GettimeofdayLatency  *int32 `json:"gettimeofday_latency,omitempty"`
-	JobStatesTs          *int64 `json:"job_states_ts,omitempty"`
-	JobsCanceled         *int32 `json:"jobs_canceled,omitempty"`
-	JobsCompleted        *int32 `json:"jobs_completed,omitempty"`
-	JobsFailed           *int32 `json:"jobs_failed,omitempty"`
-	JobsPending          *int32 `json:"jobs_pending,omitempty"`
-	JobsRunning          *int32 `json:"jobs_running,omitempty"`
-	JobsStarted          *int32 `json:"jobs_started,omitempty"`
-	JobsSubmitted        *int32 `json:"jobs_submitted,omitempty"`
-	PartsPacked          *int32 `json:"parts_packed,omitempty"`
-	ReqTime              *int64 `json:"req_time,omitempty"`
-	ReqTimeStart         *int64 `json:"req_time_start,omitempty"`
-
-	// RpcsByMessageType RPCs by message type
-	RpcsByMessageType *V0039StatsMsgRpcsByType `json:"rpcs_by_message_type,omitempty"`
-
-	// RpcsByUser RPCs by user
-	RpcsByUser             *V0039StatsMsgRpcsByUser `json:"rpcs_by_user,omitempty"`
-	ScheduleCycleLast      *int32                   `json:"schedule_cycle_last,omitempty"`
-	ScheduleCycleMax       *int32                   `json:"schedule_cycle_max,omitempty"`
-	ScheduleCycleMean      *int64                   `json:"schedule_cycle_mean,omitempty"`
-	ScheduleCycleMeanDepth *int64                   `json:"schedule_cycle_mean_depth,omitempty"`
-	ScheduleCyclePerMinute *int64                   `json:"schedule_cycle_per_minute,omitempty"`
-	ScheduleCycleTotal     *int32                   `json:"schedule_cycle_total,omitempty"`
-	ScheduleQueueLength    *int32                   `json:"schedule_queue_length,omitempty"`
-	ServerThreadCount      *int32                   `json:"server_thread_count,omitempty"`
-}
-
-// V0039StatsMsgRpcsByType RPCs by message type
-type V0039StatsMsgRpcsByType = []struct {
-	// AverageTime Average time spent processing RPC in seconds
-	AverageTime *int64 `json:"average_time,omitempty"`
-
-	// Count Number of RPCs received
-	Count *int64 `json:"count,omitempty"`
-
-	// MessageType Message type as string
-	MessageType *string `json:"message_type,omitempty"`
-
-	// TotalTime Total time spent processing RPC in seconds
-	TotalTime *int64 `json:"total_time,omitempty"`
-
-	// TypeId Message type as integer
-	TypeId *int32 `json:"type_id,omitempty"`
-}
-
-// V0039StatsMsgRpcsByUser RPCs by user
-type V0039StatsMsgRpcsByUser = []struct {
-	// AverageTime Average time spent processing RPC in seconds
-	AverageTime *int64 `json:"average_time,omitempty"`
-
-	// Count Number of RPCs received
-	Count *int64 `json:"count,omitempty"`
-
-	// TotalTime Total time spent processing RPC in seconds
-	TotalTime *int64 `json:"total_time,omitempty"`
-
-	// User user name
-	User *string `json:"user,omitempty"`
-
-	// UserId user id (numeric)
-	UserId *int32 `json:"user_id,omitempty"`
-}
-
-// V0039StatsRec defines model for v0.0.39_stats_rec.
-type V0039StatsRec struct {
-	RPCs *V0039StatsRpcList `json:"RPCs,omitempty"`
-
-	// Rollups list of recorded rollup statistics
-	Rollups   *V0039RollupStatsPtr `json:"rollups,omitempty"`
-	TimeStart *int64               `json:"time_start,omitempty"`
-	Users     *V0039StatsUserList  `json:"users,omitempty"`
-}
-
-// V0039StatsRecPtr defines model for v0.0.39_stats_rec_ptr.
-type V0039StatsRecPtr = V0039StatsRec
-
-// V0039StatsRpc defines model for v0.0.39_stats_rpc.
-type V0039StatsRpc struct {
-	Count *int32  `json:"count,omitempty"`
-	Rpc   *string `json:"rpc,omitempty"`
-	Time  *struct {
-		Average *int64 `json:"average,omitempty"`
-		Total   *int64 `json:"total,omitempty"`
-	} `json:"time,omitempty"`
-}
-
-// V0039StatsRpcList defines model for v0.0.39_stats_rpc_list.
-type V0039StatsRpcList = []V0039StatsRpc
-
-// V0039StatsUser defines model for v0.0.39_stats_user.
-type V0039StatsUser struct {
-	Count *int32 `json:"count,omitempty"`
-	Time  *struct {
-		Average *int64 `json:"average,omitempty"`
-		Total   *int64 `json:"total,omitempty"`
-	} `json:"time,omitempty"`
-	User *string `json:"user,omitempty"`
-}
-
-// V0039StatsUserList defines model for v0.0.39_stats_user_list.
-type V0039StatsUserList = []V0039StatsUser
-
-// V0039Step defines model for v0.0.39_step.
-type V0039Step struct {
-	CPU *struct {
-		Governor           *string `json:"governor,omitempty"`
-		RequestedFrequency *struct {
-			// Max Integer number with flags
-			Max *V0039Uint32NoVal `json:"max,omitempty"`
-
-			// Min Integer number with flags
-			Min *V0039Uint32NoVal `json:"min,omitempty"`
-		} `json:"requested_frequency,omitempty"`
-	} `json:"CPU,omitempty"`
-
-	// ExitCode job exit details
-	ExitCode        *V0039JobExitCode `json:"exit_code,omitempty"`
-	KillRequestUser *string           `json:"kill_request_user,omitempty"`
-	Nodes           *struct {
-		Count *int32          `json:"count,omitempty"`
-		List  *V0039StepNodes `json:"list,omitempty"`
-		Range *string         `json:"range,omitempty"`
-	} `json:"nodes,omitempty"`
-	Pid        *string `json:"pid,omitempty"`
-	State      *string `json:"state,omitempty"`
-	Statistics *struct {
-		CPU *struct {
-			ActualFrequency *int64 `json:"actual_frequency,omitempty"`
-		} `json:"CPU,omitempty"`
-		Energy *struct {
-			// Consumed Integer number with flags
-			Consumed *V0039Uint64NoVal `json:"consumed,omitempty"`
-		} `json:"energy,omitempty"`
-	} `json:"statistics,omitempty"`
-	Step *struct {
-		// Id step details
-		Id   *V0039SlurmStepId `json:"id,omitempty"`
-		Name *string           `json:"name,omitempty"`
-	} `json:"step,omitempty"`
-	Task *struct {
-		Distribution *string `json:"distribution,omitempty"`
-	} `json:"task,omitempty"`
-	Tasks *struct {
-		Count *int32 `json:"count,omitempty"`
-	} `json:"tasks,omitempty"`
-	Time *struct {
-		Elapsed   *int32 `json:"elapsed,omitempty"`
-		End       *int64 `json:"end,omitempty"`
-		Start     *int64 `json:"start,omitempty"`
-		Suspended *int32 `json:"suspended,omitempty"`
-		System    *struct {
-			Microseconds *int32 `json:"microseconds,omitempty"`
-			Seconds      *int64 `json:"seconds,omitempty"`
-		} `json:"system,omitempty"`
-		Total *struct {
-			Microseconds *int32 `json:"microseconds,omitempty"`
-			Seconds      *int64 `json:"seconds,omitempty"`
-		} `json:"total,omitempty"`
-		User *struct {
-			Microseconds *int32 `json:"microseconds,omitempty"`
-			Seconds      *int64 `json:"seconds,omitempty"`
-		} `json:"user,omitempty"`
-	} `json:"time,omitempty"`
-	Tres *struct {
-		Allocated *V0039TresStr `json:"allocated,omitempty"`
-		Consumed  *struct {
-			Average *V0039TresStr          `json:"average,omitempty"`
-			Max     *V0039StepTresUsageMax `json:"max,omitempty"`
-			Min     *V0039StepTresUsageMin `json:"min,omitempty"`
-			Total   *V0039TresStr          `json:"total,omitempty"`
-		} `json:"consumed,omitempty"`
-		Requested *struct {
-			Average *V0039TresStr        `json:"average,omitempty"`
-			Max     *V0039StepTresReqMax `json:"max,omitempty"`
-			Min     *V0039StepTresReqMin `json:"min,omitempty"`
-			Total   *V0039TresStr        `json:"total,omitempty"`
-		} `json:"requested,omitempty"`
-	} `json:"tres,omitempty"`
-}
-
-// V0039StepList defines model for v0.0.39_step_list.
-type V0039StepList = []V0039Step
-
-// V0039StepNodes defines model for v0.0.39_step_nodes.
-type V0039StepNodes = V0039Hostlist
-
-// V0039StepTresReqMax defines model for v0.0.39_step_tres_req_max.
-type V0039StepTresReqMax = []V0039Tres
-
-// V0039StepTresReqMin defines model for v0.0.39_step_tres_req_min.
-type V0039StepTresReqMin = []V0039Tres
-
-// V0039StepTresUsageMax defines model for v0.0.39_step_tres_usage_max.
-type V0039StepTresUsageMax = []V0039Tres
-
-// V0039StepTresUsageMin defines model for v0.0.39_step_tres_usage_min.
-type V0039StepTresUsageMin = []V0039Tres
-
-// V0039StringArray defines model for v0.0.39_string_array.
-type V0039StringArray = []string
-
-// V0039Tres defines model for v0.0.39_tres.
-type V0039Tres struct {
-	Count *int64  `json:"count,omitempty"`
-	Id    *int32  `json:"id,omitempty"`
-	Name  *string `json:"name,omitempty"`
-	Type  string  `json:"type"`
-}
-
-// V0039TresList defines model for v0.0.39_tres_list.
-type V0039TresList = []V0039Tres
-
-// V0039TresStr defines model for v0.0.39_tres_str.
-type V0039TresStr = V0039TresList
-
-// V0039Uint16NoVal Integer number with flags
-type V0039Uint16NoVal struct {
-	// Infinite True if number has been set to infinite. "set" and "number" will be ignored.
-	Infinite *bool `json:"infinite,omitempty"`
-
-	// Number If set is True the number will be set with value. Otherwise ignore number contents.
-	Number *int64 `json:"number,omitempty"`
-
-	// Set True if number has been set. False if number is unset
-	Set *bool `json:"set,omitempty"`
-}
-
-// V0039Uint32NoVal Integer number with flags
-type V0039Uint32NoVal struct {
-	// Infinite True if number has been set to infinite. "set" and "number" will be ignored.
-	Infinite *bool `json:"infinite,omitempty"`
-
-	// Number If set is True the number will be set with value. Otherwise ignore number contents.
-	Number *int64 `json:"number,omitempty"`
-
-	// Set True if number has been set. False if number is unset
-	Set *bool `json:"set,omitempty"`
-}
-
-// V0039Uint64NoVal Integer number with flags
-type V0039Uint64NoVal struct {
-	// Infinite True if number has been set to infinite. "set" and "number" will be ignored.
-	Infinite *bool `json:"infinite,omitempty"`
-
-	// Number If set is True the number will be set with value. Otherwise ignore number contents.
-	Number *int64 `json:"number,omitempty"`
-
-	// Set True if number has been set. False if number is unset
-	Set *bool `json:"set,omitempty"`
-}
-
-// V0039UpdateNodeMsg defines model for v0.0.39_update_node_msg.
-type V0039UpdateNodeMsg struct {
-	Address *V0039HostlistString `json:"address,omitempty"`
-
-	// Comment arbitrary comment
-	Comment *string `json:"comment,omitempty"`
-
-	// CpuBind default CPU binding type
-	CpuBind *int32 `json:"cpu_bind,omitempty"`
-
-	// Extra arbitrary string
-	Extra       *string         `json:"extra,omitempty"`
-	Features    *V0039CsvString `json:"features,omitempty"`
-	FeaturesAct *V0039CsvString `json:"features_act,omitempty"`
-
-	// Gres new generic resources for node
-	Gres     *string              `json:"gres,omitempty"`
-	Hostname *V0039HostlistString `json:"hostname,omitempty"`
-	Name     *V0039HostlistString `json:"name,omitempty"`
-
-	// Reason reason for node being DOWN or DRAINING
-	Reason *string `json:"reason,omitempty"`
-
-	// ReasonUid user ID of sending (needed if user root is sending message)
-	ReasonUid *string `json:"reason_uid,omitempty"`
-
-	// ResumeAfter Integer number with flags
-	ResumeAfter *V0039Uint32NoVal `json:"resume_after,omitempty"`
-
-	// State assign new node state
-	State *[]V0039UpdateNodeMsgState `json:"state,omitempty"`
-
-	// Weight Integer number with flags
-	Weight *V0039Uint32NoVal `json:"weight,omitempty"`
-}
-
-// V0039UpdateNodeMsgState flags
-type V0039UpdateNodeMsgState string
-
-// V0039User defines model for v0.0.39_user.
-type V0039User struct {
-	AdministratorLevel *[]V0039UserAdministratorLevel `json:"administrator_level,omitempty"`
-	Associations       *V0039AssocShortList           `json:"associations,omitempty"`
-	Coordinators       *V0039CoordList                `json:"coordinators,omitempty"`
-	Default            *struct {
-		Account *string `json:"account,omitempty"`
-		Wckey   *string `json:"wckey,omitempty"`
-	} `json:"default,omitempty"`
-	Flags   *[]V0039UserFlags `json:"flags,omitempty"`
-	Name    string            `json:"name"`
-	OldName *string           `json:"old_name,omitempty"`
-	Wckeys  *V0039WckeyList   `json:"wckeys,omitempty"`
-}
-
-// V0039UserAdministratorLevel flags
-type V0039UserAdministratorLevel string
-
-// V0039UserFlags flags
-type V0039UserFlags string
-
-// V0039UserList defines model for v0.0.39_user_list.
-type V0039UserList = []V0039User
-
-// V0039Warning defines model for v0.0.39_warning.
-type V0039Warning struct {
-	// Description Explanation of cause of error
-	Description *string `json:"description,omitempty"`
-
-	// Source Where error occurred in the source
-	Source *string `json:"source,omitempty"`
-
-	// Warning Earning message
-	Warning *string `json:"warning,omitempty"`
-}
-
-// V0039Warnings Slurm warnings
-type V0039Warnings = []V0039Warning
-
-// V0039Wckey defines model for v0.0.39_wckey.
-type V0039Wckey struct {
-	Accounting *V0039AccountingList `json:"accounting,omitempty"`
-	Cluster    string               `json:"cluster"`
-	Flags      *[]V0039WckeyFlags   `json:"flags,omitempty"`
-	Id         *int32               `json:"id,omitempty"`
-	Name       string               `json:"name"`
-	User       string               `json:"user"`
-}
-
-// V0039WckeyFlags flags
-type V0039WckeyFlags string
-
-// V0039WckeyList defines model for v0.0.39_wckey_list.
-type V0039WckeyList = []V0039Wckey
-
-// V0039WckeyTag wckey details
-type V0039WckeyTag struct {
-	// Flags active flags
-	Flags *[]V0039WckeyTagFlags `json:"flags,omitempty"`
-
-	// Wckey wckey
+	// Wckey Filter jobs to a specific wckey
 	Wckey *string `json:"wckey,omitempty"`
 }
 
-// V0039WckeyTagFlags flag
-type V0039WckeyTagFlags string
+// SlurmV0041DeleteJobsJSONBodyFlags defines parameters for SlurmV0041DeleteJobs.
+type SlurmV0041DeleteJobsJSONBodyFlags string
 
-// V0040Account defines model for v0.0.40_account.
-type V0040Account struct {
-	Associations *V0040AssocShortList `json:"associations,omitempty"`
-	Coordinators *V0040CoordList      `json:"coordinators,omitempty"`
-	Description  string               `json:"description"`
-	Flags        *[]interface{}       `json:"flags,omitempty"`
-	Name         string               `json:"name"`
-	Organization string               `json:"organization"`
+// SlurmV0041DeleteJobsJSONBodyJobState defines parameters for SlurmV0041DeleteJobs.
+type SlurmV0041DeleteJobsJSONBodyJobState string
+
+// SlurmV0041GetJobsParams defines parameters for SlurmV0041GetJobs.
+type SlurmV0041GetJobsParams struct {
+	// UpdateTime Filter jobs since update timestamp
+	UpdateTime *string `form:"update_time,omitempty" json:"update_time,omitempty"`
+
+	// Flags Query flags
+	Flags *SlurmV0041GetJobsParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
 }
 
-// V0040AccountList defines model for v0.0.40_account_list.
-type V0040AccountList = []V0040Account
+// SlurmV0041GetJobsParamsFlags defines parameters for SlurmV0041GetJobs.
+type SlurmV0041GetJobsParamsFlags string
 
-// V0040AccountShort defines model for v0.0.40_account_short.
-type V0040AccountShort struct {
-	// Description An arbitrary string describing an account
-	Description *string `json:"description,omitempty"`
+// SlurmV0041GetJobsStateParams defines parameters for SlurmV0041GetJobsState.
+type SlurmV0041GetJobsStateParams struct {
+	// UpdateTime Filter jobs since update timestamp
+	UpdateTime *string `form:"update_time,omitempty" json:"update_time,omitempty"`
 
-	// Organization Organization to which the account belongs
-	Organization *string `json:"organization,omitempty"`
+	// Flags Query flags
+	Flags *SlurmV0041GetJobsStateParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
 }
 
-// V0040Accounting defines model for v0.0.40_accounting.
-type V0040Accounting struct {
-	TRES      *V0040Tres `json:"TRES,omitempty"`
-	Allocated *struct {
-		Seconds *int64 `json:"seconds,omitempty"`
-	} `json:"allocated,omitempty"`
-	Id    *int32 `json:"id,omitempty"`
-	Start *int64 `json:"start,omitempty"`
+// SlurmV0041GetJobsStateParamsFlags defines parameters for SlurmV0041GetJobsState.
+type SlurmV0041GetJobsStateParamsFlags string
+
+// SlurmV0041GetNodeParams defines parameters for SlurmV0041GetNode.
+type SlurmV0041GetNodeParams struct {
+	// UpdateTime Filter jobs since update timestamp
+	UpdateTime *string `form:"update_time,omitempty" json:"update_time,omitempty"`
+
+	// Flags Query flags
+	Flags *SlurmV0041GetNodeParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
 }
 
-// V0040AccountingList defines model for v0.0.40_accounting_list.
-type V0040AccountingList = []V0040Accounting
+// SlurmV0041GetNodeParamsFlags defines parameters for SlurmV0041GetNode.
+type SlurmV0041GetNodeParamsFlags string
 
-// V0040AccountsAddCond defines model for v0.0.40_accounts_add_cond.
-type V0040AccountsAddCond struct {
-	Accounts    V0040StringList   `json:"accounts"`
-	Association *V0040AssocRecSet `json:"association,omitempty"`
-	Clusters    *V0040StringList  `json:"clusters,omitempty"`
-}
+// SlurmV0041PostNodeJSONBody defines parameters for SlurmV0041PostNode.
+type SlurmV0041PostNodeJSONBody struct {
+	// Address NodeAddr, used to establish a communication path
+	Address *[]string `json:"address,omitempty"`
 
-// V0040AcctGatherEnergy defines model for v0.0.40_acct_gather_energy.
-type V0040AcctGatherEnergy struct {
-	AverageWatts       *int32 `json:"average_watts,omitempty"`
-	BaseConsumedEnergy *int64 `json:"base_consumed_energy,omitempty"`
-	ConsumedEnergy     *int64 `json:"consumed_energy,omitempty"`
-
-	// CurrentWatts Integer number with flags
-	CurrentWatts           *V0040Uint32NoVal `json:"current_watts,omitempty"`
-	LastCollected          *int64            `json:"last_collected,omitempty"`
-	PreviousConsumedEnergy *int64            `json:"previous_consumed_energy,omitempty"`
-}
-
-// V0040Assoc defines model for v0.0.40_assoc.
-type V0040Assoc struct {
-	Account    *string              `json:"account,omitempty"`
-	Accounting *V0040AccountingList `json:"accounting,omitempty"`
-	Cluster    *string              `json:"cluster,omitempty"`
-
-	// Comment comment for the association
-	Comment *string `json:"comment,omitempty"`
-	Default *struct {
-		Qos *string `json:"qos,omitempty"`
-	} `json:"default,omitempty"`
-	Flags     *[]interface{}   `json:"flags,omitempty"`
-	Id        *V0040AssocShort `json:"id,omitempty"`
-	IsDefault *bool            `json:"is_default,omitempty"`
-
-	// Lineage Complete path up the hierarchy to the root association
-	Lineage *string `json:"lineage,omitempty"`
-	Max     *struct {
-		Jobs *struct {
-			// Accruing Integer number with flags
-			Accruing *V0040Uint32NoVal `json:"accruing,omitempty"`
-
-			// Active Integer number with flags
-			Active *V0040Uint32NoVal `json:"active,omitempty"`
-			Per    *struct {
-				// Accruing Integer number with flags
-				Accruing *V0040Uint32NoVal `json:"accruing,omitempty"`
-
-				// Count Integer number with flags
-				Count *V0040Uint32NoVal `json:"count,omitempty"`
-
-				// Submitted Integer number with flags
-				Submitted *V0040Uint32NoVal `json:"submitted,omitempty"`
-
-				// WallClock Integer number with flags
-				WallClock *V0040Uint32NoVal `json:"wall_clock,omitempty"`
-			} `json:"per,omitempty"`
-
-			// Total Integer number with flags
-			Total *V0040Uint32NoVal `json:"total,omitempty"`
-		} `json:"jobs,omitempty"`
-		Per *struct {
-			Account *struct {
-				// WallClock Integer number with flags
-				WallClock *V0040Uint32NoVal `json:"wall_clock,omitempty"`
-			} `json:"account,omitempty"`
-		} `json:"per,omitempty"`
-		Tres *struct {
-			Group *struct {
-				Active  *V0040TresList `json:"active,omitempty"`
-				Minutes *V0040TresList `json:"minutes,omitempty"`
-			} `json:"group,omitempty"`
-			Minutes *struct {
-				Per *struct {
-					Job *V0040TresList `json:"job,omitempty"`
-				} `json:"per,omitempty"`
-				Total *V0040TresList `json:"total,omitempty"`
-			} `json:"minutes,omitempty"`
-			Per *struct {
-				Job  *V0040TresList `json:"job,omitempty"`
-				Node *V0040TresList `json:"node,omitempty"`
-			} `json:"per,omitempty"`
-			Total *V0040TresList `json:"total,omitempty"`
-		} `json:"tres,omitempty"`
-	} `json:"max,omitempty"`
-	Min *struct {
-		// PriorityThreshold Integer number with flags
-		PriorityThreshold *V0040Uint32NoVal `json:"priority_threshold,omitempty"`
-	} `json:"min,omitempty"`
-	ParentAccount *string `json:"parent_account,omitempty"`
-	Partition     *string `json:"partition,omitempty"`
-
-	// Priority Integer number with flags
-	Priority *V0040Uint32NoVal `json:"priority,omitempty"`
-
-	// Qos List of QOS names
-	Qos       *V0040QosStringIdList `json:"qos,omitempty"`
-	SharesRaw *int32                `json:"shares_raw,omitempty"`
-	User      string                `json:"user"`
-}
-
-// V0040AssocList defines model for v0.0.40_assoc_list.
-type V0040AssocList = []V0040Assoc
-
-// V0040AssocRecSet defines model for v0.0.40_assoc_rec_set.
-type V0040AssocRecSet struct {
-	// Comment Comment for the association
+	// Comment Arbitrary comment
 	Comment *string `json:"comment,omitempty"`
 
-	// Defaultqos Which QOS id is this association default
-	Defaultqos *string `json:"defaultqos,omitempty"`
-
-	// Fairshare Number of shares allocated to this association
-	Fairshare *int32 `json:"fairshare,omitempty"`
-
-	// Grpjobs Integer number with flags
-	Grpjobs *V0040Uint32NoVal `json:"grpjobs,omitempty"`
-
-	// Grpjobsaccrue Integer number with flags
-	Grpjobsaccrue *V0040Uint32NoVal `json:"grpjobsaccrue,omitempty"`
-
-	// Grpsubmitjobs Integer number with flags
-	Grpsubmitjobs  *V0040Uint32NoVal `json:"grpsubmitjobs,omitempty"`
-	Grptres        *V0040TresList    `json:"grptres,omitempty"`
-	Grptresmins    *V0040TresList    `json:"grptresmins,omitempty"`
-	Grptresrunmins *V0040TresList    `json:"grptresrunmins,omitempty"`
-
-	// Grpwall Integer number with flags
-	Grpwall *V0040Uint32NoVal `json:"grpwall,omitempty"`
-
-	// Maxjobs Integer number with flags
-	Maxjobs *V0040Uint32NoVal `json:"maxjobs,omitempty"`
-
-	// Maxjobsaccrue Integer number with flags
-	Maxjobsaccrue *V0040Uint32NoVal `json:"maxjobsaccrue,omitempty"`
-
-	// Maxsubmitjobs Integer number with flags
-	Maxsubmitjobs     *V0040Uint32NoVal `json:"maxsubmitjobs,omitempty"`
-	Maxtresminsperjob *V0040TresList    `json:"maxtresminsperjob,omitempty"`
-	Maxtresperjob     *V0040TresList    `json:"maxtresperjob,omitempty"`
-	Maxtrespernode    *V0040TresList    `json:"maxtrespernode,omitempty"`
-	Maxtresrunmins    *V0040TresList    `json:"maxtresrunmins,omitempty"`
-
-	// Maxwalldurationperjob Integer number with flags
-	Maxwalldurationperjob *V0040Uint32NoVal `json:"maxwalldurationperjob,omitempty"`
-
-	// Minpriothresh Integer number with flags
-	Minpriothresh *V0040Uint32NoVal `json:"minpriothresh,omitempty"`
-
-	// Parent Name of parent account
-	Parent *string `json:"parent,omitempty"`
-
-	// Priority Integer number with flags
-	Priority *V0040Uint32NoVal `json:"priority,omitempty"`
-
-	// Qoslevel List of QOS names
-	Qoslevel *V0040QosStringIdList `json:"qoslevel,omitempty"`
-}
-
-// V0040AssocSharesObjList defines model for v0.0.40_assoc_shares_obj_list.
-type V0040AssocSharesObjList = []V0040AssocSharesObjWrap
-
-// V0040AssocSharesObjWrap defines model for v0.0.40_assoc_shares_obj_wrap.
-type V0040AssocSharesObjWrap struct {
-	// Cluster cluster name
-	Cluster *string `json:"cluster,omitempty"`
-
-	// EffectiveUsage effective, normalized usage
-	EffectiveUsage *float64 `json:"effective_usage,omitempty"`
-	Fairshare      *struct {
-		// Factor fairshare factor
-		Factor *float64 `json:"factor,omitempty"`
-
-		// Level fairshare factor at this level. stored on an assoc as a long double, but that is not needed for display in sshare
-		Level *float64 `json:"level,omitempty"`
-	} `json:"fairshare,omitempty"`
-
-	// Id assocation id
-	Id *int32 `json:"id,omitempty"`
-
-	// Name share name
-	Name *string `json:"name,omitempty"`
-
-	// Parent parent name
-	Parent *string `json:"parent,omitempty"`
-
-	// Partition partition name
-	Partition *string `json:"partition,omitempty"`
-
-	// Shares Integer number with flags
-	Shares *V0040Uint32NoVal `json:"shares,omitempty"`
-
-	// SharesNormalized 64 bit floating point number with flags
-	SharesNormalized *V0040Float64NoVal `json:"shares_normalized,omitempty"`
-	Tres             *struct {
-		GroupMinutes *V0040SharesUint64TresList   `json:"group_minutes,omitempty"`
-		RunSeconds   *V0040SharesUint64TresList   `json:"run_seconds,omitempty"`
-		Usage        *V0040SharesFloat128TresList `json:"usage,omitempty"`
-	} `json:"tres,omitempty"`
-
-	// Type user or account association
-	Type *[]interface{} `json:"type,omitempty"`
-
-	// Usage measure of tresbillableunits usage
-	Usage *int64 `json:"usage,omitempty"`
-
-	// UsageNormalized 64 bit floating point number with flags
-	UsageNormalized *V0040Float64NoVal `json:"usage_normalized,omitempty"`
-}
-
-// V0040AssocShort defines model for v0.0.40_assoc_short.
-type V0040AssocShort struct {
-	// Account Association account (if assigned)
-	Account *string `json:"account,omitempty"`
-
-	// Cluster Association cluster (if assigned)
-	Cluster *string `json:"cluster,omitempty"`
-
-	// Id Numeric Association ID (if known)
-	Id *int32 `json:"id,omitempty"`
-
-	// Partition Association partition (if assigned)
-	Partition *string `json:"partition,omitempty"`
-
-	// User Assocation user (if assigned)
-	User string `json:"user"`
-}
-
-// V0040AssocShortList defines model for v0.0.40_assoc_short_list.
-type V0040AssocShortList = []V0040AssocShort
-
-// V0040BfExitFields defines model for v0.0.40_bf_exit_fields.
-type V0040BfExitFields struct {
-	BfMaxJobStart   *int32 `json:"bf_max_job_start,omitempty"`
-	BfMaxJobTest    *int32 `json:"bf_max_job_test,omitempty"`
-	BfMaxTime       *int32 `json:"bf_max_time,omitempty"`
-	BfNodeSpaceSize *int32 `json:"bf_node_space_size,omitempty"`
-	EndJobQueue     *int32 `json:"end_job_queue,omitempty"`
-	StateChanged    *int32 `json:"state_changed,omitempty"`
-}
-
-// V0040ClusterRec defines model for v0.0.40_cluster_rec.
-type V0040ClusterRec struct {
-	Associations *struct {
-		Root *V0040AssocShort `json:"root,omitempty"`
-	} `json:"associations,omitempty"`
-	Controller *struct {
-		Host *string `json:"host,omitempty"`
-		Port *int32  `json:"port,omitempty"`
-	} `json:"controller,omitempty"`
-	Flags        *[]interface{} `json:"flags,omitempty"`
-	Name         *string        `json:"name,omitempty"`
-	Nodes        *string        `json:"nodes,omitempty"`
-	RpcVersion   *int32         `json:"rpc_version,omitempty"`
-	SelectPlugin *string        `json:"select_plugin,omitempty"`
-	Tres         *V0040TresList `json:"tres,omitempty"`
-}
-
-// V0040ClusterRecList defines model for v0.0.40_cluster_rec_list.
-type V0040ClusterRecList = []V0040ClusterRec
-
-// V0040ControllerPing defines model for v0.0.40_controller_ping.
-type V0040ControllerPing struct {
-	Hostname *string `json:"hostname,omitempty"`
-	Latency  *int64  `json:"latency,omitempty"`
-	Mode     *string `json:"mode,omitempty"`
-	Pinged   *string `json:"pinged,omitempty"`
-}
-
-// V0040ControllerPingArray defines model for v0.0.40_controller_ping_array.
-type V0040ControllerPingArray = []V0040ControllerPing
-
-// V0040Coord defines model for v0.0.40_coord.
-type V0040Coord struct {
-	Direct *bool  `json:"direct,omitempty"`
-	Name   string `json:"name"`
-}
-
-// V0040CoordList defines model for v0.0.40_coord_list.
-type V0040CoordList = []V0040Coord
-
-// V0040CronEntry defines model for v0.0.40_cron_entry.
-type V0040CronEntry struct {
-	Command    *string        `json:"command,omitempty"`
-	DayOfMonth *string        `json:"day_of_month,omitempty"`
-	DayOfWeek  *string        `json:"day_of_week,omitempty"`
-	Flags      *[]interface{} `json:"flags,omitempty"`
-	Hour       *string        `json:"hour,omitempty"`
-	Line       *struct {
-		End   *int32 `json:"end,omitempty"`
-		Start *int32 `json:"start,omitempty"`
-	} `json:"line,omitempty"`
-	Minute        *string `json:"minute,omitempty"`
-	Month         *string `json:"month,omitempty"`
-	Specification *string `json:"specification,omitempty"`
-}
-
-// V0040CsvString defines model for v0.0.40_csv_string.
-type V0040CsvString = []string
-
-// V0040ExtSensorsData defines model for v0.0.40_ext_sensors_data.
-type V0040ExtSensorsData struct {
-	// ConsumedEnergy Integer number with flags
-	ConsumedEnergy   *V0040Uint64NoVal `json:"consumed_energy,omitempty"`
-	CurrentWatts     *int32            `json:"current_watts,omitempty"`
-	EnergyUpdateTime *int64            `json:"energy_update_time,omitempty"`
-
-	// Temperature Integer number with flags
-	Temperature *V0040Uint32NoVal `json:"temperature,omitempty"`
-}
-
-// V0040Float64NoVal 64 bit floating point number with flags
-type V0040Float64NoVal struct {
-	// Infinite True if number has been set to infinite. "set" and "number" will be ignored.
-	Infinite *bool `json:"infinite,omitempty"`
-
-	// Number If set is True the number will be set with value. Otherwise ignore number contents.
-	Number *float64 `json:"number,omitempty"`
-
-	// Set True if number has been set. False if number is unset
-	Set *bool `json:"set,omitempty"`
-}
-
-// V0040Hostlist defines model for v0.0.40_hostlist.
-type V0040Hostlist = []string
-
-// V0040HostlistString defines model for v0.0.40_hostlist_string.
-type V0040HostlistString = []string
-
-// V0040Instance defines model for v0.0.40_instance.
-type V0040Instance struct {
-	Cluster      *string `json:"cluster,omitempty"`
-	Extra        *string `json:"extra,omitempty"`
-	InstanceId   *string `json:"instance_id,omitempty"`
-	InstanceType *string `json:"instance_type,omitempty"`
-	NodeName     *string `json:"node_name,omitempty"`
-	Time         *struct {
-		TimeEnd   *int64 `json:"time_end,omitempty"`
-		TimeStart *int64 `json:"time_start,omitempty"`
-	} `json:"time,omitempty"`
-}
-
-// V0040InstanceList defines model for v0.0.40_instance_list.
-type V0040InstanceList = []V0040Instance
-
-// V0040Job defines model for v0.0.40_job.
-type V0040Job struct {
-	Account         *string `json:"account,omitempty"`
-	AllocationNodes *int32  `json:"allocation_nodes,omitempty"`
-	Array           *struct {
-		JobId  *int32 `json:"job_id,omitempty"`
-		Limits *struct {
-			Max *struct {
-				Running *struct {
-					Tasks *int32 `json:"tasks,omitempty"`
-				} `json:"running,omitempty"`
-			} `json:"max,omitempty"`
-		} `json:"limits,omitempty"`
-		Task *string `json:"task,omitempty"`
-
-		// TaskId Integer number with flags
-		TaskId *V0040Uint32NoVal `json:"task_id,omitempty"`
-	} `json:"array,omitempty"`
-	Association *V0040AssocShort `json:"association,omitempty"`
-	Block       *string          `json:"block,omitempty"`
-	Cluster     *string          `json:"cluster,omitempty"`
-	Comment     *struct {
-		Administrator *string `json:"administrator,omitempty"`
-		Job           *string `json:"job,omitempty"`
-		System        *string `json:"system,omitempty"`
-	} `json:"comment,omitempty"`
-	Constraints     *string                      `json:"constraints,omitempty"`
-	Container       *string                      `json:"container,omitempty"`
-	DerivedExitCode *V0040ProcessExitCodeVerbose `json:"derived_exit_code,omitempty"`
-	ExitCode        *V0040ProcessExitCodeVerbose `json:"exit_code,omitempty"`
-	Extra           *string                      `json:"extra,omitempty"`
-	FailedNode      *string                      `json:"failed_node,omitempty"`
-	Flags           *[]interface{}               `json:"flags,omitempty"`
-	Group           *string                      `json:"group,omitempty"`
-	Het             *struct {
-		JobId *int32 `json:"job_id,omitempty"`
-
-		// JobOffset Integer number with flags
-		JobOffset *V0040Uint32NoVal `json:"job_offset,omitempty"`
-	} `json:"het,omitempty"`
-	JobId           *int32  `json:"job_id,omitempty"`
-	KillRequestUser *string `json:"kill_request_user,omitempty"`
-	Licenses        *string `json:"licenses,omitempty"`
-	Mcs             *struct {
-		Label *string `json:"label,omitempty"`
-	} `json:"mcs,omitempty"`
-	Name      *string `json:"name,omitempty"`
-	Nodes     *string `json:"nodes,omitempty"`
-	Partition *string `json:"partition,omitempty"`
-
-	// Priority Integer number with flags
-	Priority *V0040Uint32NoVal `json:"priority,omitempty"`
-	Qos      *string           `json:"qos,omitempty"`
-	Required *struct {
-		CPUs *int32 `json:"CPUs,omitempty"`
-
-		// MemoryPerCpu Integer number with flags
-		MemoryPerCpu *V0040Uint64NoVal `json:"memory_per_cpu,omitempty"`
-
-		// MemoryPerNode Integer number with flags
-		MemoryPerNode *V0040Uint64NoVal `json:"memory_per_node,omitempty"`
-	} `json:"required,omitempty"`
-	Reservation *struct {
-		Id   *int32  `json:"id,omitempty"`
-		Name *string `json:"name,omitempty"`
-	} `json:"reservation,omitempty"`
-	Script *string `json:"script,omitempty"`
-	State  *struct {
-		Current *[]interface{} `json:"current,omitempty"`
-		Reason  *string        `json:"reason,omitempty"`
-	} `json:"state,omitempty"`
-	Steps      *V0040StepList `json:"steps,omitempty"`
-	SubmitLine *string        `json:"submit_line,omitempty"`
-	Time       *struct {
-		Elapsed  *int32 `json:"elapsed,omitempty"`
-		Eligible *int64 `json:"eligible,omitempty"`
-		End      *int64 `json:"end,omitempty"`
-
-		// Limit Integer number with flags
-		Limit      *V0040Uint32NoVal `json:"limit,omitempty"`
-		Start      *int64            `json:"start,omitempty"`
-		Submission *int64            `json:"submission,omitempty"`
-		Suspended  *int32            `json:"suspended,omitempty"`
-		System     *struct {
-			Microseconds *int64 `json:"microseconds,omitempty"`
-			Seconds      *int64 `json:"seconds,omitempty"`
-		} `json:"system,omitempty"`
-		Total *struct {
-			Microseconds *int64 `json:"microseconds,omitempty"`
-			Seconds      *int64 `json:"seconds,omitempty"`
-		} `json:"total,omitempty"`
-		User *struct {
-			Microseconds *int64 `json:"microseconds,omitempty"`
-			Seconds      *int64 `json:"seconds,omitempty"`
-		} `json:"user,omitempty"`
-	} `json:"time,omitempty"`
-	Tres *struct {
-		Allocated *V0040TresList `json:"allocated,omitempty"`
-		Requested *V0040TresList `json:"requested,omitempty"`
-	} `json:"tres,omitempty"`
-	UsedGres         *string              `json:"used_gres,omitempty"`
-	User             *string              `json:"user,omitempty"`
-	Wckey            *V0040WckeyTagStruct `json:"wckey,omitempty"`
-	WorkingDirectory *string              `json:"working_directory,omitempty"`
-}
-
-// V0040JobArrayResponseArray defines model for v0.0.40_job_array_response_array.
-type V0040JobArrayResponseArray = []V0040JobArrayResponseMsgEntry
-
-// V0040JobArrayResponseMsgEntry defines model for v0.0.40_job_array_response_msg_entry.
-type V0040JobArrayResponseMsgEntry struct {
-	// Error Verbose update status or error
-	Error *string `json:"error,omitempty"`
-
-	// ErrorCode Verbose update status or error
-	ErrorCode *int32 `json:"error_code,omitempty"`
-
-	// JobId JobId for updated Job
-	JobId *int32 `json:"job_id,omitempty"`
-
-	// StepId StepId for updated Job
-	StepId *string `json:"step_id,omitempty"`
-
-	// Why Update response message
-	Why *string `json:"why,omitempty"`
-}
-
-// V0040JobDescMsg defines model for v0.0.40_job_desc_msg.
-type V0040JobDescMsg struct {
-	Account                *string           `json:"account,omitempty"`
-	AccountGatherFrequency *string           `json:"account_gather_frequency,omitempty"`
-	AdminComment           *string           `json:"admin_comment,omitempty"`
-	AllocationNodeList     *string           `json:"allocation_node_list,omitempty"`
-	AllocationNodePort     *int32            `json:"allocation_node_port,omitempty"`
-	Argv                   *V0040StringArray `json:"argv,omitempty"`
-	Array                  *string           `json:"array,omitempty"`
-	BatchFeatures          *string           `json:"batch_features,omitempty"`
-
-	// BeginTime Integer number with flags
-	BeginTime               *V0040Uint64NoVal `json:"begin_time,omitempty"`
-	BurstBuffer             *string           `json:"burst_buffer,omitempty"`
-	ClusterConstraint       *string           `json:"cluster_constraint,omitempty"`
-	Clusters                *string           `json:"clusters,omitempty"`
-	Comment                 *string           `json:"comment,omitempty"`
-	Constraints             *string           `json:"constraints,omitempty"`
-	Container               *string           `json:"container,omitempty"`
-	ContainerId             *string           `json:"container_id,omitempty"`
-	Contiguous              *bool             `json:"contiguous,omitempty"`
-	CoreSpecification       *int32            `json:"core_specification,omitempty"`
-	CpuBinding              *string           `json:"cpu_binding,omitempty"`
-	CpuBindingFlags         *[]interface{}    `json:"cpu_binding_flags,omitempty"`
-	CpuFrequency            *string           `json:"cpu_frequency,omitempty"`
-	CpusPerTask             *int32            `json:"cpus_per_task,omitempty"`
-	CpusPerTres             *string           `json:"cpus_per_tres,omitempty"`
-	Crontab                 *V0040CronEntry   `json:"crontab,omitempty"`
-	CurrentWorkingDirectory *string           `json:"current_working_directory,omitempty"`
-	Deadline                *int64            `json:"deadline,omitempty"`
-	DelayBoot               *int32            `json:"delay_boot,omitempty"`
-	Dependency              *string           `json:"dependency,omitempty"`
-	Distribution            *string           `json:"distribution,omitempty"`
-	DistributionPlaneSize   *int32            `json:"distribution_plane_size,omitempty"`
-	EndTime                 *int64            `json:"end_time,omitempty"`
-	Environment             *V0040StringArray `json:"environment,omitempty"`
-	ExcludedNodes           *V0040CsvString   `json:"excluded_nodes,omitempty"`
-	Exclusive               *[]interface{}    `json:"exclusive,omitempty"`
-	Extra                   *string           `json:"extra,omitempty"`
-	Flags                   *[]interface{}    `json:"flags,omitempty"`
-	GroupId                 *string           `json:"group_id,omitempty"`
-	HetjobGroup             *int32            `json:"hetjob_group,omitempty"`
-	Immediate               *bool             `json:"immediate,omitempty"`
-	JobId                   *int32            `json:"job_id,omitempty"`
-	KillOnNodeFail          *bool             `json:"kill_on_node_fail,omitempty"`
-
-	// KillWarningDelay Integer number with flags
-	KillWarningDelay  *V0040Uint16NoVal `json:"kill_warning_delay,omitempty"`
-	KillWarningFlags  *[]interface{}    `json:"kill_warning_flags,omitempty"`
-	KillWarningSignal *string           `json:"kill_warning_signal,omitempty"`
-	Licenses          *string           `json:"licenses,omitempty"`
-	MailType          *[]interface{}    `json:"mail_type,omitempty"`
-	MailUser          *string           `json:"mail_user,omitempty"`
-	MaximumCpus       *int32            `json:"maximum_cpus,omitempty"`
-	MaximumNodes      *int32            `json:"maximum_nodes,omitempty"`
-	McsLabel          *string           `json:"mcs_label,omitempty"`
-	MemoryBinding     *string           `json:"memory_binding,omitempty"`
-	MemoryBindingType *[]interface{}    `json:"memory_binding_type,omitempty"`
-
-	// MemoryPerCpu Integer number with flags
-	MemoryPerCpu *V0040Uint64NoVal `json:"memory_per_cpu,omitempty"`
-
-	// MemoryPerNode Integer number with flags
-	MemoryPerNode          *V0040Uint64NoVal `json:"memory_per_node,omitempty"`
-	MemoryPerTres          *string           `json:"memory_per_tres,omitempty"`
-	MinimumBoardsPerNode   *int32            `json:"minimum_boards_per_node,omitempty"`
-	MinimumCpus            *int32            `json:"minimum_cpus,omitempty"`
-	MinimumCpusPerNode     *int32            `json:"minimum_cpus_per_node,omitempty"`
-	MinimumNodes           *int32            `json:"minimum_nodes,omitempty"`
-	MinimumSocketsPerBoard *int32            `json:"minimum_sockets_per_board,omitempty"`
-	Name                   *string           `json:"name,omitempty"`
-	Network                *string           `json:"network,omitempty"`
-	Nice                   *int32            `json:"nice,omitempty"`
-	Nodes                  *string           `json:"nodes,omitempty"`
-	NtasksPerTres          *int32            `json:"ntasks_per_tres,omitempty"`
-	OpenMode               *[]interface{}    `json:"open_mode,omitempty"`
-	Overcommit             *bool             `json:"overcommit,omitempty"`
-	Oversubscribe          *bool             `json:"oversubscribe,omitempty"`
-	Partition              *string           `json:"partition,omitempty"`
-	PowerFlags             *[]interface{}    `json:"power_flags,omitempty"`
-	Prefer                 *string           `json:"prefer,omitempty"`
-
-	// Priority Integer number with flags
-	Priority      *V0040Uint32NoVal `json:"priority,omitempty"`
-	Profile       *[]interface{}    `json:"profile,omitempty"`
-	Qos           *string           `json:"qos,omitempty"`
-	Reboot        *bool             `json:"reboot,omitempty"`
-	Requeue       *bool             `json:"requeue,omitempty"`
-	RequiredNodes *V0040CsvString   `json:"required_nodes,omitempty"`
-
-	// RequiredSwitches Integer number with flags
-	RequiredSwitches *V0040Uint32NoVal `json:"required_switches,omitempty"`
-	Reservation      *string           `json:"reservation,omitempty"`
-	ReservePorts     *int32            `json:"reserve_ports,omitempty"`
-	Rlimits          *struct {
-		// As Integer number with flags
-		As *V0040Uint64NoVal `json:"as,omitempty"`
-
-		// Core Integer number with flags
-		Core *V0040Uint64NoVal `json:"core,omitempty"`
-
-		// Cpu Integer number with flags
-		Cpu *V0040Uint64NoVal `json:"cpu,omitempty"`
-
-		// Data Integer number with flags
-		Data *V0040Uint64NoVal `json:"data,omitempty"`
-
-		// Fsize Integer number with flags
-		Fsize *V0040Uint64NoVal `json:"fsize,omitempty"`
-
-		// Memlock Integer number with flags
-		Memlock *V0040Uint64NoVal `json:"memlock,omitempty"`
-
-		// Nofile Integer number with flags
-		Nofile *V0040Uint64NoVal `json:"nofile,omitempty"`
-
-		// Nproc Integer number with flags
-		Nproc *V0040Uint64NoVal `json:"nproc,omitempty"`
-
-		// Rss Integer number with flags
-		Rss *V0040Uint64NoVal `json:"rss,omitempty"`
-
-		// Stack Integer number with flags
-		Stack *V0040Uint64NoVal `json:"stack,omitempty"`
-	} `json:"rlimits,omitempty"`
-	Script               *string           `json:"script,omitempty"`
-	SelinuxContext       *string           `json:"selinux_context,omitempty"`
-	Shared               *[]interface{}    `json:"shared,omitempty"`
-	SiteFactor           *int32            `json:"site_factor,omitempty"`
-	SocketsPerNode       *int32            `json:"sockets_per_node,omitempty"`
-	SpankEnvironment     *V0040StringArray `json:"spank_environment,omitempty"`
-	StandardError        *string           `json:"standard_error,omitempty"`
-	StandardInput        *string           `json:"standard_input,omitempty"`
-	StandardOutput       *string           `json:"standard_output,omitempty"`
-	Tasks                *int32            `json:"tasks,omitempty"`
-	TasksPerBoard        *int32            `json:"tasks_per_board,omitempty"`
-	TasksPerCore         *int32            `json:"tasks_per_core,omitempty"`
-	TasksPerNode         *int32            `json:"tasks_per_node,omitempty"`
-	TasksPerSocket       *int32            `json:"tasks_per_socket,omitempty"`
-	TemporaryDiskPerNode *int32            `json:"temporary_disk_per_node,omitempty"`
-	ThreadSpecification  *int32            `json:"thread_specification,omitempty"`
-	ThreadsPerCore       *int32            `json:"threads_per_core,omitempty"`
-
-	// TimeLimit Integer number with flags
-	TimeLimit *V0040Uint32NoVal `json:"time_limit,omitempty"`
-
-	// TimeMinimum Integer number with flags
-	TimeMinimum    *V0040Uint32NoVal `json:"time_minimum,omitempty"`
-	TresBind       *string           `json:"tres_bind,omitempty"`
-	TresFreq       *string           `json:"tres_freq,omitempty"`
-	TresPerJob     *string           `json:"tres_per_job,omitempty"`
-	TresPerNode    *string           `json:"tres_per_node,omitempty"`
-	TresPerSocket  *string           `json:"tres_per_socket,omitempty"`
-	TresPerTask    *string           `json:"tres_per_task,omitempty"`
-	UserId         *string           `json:"user_id,omitempty"`
-	WaitAllNodes   *bool             `json:"wait_all_nodes,omitempty"`
-	WaitForSwitch  *int32            `json:"wait_for_switch,omitempty"`
-	Wckey          *string           `json:"wckey,omitempty"`
-	X11            *[]interface{}    `json:"x11,omitempty"`
-	X11MagicCookie *string           `json:"x11_magic_cookie,omitempty"`
-	X11TargetHost  *string           `json:"x11_target_host,omitempty"`
-	X11TargetPort  *int32            `json:"x11_target_port,omitempty"`
-}
-
-// V0040JobDescMsgList defines model for v0.0.40_job_desc_msg_list.
-type V0040JobDescMsgList = []V0040JobDescMsg
-
-// V0040JobInfo defines model for v0.0.40_job_info.
-type V0040JobInfo struct {
-	Account *string `json:"account,omitempty"`
-
-	// AccrueTime Integer number with flags
-	AccrueTime     *V0040Uint64NoVal `json:"accrue_time,omitempty"`
-	AdminComment   *string           `json:"admin_comment,omitempty"`
-	AllocatingNode *string           `json:"allocating_node,omitempty"`
-
-	// ArrayJobId Integer number with flags
-	ArrayJobId *V0040Uint32NoVal `json:"array_job_id,omitempty"`
-
-	// ArrayMaxTasks Integer number with flags
-	ArrayMaxTasks *V0040Uint32NoVal `json:"array_max_tasks,omitempty"`
-
-	// ArrayTaskId Integer number with flags
-	ArrayTaskId     *V0040Uint32NoVal `json:"array_task_id,omitempty"`
-	ArrayTaskString *string           `json:"array_task_string,omitempty"`
-	AssociationId   *int32            `json:"association_id,omitempty"`
-	BatchFeatures   *string           `json:"batch_features,omitempty"`
-	BatchFlag       *bool             `json:"batch_flag,omitempty"`
-	BatchHost       *string           `json:"batch_host,omitempty"`
-
-	// BillableTres 64 bit floating point number with flags
-	BillableTres     *V0040Float64NoVal `json:"billable_tres,omitempty"`
-	BurstBuffer      *string            `json:"burst_buffer,omitempty"`
-	BurstBufferState *string            `json:"burst_buffer_state,omitempty"`
-	Cluster          *string            `json:"cluster,omitempty"`
-	ClusterFeatures  *string            `json:"cluster_features,omitempty"`
-	Command          *string            `json:"command,omitempty"`
-	Comment          *string            `json:"comment,omitempty"`
-	Container        *string            `json:"container,omitempty"`
-	ContainerId      *string            `json:"container_id,omitempty"`
-	Contiguous       *bool              `json:"contiguous,omitempty"`
-	CoreSpec         *int32             `json:"core_spec,omitempty"`
-
-	// CoresPerSocket Integer number with flags
-	CoresPerSocket *V0040Uint16NoVal `json:"cores_per_socket,omitempty"`
-
-	// CpuFrequencyGovernor Integer number with flags
-	CpuFrequencyGovernor *V0040Uint32NoVal `json:"cpu_frequency_governor,omitempty"`
-
-	// CpuFrequencyMaximum Integer number with flags
-	CpuFrequencyMaximum *V0040Uint32NoVal `json:"cpu_frequency_maximum,omitempty"`
-
-	// CpuFrequencyMinimum Integer number with flags
-	CpuFrequencyMinimum *V0040Uint32NoVal `json:"cpu_frequency_minimum,omitempty"`
-
-	// Cpus Integer number with flags
-	Cpus *V0040Uint32NoVal `json:"cpus,omitempty"`
-
-	// CpusPerTask Integer number with flags
-	CpusPerTask             *V0040Uint16NoVal `json:"cpus_per_task,omitempty"`
-	CpusPerTres             *string           `json:"cpus_per_tres,omitempty"`
-	Cron                    *string           `json:"cron,omitempty"`
-	CurrentWorkingDirectory *string           `json:"current_working_directory,omitempty"`
-
-	// Deadline Integer number with flags
-	Deadline *V0040Uint64NoVal `json:"deadline,omitempty"`
-
-	// DelayBoot Integer number with flags
-	DelayBoot       *V0040Uint32NoVal            `json:"delay_boot,omitempty"`
-	Dependency      *string                      `json:"dependency,omitempty"`
-	DerivedExitCode *V0040ProcessExitCodeVerbose `json:"derived_exit_code,omitempty"`
-
-	// EligibleTime Integer number with flags
-	EligibleTime *V0040Uint64NoVal `json:"eligible_time,omitempty"`
-
-	// EndTime Integer number with flags
-	EndTime                  *V0040Uint64NoVal            `json:"end_time,omitempty"`
-	ExcludedNodes            *string                      `json:"excluded_nodes,omitempty"`
-	Exclusive                *[]interface{}               `json:"exclusive,omitempty"`
-	ExitCode                 *V0040ProcessExitCodeVerbose `json:"exit_code,omitempty"`
-	Extra                    *string                      `json:"extra,omitempty"`
-	FailedNode               *string                      `json:"failed_node,omitempty"`
-	Features                 *string                      `json:"features,omitempty"`
-	FederationOrigin         *string                      `json:"federation_origin,omitempty"`
-	FederationSiblingsActive *string                      `json:"federation_siblings_active,omitempty"`
-	FederationSiblingsViable *string                      `json:"federation_siblings_viable,omitempty"`
-	Flags                    *[]interface{}               `json:"flags,omitempty"`
-	GresDetail               *V0040JobInfoGresDetail      `json:"gres_detail,omitempty"`
-	GroupId                  *int32                       `json:"group_id,omitempty"`
-	GroupName                *string                      `json:"group_name,omitempty"`
-
-	// HetJobId Integer number with flags
-	HetJobId    *V0040Uint32NoVal `json:"het_job_id,omitempty"`
-	HetJobIdSet *string           `json:"het_job_id_set,omitempty"`
-
-	// HetJobOffset Integer number with flags
-	HetJobOffset *V0040Uint32NoVal `json:"het_job_offset,omitempty"`
-	JobId        *int32            `json:"job_id,omitempty"`
-	JobResources *V0040JobRes      `json:"job_resources,omitempty"`
-	JobSizeStr   *V0040CsvString   `json:"job_size_str,omitempty"`
-	JobState     *[]interface{}    `json:"job_state,omitempty"`
-
-	// LastSchedEvaluation Integer number with flags
-	LastSchedEvaluation *V0040Uint64NoVal `json:"last_sched_evaluation,omitempty"`
-	Licenses            *string           `json:"licenses,omitempty"`
-	MailType            *[]interface{}    `json:"mail_type,omitempty"`
-	MailUser            *string           `json:"mail_user,omitempty"`
-
-	// MaxCpus Integer number with flags
-	MaxCpus *V0040Uint32NoVal `json:"max_cpus,omitempty"`
-
-	// MaxNodes Integer number with flags
-	MaxNodes              *V0040Uint32NoVal `json:"max_nodes,omitempty"`
-	MaximumSwitchWaitTime *int32            `json:"maximum_switch_wait_time,omitempty"`
-	McsLabel              *string           `json:"mcs_label,omitempty"`
-
-	// MemoryPerCpu Integer number with flags
-	MemoryPerCpu *V0040Uint64NoVal `json:"memory_per_cpu,omitempty"`
-
-	// MemoryPerNode Integer number with flags
-	MemoryPerNode *V0040Uint64NoVal `json:"memory_per_node,omitempty"`
-	MemoryPerTres *string           `json:"memory_per_tres,omitempty"`
-
-	// MinimumCpusPerNode Integer number with flags
-	MinimumCpusPerNode *V0040Uint16NoVal `json:"minimum_cpus_per_node,omitempty"`
-	MinimumSwitches    *int32            `json:"minimum_switches,omitempty"`
-
-	// MinimumTmpDiskPerNode Integer number with flags
-	MinimumTmpDiskPerNode *V0040Uint32NoVal `json:"minimum_tmp_disk_per_node,omitempty"`
-	Name                  *string           `json:"name,omitempty"`
-	Network               *string           `json:"network,omitempty"`
-	Nice                  *int32            `json:"nice,omitempty"`
-
-	// NodeCount Integer number with flags
-	NodeCount     *V0040Uint32NoVal `json:"node_count,omitempty"`
-	Nodes         *string           `json:"nodes,omitempty"`
-	Oversubscribe *bool             `json:"oversubscribe,omitempty"`
-	Partition     *string           `json:"partition,omitempty"`
-	Power         *struct {
-		Flags *[]interface{} `json:"flags,omitempty"`
-	} `json:"power,omitempty"`
-
-	// PreSusTime Integer number with flags
-	PreSusTime *V0040Uint64NoVal `json:"pre_sus_time,omitempty"`
-
-	// PreemptTime Integer number with flags
-	PreemptTime *V0040Uint64NoVal `json:"preempt_time,omitempty"`
-
-	// PreemptableTime Integer number with flags
-	PreemptableTime *V0040Uint64NoVal `json:"preemptable_time,omitempty"`
-	Prefer          *string           `json:"prefer,omitempty"`
-
-	// Priority Integer number with flags
-	Priority      *V0040Uint32NoVal `json:"priority,omitempty"`
-	Profile       *[]interface{}    `json:"profile,omitempty"`
-	Qos           *string           `json:"qos,omitempty"`
-	Reboot        *bool             `json:"reboot,omitempty"`
-	Requeue       *bool             `json:"requeue,omitempty"`
-	RequiredNodes *string           `json:"required_nodes,omitempty"`
-
-	// ResizeTime Integer number with flags
-	ResizeTime      *V0040Uint64NoVal `json:"resize_time,omitempty"`
-	RestartCnt      *int32            `json:"restart_cnt,omitempty"`
-	ResvName        *string           `json:"resv_name,omitempty"`
-	ScheduledNodes  *string           `json:"scheduled_nodes,omitempty"`
-	SelinuxContext  *string           `json:"selinux_context,omitempty"`
-	Shared          *[]interface{}    `json:"shared,omitempty"`
-	ShowFlags       *[]interface{}    `json:"show_flags,omitempty"`
-	SocketsPerBoard *int32            `json:"sockets_per_board,omitempty"`
-
-	// SocketsPerNode Integer number with flags
-	SocketsPerNode *V0040Uint16NoVal `json:"sockets_per_node,omitempty"`
-	StandardError  *string           `json:"standard_error,omitempty"`
-	StandardInput  *string           `json:"standard_input,omitempty"`
-	StandardOutput *string           `json:"standard_output,omitempty"`
-
-	// StartTime Integer number with flags
-	StartTime        *V0040Uint64NoVal `json:"start_time,omitempty"`
-	StateDescription *string           `json:"state_description,omitempty"`
-	StateReason      *string           `json:"state_reason,omitempty"`
-
-	// SubmitTime Integer number with flags
-	SubmitTime *V0040Uint64NoVal `json:"submit_time,omitempty"`
-
-	// SuspendTime Integer number with flags
-	SuspendTime   *V0040Uint64NoVal `json:"suspend_time,omitempty"`
-	SystemComment *string           `json:"system_comment,omitempty"`
-
-	// Tasks Integer number with flags
-	Tasks *V0040Uint32NoVal `json:"tasks,omitempty"`
-
-	// TasksPerBoard Integer number with flags
-	TasksPerBoard *V0040Uint16NoVal `json:"tasks_per_board,omitempty"`
-
-	// TasksPerCore Integer number with flags
-	TasksPerCore *V0040Uint16NoVal `json:"tasks_per_core,omitempty"`
-
-	// TasksPerNode Integer number with flags
-	TasksPerNode *V0040Uint16NoVal `json:"tasks_per_node,omitempty"`
-
-	// TasksPerSocket Integer number with flags
-	TasksPerSocket *V0040Uint16NoVal `json:"tasks_per_socket,omitempty"`
-
-	// TasksPerTres Integer number with flags
-	TasksPerTres *V0040Uint16NoVal `json:"tasks_per_tres,omitempty"`
-	ThreadSpec   *int32            `json:"thread_spec,omitempty"`
-
-	// ThreadsPerCore Integer number with flags
-	ThreadsPerCore *V0040Uint16NoVal `json:"threads_per_core,omitempty"`
-
-	// TimeLimit Integer number with flags
-	TimeLimit *V0040Uint32NoVal `json:"time_limit,omitempty"`
-
-	// TimeMinimum Integer number with flags
-	TimeMinimum   *V0040Uint32NoVal `json:"time_minimum,omitempty"`
-	TresAllocStr  *string           `json:"tres_alloc_str,omitempty"`
-	TresBind      *string           `json:"tres_bind,omitempty"`
-	TresFreq      *string           `json:"tres_freq,omitempty"`
-	TresPerJob    *string           `json:"tres_per_job,omitempty"`
-	TresPerNode   *string           `json:"tres_per_node,omitempty"`
-	TresPerSocket *string           `json:"tres_per_socket,omitempty"`
-	TresPerTask   *string           `json:"tres_per_task,omitempty"`
-	TresReqStr    *string           `json:"tres_req_str,omitempty"`
-	UserId        *int32            `json:"user_id,omitempty"`
-	UserName      *string           `json:"user_name,omitempty"`
-	Wckey         *string           `json:"wckey,omitempty"`
-}
-
-// V0040JobInfoGresDetail defines model for v0.0.40_job_info_gres_detail.
-type V0040JobInfoGresDetail = []string
-
-// V0040JobInfoMsg defines model for v0.0.40_job_info_msg.
-type V0040JobInfoMsg = []V0040JobInfo
-
-// V0040JobList defines model for v0.0.40_job_list.
-type V0040JobList = []V0040Job
-
-// V0040JobRes defines model for v0.0.40_job_res.
-type V0040JobRes struct {
-	AllocatedCores *int32 `json:"allocated_cores,omitempty"`
-	AllocatedCpus  *int32 `json:"allocated_cpus,omitempty"`
-	AllocatedHosts *int32 `json:"allocated_hosts,omitempty"`
-
-	// AllocatedNodes job node resources
-	AllocatedNodes *V0040JobResNodes `json:"allocated_nodes,omitempty"`
-	Nodes          *string           `json:"nodes,omitempty"`
-}
-
-// V0040JobResNodes job node resources
-type V0040JobResNodes = []interface{}
-
-// V0040JobSubmitReq defines model for v0.0.40_job_submit_req.
-type V0040JobSubmitReq struct {
-	Job  *V0040JobDescMsg     `json:"job,omitempty"`
-	Jobs *V0040JobDescMsgList `json:"jobs,omitempty"`
-
-	// Script batch job script
-	Script *string `json:"script,omitempty"`
-}
-
-// V0040JobSubmitResponseMsg defines model for v0.0.40_job_submit_response_msg.
-type V0040JobSubmitResponseMsg struct {
-	Error            *string `json:"error,omitempty"`
-	ErrorCode        *int32  `json:"error_code,omitempty"`
-	JobId            *int32  `json:"job_id,omitempty"`
-	JobSubmitUserMsg *string `json:"job_submit_user_msg,omitempty"`
-	StepId           *string `json:"step_id,omitempty"`
-}
-
-// V0040License defines model for v0.0.40_license.
-type V0040License struct {
-	Free         *int32  `json:"Free,omitempty"`
-	LastConsumed *int32  `json:"LastConsumed,omitempty"`
-	LastDeficit  *int32  `json:"LastDeficit,omitempty"`
-	LastUpdate   *int64  `json:"LastUpdate,omitempty"`
-	LicenseName  *string `json:"LicenseName,omitempty"`
-	Remote       *bool   `json:"Remote,omitempty"`
-	Reserved     *int32  `json:"Reserved,omitempty"`
-	Total        *int32  `json:"Total,omitempty"`
-	Used         *int32  `json:"Used,omitempty"`
-}
-
-// V0040Licenses defines model for v0.0.40_licenses.
-type V0040Licenses = []V0040License
-
-// V0040Node defines model for v0.0.40_node.
-type V0040Node struct {
-	ActiveFeatures *V0040CsvString `json:"active_features,omitempty"`
-	Address        *string         `json:"address,omitempty"`
-	AllocCpus      *int32          `json:"alloc_cpus,omitempty"`
-	AllocIdleCpus  *int32          `json:"alloc_idle_cpus,omitempty"`
-	AllocMemory    *int64          `json:"alloc_memory,omitempty"`
-	Architecture   *string         `json:"architecture,omitempty"`
-	Boards         *int32          `json:"boards,omitempty"`
-
-	// BootTime Integer number with flags
-	BootTime                  *V0040Uint64NoVal      `json:"boot_time,omitempty"`
-	BurstbufferNetworkAddress *string                `json:"burstbuffer_network_address,omitempty"`
-	ClusterName               *string                `json:"cluster_name,omitempty"`
-	Comment                   *string                `json:"comment,omitempty"`
-	Cores                     *int32                 `json:"cores,omitempty"`
-	CpuBinding                *int32                 `json:"cpu_binding,omitempty"`
-	CpuLoad                   *int32                 `json:"cpu_load,omitempty"`
-	Cpus                      *int32                 `json:"cpus,omitempty"`
-	EffectiveCpus             *int32                 `json:"effective_cpus,omitempty"`
-	Energy                    *V0040AcctGatherEnergy `json:"energy,omitempty"`
-	ExternalSensors           *V0040ExtSensorsData   `json:"external_sensors,omitempty"`
-	Extra                     *string                `json:"extra,omitempty"`
-	Features                  *V0040CsvString        `json:"features,omitempty"`
-
-	// FreeMem Integer number with flags
-	FreeMem      *V0040Uint64NoVal `json:"free_mem,omitempty"`
-	Gres         *string           `json:"gres,omitempty"`
-	GresDrained  *string           `json:"gres_drained,omitempty"`
-	GresUsed     *string           `json:"gres_used,omitempty"`
-	Hostname     *string           `json:"hostname,omitempty"`
-	InstanceId   *string           `json:"instance_id,omitempty"`
-	InstanceType *string           `json:"instance_type,omitempty"`
-
-	// LastBusy Integer number with flags
-	LastBusy             *V0040Uint64NoVal   `json:"last_busy,omitempty"`
-	McsLabel             *string             `json:"mcs_label,omitempty"`
-	Name                 *string             `json:"name,omitempty"`
-	NextStateAfterReboot *[]interface{}      `json:"next_state_after_reboot,omitempty"`
-	OperatingSystem      *string             `json:"operating_system,omitempty"`
-	Owner                *string             `json:"owner,omitempty"`
-	Partitions           *V0040CsvString     `json:"partitions,omitempty"`
-	Port                 *int32              `json:"port,omitempty"`
-	Power                *V0040PowerMgmtData `json:"power,omitempty"`
-	RealMemory           *int64              `json:"real_memory,omitempty"`
-	Reason               *string             `json:"reason,omitempty"`
-
-	// ReasonChangedAt Integer number with flags
-	ReasonChangedAt *V0040Uint64NoVal `json:"reason_changed_at,omitempty"`
-	ReasonSetByUser *string           `json:"reason_set_by_user,omitempty"`
-	Reservation     *string           `json:"reservation,omitempty"`
-
-	// ResumeAfter Integer number with flags
-	ResumeAfter *V0040Uint64NoVal `json:"resume_after,omitempty"`
-
-	// SlurmdStartTime Integer number with flags
-	SlurmdStartTime   *V0040Uint64NoVal `json:"slurmd_start_time,omitempty"`
-	Sockets           *int32            `json:"sockets,omitempty"`
-	SpecializedCores  *int32            `json:"specialized_cores,omitempty"`
-	SpecializedCpus   *string           `json:"specialized_cpus,omitempty"`
-	SpecializedMemory *int64            `json:"specialized_memory,omitempty"`
-	State             *[]interface{}    `json:"state,omitempty"`
-	TemporaryDisk     *int32            `json:"temporary_disk,omitempty"`
-	Threads           *int32            `json:"threads,omitempty"`
-	Tres              *string           `json:"tres,omitempty"`
-	TresUsed          *string           `json:"tres_used,omitempty"`
-	TresWeighted      *float64          `json:"tres_weighted,omitempty"`
-	Version           *string           `json:"version,omitempty"`
-	Weight            *int32            `json:"weight,omitempty"`
-}
-
-// V0040Nodes defines model for v0.0.40_nodes.
-type V0040Nodes = []V0040Node
-
-// V0040OpenapiAccountsAddCondResp defines model for v0.0.40_openapi_accounts_add_cond_resp.
-type V0040OpenapiAccountsAddCondResp struct {
-	Account              *V0040AccountShort    `json:"account,omitempty"`
-	AssociationCondition *V0040AccountsAddCond `json:"association_condition,omitempty"`
-	Errors               *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta                 *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings             *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiAccountsAddCondRespStr defines model for v0.0.40_openapi_accounts_add_cond_resp_str.
-type V0040OpenapiAccountsAddCondRespStr struct {
-	// AddedAccounts added_accounts
-	AddedAccounts string                `json:"added_accounts"`
-	Errors        *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta          *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings      *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiAccountsRemovedResp defines model for v0.0.40_openapi_accounts_removed_resp.
-type V0040OpenapiAccountsRemovedResp struct {
-	Errors          *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta            *V0040OpenapiMeta     `json:"meta,omitempty"`
-	RemovedAccounts V0040StringList       `json:"removed_accounts"`
-	Warnings        *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiAccountsResp defines model for v0.0.40_openapi_accounts_resp.
-type V0040OpenapiAccountsResp struct {
-	Accounts V0040AccountList      `json:"accounts"`
-	Errors   *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta     *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiAssocsRemovedResp defines model for v0.0.40_openapi_assocs_removed_resp.
-type V0040OpenapiAssocsRemovedResp struct {
-	Errors              *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta                *V0040OpenapiMeta     `json:"meta,omitempty"`
-	RemovedAssociations V0040StringList       `json:"removed_associations"`
-	Warnings            *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiAssocsResp defines model for v0.0.40_openapi_assocs_resp.
-type V0040OpenapiAssocsResp struct {
-	Associations V0040AssocList        `json:"associations"`
-	Errors       *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta         *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings     *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiClustersRemovedResp defines model for v0.0.40_openapi_clusters_removed_resp.
-type V0040OpenapiClustersRemovedResp struct {
-	DeletedClusters V0040StringList       `json:"deleted_clusters"`
-	Errors          *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta            *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings        *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiClustersResp defines model for v0.0.40_openapi_clusters_resp.
-type V0040OpenapiClustersResp struct {
-	Clusters V0040ClusterRecList   `json:"clusters"`
-	Errors   *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta     *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiDiagResp defines model for v0.0.40_openapi_diag_resp.
-type V0040OpenapiDiagResp struct {
-	Errors     *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta       *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Statistics V0040StatsMsg         `json:"statistics"`
-	Warnings   *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiError defines model for v0.0.40_openapi_error.
-type V0040OpenapiError struct {
-	// Description Long form error description
-	Description *string `json:"description,omitempty"`
-
-	// Error Short form error description
-	Error *string `json:"error,omitempty"`
-
-	// ErrorNumber Slurm numeric error identifier
-	ErrorNumber *int32 `json:"error_number,omitempty"`
-
-	// Source Source of error or where error was first detected
-	Source *string `json:"source,omitempty"`
-}
-
-// V0040OpenapiErrors defines model for v0.0.40_openapi_errors.
-type V0040OpenapiErrors = []V0040OpenapiError
-
-// V0040OpenapiInstancesResp defines model for v0.0.40_openapi_instances_resp.
-type V0040OpenapiInstancesResp struct {
-	Errors    *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Instances V0040InstanceList     `json:"instances"`
-	Meta      *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings  *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiJobInfoResp defines model for v0.0.40_openapi_job_info_resp.
-type V0040OpenapiJobInfoResp struct {
-	Errors *V0040OpenapiErrors `json:"errors,omitempty"`
-	Jobs   V0040JobInfoMsg     `json:"jobs"`
-
-	// LastBackfill Integer number with flags
-	LastBackfill V0040Uint64NoVal `json:"last_backfill"`
-
-	// LastUpdate Integer number with flags
-	LastUpdate V0040Uint64NoVal      `json:"last_update"`
-	Meta       *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings   *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiJobPostResponse defines model for v0.0.40_openapi_job_post_response.
-type V0040OpenapiJobPostResponse struct {
-	Errors *V0040OpenapiErrors `json:"errors,omitempty"`
-
-	// JobId First updated JobId - Use results instead
-	JobId *string `json:"job_id,omitempty"`
-
-	// JobSubmitUserMsg First updated Job submision user message - Use results instead
-	JobSubmitUserMsg *string                     `json:"job_submit_user_msg,omitempty"`
-	Meta             *V0040OpenapiMeta           `json:"meta,omitempty"`
-	Results          *V0040JobArrayResponseArray `json:"results,omitempty"`
-
-	// StepId First updated StepID - Use results instead
-	StepId   *string               `json:"step_id,omitempty"`
-	Warnings *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiJobSubmitResponse defines model for v0.0.40_openapi_job_submit_response.
-type V0040OpenapiJobSubmitResponse struct {
-	Errors *V0040OpenapiErrors `json:"errors,omitempty"`
-
-	// JobId submited JobId
-	JobId *int32 `json:"job_id,omitempty"`
-
-	// JobSubmitUserMsg job submision user message
-	JobSubmitUserMsg *string                    `json:"job_submit_user_msg,omitempty"`
-	Meta             *V0040OpenapiMeta          `json:"meta,omitempty"`
-	Result           *V0040JobSubmitResponseMsg `json:"result,omitempty"`
-
-	// StepId submited StepID
-	StepId   *string               `json:"step_id,omitempty"`
-	Warnings *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiLicensesResp defines model for v0.0.40_openapi_licenses_resp.
-type V0040OpenapiLicensesResp struct {
-	Errors *V0040OpenapiErrors `json:"errors,omitempty"`
-
-	// LastUpdate Integer number with flags
-	LastUpdate V0040Uint64NoVal      `json:"last_update"`
-	Licenses   V0040Licenses         `json:"licenses"`
-	Meta       *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings   *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiMeta defines model for v0.0.40_openapi_meta.
-type V0040OpenapiMeta struct {
-	Client *struct {
-		// Group Client group (if known)
-		Group *string `json:"group,omitempty"`
-
-		// Source Client source description
-		Source *string `json:"source,omitempty"`
-
-		// User Client user (if known)
-		User *string `json:"user,omitempty"`
-	} `json:"client,omitempty"`
-	Command *V0040StringArray `json:"command,omitempty"`
-	Plugin  *struct {
-		// AccountingStorage Slurm accounting plugin
-		AccountingStorage *string `json:"accounting_storage,omitempty"`
-
-		// DataParser Slurm data_parser plugin
-		DataParser *string `json:"data_parser,omitempty"`
-
-		// Name Slurm plugin name (if applicable)
-		Name *string `json:"name,omitempty"`
-
-		// Type Slurm plugin type (if applicable)
-		Type *string `json:"type,omitempty"`
-	} `json:"plugin,omitempty"`
-	Slurm *struct {
-		// Cluster Slurm cluster name
-		Cluster *string `json:"cluster,omitempty"`
-
-		// Release Slurm release string
-		Release *string `json:"release,omitempty"`
-		Version *struct {
-			// Major Slurm release major version
-			Major *string `json:"major,omitempty"`
-
-			// Micro Slurm release micro version
-			Micro *string `json:"micro,omitempty"`
-
-			// Minor Slurm release minor version
-			Minor *string `json:"minor,omitempty"`
-		} `json:"version,omitempty"`
-	} `json:"slurm,omitempty"`
-}
-
-// V0040OpenapiNodesResp defines model for v0.0.40_openapi_nodes_resp.
-type V0040OpenapiNodesResp struct {
-	Errors *V0040OpenapiErrors `json:"errors,omitempty"`
-
-	// LastUpdate Integer number with flags
-	LastUpdate V0040Uint64NoVal      `json:"last_update"`
-	Meta       *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Nodes      V0040Nodes            `json:"nodes"`
-	Warnings   *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiPartitionResp defines model for v0.0.40_openapi_partition_resp.
-type V0040OpenapiPartitionResp struct {
-	Errors *V0040OpenapiErrors `json:"errors,omitempty"`
-
-	// LastUpdate Integer number with flags
-	LastUpdate V0040Uint64NoVal      `json:"last_update"`
-	Meta       *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Partitions V0040PartitionInfoMsg `json:"partitions"`
-	Warnings   *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiPingArrayResp defines model for v0.0.40_openapi_ping_array_resp.
-type V0040OpenapiPingArrayResp struct {
-	Errors   *V0040OpenapiErrors      `json:"errors,omitempty"`
-	Meta     *V0040OpenapiMeta        `json:"meta,omitempty"`
-	Pings    V0040ControllerPingArray `json:"pings"`
-	Warnings *V0040OpenapiWarnings    `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiReservationResp defines model for v0.0.40_openapi_reservation_resp.
-type V0040OpenapiReservationResp struct {
-	Errors *V0040OpenapiErrors `json:"errors,omitempty"`
-
-	// LastUpdate Integer number with flags
-	LastUpdate   V0040Uint64NoVal        `json:"last_update"`
-	Meta         *V0040OpenapiMeta       `json:"meta,omitempty"`
-	Reservations V0040ReservationInfoMsg `json:"reservations"`
-	Warnings     *V0040OpenapiWarnings   `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiResp defines model for v0.0.40_openapi_resp.
-type V0040OpenapiResp struct {
-	Errors   *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta     *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiSharesResp defines model for v0.0.40_openapi_shares_resp.
-type V0040OpenapiSharesResp struct {
-	Errors   *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta     *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Shares   V0040SharesRespMsg    `json:"shares"`
-	Warnings *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiSlurmdbdConfigResp defines model for v0.0.40_openapi_slurmdbd_config_resp.
-type V0040OpenapiSlurmdbdConfigResp struct {
-	Accounts     *V0040AccountList     `json:"accounts,omitempty"`
-	Associations *V0040AssocList       `json:"associations,omitempty"`
-	Clusters     *V0040ClusterRecList  `json:"clusters,omitempty"`
-	Errors       *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Instances    *V0040InstanceList    `json:"instances,omitempty"`
-	Meta         *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Qos          *V0040QosList         `json:"qos,omitempty"`
-	Tres         *V0040TresList        `json:"tres,omitempty"`
-	Users        *V0040UserList        `json:"users,omitempty"`
-	Warnings     *V0040OpenapiWarnings `json:"warnings,omitempty"`
-	Wckeys       *V0040WckeyList       `json:"wckeys,omitempty"`
-}
-
-// V0040OpenapiSlurmdbdJobsResp defines model for v0.0.40_openapi_slurmdbd_jobs_resp.
-type V0040OpenapiSlurmdbdJobsResp struct {
-	Errors   *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Jobs     V0040JobList          `json:"jobs"`
-	Meta     *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiSlurmdbdQosRemovedResp defines model for v0.0.40_openapi_slurmdbd_qos_removed_resp.
-type V0040OpenapiSlurmdbdQosRemovedResp struct {
-	Errors     *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta       *V0040OpenapiMeta     `json:"meta,omitempty"`
-	RemovedQos V0040StringList       `json:"removed_qos"`
-	Warnings   *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiSlurmdbdQosResp defines model for v0.0.40_openapi_slurmdbd_qos_resp.
-type V0040OpenapiSlurmdbdQosResp struct {
-	Errors   *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta     *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Qos      V0040QosList          `json:"qos"`
-	Warnings *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiSlurmdbdStatsResp defines model for v0.0.40_openapi_slurmdbd_stats_resp.
-type V0040OpenapiSlurmdbdStatsResp struct {
-	Errors     *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta       *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Statistics V0040StatsRec         `json:"statistics"`
-	Warnings   *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiTresResp defines model for v0.0.40_openapi_tres_resp.
-type V0040OpenapiTresResp struct {
-	TRES     V0040TresList         `json:"TRES"`
-	Errors   *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta     *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiUsersAddCondResp defines model for v0.0.40_openapi_users_add_cond_resp.
-type V0040OpenapiUsersAddCondResp struct {
-	AssociationCondition *V0040UsersAddCond    `json:"association_condition,omitempty"`
-	Errors               *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta                 *V0040OpenapiMeta     `json:"meta,omitempty"`
-	User                 *V0040UserShort       `json:"user,omitempty"`
-	Warnings             *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiUsersAddCondRespStr defines model for v0.0.40_openapi_users_add_cond_resp_str.
-type V0040OpenapiUsersAddCondRespStr struct {
-	// AddedUsers added_users
-	AddedUsers string                `json:"added_users"`
-	Errors     *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta       *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings   *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiUsersResp defines model for v0.0.40_openapi_users_resp.
-type V0040OpenapiUsersResp struct {
-	Errors   *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta     *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Users    V0040UserList         `json:"users"`
-	Warnings *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiWarning defines model for v0.0.40_openapi_warning.
-type V0040OpenapiWarning struct {
-	// Description Long form warning description
-	Description *string `json:"description,omitempty"`
-
-	// Source Source of warning or where warning was first detected
-	Source *string `json:"source,omitempty"`
-}
-
-// V0040OpenapiWarnings defines model for v0.0.40_openapi_warnings.
-type V0040OpenapiWarnings = []V0040OpenapiWarning
-
-// V0040OpenapiWckeyRemovedResp defines model for v0.0.40_openapi_wckey_removed_resp.
-type V0040OpenapiWckeyRemovedResp struct {
-	DeletedWckeys V0040StringList       `json:"deleted_wckeys"`
-	Errors        *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta          *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings      *V0040OpenapiWarnings `json:"warnings,omitempty"`
-}
-
-// V0040OpenapiWckeyResp defines model for v0.0.40_openapi_wckey_resp.
-type V0040OpenapiWckeyResp struct {
-	Errors   *V0040OpenapiErrors   `json:"errors,omitempty"`
-	Meta     *V0040OpenapiMeta     `json:"meta,omitempty"`
-	Warnings *V0040OpenapiWarnings `json:"warnings,omitempty"`
-	Wckeys   V0040WckeyList        `json:"wckeys"`
-}
-
-// V0040PartitionInfo defines model for v0.0.40_partition_info.
-type V0040PartitionInfo struct {
-	Accounts *struct {
-		Allowed *string `json:"allowed,omitempty"`
-		Deny    *string `json:"deny,omitempty"`
-	} `json:"accounts,omitempty"`
-	Alternate *string `json:"alternate,omitempty"`
-	Cluster   *string `json:"cluster,omitempty"`
-	Cpus      *struct {
-		TaskBinding *int32 `json:"task_binding,omitempty"`
-		Total       *int32 `json:"total,omitempty"`
-	} `json:"cpus,omitempty"`
-	Defaults *struct {
-		Job          *string `json:"job,omitempty"`
-		MemoryPerCpu *int64  `json:"memory_per_cpu,omitempty"`
-
-		// PartitionMemoryPerCpu Integer number with flags
-		PartitionMemoryPerCpu *V0040Uint64NoVal `json:"partition_memory_per_cpu,omitempty"`
-
-		// PartitionMemoryPerNode Integer number with flags
-		PartitionMemoryPerNode *V0040Uint64NoVal `json:"partition_memory_per_node,omitempty"`
-
-		// Time Integer number with flags
-		Time *V0040Uint32NoVal `json:"time,omitempty"`
-	} `json:"defaults,omitempty"`
-	GraceTime *int32 `json:"grace_time,omitempty"`
-	Groups    *struct {
-		Allowed *string `json:"allowed,omitempty"`
-	} `json:"groups,omitempty"`
-	Maximums *struct {
-		// CpusPerNode Integer number with flags
-		CpusPerNode *V0040Uint32NoVal `json:"cpus_per_node,omitempty"`
-
-		// CpusPerSocket Integer number with flags
-		CpusPerSocket *V0040Uint32NoVal `json:"cpus_per_socket,omitempty"`
-		MemoryPerCpu  *int64            `json:"memory_per_cpu,omitempty"`
-
-		// Nodes Integer number with flags
-		Nodes *V0040Uint32NoVal `json:"nodes,omitempty"`
-
-		// OverTimeLimit Integer number with flags
-		OverTimeLimit *V0040Uint16NoVal `json:"over_time_limit,omitempty"`
-		Oversubscribe *struct {
-			Flags *[]interface{} `json:"flags,omitempty"`
-			Jobs  *int32         `json:"jobs,omitempty"`
-		} `json:"oversubscribe,omitempty"`
-
-		// PartitionMemoryPerCpu Integer number with flags
-		PartitionMemoryPerCpu *V0040Uint64NoVal `json:"partition_memory_per_cpu,omitempty"`
-
-		// PartitionMemoryPerNode Integer number with flags
-		PartitionMemoryPerNode *V0040Uint64NoVal `json:"partition_memory_per_node,omitempty"`
-		Shares                 *int32            `json:"shares,omitempty"`
-
-		// Time Integer number with flags
-		Time *V0040Uint32NoVal `json:"time,omitempty"`
-	} `json:"maximums,omitempty"`
-	Minimums *struct {
-		Nodes *int32 `json:"nodes,omitempty"`
-	} `json:"minimums,omitempty"`
-	Name     *string `json:"name,omitempty"`
-	NodeSets *string `json:"node_sets,omitempty"`
-	Nodes    *struct {
-		AllowedAllocation *string `json:"allowed_allocation,omitempty"`
-		Configured        *string `json:"configured,omitempty"`
-		Total             *int32  `json:"total,omitempty"`
-	} `json:"nodes,omitempty"`
-	Partition *struct {
-		State *[]interface{} `json:"state,omitempty"`
-	} `json:"partition,omitempty"`
-	Priority *struct {
-		JobFactor *int32 `json:"job_factor,omitempty"`
-		Tier      *int32 `json:"tier,omitempty"`
-	} `json:"priority,omitempty"`
-	Qos *struct {
-		Allowed  *string `json:"allowed,omitempty"`
-		Assigned *string `json:"assigned,omitempty"`
-		Deny     *string `json:"deny,omitempty"`
-	} `json:"qos,omitempty"`
-
-	// SuspendTime Integer number with flags
-	SuspendTime *V0040Uint32NoVal `json:"suspend_time,omitempty"`
-	Timeouts    *struct {
-		// Resume Integer number with flags
-		Resume *V0040Uint16NoVal `json:"resume,omitempty"`
-
-		// Suspend Integer number with flags
-		Suspend *V0040Uint16NoVal `json:"suspend,omitempty"`
-	} `json:"timeouts,omitempty"`
-	Tres *struct {
-		BillingWeights *string `json:"billing_weights,omitempty"`
-		Configured     *string `json:"configured,omitempty"`
-	} `json:"tres,omitempty"`
-}
-
-// V0040PartitionInfoMsg defines model for v0.0.40_partition_info_msg.
-type V0040PartitionInfoMsg = []V0040PartitionInfo
-
-// V0040PowerMgmtData defines model for v0.0.40_power_mgmt_data.
-type V0040PowerMgmtData struct {
-	CurrentWatts *int32 `json:"current_watts,omitempty"`
-	LowestWatts  *int32 `json:"lowest_watts,omitempty"`
-
-	// MaximumWatts Integer number with flags
-	MaximumWatts *V0040Uint32NoVal `json:"maximum_watts,omitempty"`
-
-	// NewJobTime Integer number with flags
-	NewJobTime      *V0040Uint64NoVal `json:"new_job_time,omitempty"`
-	NewMaximumWatts *int32            `json:"new_maximum_watts,omitempty"`
-	PeakWatts       *int32            `json:"peak_watts,omitempty"`
-	State           *int32            `json:"state,omitempty"`
-	TimeStartDay    *int64            `json:"time_start_day,omitempty"`
-	TotalEnergy     *int64            `json:"total_energy,omitempty"`
-}
-
-// V0040ProcessExitCodeVerbose defines model for v0.0.40_process_exit_code_verbose.
-type V0040ProcessExitCodeVerbose struct {
-	// ReturnCode Integer number with flags
-	ReturnCode *V0040Uint32NoVal `json:"return_code,omitempty"`
-	Signal     *struct {
-		// Id Integer number with flags
-		Id *V0040Uint16NoVal `json:"id,omitempty"`
-
-		// Name Signal sent to process
-		Name *string `json:"name,omitempty"`
-	} `json:"signal,omitempty"`
-
-	// Status Status given by return code
-	Status *[]interface{} `json:"status,omitempty"`
-}
-
-// V0040Qos defines model for v0.0.40_qos.
-type V0040Qos struct {
-	Description *string        `json:"description,omitempty"`
-	Flags       *[]interface{} `json:"flags,omitempty"`
-	Id          *int32         `json:"id,omitempty"`
-	Limits      *struct {
-		// Factor 64 bit floating point number with flags
-		Factor    *V0040Float64NoVal `json:"factor,omitempty"`
-		GraceTime *int32             `json:"grace_time,omitempty"`
-		Max       *struct {
-			Accruing *struct {
-				Per *struct {
-					// Account Integer number with flags
-					Account *V0040Uint32NoVal `json:"account,omitempty"`
-
-					// User Integer number with flags
-					User *V0040Uint32NoVal `json:"user,omitempty"`
-				} `json:"per,omitempty"`
-			} `json:"accruing,omitempty"`
-			ActiveJobs *struct {
-				// Accruing Integer number with flags
-				Accruing *V0040Uint32NoVal `json:"accruing,omitempty"`
-
-				// Count Integer number with flags
-				Count *V0040Uint32NoVal `json:"count,omitempty"`
-			} `json:"active_jobs,omitempty"`
-			Jobs *struct {
-				ActiveJobs *struct {
-					Per *struct {
-						// Account Integer number with flags
-						Account *V0040Uint32NoVal `json:"account,omitempty"`
-
-						// User Integer number with flags
-						User *V0040Uint32NoVal `json:"user,omitempty"`
-					} `json:"per,omitempty"`
-				} `json:"active_jobs,omitempty"`
-				Per *struct {
-					// Account Integer number with flags
-					Account *V0040Uint32NoVal `json:"account,omitempty"`
-
-					// User Integer number with flags
-					User *V0040Uint32NoVal `json:"user,omitempty"`
-				} `json:"per,omitempty"`
-			} `json:"jobs,omitempty"`
-			Tres *struct {
-				Minutes *struct {
-					Per *struct {
-						Account *V0040TresList `json:"account,omitempty"`
-						Job     *V0040TresList `json:"job,omitempty"`
-						Qos     *V0040TresList `json:"qos,omitempty"`
-						User    *V0040TresList `json:"user,omitempty"`
-					} `json:"per,omitempty"`
-				} `json:"minutes,omitempty"`
-				Per *struct {
-					Account *V0040TresList `json:"account,omitempty"`
-					Job     *V0040TresList `json:"job,omitempty"`
-					Node    *V0040TresList `json:"node,omitempty"`
-					User    *V0040TresList `json:"user,omitempty"`
-				} `json:"per,omitempty"`
-				Total *V0040TresList `json:"total,omitempty"`
-			} `json:"tres,omitempty"`
-			WallClock *struct {
-				Per *struct {
-					// Job Integer number with flags
-					Job *V0040Uint32NoVal `json:"job,omitempty"`
-
-					// Qos Integer number with flags
-					Qos *V0040Uint32NoVal `json:"qos,omitempty"`
-				} `json:"per,omitempty"`
-			} `json:"wall_clock,omitempty"`
-		} `json:"max,omitempty"`
-		Min *struct {
-			// PriorityThreshold Integer number with flags
-			PriorityThreshold *V0040Uint32NoVal `json:"priority_threshold,omitempty"`
-			Tres              *struct {
-				Per *struct {
-					Job *V0040TresList `json:"job,omitempty"`
-				} `json:"per,omitempty"`
-			} `json:"tres,omitempty"`
-		} `json:"min,omitempty"`
-	} `json:"limits,omitempty"`
-	Name    *string `json:"name,omitempty"`
-	Preempt *struct {
-		// ExemptTime Integer number with flags
-		ExemptTime *V0040Uint32NoVal    `json:"exempt_time,omitempty"`
-		List       *V0040QosPreemptList `json:"list,omitempty"`
-		Mode       *[]interface{}       `json:"mode,omitempty"`
-	} `json:"preempt,omitempty"`
-
-	// Priority Integer number with flags
-	Priority *V0040Uint32NoVal `json:"priority,omitempty"`
-
-	// UsageFactor 64 bit floating point number with flags
-	UsageFactor *V0040Float64NoVal `json:"usage_factor,omitempty"`
-
-	// UsageThreshold 64 bit floating point number with flags
-	UsageThreshold *V0040Float64NoVal `json:"usage_threshold,omitempty"`
-}
-
-// V0040QosList defines model for v0.0.40_qos_list.
-type V0040QosList = []V0040Qos
-
-// V0040QosPreemptList defines model for v0.0.40_qos_preempt_list.
-type V0040QosPreemptList = []string
-
-// V0040QosStringIdList List of QOS names
-type V0040QosStringIdList = []string
-
-// V0040ReservationCoreSpec defines model for v0.0.40_reservation_core_spec.
-type V0040ReservationCoreSpec struct {
-	Core *string `json:"core,omitempty"`
-	Node *string `json:"node,omitempty"`
-}
-
-// V0040ReservationInfo defines model for v0.0.40_reservation_info.
-type V0040ReservationInfo struct {
-	Accounts            *string                       `json:"accounts,omitempty"`
-	BurstBuffer         *string                       `json:"burst_buffer,omitempty"`
-	CoreCount           *int32                        `json:"core_count,omitempty"`
-	CoreSpecializations *V0040ReservationInfoCoreSpec `json:"core_specializations,omitempty"`
-
-	// EndTime Integer number with flags
-	EndTime        *V0040Uint64NoVal `json:"end_time,omitempty"`
-	Features       *string           `json:"features,omitempty"`
-	Flags          *[]interface{}    `json:"flags,omitempty"`
-	Groups         *string           `json:"groups,omitempty"`
-	Licenses       *string           `json:"licenses,omitempty"`
-	MaxStartDelay  *int32            `json:"max_start_delay,omitempty"`
-	Name           *string           `json:"name,omitempty"`
-	NodeCount      *int32            `json:"node_count,omitempty"`
-	NodeList       *string           `json:"node_list,omitempty"`
-	Partition      *string           `json:"partition,omitempty"`
-	PurgeCompleted *struct {
-		// Time Integer number with flags
-		Time *V0040Uint32NoVal `json:"time,omitempty"`
-	} `json:"purge_completed,omitempty"`
-
-	// StartTime Integer number with flags
-	StartTime *V0040Uint64NoVal `json:"start_time,omitempty"`
-	Tres      *string           `json:"tres,omitempty"`
-	Users     *string           `json:"users,omitempty"`
-
-	// Watts Integer number with flags
-	Watts *V0040Uint32NoVal `json:"watts,omitempty"`
-}
-
-// V0040ReservationInfoCoreSpec defines model for v0.0.40_reservation_info_core_spec.
-type V0040ReservationInfoCoreSpec = []V0040ReservationCoreSpec
-
-// V0040ReservationInfoMsg defines model for v0.0.40_reservation_info_msg.
-type V0040ReservationInfoMsg = []V0040ReservationInfo
-
-// V0040RollupStats list of recorded rollup statistics
-type V0040RollupStats = []struct {
-	// LastRun Last time rollup ran (UNIX timestamp)
-	LastRun *int32 `json:"last run,omitempty"`
-
-	// MaxCycle longest rollup time (seconds)
-	MaxCycle *int64 `json:"max_cycle,omitempty"`
-
-	// MeanCycles average time for rollup (seconds)
-	MeanCycles *int64 `json:"mean_cycles,omitempty"`
-
-	// TotalCycles number of rollups since last_run
-	TotalCycles *int64 `json:"total_cycles,omitempty"`
-
-	// TotalTime total time spent doing rollups (seconds)
-	TotalTime *int64 `json:"total_time,omitempty"`
-
-	// Type type
-	Type *V0040RollupStatsType `json:"type,omitempty"`
-}
-
-// V0040RollupStatsType type
-type V0040RollupStatsType string
-
-// V0040ScheduleExitFields defines model for v0.0.40_schedule_exit_fields.
-type V0040ScheduleExitFields struct {
-	DefaultQueueDepth *int32 `json:"default_queue_depth,omitempty"`
-	EndJobQueue       *int32 `json:"end_job_queue,omitempty"`
-	Licenses          *int32 `json:"licenses,omitempty"`
-	MaxJobStart       *int32 `json:"max_job_start,omitempty"`
-	MaxRpcCnt         *int32 `json:"max_rpc_cnt,omitempty"`
-	MaxSchedTime      *int32 `json:"max_sched_time,omitempty"`
-}
-
-// V0040SharesFloat128Tres defines model for v0.0.40_shares_float128_tres.
-type V0040SharesFloat128Tres struct {
-	// Name TRES name
-	Name *string `json:"name,omitempty"`
-
-	// Value TRES value
-	Value *float32 `json:"value,omitempty"`
-}
-
-// V0040SharesFloat128TresList defines model for v0.0.40_shares_float128_tres_list.
-type V0040SharesFloat128TresList = []V0040SharesFloat128Tres
-
-// V0040SharesRespMsg defines model for v0.0.40_shares_resp_msg.
-type V0040SharesRespMsg struct {
-	Shares *V0040AssocSharesObjList `json:"shares,omitempty"`
-
-	// TotalShares Total number of shares
-	TotalShares *int64 `json:"total_shares,omitempty"`
-}
-
-// V0040SharesUint64Tres defines model for v0.0.40_shares_uint64_tres.
-type V0040SharesUint64Tres struct {
-	// Name TRES name
-	Name *string `json:"name,omitempty"`
-
-	// Value Integer number with flags
-	Value *V0040Uint64NoVal `json:"value,omitempty"`
-}
-
-// V0040SharesUint64TresList defines model for v0.0.40_shares_uint64_tres_list.
-type V0040SharesUint64TresList = []V0040SharesUint64Tres
-
-// V0040StatsMsg defines model for v0.0.40_stats_msg.
-type V0040StatsMsg struct {
-	AgentCount           *int32             `json:"agent_count,omitempty"`
-	AgentQueueSize       *int32             `json:"agent_queue_size,omitempty"`
-	AgentThreadCount     *int32             `json:"agent_thread_count,omitempty"`
-	BfActive             *bool              `json:"bf_active,omitempty"`
-	BfBackfilledHetJobs  *int32             `json:"bf_backfilled_het_jobs,omitempty"`
-	BfBackfilledJobs     *int32             `json:"bf_backfilled_jobs,omitempty"`
-	BfCycleCounter       *int32             `json:"bf_cycle_counter,omitempty"`
-	BfCycleLast          *int32             `json:"bf_cycle_last,omitempty"`
-	BfCycleMean          *int64             `json:"bf_cycle_mean,omitempty"`
-	BfCycleSum           *int64             `json:"bf_cycle_sum,omitempty"`
-	BfDepthMean          *int64             `json:"bf_depth_mean,omitempty"`
-	BfDepthMeanTry       *int64             `json:"bf_depth_mean_try,omitempty"`
-	BfDepthSum           *int32             `json:"bf_depth_sum,omitempty"`
-	BfDepthTrySum        *int32             `json:"bf_depth_try_sum,omitempty"`
-	BfExit               *V0040BfExitFields `json:"bf_exit,omitempty"`
-	BfLastBackfilledJobs *int32             `json:"bf_last_backfilled_jobs,omitempty"`
-	BfLastDepth          *int32             `json:"bf_last_depth,omitempty"`
-	BfLastDepthTry       *int32             `json:"bf_last_depth_try,omitempty"`
-	BfQueueLen           *int32             `json:"bf_queue_len,omitempty"`
-	BfQueueLenMean       *int64             `json:"bf_queue_len_mean,omitempty"`
-	BfQueueLenSum        *int32             `json:"bf_queue_len_sum,omitempty"`
-	BfTableSize          *int32             `json:"bf_table_size,omitempty"`
-	BfTableSizeMean      *int64             `json:"bf_table_size_mean,omitempty"`
-
-	// BfWhenLastCycle Integer number with flags
-	BfWhenLastCycle     *V0040Uint64NoVal `json:"bf_when_last_cycle,omitempty"`
-	DbdAgentQueueSize   *int32            `json:"dbd_agent_queue_size,omitempty"`
-	GettimeofdayLatency *int32            `json:"gettimeofday_latency,omitempty"`
-
-	// JobStatesTs Integer number with flags
-	JobStatesTs   *V0040Uint64NoVal `json:"job_states_ts,omitempty"`
-	JobsCanceled  *int32            `json:"jobs_canceled,omitempty"`
-	JobsCompleted *int32            `json:"jobs_completed,omitempty"`
-	JobsFailed    *int32            `json:"jobs_failed,omitempty"`
-	JobsPending   *int32            `json:"jobs_pending,omitempty"`
-	JobsRunning   *int32            `json:"jobs_running,omitempty"`
-	JobsStarted   *int32            `json:"jobs_started,omitempty"`
-	JobsSubmitted *int32            `json:"jobs_submitted,omitempty"`
-	PartsPacked   *int32            `json:"parts_packed,omitempty"`
-
-	// ReqTime Integer number with flags
-	ReqTime *V0040Uint64NoVal `json:"req_time,omitempty"`
-
-	// ReqTimeStart Integer number with flags
-	ReqTimeStart *V0040Uint64NoVal `json:"req_time_start,omitempty"`
-
-	// RpcsByMessageType RPCs by message type
-	RpcsByMessageType *V0040StatsMsgRpcsByType `json:"rpcs_by_message_type,omitempty"`
-
-	// RpcsByUser RPCs by user
-	RpcsByUser             *V0040StatsMsgRpcsByUser `json:"rpcs_by_user,omitempty"`
-	ScheduleCycleLast      *int32                   `json:"schedule_cycle_last,omitempty"`
-	ScheduleCycleMax       *int32                   `json:"schedule_cycle_max,omitempty"`
-	ScheduleCycleMean      *int64                   `json:"schedule_cycle_mean,omitempty"`
-	ScheduleCycleMeanDepth *int64                   `json:"schedule_cycle_mean_depth,omitempty"`
-	ScheduleCyclePerMinute *int64                   `json:"schedule_cycle_per_minute,omitempty"`
-	ScheduleCycleTotal     *int32                   `json:"schedule_cycle_total,omitempty"`
-	ScheduleExit           *V0040ScheduleExitFields `json:"schedule_exit,omitempty"`
-	ScheduleQueueLength    *int32                   `json:"schedule_queue_length,omitempty"`
-	ServerThreadCount      *int32                   `json:"server_thread_count,omitempty"`
-}
-
-// V0040StatsMsgRpcsByType RPCs by message type
-type V0040StatsMsgRpcsByType = []struct {
-	// AverageTime Average time spent processing RPC in seconds
-	AverageTime *int64 `json:"average_time,omitempty"`
-
-	// Count Number of RPCs received
-	Count *int64 `json:"count,omitempty"`
-
-	// MessageType Message type as string
-	MessageType *string `json:"message_type,omitempty"`
-
-	// TotalTime Total time spent processing RPC in seconds
-	TotalTime *int64 `json:"total_time,omitempty"`
-
-	// TypeId Message type as integer
-	TypeId *int32 `json:"type_id,omitempty"`
-}
-
-// V0040StatsMsgRpcsByUser RPCs by user
-type V0040StatsMsgRpcsByUser = []struct {
-	// AverageTime Average time spent processing RPC in seconds
-	AverageTime *int64 `json:"average_time,omitempty"`
-
-	// Count Number of RPCs received
-	Count *int64 `json:"count,omitempty"`
-
-	// TotalTime Total time spent processing RPC in seconds
-	TotalTime *int64 `json:"total_time,omitempty"`
-
-	// User user name
-	User *string `json:"user,omitempty"`
-
-	// UserId user id (numeric)
-	UserId *int32 `json:"user_id,omitempty"`
-}
-
-// V0040StatsRec defines model for v0.0.40_stats_rec.
-type V0040StatsRec struct {
-	RPCs *V0040StatsRpcList `json:"RPCs,omitempty"`
-
-	// Rollups list of recorded rollup statistics
-	Rollups   *V0040RollupStats   `json:"rollups,omitempty"`
-	TimeStart *int64              `json:"time_start,omitempty"`
-	Users     *V0040StatsUserList `json:"users,omitempty"`
-}
-
-// V0040StatsRpc defines model for v0.0.40_stats_rpc.
-type V0040StatsRpc struct {
-	Count *int32  `json:"count,omitempty"`
-	Rpc   *string `json:"rpc,omitempty"`
-	Time  *struct {
-		Average *int64 `json:"average,omitempty"`
-		Total   *int64 `json:"total,omitempty"`
-	} `json:"time,omitempty"`
-}
-
-// V0040StatsRpcList defines model for v0.0.40_stats_rpc_list.
-type V0040StatsRpcList = []V0040StatsRpc
-
-// V0040StatsUser defines model for v0.0.40_stats_user.
-type V0040StatsUser struct {
-	Count *int32 `json:"count,omitempty"`
-	Time  *struct {
-		Average *int64 `json:"average,omitempty"`
-		Total   *int64 `json:"total,omitempty"`
-	} `json:"time,omitempty"`
-	User *string `json:"user,omitempty"`
-}
-
-// V0040StatsUserList defines model for v0.0.40_stats_user_list.
-type V0040StatsUserList = []V0040StatsUser
-
-// V0040Step defines model for v0.0.40_step.
-type V0040Step struct {
-	CPU *struct {
-		Governor           *string `json:"governor,omitempty"`
-		RequestedFrequency *struct {
-			// Max Integer number with flags
-			Max *V0040Uint32NoVal `json:"max,omitempty"`
-
-			// Min Integer number with flags
-			Min *V0040Uint32NoVal `json:"min,omitempty"`
-		} `json:"requested_frequency,omitempty"`
-	} `json:"CPU,omitempty"`
-	ExitCode        *V0040ProcessExitCodeVerbose `json:"exit_code,omitempty"`
-	KillRequestUser *string                      `json:"kill_request_user,omitempty"`
-	Nodes           *struct {
-		Count *int32         `json:"count,omitempty"`
-		List  *V0040Hostlist `json:"list,omitempty"`
-		Range *string        `json:"range,omitempty"`
-	} `json:"nodes,omitempty"`
-	Pid        *string        `json:"pid,omitempty"`
-	State      *[]interface{} `json:"state,omitempty"`
-	Statistics *struct {
-		CPU *struct {
-			ActualFrequency *int64 `json:"actual_frequency,omitempty"`
-		} `json:"CPU,omitempty"`
-		Energy *struct {
-			// Consumed Integer number with flags
-			Consumed *V0040Uint64NoVal `json:"consumed,omitempty"`
-		} `json:"energy,omitempty"`
-	} `json:"statistics,omitempty"`
-	Step *struct {
-		// Id Slurm Job StepId
-		Id   *string `json:"id,omitempty"`
-		Name *string `json:"name,omitempty"`
-	} `json:"step,omitempty"`
-	Task *struct {
-		Distribution *string `json:"distribution,omitempty"`
-	} `json:"task,omitempty"`
-	Tasks *struct {
-		Count *int32 `json:"count,omitempty"`
-	} `json:"tasks,omitempty"`
-	Time *struct {
-		Elapsed *int32 `json:"elapsed,omitempty"`
-
-		// End Integer number with flags
-		End *V0040Uint64NoVal `json:"end,omitempty"`
-
-		// Start Integer number with flags
-		Start     *V0040Uint64NoVal `json:"start,omitempty"`
-		Suspended *int32            `json:"suspended,omitempty"`
-		System    *struct {
-			Microseconds *int32 `json:"microseconds,omitempty"`
-			Seconds      *int64 `json:"seconds,omitempty"`
-		} `json:"system,omitempty"`
-		Total *struct {
-			Microseconds *int32 `json:"microseconds,omitempty"`
-			Seconds      *int64 `json:"seconds,omitempty"`
-		} `json:"total,omitempty"`
-		User *struct {
-			Microseconds *int32 `json:"microseconds,omitempty"`
-			Seconds      *int64 `json:"seconds,omitempty"`
-		} `json:"user,omitempty"`
-	} `json:"time,omitempty"`
-	Tres *struct {
-		Allocated *V0040TresList `json:"allocated,omitempty"`
-		Consumed  *struct {
-			Average *V0040TresList         `json:"average,omitempty"`
-			Max     *V0040StepTresUsageMax `json:"max,omitempty"`
-			Min     *V0040StepTresUsageMin `json:"min,omitempty"`
-			Total   *V0040TresList         `json:"total,omitempty"`
-		} `json:"consumed,omitempty"`
-		Requested *struct {
-			Average *V0040TresList       `json:"average,omitempty"`
-			Max     *V0040StepTresReqMax `json:"max,omitempty"`
-			Min     *V0040StepTresReqMin `json:"min,omitempty"`
-			Total   *V0040TresList       `json:"total,omitempty"`
-		} `json:"requested,omitempty"`
-	} `json:"tres,omitempty"`
-}
-
-// V0040StepList defines model for v0.0.40_step_list.
-type V0040StepList = []V0040Step
-
-// V0040StepTresReqMax defines model for v0.0.40_step_tres_req_max.
-type V0040StepTresReqMax = []V0040Tres
-
-// V0040StepTresReqMin defines model for v0.0.40_step_tres_req_min.
-type V0040StepTresReqMin = []V0040Tres
-
-// V0040StepTresUsageMax defines model for v0.0.40_step_tres_usage_max.
-type V0040StepTresUsageMax = []V0040Tres
-
-// V0040StepTresUsageMin defines model for v0.0.40_step_tres_usage_min.
-type V0040StepTresUsageMin = []V0040Tres
-
-// V0040StringArray defines model for v0.0.40_string_array.
-type V0040StringArray = []string
-
-// V0040StringList defines model for v0.0.40_string_list.
-type V0040StringList = []string
-
-// V0040Tres defines model for v0.0.40_tres.
-type V0040Tres struct {
-	Count *int64  `json:"count,omitempty"`
-	Id    *int32  `json:"id,omitempty"`
-	Name  *string `json:"name,omitempty"`
-	Type  string  `json:"type"`
-}
-
-// V0040TresList defines model for v0.0.40_tres_list.
-type V0040TresList = []V0040Tres
-
-// V0040Uint16NoVal Integer number with flags
-type V0040Uint16NoVal struct {
-	// Infinite True if number has been set to infinite. "set" and "number" will be ignored.
-	Infinite *bool `json:"infinite,omitempty"`
-
-	// Number If set is True the number will be set with value. Otherwise ignore number contents.
-	Number *int64 `json:"number,omitempty"`
-
-	// Set True if number has been set. False if number is unset
-	Set *bool `json:"set,omitempty"`
-}
-
-// V0040Uint32NoVal Integer number with flags
-type V0040Uint32NoVal struct {
-	// Infinite True if number has been set to infinite. "set" and "number" will be ignored.
-	Infinite *bool `json:"infinite,omitempty"`
-
-	// Number If set is True the number will be set with value. Otherwise ignore number contents.
-	Number *int64 `json:"number,omitempty"`
-
-	// Set True if number has been set. False if number is unset
-	Set *bool `json:"set,omitempty"`
-}
-
-// V0040Uint64NoVal Integer number with flags
-type V0040Uint64NoVal struct {
-	// Infinite True if number has been set to infinite. "set" and "number" will be ignored.
-	Infinite *bool `json:"infinite,omitempty"`
-
-	// Number If set is True the number will be set with value. Otherwise ignore number contents.
-	Number *int64 `json:"number,omitempty"`
-
-	// Set True if number has been set. False if number is unset
-	Set *bool `json:"set,omitempty"`
-}
-
-// V0040UpdateNodeMsg defines model for v0.0.40_update_node_msg.
-type V0040UpdateNodeMsg struct {
-	Address *V0040HostlistString `json:"address,omitempty"`
-
-	// Comment arbitrary comment
-	Comment *string `json:"comment,omitempty"`
-
-	// CpuBind default CPU binding type
+	// CpuBind Default method for binding tasks to allocated CPUs
 	CpuBind *int32 `json:"cpu_bind,omitempty"`
 
-	// Extra arbitrary string
-	Extra       *string         `json:"extra,omitempty"`
-	Features    *V0040CsvString `json:"features,omitempty"`
-	FeaturesAct *V0040CsvString `json:"features_act,omitempty"`
+	// Extra Arbitrary string used for node filtering if extra constraints are enabled
+	Extra *string `json:"extra,omitempty"`
 
-	// Gres new generic resources for node
-	Gres     *string              `json:"gres,omitempty"`
-	Hostname *V0040HostlistString `json:"hostname,omitempty"`
-	Name     *V0040HostlistString `json:"name,omitempty"`
+	// Features Available features
+	Features *[]string `json:"features,omitempty"`
 
-	// Reason reason for node being DOWN or DRAINING
+	// FeaturesAct Currently active features
+	FeaturesAct *[]string `json:"features_act,omitempty"`
+
+	// Gres Generic resources
+	Gres *string `json:"gres,omitempty"`
+
+	// Hostname NodeHostname
+	Hostname *[]string `json:"hostname,omitempty"`
+
+	// Name NodeName
+	Name *[]string `json:"name,omitempty"`
+
+	// Reason Reason for node being DOWN or DRAINING
 	Reason *string `json:"reason,omitempty"`
 
-	// ReasonUid user ID of sending (needed if user root is sending message)
+	// ReasonUid User ID to associate with the reason (needed if user root is sending message)
 	ReasonUid *string `json:"reason_uid,omitempty"`
 
-	// ResumeAfter Integer number with flags
-	ResumeAfter *V0040Uint32NoVal `json:"resume_after,omitempty"`
+	// ResumeAfter Number of seconds after which to automatically resume DOWN or DRAINED node
+	ResumeAfter *struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
 
-	// State assign new node state
-	State *[]interface{} `json:"state,omitempty"`
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int32 `json:"number,omitempty"`
 
-	// Weight Integer number with flags
-	Weight *V0040Uint32NoVal `json:"weight,omitempty"`
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"resume_after,omitempty"`
+
+	// State New state to assign to the node
+	State *[]SlurmV0041PostNodeJSONBodyState `json:"state,omitempty"`
+
+	// Weight Weight of the node for scheduling purposes
+	Weight *struct {
+		// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+		Infinite *bool `json:"infinite,omitempty"`
+
+		// Number If "set" is True the number will be set with value; otherwise ignore number contents
+		Number *int32 `json:"number,omitempty"`
+
+		// Set True if number has been set; False if number is unset
+		Set *bool `json:"set,omitempty"`
+	} `json:"weight,omitempty"`
 }
 
-// V0040User defines model for v0.0.40_user.
-type V0040User struct {
-	AdministratorLevel *[]interface{}       `json:"administrator_level,omitempty"`
-	Associations       *V0040AssocShortList `json:"associations,omitempty"`
-	Coordinators       *V0040CoordList      `json:"coordinators,omitempty"`
-	Default            *struct {
-		Account *string `json:"account,omitempty"`
-		Wckey   *string `json:"wckey,omitempty"`
-	} `json:"default,omitempty"`
-	Flags   *[]interface{}  `json:"flags,omitempty"`
-	Name    string          `json:"name"`
-	OldName *string         `json:"old_name,omitempty"`
-	Wckeys  *V0040WckeyList `json:"wckeys,omitempty"`
-}
+// SlurmV0041PostNodeJSONBodyState defines parameters for SlurmV0041PostNode.
+type SlurmV0041PostNodeJSONBodyState string
 
-// V0040UserList defines model for v0.0.40_user_list.
-type V0040UserList = []V0040User
-
-// V0040UserShort defines model for v0.0.40_user_short.
-type V0040UserShort struct {
-	// Adminlevel Admin level of user.  Valid levels are None, Operator, and Admin.
-	Adminlevel *[]interface{} `json:"adminlevel,omitempty"`
-
-	// Defaultaccount Identify the default bank account name to be used for a job if none is specified at submission time.
-	Defaultaccount *string `json:"defaultaccount,omitempty"`
-
-	// Defaultwckey Identify the default Workload Characterization Key.
-	Defaultwckey *string `json:"defaultwckey,omitempty"`
-}
-
-// V0040UsersAddCond defines model for v0.0.40_users_add_cond.
-type V0040UsersAddCond struct {
-	Accounts    *V0040StringList  `json:"accounts,omitempty"`
-	Association *V0040AssocRecSet `json:"association,omitempty"`
-	Clusters    *V0040StringList  `json:"clusters,omitempty"`
-	Partitions  *V0040StringList  `json:"partitions,omitempty"`
-	Users       V0040StringList   `json:"users"`
-	Wckeys      *V0040StringList  `json:"wckeys,omitempty"`
-}
-
-// V0040Wckey defines model for v0.0.40_wckey.
-type V0040Wckey struct {
-	Accounting *V0040AccountingList `json:"accounting,omitempty"`
-	Cluster    string               `json:"cluster"`
-	Flags      *[]interface{}       `json:"flags,omitempty"`
-	Id         *int32               `json:"id,omitempty"`
-	Name       string               `json:"name"`
-	User       string               `json:"user"`
-}
-
-// V0040WckeyList defines model for v0.0.40_wckey_list.
-type V0040WckeyList = []V0040Wckey
-
-// V0040WckeyTagStruct defines model for v0.0.40_wckey_tag_struct.
-type V0040WckeyTagStruct struct {
-	// Flags Active flags
-	Flags []interface{} `json:"flags"`
-
-	// Wckey WCKey name
-	Wckey string `json:"wckey"`
-}
-
-// SlurmV0038CancelJobParams defines parameters for SlurmV0038CancelJob.
-type SlurmV0038CancelJobParams struct {
-	// Signal signal to send to job
-	Signal *V0038Signal `form:"signal,omitempty" json:"signal,omitempty"`
-}
-
-// SlurmV0038GetJobsParams defines parameters for SlurmV0038GetJobs.
-type SlurmV0038GetJobsParams struct {
-	// UpdateTime Filter if changed since update_time. Use of this parameter can result in faster replies.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0038GetNodesParams defines parameters for SlurmV0038GetNodes.
-type SlurmV0038GetNodesParams struct {
-	// UpdateTime Filter if changed since update_time. Use of this parameter can result in faster replies.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0038GetPartitionParams defines parameters for SlurmV0038GetPartition.
-type SlurmV0038GetPartitionParams struct {
-	// UpdateTime Filter if there were no partition changes (not limited to partition in URL endpoint) since update_time.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0038GetPartitionsParams defines parameters for SlurmV0038GetPartitions.
-type SlurmV0038GetPartitionsParams struct {
-	// UpdateTime Filter if changed since update_time. Use of this parameter can result in faster replies.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0038GetReservationParams defines parameters for SlurmV0038GetReservation.
-type SlurmV0038GetReservationParams struct {
-	// UpdateTime Filter if no reservation (not limited to reservation in URL) changed since update_time.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0038GetReservationsParams defines parameters for SlurmV0038GetReservations.
-type SlurmV0038GetReservationsParams struct {
-	// UpdateTime Filter if changed since update_time. Use of this parameter can result in faster replies.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0039CancelJobParams defines parameters for SlurmV0039CancelJob.
-type SlurmV0039CancelJobParams struct {
-	// Signal signal to send to job
-	Signal *SlurmV0039CancelJobParamsSignal `form:"signal,omitempty" json:"signal,omitempty"`
-}
-
-// SlurmV0039CancelJobParamsSignal defines parameters for SlurmV0039CancelJob.
-type SlurmV0039CancelJobParamsSignal string
-
-// SlurmV0039GetJobsParams defines parameters for SlurmV0039GetJobs.
-type SlurmV0039GetJobsParams struct {
-	// UpdateTime Filter if changed since update_time. Use of this parameter can result in faster replies.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0039GetNodesParams defines parameters for SlurmV0039GetNodes.
-type SlurmV0039GetNodesParams struct {
-	// UpdateTime Filter if changed since update_time. Use of this parameter can result in faster replies.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0039GetPartitionParams defines parameters for SlurmV0039GetPartition.
-type SlurmV0039GetPartitionParams struct {
-	// UpdateTime Filter if there were no partition changes (not limited to partition in URL endpoint) since update_time.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0039GetPartitionsParams defines parameters for SlurmV0039GetPartitions.
-type SlurmV0039GetPartitionsParams struct {
-	// UpdateTime Filter if changed since update_time. Use of this parameter can result in faster replies.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0039GetReservationParams defines parameters for SlurmV0039GetReservation.
-type SlurmV0039GetReservationParams struct {
-	// UpdateTime Filter if no reservation (not limited to reservation in URL) changed since update_time.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0039GetReservationsParams defines parameters for SlurmV0039GetReservations.
-type SlurmV0039GetReservationsParams struct {
-	// UpdateTime Filter if changed since update_time. Use of this parameter can result in faster replies.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0040DeleteJobParams defines parameters for SlurmV0040DeleteJob.
-type SlurmV0040DeleteJobParams struct {
-	// Signal Signal to send to Job
-	Signal *string `form:"signal,omitempty" json:"signal,omitempty"`
-
-	// Flags Signalling flags
-	Flags *SlurmV0040DeleteJobParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
-}
-
-// SlurmV0040DeleteJobParamsFlags defines parameters for SlurmV0040DeleteJob.
-type SlurmV0040DeleteJobParamsFlags string
-
-// SlurmV0040GetJobParams defines parameters for SlurmV0040GetJob.
-type SlurmV0040GetJobParams struct {
+// SlurmV0041GetNodesParams defines parameters for SlurmV0041GetNodes.
+type SlurmV0041GetNodesParams struct {
 	// UpdateTime Filter jobs since update timestamp
 	UpdateTime *string `form:"update_time,omitempty" json:"update_time,omitempty"`
 
 	// Flags Query flags
-	Flags *SlurmV0040GetJobParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
+	Flags *SlurmV0041GetNodesParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
 }
 
-// SlurmV0040GetJobParamsFlags defines parameters for SlurmV0040GetJob.
-type SlurmV0040GetJobParamsFlags string
+// SlurmV0041GetNodesParamsFlags defines parameters for SlurmV0041GetNodes.
+type SlurmV0041GetNodesParamsFlags string
 
-// SlurmV0040GetJobsParams defines parameters for SlurmV0040GetJobs.
-type SlurmV0040GetJobsParams struct {
-	// UpdateTime Filter jobs since update timestamp
+// SlurmV0041GetPartitionParams defines parameters for SlurmV0041GetPartition.
+type SlurmV0041GetPartitionParams struct {
+	// UpdateTime Filter partitions since update timestamp
 	UpdateTime *string `form:"update_time,omitempty" json:"update_time,omitempty"`
 
 	// Flags Query flags
-	Flags *SlurmV0040GetJobsParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
+	Flags *SlurmV0041GetPartitionParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
 }
 
-// SlurmV0040GetJobsParamsFlags defines parameters for SlurmV0040GetJobs.
-type SlurmV0040GetJobsParamsFlags string
+// SlurmV0041GetPartitionParamsFlags defines parameters for SlurmV0041GetPartition.
+type SlurmV0041GetPartitionParamsFlags string
 
-// SlurmV0040GetNodeParams defines parameters for SlurmV0040GetNode.
-type SlurmV0040GetNodeParams struct {
-	// UpdateTime Filter jobs since update timestamp
+// SlurmV0041GetPartitionsParams defines parameters for SlurmV0041GetPartitions.
+type SlurmV0041GetPartitionsParams struct {
+	// UpdateTime Filter partitions since update timestamp
 	UpdateTime *string `form:"update_time,omitempty" json:"update_time,omitempty"`
 
 	// Flags Query flags
-	Flags *SlurmV0040GetNodeParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
+	Flags *SlurmV0041GetPartitionsParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
 }
 
-// SlurmV0040GetNodeParamsFlags defines parameters for SlurmV0040GetNode.
-type SlurmV0040GetNodeParamsFlags string
+// SlurmV0041GetPartitionsParamsFlags defines parameters for SlurmV0041GetPartitions.
+type SlurmV0041GetPartitionsParamsFlags string
 
-// SlurmV0040GetNodesParams defines parameters for SlurmV0040GetNodes.
-type SlurmV0040GetNodesParams struct {
-	// UpdateTime Filter jobs since update timestamp
+// SlurmV0041GetReservationParams defines parameters for SlurmV0041GetReservation.
+type SlurmV0041GetReservationParams struct {
+	// UpdateTime Filter reservations since update timestamp
 	UpdateTime *string `form:"update_time,omitempty" json:"update_time,omitempty"`
-
-	// Flags Query flags
-	Flags *SlurmV0040GetNodesParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
 }
 
-// SlurmV0040GetNodesParamsFlags defines parameters for SlurmV0040GetNodes.
-type SlurmV0040GetNodesParamsFlags string
-
-// SlurmV0040GetPartitionParams defines parameters for SlurmV0040GetPartition.
-type SlurmV0040GetPartitionParams struct {
-	// UpdateTime Filter if there were no partition changes (not limited to partition in URL endpoint) since update_time.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
+// SlurmV0041GetReservationsParams defines parameters for SlurmV0041GetReservations.
+type SlurmV0041GetReservationsParams struct {
+	// UpdateTime Filter reservations since update timestamp
+	UpdateTime *string `form:"update_time,omitempty" json:"update_time,omitempty"`
 }
 
-// SlurmV0040GetPartitionsParams defines parameters for SlurmV0040GetPartitions.
-type SlurmV0040GetPartitionsParams struct {
-	// UpdateTime Filter if changed since update_time. Use of this parameter can result in faster replies.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0040GetReservationParams defines parameters for SlurmV0040GetReservation.
-type SlurmV0040GetReservationParams struct {
-	// UpdateTime Filter if no reservation (not limited to reservation in URL) changed since update_time.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0040GetReservationsParams defines parameters for SlurmV0040GetReservations.
-type SlurmV0040GetReservationsParams struct {
-	// UpdateTime Filter if changed since update_time. Use of this parameter can result in faster replies.
-	UpdateTime *int64 `form:"update_time,omitempty" json:"update_time,omitempty"`
-}
-
-// SlurmV0040GetSharesParams defines parameters for SlurmV0040GetShares.
-type SlurmV0040GetSharesParams struct {
+// SlurmV0041GetSharesParams defines parameters for SlurmV0041GetShares.
+type SlurmV0041GetSharesParams struct {
 	// Accounts Accounts to query
 	Accounts *string `form:"accounts,omitempty" json:"accounts,omitempty"`
 
@@ -7342,440 +10510,376 @@ type SlurmV0040GetSharesParams struct {
 	Users *string `form:"users,omitempty" json:"users,omitempty"`
 }
 
-// SlurmdbV0038GetAccountParams defines parameters for SlurmdbV0038GetAccount.
-type SlurmdbV0038GetAccountParams struct {
-	// WithDeleted Include deleted accounts. False by default.
-	WithDeleted *bool `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-}
-
-// SlurmdbV0038GetAccountsParams defines parameters for SlurmdbV0038GetAccounts.
-type SlurmdbV0038GetAccountsParams struct {
-	// WithDeleted Include deleted accounts. False by default.
-	WithDeleted *bool `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-}
-
-// SlurmdbV0038DeleteAssociationParams defines parameters for SlurmdbV0038DeleteAssociation.
-type SlurmdbV0038DeleteAssociationParams struct {
-	// Cluster Cluster name
-	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
-
-	// Account Account name
-	Account *string `form:"account,omitempty" json:"account,omitempty"`
-
-	// User User name
-	User *string `form:"user,omitempty" json:"user,omitempty"`
-
-	// Partition Partition Name
-	Partition *string `form:"partition,omitempty" json:"partition,omitempty"`
-}
-
-// SlurmdbV0038GetAssociationParams defines parameters for SlurmdbV0038GetAssociation.
-type SlurmdbV0038GetAssociationParams struct {
-	// Cluster Cluster name
-	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
-
-	// Account Account name
-	Account *string `form:"account,omitempty" json:"account,omitempty"`
-
-	// User User name
-	User *string `form:"user,omitempty" json:"user,omitempty"`
-
-	// Partition Partition Name
-	Partition *string `form:"partition,omitempty" json:"partition,omitempty"`
-}
-
-// SlurmdbV0038DeleteAssociationsParams defines parameters for SlurmdbV0038DeleteAssociations.
-type SlurmdbV0038DeleteAssociationsParams struct {
-	// Cluster Cluster name
-	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
-
-	// Account Account name
-	Account *string `form:"account,omitempty" json:"account,omitempty"`
-
-	// User User name
-	User *string `form:"user,omitempty" json:"user,omitempty"`
-
-	// Partition Partition Name
-	Partition *string `form:"partition,omitempty" json:"partition,omitempty"`
-}
-
-// SlurmdbV0038GetAssociationsParams defines parameters for SlurmdbV0038GetAssociations.
-type SlurmdbV0038GetAssociationsParams struct {
-	// Cluster Cluster name
-	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
-
-	// Account Account name
-	Account *string `form:"account,omitempty" json:"account,omitempty"`
-
-	// User User name
-	User *string `form:"user,omitempty" json:"user,omitempty"`
-
-	// Partition Partition Name
-	Partition *string `form:"partition,omitempty" json:"partition,omitempty"`
-}
-
-// SlurmdbV0038GetJobsParams defines parameters for SlurmdbV0038GetJobs.
-type SlurmdbV0038GetJobsParams struct {
-	// SubmitTime Filter by submission time
-	//  Accepted formats:
-	//  HH:MM[:SS] [AM|PM]
-	// MMDD[YY] or MM/DD[/YY] or MM.DD[.YY]
-	// MM/DD[/YY]-HH:MM[:SS]
-	// YYYY-MM-DD[THH:MM[:SS]]
-	SubmitTime *string `form:"submit_time,omitempty" json:"submit_time,omitempty"`
-
-	// StartTime Filter by start time
-	//  Accepted formats:
-	//  HH:MM[:SS] [AM|PM]
-	// MMDD[YY] or MM/DD[/YY] or MM.DD[.YY]
-	// MM/DD[/YY]-HH:MM[:SS]
-	// YYYY-MM-DD[THH:MM[:SS]]
-	StartTime *string `form:"start_time,omitempty" json:"start_time,omitempty"`
-
-	// EndTime Filter by end time
-	//  Accepted formats:
-	//  HH:MM[:SS] [AM|PM]
-	// MMDD[YY] or MM/DD[/YY] or MM.DD[.YY]
-	// MM/DD[/YY]-HH:MM[:SS]
-	// YYYY-MM-DD[THH:MM[:SS]]
-	EndTime *string `form:"end_time,omitempty" json:"end_time,omitempty"`
-
-	// Account Comma delimited list of accounts to match
-	Account *string `form:"account,omitempty" json:"account,omitempty"`
-
-	// Association Comma delimited list of associations to match
-	Association *string `form:"association,omitempty" json:"association,omitempty"`
-
-	// Cluster Comma delimited list of cluster to match
-	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
-
-	// Constraints Comma delimited list of constraints to match
-	Constraints *string `form:"constraints,omitempty" json:"constraints,omitempty"`
-
-	// CpusMax Number of CPUs high range
-	CpusMax *string `form:"cpus_max,omitempty" json:"cpus_max,omitempty"`
-
-	// CpusMin Number of CPUs low range
-	CpusMin *string `form:"cpus_min,omitempty" json:"cpus_min,omitempty"`
-
-	// SkipSteps Report job step information
-	SkipSteps *bool `form:"skip_steps,omitempty" json:"skip_steps,omitempty"`
-
-	// DisableWaitForResult Disable waiting for result from slurmdbd
-	DisableWaitForResult *bool `form:"disable_wait_for_result,omitempty" json:"disable_wait_for_result,omitempty"`
-
-	// ExitCode Exit code of job
-	ExitCode *string `form:"exit_code,omitempty" json:"exit_code,omitempty"`
-
-	// Format Comma delimited list of formats to match
-	Format *string `form:"format,omitempty" json:"format,omitempty"`
-
-	// Group Comma delimited list of groups to match
-	Group *string `form:"group,omitempty" json:"group,omitempty"`
-
-	// JobName Comma delimited list of job names to match
-	JobName *string `form:"job_name,omitempty" json:"job_name,omitempty"`
-
-	// NodesMax Number of nodes high range
-	NodesMax *string `form:"nodes_max,omitempty" json:"nodes_max,omitempty"`
-
-	// NodesMin Number of nodes low range
-	NodesMin *string `form:"nodes_min,omitempty" json:"nodes_min,omitempty"`
-
-	// Partition Comma delimited list of partitions to match
-	Partition *string `form:"partition,omitempty" json:"partition,omitempty"`
-
-	// Qos Comma delimited list of QOS to match
-	Qos *string `form:"qos,omitempty" json:"qos,omitempty"`
-
-	// Reason Comma delimited list of job reasons to match
-	Reason *string `form:"reason,omitempty" json:"reason,omitempty"`
-
-	// Reservation Comma delimited list of reservations to match
-	Reservation *string `form:"reservation,omitempty" json:"reservation,omitempty"`
-
-	// State Comma delimited list of states to match
-	State *string `form:"state,omitempty" json:"state,omitempty"`
-
-	// Step Comma delimited list of job steps to match
-	Step *string `form:"step,omitempty" json:"step,omitempty"`
-
-	// Node Comma delimited list of used nodes to match
-	Node *string `form:"node,omitempty" json:"node,omitempty"`
-
-	// Wckey Comma delimited list of wckeys to match
-	Wckey *string `form:"wckey,omitempty" json:"wckey,omitempty"`
-}
-
-// SlurmdbV0038GetQosParams defines parameters for SlurmdbV0038GetQos.
-type SlurmdbV0038GetQosParams struct {
-	// WithDeleted Include deleted QOSs. False by default.
-	WithDeleted *bool `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-}
-
-// SlurmdbV0038GetSingleQosParams defines parameters for SlurmdbV0038GetSingleQos.
-type SlurmdbV0038GetSingleQosParams struct {
-	// WithDeleted Include deleted QOSs. False by default.
-	WithDeleted *bool `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-}
-
-// SlurmdbV0038GetUserParams defines parameters for SlurmdbV0038GetUser.
-type SlurmdbV0038GetUserParams struct {
-	// WithDeleted Include deleted users. False by default.
-	WithDeleted *bool `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-}
-
-// SlurmdbV0038GetUsersParams defines parameters for SlurmdbV0038GetUsers.
-type SlurmdbV0038GetUsersParams struct {
-	// WithDeleted Include deleted users. False by default.
-	WithDeleted *bool `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-}
-
-// SlurmdbV0039GetAccountParams defines parameters for SlurmdbV0039GetAccount.
-type SlurmdbV0039GetAccountParams struct {
-	// WithDeleted Include deleted accounts. False by default.
-	WithDeleted *SlurmdbV0039GetAccountParamsWithDeleted `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-}
-
-// SlurmdbV0039GetAccountParamsWithDeleted defines parameters for SlurmdbV0039GetAccount.
-type SlurmdbV0039GetAccountParamsWithDeleted string
-
-// SlurmdbV0039GetAccountsParams defines parameters for SlurmdbV0039GetAccounts.
-type SlurmdbV0039GetAccountsParams struct {
-	// WithDeleted Include deleted accounts. False by default.
-	WithDeleted *SlurmdbV0039GetAccountsParamsWithDeleted `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-}
-
-// SlurmdbV0039GetAccountsParamsWithDeleted defines parameters for SlurmdbV0039GetAccounts.
-type SlurmdbV0039GetAccountsParamsWithDeleted string
-
-// SlurmdbV0039DeleteAssociationParams defines parameters for SlurmdbV0039DeleteAssociation.
-type SlurmdbV0039DeleteAssociationParams struct {
-	// Cluster Cluster name
-	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
-
-	// Account Account name
-	Account *string `form:"account,omitempty" json:"account,omitempty"`
-
-	// User User name
-	User *string `form:"user,omitempty" json:"user,omitempty"`
-
-	// Partition Partition Name
-	Partition *string `form:"partition,omitempty" json:"partition,omitempty"`
-}
-
-// SlurmdbV0039GetAssociationParams defines parameters for SlurmdbV0039GetAssociation.
-type SlurmdbV0039GetAssociationParams struct {
-	// Cluster Cluster name
-	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
-
-	// Account Account name
-	Account *string `form:"account,omitempty" json:"account,omitempty"`
-
-	// User User name
-	User *string `form:"user,omitempty" json:"user,omitempty"`
-
-	// Partition Partition Name
-	Partition *string `form:"partition,omitempty" json:"partition,omitempty"`
-}
-
-// SlurmdbV0039DeleteAssociationsParams defines parameters for SlurmdbV0039DeleteAssociations.
-type SlurmdbV0039DeleteAssociationsParams struct {
-	// Cluster Cluster name
-	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
-
-	// Account Account name
-	Account *string `form:"account,omitempty" json:"account,omitempty"`
-
-	// User User name
-	User *string `form:"user,omitempty" json:"user,omitempty"`
-
-	// Partition Partition Name
-	Partition *string `form:"partition,omitempty" json:"partition,omitempty"`
-}
-
-// SlurmdbV0039GetAssociationsParams defines parameters for SlurmdbV0039GetAssociations.
-type SlurmdbV0039GetAssociationsParams struct {
-	// Cluster Cluster name
-	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
-
-	// Account Account name
-	Account *string `form:"account,omitempty" json:"account,omitempty"`
-
-	// User User name
-	User *string `form:"user,omitempty" json:"user,omitempty"`
-
-	// Partition Partition Name
-	Partition *string `form:"partition,omitempty" json:"partition,omitempty"`
-}
-
-// SlurmdbV0039GetJobsParams defines parameters for SlurmdbV0039GetJobs.
-type SlurmdbV0039GetJobsParams struct {
-	// Users Filter by comma delimited list of user names
-	Users *string `form:"users,omitempty" json:"users,omitempty"`
-
-	// SubmitTime Filter by submission time
-	//  Accepted formats:
-	//  HH:MM[:SS] [AM|PM]
-	// MMDD[YY] or MM/DD[/YY] or MM.DD[.YY]
-	// MM/DD[/YY]-HH:MM[:SS]
-	// YYYY-MM-DD[THH:MM[:SS]]
-	SubmitTime *string `form:"submit_time,omitempty" json:"submit_time,omitempty"`
-
-	// StartTime Filter by start time
-	//  Accepted formats:
-	//  HH:MM[:SS] [AM|PM]
-	// MMDD[YY] or MM/DD[/YY] or MM.DD[.YY]
-	// MM/DD[/YY]-HH:MM[:SS]
-	// YYYY-MM-DD[THH:MM[:SS]]
-	StartTime *string `form:"start_time,omitempty" json:"start_time,omitempty"`
-
-	// EndTime Filter by end time
-	//  Accepted formats:
-	//  HH:MM[:SS] [AM|PM]
-	// MMDD[YY] or MM/DD[/YY] or MM.DD[.YY]
-	// MM/DD[/YY]-HH:MM[:SS]
-	// YYYY-MM-DD[THH:MM[:SS]]
-	EndTime *string `form:"end_time,omitempty" json:"end_time,omitempty"`
-
-	// Account Comma delimited list of accounts to match
-	Account *string `form:"account,omitempty" json:"account,omitempty"`
-
-	// Association Comma delimited list of associations to match
-	Association *string `form:"association,omitempty" json:"association,omitempty"`
-
-	// Cluster Comma delimited list of cluster to match
-	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
-
-	// Constraints Comma delimited list of constraints to match
-	Constraints *string `form:"constraints,omitempty" json:"constraints,omitempty"`
-
-	// CpusMax Number of CPUs high range
-	CpusMax *string `form:"cpus_max,omitempty" json:"cpus_max,omitempty"`
-
-	// CpusMin Number of CPUs low range
-	CpusMin *string `form:"cpus_min,omitempty" json:"cpus_min,omitempty"`
-
-	// SkipSteps Report job step information
-	SkipSteps *SlurmdbV0039GetJobsParamsSkipSteps `form:"skip_steps,omitempty" json:"skip_steps,omitempty"`
-
-	// DisableWaitForResult Disable waiting for result from slurmdbd
-	DisableWaitForResult *SlurmdbV0039GetJobsParamsDisableWaitForResult `form:"disable_wait_for_result,omitempty" json:"disable_wait_for_result,omitempty"`
-
-	// ExitCode Exit code of job
-	ExitCode *string `form:"exit_code,omitempty" json:"exit_code,omitempty"`
-
-	// Format Comma delimited list of formats to match
-	Format *string `form:"format,omitempty" json:"format,omitempty"`
-
-	// Group Comma delimited list of groups to match
-	Group *string `form:"group,omitempty" json:"group,omitempty"`
-
-	// JobName Comma delimited list of job names to match
-	JobName *string `form:"job_name,omitempty" json:"job_name,omitempty"`
-
-	// NodesMax Number of nodes high range
-	NodesMax *string `form:"nodes_max,omitempty" json:"nodes_max,omitempty"`
-
-	// NodesMin Number of nodes low range
-	NodesMin *string `form:"nodes_min,omitempty" json:"nodes_min,omitempty"`
-
-	// Partition Comma delimited list of partitions to match
-	Partition *string `form:"partition,omitempty" json:"partition,omitempty"`
-
-	// Qos Comma delimited list of QOS to match
-	Qos *string `form:"qos,omitempty" json:"qos,omitempty"`
-
-	// Reason Comma delimited list of job reasons to match
-	Reason *string `form:"reason,omitempty" json:"reason,omitempty"`
-
-	// Reservation Comma delimited list of reservations to match
-	Reservation *string `form:"reservation,omitempty" json:"reservation,omitempty"`
-
-	// State Comma delimited list of states to match
-	State *string `form:"state,omitempty" json:"state,omitempty"`
-
-	// Step Comma delimited list of job steps to match
-	Step *string `form:"step,omitempty" json:"step,omitempty"`
-
-	// Node Comma delimited list of used nodes to match
-	Node *string `form:"node,omitempty" json:"node,omitempty"`
-
-	// Wckey Comma delimited list of wckeys to match
-	Wckey *string `form:"wckey,omitempty" json:"wckey,omitempty"`
-}
-
-// SlurmdbV0039GetJobsParamsSkipSteps defines parameters for SlurmdbV0039GetJobs.
-type SlurmdbV0039GetJobsParamsSkipSteps string
-
-// SlurmdbV0039GetJobsParamsDisableWaitForResult defines parameters for SlurmdbV0039GetJobs.
-type SlurmdbV0039GetJobsParamsDisableWaitForResult string
-
-// SlurmdbV0039GetQosParams defines parameters for SlurmdbV0039GetQos.
-type SlurmdbV0039GetQosParams struct {
-	// WithDeleted Include deleted QOSs. False by default.
-	WithDeleted *SlurmdbV0039GetQosParamsWithDeleted `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-}
-
-// SlurmdbV0039GetQosParamsWithDeleted defines parameters for SlurmdbV0039GetQos.
-type SlurmdbV0039GetQosParamsWithDeleted string
-
-// SlurmdbV0039GetSingleQosParams defines parameters for SlurmdbV0039GetSingleQos.
-type SlurmdbV0039GetSingleQosParams struct {
-	// WithDeleted Include deleted QOSs. False by default.
-	WithDeleted *SlurmdbV0039GetSingleQosParamsWithDeleted `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-}
-
-// SlurmdbV0039GetSingleQosParamsWithDeleted defines parameters for SlurmdbV0039GetSingleQos.
-type SlurmdbV0039GetSingleQosParamsWithDeleted string
-
-// SlurmdbV0039GetUserParams defines parameters for SlurmdbV0039GetUser.
-type SlurmdbV0039GetUserParams struct {
-	// WithDeleted Include deleted users. False by default.
-	WithDeleted *SlurmdbV0039GetUserParamsWithDeleted `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-}
-
-// SlurmdbV0039GetUserParamsWithDeleted defines parameters for SlurmdbV0039GetUser.
-type SlurmdbV0039GetUserParamsWithDeleted string
-
-// SlurmdbV0039GetUsersParams defines parameters for SlurmdbV0039GetUsers.
-type SlurmdbV0039GetUsersParams struct {
-	// WithDeleted Include deleted users. False by default.
-	WithDeleted *SlurmdbV0039GetUsersParamsWithDeleted `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-}
-
-// SlurmdbV0039GetUsersParamsWithDeleted defines parameters for SlurmdbV0039GetUsers.
-type SlurmdbV0039GetUsersParamsWithDeleted string
-
-// SlurmdbV0040GetAccountParams defines parameters for SlurmdbV0040GetAccount.
-type SlurmdbV0040GetAccountParams struct {
-	// WithAssocs include associations
+// SlurmdbV0041GetAccountParams defines parameters for SlurmdbV0041GetAccount.
+type SlurmdbV0041GetAccountParams struct {
+	// WithAssocs Include associations
 	WithAssocs *string `form:"with_assocs,omitempty" json:"with_assocs,omitempty"`
 
-	// WithCoords include coordinators
+	// WithCoords Include coordinators
 	WithCoords *string `form:"with_coords,omitempty" json:"with_coords,omitempty"`
 
-	// WithDeleted include deleted
+	// WithDeleted Include deleted
 	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
 }
 
-// SlurmdbV0040GetAccountsParams defines parameters for SlurmdbV0040GetAccounts.
-type SlurmdbV0040GetAccountsParams struct {
+// SlurmdbV0041GetAccountsParams defines parameters for SlurmdbV0041GetAccounts.
+type SlurmdbV0041GetAccountsParams struct {
 	// Description CSV description list
 	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
-	// WithAssocs include associations
-	WithAssocs *string `form:"with_assocs,omitempty" json:"with_assocs,omitempty"`
+	// DELETED include deleted associations
+	DELETED *string `form:"DELETED,omitempty" json:"DELETED,omitempty"`
 
-	// WithCoords include coordinators
-	WithCoords *string `form:"with_coords,omitempty" json:"with_coords,omitempty"`
+	// WithAssociations query includes associations
+	WithAssociations *string `form:"WithAssociations,omitempty" json:"WithAssociations,omitempty"`
 
-	// WithDeleted include deleted accounts
-	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
+	// WithCoordinators query includes coordinators
+	WithCoordinators *string `form:"WithCoordinators,omitempty" json:"WithCoordinators,omitempty"`
+
+	// NoUsersAreCoords remove users as coordinators
+	NoUsersAreCoords *string `form:"NoUsersAreCoords,omitempty" json:"NoUsersAreCoords,omitempty"`
+
+	// UsersAreCoords users are coordinators
+	UsersAreCoords *string `form:"UsersAreCoords,omitempty" json:"UsersAreCoords,omitempty"`
 }
 
-// SlurmdbV0040DeleteAssociationParams defines parameters for SlurmdbV0040DeleteAssociation.
-type SlurmdbV0040DeleteAssociationParams struct {
+// SlurmdbV0041PostAccountsAssociationJSONBody defines parameters for SlurmdbV0041PostAccountsAssociation.
+type SlurmdbV0041PostAccountsAssociationJSONBody struct {
+	// Account Account organization and description
+	Account *struct {
+		// Description Arbitrary string describing the account
+		Description *string `json:"description,omitempty"`
+
+		// Organization Organization to which the account belongs
+		Organization *string `json:"organization,omitempty"`
+	} `json:"account,omitempty"`
+
+	// AssociationCondition CSV list of accounts, association limits and options, CSV list of clusters
+	AssociationCondition *struct {
+		// Accounts CSV accounts list
+		Accounts []string `json:"accounts"`
+
+		// Association Association limits and options
+		Association *struct {
+			// Comment Arbitrary comment
+			Comment *string `json:"comment,omitempty"`
+
+			// Defaultqos Default QOS
+			Defaultqos *string `json:"defaultqos,omitempty"`
+
+			// Fairshare Allocated shares used for fairshare calculation
+			Fairshare *int32 `json:"fairshare,omitempty"`
+
+			// Grpjobs Maximum number of running jobs in this association and its children
+			Grpjobs *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"grpjobs,omitempty"`
+
+			// Grpjobsaccrue Maximum number of pending jobs able to accrue age priority in this association and its children
+			Grpjobsaccrue *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"grpjobsaccrue,omitempty"`
+
+			// Grpsubmitjobs Maximum number of jobs which can be in a pending or running state at any time in this association and its children
+			Grpsubmitjobs *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"grpsubmitjobs,omitempty"`
+
+			// Grptres Maximum number of TRES able to be allocated by running jobs in this association and its children
+			Grptres *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"grptres,omitempty"`
+
+			// Grptresmins Total number of TRES minutes that can possibly be used by past, present and future jobs in this association and its children
+			Grptresmins *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"grptresmins,omitempty"`
+
+			// Grptresrunmins Maximum number of TRES minutes able to be allocated by running jobs in this association and its children
+			Grptresrunmins *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"grptresrunmins,omitempty"`
+
+			// Grpwall Maximum wall clock time in minutes able to be allocated by running jobs in this association and its children
+			Grpwall *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"grpwall,omitempty"`
+
+			// Maxjobs Maximum number of running jobs per user in this association
+			Maxjobs *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"maxjobs,omitempty"`
+
+			// Maxjobsaccrue Maximum number of pending jobs able to accrue age priority at any given time in this association
+			Maxjobsaccrue *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"maxjobsaccrue,omitempty"`
+
+			// Maxsubmitjobs Maximum number of jobs which can be in a pending or running state at any time in this association
+			Maxsubmitjobs *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"maxsubmitjobs,omitempty"`
+
+			// Maxtresminsperjob Maximum number of TRES minutes each job is able to use in this association
+			Maxtresminsperjob *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"maxtresminsperjob,omitempty"`
+
+			// Maxtresperjob Maximum number of TRES each job is able to use in this association
+			Maxtresperjob *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"maxtresperjob,omitempty"`
+
+			// Maxtrespernode Maximum number of TRES each node is able to use
+			Maxtrespernode *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"maxtrespernode,omitempty"`
+
+			// Maxtresrunmins Maximum number of TRES minutes able to be allocated by running jobs in this association
+			Maxtresrunmins *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"maxtresrunmins,omitempty"`
+
+			// Maxwalldurationperjob Maximum wall clock time each job is able to use in this association
+			Maxwalldurationperjob *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"maxwalldurationperjob,omitempty"`
+
+			// Minpriothresh Minimum priority required to reserve resources when scheduling
+			Minpriothresh *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"minpriothresh,omitempty"`
+
+			// Parent Name of parent account
+			Parent *string `json:"parent,omitempty"`
+
+			// Priority Association priority factor
+			Priority *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"priority,omitempty"`
+
+			// Qoslevel List of available QOS names
+			Qoslevel *[]string `json:"qoslevel,omitempty"`
+		} `json:"association,omitempty"`
+
+		// Clusters CSV clusters list
+		Clusters *[]string `json:"clusters,omitempty"`
+	} `json:"association_condition,omitempty"`
+
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
+}
+
+// SlurmdbV0041DeleteAssociationParams defines parameters for SlurmdbV0041DeleteAssociation.
+type SlurmdbV0041DeleteAssociationParams struct {
 	// Account CSV accounts list
 	Account *string `form:"account,omitempty" json:"account,omitempty"`
 
@@ -7791,7 +10895,7 @@ type SlurmdbV0040DeleteAssociationParams struct {
 	// Id CSV id list
 	Id *string `form:"id,omitempty" json:"id,omitempty"`
 
-	// OnlyDefaults filter to only defaults
+	// OnlyDefaults Filter to only defaults
 	OnlyDefaults *string `form:"only_defaults,omitempty" json:"only_defaults,omitempty"`
 
 	// ParentAccount CSV names of parent account
@@ -7803,36 +10907,36 @@ type SlurmdbV0040DeleteAssociationParams struct {
 	// Qos CSV QOS list
 	Qos *string `form:"qos,omitempty" json:"qos,omitempty"`
 
-	// UsageEnd usage end UNIX timestamp
+	// UsageEnd Usage end (UNIX timestamp)
 	UsageEnd *string `form:"usage_end,omitempty" json:"usage_end,omitempty"`
 
-	// UsageStart usage start UNIX timestamp
+	// UsageStart Usage start (UNIX timestamp)
 	UsageStart *string `form:"usage_start,omitempty" json:"usage_start,omitempty"`
 
 	// User CSV user list
 	User *string `form:"user,omitempty" json:"user,omitempty"`
 
-	// WithUsage fill in usage
+	// WithUsage Include usage
 	WithUsage *string `form:"with_usage,omitempty" json:"with_usage,omitempty"`
 
-	// WithDeleted return deleted associations
+	// WithDeleted Include deleted associations
 	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
 
-	// WithRawQos return a raw qos or delta_qos
+	// WithRawQos Include a raw qos or delta_qos
 	WithRawQos *string `form:"with_raw_qos,omitempty" json:"with_raw_qos,omitempty"`
 
-	// WithSubAccts return sub acct information also
+	// WithSubAccts Include sub acct information
 	WithSubAccts *string `form:"with_sub_accts,omitempty" json:"with_sub_accts,omitempty"`
 
-	// WithoutParentInfo don't give me parent id/name
+	// WithoutParentInfo Exclude parent id/name
 	WithoutParentInfo *string `form:"without_parent_info,omitempty" json:"without_parent_info,omitempty"`
 
-	// WithoutParentLimits don't give me limits from parents
+	// WithoutParentLimits Exclude limits from parents
 	WithoutParentLimits *string `form:"without_parent_limits,omitempty" json:"without_parent_limits,omitempty"`
 }
 
-// SlurmdbV0040GetAssociationParams defines parameters for SlurmdbV0040GetAssociation.
-type SlurmdbV0040GetAssociationParams struct {
+// SlurmdbV0041GetAssociationParams defines parameters for SlurmdbV0041GetAssociation.
+type SlurmdbV0041GetAssociationParams struct {
 	// Account CSV accounts list
 	Account *string `form:"account,omitempty" json:"account,omitempty"`
 
@@ -7848,7 +10952,7 @@ type SlurmdbV0040GetAssociationParams struct {
 	// Id CSV id list
 	Id *string `form:"id,omitempty" json:"id,omitempty"`
 
-	// OnlyDefaults filter to only defaults
+	// OnlyDefaults Filter to only defaults
 	OnlyDefaults *string `form:"only_defaults,omitempty" json:"only_defaults,omitempty"`
 
 	// ParentAccount CSV names of parent account
@@ -7860,36 +10964,36 @@ type SlurmdbV0040GetAssociationParams struct {
 	// Qos CSV QOS list
 	Qos *string `form:"qos,omitempty" json:"qos,omitempty"`
 
-	// UsageEnd usage end UNIX timestamp
+	// UsageEnd Usage end (UNIX timestamp)
 	UsageEnd *string `form:"usage_end,omitempty" json:"usage_end,omitempty"`
 
-	// UsageStart usage start UNIX timestamp
+	// UsageStart Usage start (UNIX timestamp)
 	UsageStart *string `form:"usage_start,omitempty" json:"usage_start,omitempty"`
 
 	// User CSV user list
 	User *string `form:"user,omitempty" json:"user,omitempty"`
 
-	// WithUsage fill in usage
+	// WithUsage Include usage
 	WithUsage *string `form:"with_usage,omitempty" json:"with_usage,omitempty"`
 
-	// WithDeleted return deleted associations
+	// WithDeleted Include deleted associations
 	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
 
-	// WithRawQos return a raw qos or delta_qos
+	// WithRawQos Include a raw qos or delta_qos
 	WithRawQos *string `form:"with_raw_qos,omitempty" json:"with_raw_qos,omitempty"`
 
-	// WithSubAccts return sub acct information also
+	// WithSubAccts Include sub acct information
 	WithSubAccts *string `form:"with_sub_accts,omitempty" json:"with_sub_accts,omitempty"`
 
-	// WithoutParentInfo don't give me parent id/name
+	// WithoutParentInfo Exclude parent id/name
 	WithoutParentInfo *string `form:"without_parent_info,omitempty" json:"without_parent_info,omitempty"`
 
-	// WithoutParentLimits don't give me limits from parents
+	// WithoutParentLimits Exclude limits from parents
 	WithoutParentLimits *string `form:"without_parent_limits,omitempty" json:"without_parent_limits,omitempty"`
 }
 
-// SlurmdbV0040DeleteAssociationsParams defines parameters for SlurmdbV0040DeleteAssociations.
-type SlurmdbV0040DeleteAssociationsParams struct {
+// SlurmdbV0041DeleteAssociationsParams defines parameters for SlurmdbV0041DeleteAssociations.
+type SlurmdbV0041DeleteAssociationsParams struct {
 	// Account CSV accounts list
 	Account *string `form:"account,omitempty" json:"account,omitempty"`
 
@@ -7905,7 +11009,7 @@ type SlurmdbV0040DeleteAssociationsParams struct {
 	// Id CSV id list
 	Id *string `form:"id,omitempty" json:"id,omitempty"`
 
-	// OnlyDefaults filter to only defaults
+	// OnlyDefaults Filter to only defaults
 	OnlyDefaults *string `form:"only_defaults,omitempty" json:"only_defaults,omitempty"`
 
 	// ParentAccount CSV names of parent account
@@ -7917,36 +11021,36 @@ type SlurmdbV0040DeleteAssociationsParams struct {
 	// Qos CSV QOS list
 	Qos *string `form:"qos,omitempty" json:"qos,omitempty"`
 
-	// UsageEnd usage end UNIX timestamp
+	// UsageEnd Usage end (UNIX timestamp)
 	UsageEnd *string `form:"usage_end,omitempty" json:"usage_end,omitempty"`
 
-	// UsageStart usage start UNIX timestamp
+	// UsageStart Usage start (UNIX timestamp)
 	UsageStart *string `form:"usage_start,omitempty" json:"usage_start,omitempty"`
 
 	// User CSV user list
 	User *string `form:"user,omitempty" json:"user,omitempty"`
 
-	// WithUsage fill in usage
+	// WithUsage Include usage
 	WithUsage *string `form:"with_usage,omitempty" json:"with_usage,omitempty"`
 
-	// WithDeleted return deleted associations
+	// WithDeleted Include deleted associations
 	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
 
-	// WithRawQos return a raw qos or delta_qos
+	// WithRawQos Include a raw qos or delta_qos
 	WithRawQos *string `form:"with_raw_qos,omitempty" json:"with_raw_qos,omitempty"`
 
-	// WithSubAccts return sub acct information also
+	// WithSubAccts Include sub acct information
 	WithSubAccts *string `form:"with_sub_accts,omitempty" json:"with_sub_accts,omitempty"`
 
-	// WithoutParentInfo don't give me parent id/name
+	// WithoutParentInfo Exclude parent id/name
 	WithoutParentInfo *string `form:"without_parent_info,omitempty" json:"without_parent_info,omitempty"`
 
-	// WithoutParentLimits don't give me limits from parents
+	// WithoutParentLimits Exclude limits from parents
 	WithoutParentLimits *string `form:"without_parent_limits,omitempty" json:"without_parent_limits,omitempty"`
 }
 
-// SlurmdbV0040GetAssociationsParams defines parameters for SlurmdbV0040GetAssociations.
-type SlurmdbV0040GetAssociationsParams struct {
+// SlurmdbV0041GetAssociationsParams defines parameters for SlurmdbV0041GetAssociations.
+type SlurmdbV0041GetAssociationsParams struct {
 	// Account CSV accounts list
 	Account *string `form:"account,omitempty" json:"account,omitempty"`
 
@@ -7962,7 +11066,7 @@ type SlurmdbV0040GetAssociationsParams struct {
 	// Id CSV id list
 	Id *string `form:"id,omitempty" json:"id,omitempty"`
 
-	// OnlyDefaults filter to only defaults
+	// OnlyDefaults Filter to only defaults
 	OnlyDefaults *string `form:"only_defaults,omitempty" json:"only_defaults,omitempty"`
 
 	// ParentAccount CSV names of parent account
@@ -7974,44 +11078,47 @@ type SlurmdbV0040GetAssociationsParams struct {
 	// Qos CSV QOS list
 	Qos *string `form:"qos,omitempty" json:"qos,omitempty"`
 
-	// UsageEnd usage end UNIX timestamp
+	// UsageEnd Usage end (UNIX timestamp)
 	UsageEnd *string `form:"usage_end,omitempty" json:"usage_end,omitempty"`
 
-	// UsageStart usage start UNIX timestamp
+	// UsageStart Usage start (UNIX timestamp)
 	UsageStart *string `form:"usage_start,omitempty" json:"usage_start,omitempty"`
 
 	// User CSV user list
 	User *string `form:"user,omitempty" json:"user,omitempty"`
 
-	// WithUsage fill in usage
+	// WithUsage Include usage
 	WithUsage *string `form:"with_usage,omitempty" json:"with_usage,omitempty"`
 
-	// WithDeleted return deleted associations
+	// WithDeleted Include deleted associations
 	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
 
-	// WithRawQos return a raw qos or delta_qos
+	// WithRawQos Include a raw qos or delta_qos
 	WithRawQos *string `form:"with_raw_qos,omitempty" json:"with_raw_qos,omitempty"`
 
-	// WithSubAccts return sub acct information also
+	// WithSubAccts Include sub acct information
 	WithSubAccts *string `form:"with_sub_accts,omitempty" json:"with_sub_accts,omitempty"`
 
-	// WithoutParentInfo don't give me parent id/name
+	// WithoutParentInfo Exclude parent id/name
 	WithoutParentInfo *string `form:"without_parent_info,omitempty" json:"without_parent_info,omitempty"`
 
-	// WithoutParentLimits don't give me limits from parents
+	// WithoutParentLimits Exclude limits from parents
 	WithoutParentLimits *string `form:"without_parent_limits,omitempty" json:"without_parent_limits,omitempty"`
 }
 
-// SlurmdbV0040DeleteClusterParams defines parameters for SlurmdbV0040DeleteCluster.
-type SlurmdbV0040DeleteClusterParams struct {
-	Classification *SlurmdbV0040DeleteClusterParamsClassification `form:"classification,omitempty" json:"classification,omitempty"`
+// SlurmdbV0041DeleteClusterParams defines parameters for SlurmdbV0041DeleteCluster.
+type SlurmdbV0041DeleteClusterParams struct {
+	// Classification Type of machine
+	Classification *SlurmdbV0041DeleteClusterParamsClassification `form:"classification,omitempty" json:"classification,omitempty"`
 
 	// Cluster CSV cluster list
 	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
 
 	// Federation CSV federation list
-	Federation *string                               `form:"federation,omitempty" json:"federation,omitempty"`
-	Flags      *SlurmdbV0040DeleteClusterParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
+	Federation *string `form:"federation,omitempty" json:"federation,omitempty"`
+
+	// Flags Query flags
+	Flags *SlurmdbV0041DeleteClusterParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
 
 	// Format CSV format list
 	Format *string `form:"format,omitempty" json:"format,omitempty"`
@@ -8019,35 +11126,38 @@ type SlurmdbV0040DeleteClusterParams struct {
 	// RpcVersion CSV RPC version list
 	RpcVersion *string `form:"rpc_version,omitempty" json:"rpc_version,omitempty"`
 
-	// UsageEnd Usage end UNIX timestamp (seconds)
+	// UsageEnd Usage end (UNIX timestamp)
 	UsageEnd *string `form:"usage_end,omitempty" json:"usage_end,omitempty"`
 
-	// UsageStart Usage start UNIX timestamp (seconds)
+	// UsageStart Usage start (UNIX timestamp)
 	UsageStart *string `form:"usage_start,omitempty" json:"usage_start,omitempty"`
 
-	// WithDeleted include deleted clusters
+	// WithDeleted Include deleted clusters
 	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
 
-	// WithUsage query usage
+	// WithUsage Include usage
 	WithUsage *string `form:"with_usage,omitempty" json:"with_usage,omitempty"`
 }
 
-// SlurmdbV0040DeleteClusterParamsClassification defines parameters for SlurmdbV0040DeleteCluster.
-type SlurmdbV0040DeleteClusterParamsClassification string
+// SlurmdbV0041DeleteClusterParamsClassification defines parameters for SlurmdbV0041DeleteCluster.
+type SlurmdbV0041DeleteClusterParamsClassification string
 
-// SlurmdbV0040DeleteClusterParamsFlags defines parameters for SlurmdbV0040DeleteCluster.
-type SlurmdbV0040DeleteClusterParamsFlags string
+// SlurmdbV0041DeleteClusterParamsFlags defines parameters for SlurmdbV0041DeleteCluster.
+type SlurmdbV0041DeleteClusterParamsFlags string
 
-// SlurmdbV0040GetClusterParams defines parameters for SlurmdbV0040GetCluster.
-type SlurmdbV0040GetClusterParams struct {
-	Classification *SlurmdbV0040GetClusterParamsClassification `form:"classification,omitempty" json:"classification,omitempty"`
+// SlurmdbV0041GetClusterParams defines parameters for SlurmdbV0041GetCluster.
+type SlurmdbV0041GetClusterParams struct {
+	// Classification Type of machine
+	Classification *SlurmdbV0041GetClusterParamsClassification `form:"classification,omitempty" json:"classification,omitempty"`
 
 	// Cluster CSV cluster list
 	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
 
 	// Federation CSV federation list
-	Federation *string                            `form:"federation,omitempty" json:"federation,omitempty"`
-	Flags      *SlurmdbV0040GetClusterParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
+	Federation *string `form:"federation,omitempty" json:"federation,omitempty"`
+
+	// Flags Query flags
+	Flags *SlurmdbV0041GetClusterParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
 
 	// Format CSV format list
 	Format *string `form:"format,omitempty" json:"format,omitempty"`
@@ -8055,93 +11165,93 @@ type SlurmdbV0040GetClusterParams struct {
 	// RpcVersion CSV RPC version list
 	RpcVersion *string `form:"rpc_version,omitempty" json:"rpc_version,omitempty"`
 
-	// UsageEnd Usage end UNIX timestamp (seconds)
+	// UsageEnd Usage end (UNIX timestamp)
 	UsageEnd *string `form:"usage_end,omitempty" json:"usage_end,omitempty"`
 
-	// UsageStart Usage start UNIX timestamp (seconds)
+	// UsageStart Usage start (UNIX timestamp)
 	UsageStart *string `form:"usage_start,omitempty" json:"usage_start,omitempty"`
 
-	// WithDeleted include deleted clusters
+	// WithDeleted Include deleted clusters
 	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
 
-	// WithUsage query usage
+	// WithUsage Include usage
 	WithUsage *string `form:"with_usage,omitempty" json:"with_usage,omitempty"`
 }
 
-// SlurmdbV0040GetClusterParamsClassification defines parameters for SlurmdbV0040GetCluster.
-type SlurmdbV0040GetClusterParamsClassification string
+// SlurmdbV0041GetClusterParamsClassification defines parameters for SlurmdbV0041GetCluster.
+type SlurmdbV0041GetClusterParamsClassification string
 
-// SlurmdbV0040GetClusterParamsFlags defines parameters for SlurmdbV0040GetCluster.
-type SlurmdbV0040GetClusterParamsFlags string
+// SlurmdbV0041GetClusterParamsFlags defines parameters for SlurmdbV0041GetCluster.
+type SlurmdbV0041GetClusterParamsFlags string
 
-// SlurmdbV0040GetClustersParams defines parameters for SlurmdbV0040GetClusters.
-type SlurmdbV0040GetClustersParams struct {
-	Classification *SlurmdbV0040GetClustersParamsClassification `form:"classification,omitempty" json:"classification,omitempty"`
-
-	// Cluster CSV cluster list
-	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
-
-	// Federation CSV federation list
-	Federation *string                             `form:"federation,omitempty" json:"federation,omitempty"`
-	Flags      *SlurmdbV0040GetClustersParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
-
-	// Format CSV format list
-	Format *string `form:"format,omitempty" json:"format,omitempty"`
-
-	// RpcVersion CSV RPC version list
-	RpcVersion *string `form:"rpc_version,omitempty" json:"rpc_version,omitempty"`
-
-	// UsageEnd Usage end UNIX timestamp (seconds)
-	UsageEnd *string `form:"usage_end,omitempty" json:"usage_end,omitempty"`
-
-	// UsageStart Usage start UNIX timestamp (seconds)
-	UsageStart *string `form:"usage_start,omitempty" json:"usage_start,omitempty"`
-
-	// WithDeleted include deleted clusters
-	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
-
-	// WithUsage query usage
-	WithUsage *string `form:"with_usage,omitempty" json:"with_usage,omitempty"`
+// SlurmdbV0041GetClustersParams defines parameters for SlurmdbV0041GetClusters.
+type SlurmdbV0041GetClustersParams struct {
+	// UpdateTime Filter reservations since update timestamp
+	UpdateTime *string `form:"update_time,omitempty" json:"update_time,omitempty"`
 }
 
-// SlurmdbV0040GetClustersParamsClassification defines parameters for SlurmdbV0040GetClusters.
-type SlurmdbV0040GetClustersParamsClassification string
+// SlurmdbV0041PostClustersParams defines parameters for SlurmdbV0041PostClusters.
+type SlurmdbV0041PostClustersParams struct {
+	// UpdateTime Filter reservations since update timestamp
+	UpdateTime *string `form:"update_time,omitempty" json:"update_time,omitempty"`
+}
 
-// SlurmdbV0040GetClustersParamsFlags defines parameters for SlurmdbV0040GetClusters.
-type SlurmdbV0040GetClustersParamsFlags string
-
-// SlurmdbV0040GetInstanceParams defines parameters for SlurmdbV0040GetInstance.
-type SlurmdbV0040GetInstanceParams struct {
-	// Cluster Cluster name
+// SlurmdbV0041GetInstanceParams defines parameters for SlurmdbV0041GetInstance.
+type SlurmdbV0041GetInstanceParams struct {
+	// Cluster CSV clusters list
 	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
 
-	// Extra Arbitrary string
+	// Extra CSV extra list
 	Extra *string `form:"extra,omitempty" json:"extra,omitempty"`
 
-	// InstanceId Cloud instance ID
+	// Format CSV format list
+	Format *string `form:"format,omitempty" json:"format,omitempty"`
+
+	// InstanceId CSV instance_id list
 	InstanceId *string `form:"instance_id,omitempty" json:"instance_id,omitempty"`
 
-	// InstanceType Cloud instance type
+	// InstanceType CSV instance_type list
 	InstanceType *string `form:"instance_type,omitempty" json:"instance_type,omitempty"`
+
+	// NodeList Ranged node string
+	NodeList *string `form:"node_list,omitempty" json:"node_list,omitempty"`
+
+	// TimeEnd Time end (UNIX timestamp)
+	TimeEnd *string `form:"time_end,omitempty" json:"time_end,omitempty"`
+
+	// TimeStart Time start (UNIX timestamp)
+	TimeStart *string `form:"time_start,omitempty" json:"time_start,omitempty"`
 }
 
-// SlurmdbV0040GetInstancesParams defines parameters for SlurmdbV0040GetInstances.
-type SlurmdbV0040GetInstancesParams struct {
-	// Cluster Cluster name
+// SlurmdbV0041GetInstancesParams defines parameters for SlurmdbV0041GetInstances.
+type SlurmdbV0041GetInstancesParams struct {
+	// Cluster CSV clusters list
 	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
 
-	// Extra Arbitrary string
+	// Extra CSV extra list
 	Extra *string `form:"extra,omitempty" json:"extra,omitempty"`
 
-	// InstanceId Cloud instance ID
+	// Format CSV format list
+	Format *string `form:"format,omitempty" json:"format,omitempty"`
+
+	// InstanceId CSV instance_id list
 	InstanceId *string `form:"instance_id,omitempty" json:"instance_id,omitempty"`
 
-	// InstanceType Cloud instance type
+	// InstanceType CSV instance_type list
 	InstanceType *string `form:"instance_type,omitempty" json:"instance_type,omitempty"`
+
+	// NodeList Ranged node string
+	NodeList *string `form:"node_list,omitempty" json:"node_list,omitempty"`
+
+	// TimeEnd Time end (UNIX timestamp)
+	TimeEnd *string `form:"time_end,omitempty" json:"time_end,omitempty"`
+
+	// TimeStart Time start (UNIX timestamp)
+	TimeStart *string `form:"time_start,omitempty" json:"time_start,omitempty"`
 }
 
-// SlurmdbV0040GetJobsParams defines parameters for SlurmdbV0040GetJobs.
-type SlurmdbV0040GetJobsParams struct {
+// SlurmdbV0041GetJobsParams defines parameters for SlurmdbV0041GetJobs.
+type SlurmdbV0041GetJobsParams struct {
 	// Account CSV account list
 	Account *string `form:"account,omitempty" json:"account,omitempty"`
 
@@ -8154,28 +11264,50 @@ type SlurmdbV0040GetJobsParams struct {
 	// Constraints CSV constraint list
 	Constraints *string `form:"constraints,omitempty" json:"constraints,omitempty"`
 
-	// CpusMax number of cpus high range
-	CpusMax *string `form:"cpus_max,omitempty" json:"cpus_max,omitempty"`
+	// SchedulerUnset Schedule bits not set
+	SchedulerUnset *string `form:"scheduler_unset,omitempty" json:"scheduler_unset,omitempty"`
 
-	// CpusMin number of cpus low range
-	CpusMin             *string `form:"cpus_min,omitempty" json:"cpus_min,omitempty"`
-	SchedulerUnset      *string `form:"scheduler_unset,omitempty" json:"scheduler_unset,omitempty"`
-	ScheduledOnSubmit   *string `form:"scheduled_on_submit,omitempty" json:"scheduled_on_submit,omitempty"`
-	ScheduledByMain     *string `form:"scheduled_by_main,omitempty" json:"scheduled_by_main,omitempty"`
+	// ScheduledOnSubmit Job was started on submit
+	ScheduledOnSubmit *string `form:"scheduled_on_submit,omitempty" json:"scheduled_on_submit,omitempty"`
+
+	// ScheduledByMain Job was started from main scheduler
+	ScheduledByMain *string `form:"scheduled_by_main,omitempty" json:"scheduled_by_main,omitempty"`
+
+	// ScheduledByBackfill Job was started from backfill
 	ScheduledByBackfill *string `form:"scheduled_by_backfill,omitempty" json:"scheduled_by_backfill,omitempty"`
-	JobStarted          *string `form:"job_started,omitempty" json:"job_started,omitempty"`
 
-	// ExitCode job exit code (numeric)
-	ExitCode                 *string `form:"exit_code,omitempty" json:"exit_code,omitempty"`
-	ShowDuplicates           *string `form:"show_duplicates,omitempty" json:"show_duplicates,omitempty"`
-	SkipSteps                *string `form:"skip_steps,omitempty" json:"skip_steps,omitempty"`
+	// JobStarted Job start RPC was received
+	JobStarted *string `form:"job_started,omitempty" json:"job_started,omitempty"`
+
+	// ExitCode Job exit code (numeric)
+	ExitCode *string `form:"exit_code,omitempty" json:"exit_code,omitempty"`
+
+	// ShowDuplicates Include duplicate job entries
+	ShowDuplicates *string `form:"show_duplicates,omitempty" json:"show_duplicates,omitempty"`
+
+	// SkipSteps Exclude job step details
+	SkipSteps *string `form:"skip_steps,omitempty" json:"skip_steps,omitempty"`
+
+	// DisableTruncateUsageTime Do not truncate the time to usage_start and usage_end
 	DisableTruncateUsageTime *string `form:"disable_truncate_usage_time,omitempty" json:"disable_truncate_usage_time,omitempty"`
-	WholeHetjob              *string `form:"whole_hetjob,omitempty" json:"whole_hetjob,omitempty"`
-	DisableWholeHetjob       *string `form:"disable_whole_hetjob,omitempty" json:"disable_whole_hetjob,omitempty"`
-	DisableWaitForResult     *string `form:"disable_wait_for_result,omitempty" json:"disable_wait_for_result,omitempty"`
-	UsageTimeAsSubmitTime    *string `form:"usage_time_as_submit_time,omitempty" json:"usage_time_as_submit_time,omitempty"`
-	ShowBatchScript          *string `form:"show_batch_script,omitempty" json:"show_batch_script,omitempty"`
-	ShowJobEnvironment       *string `form:"show_job_environment,omitempty" json:"show_job_environment,omitempty"`
+
+	// WholeHetjob Include details on all hetjob components
+	WholeHetjob *string `form:"whole_hetjob,omitempty" json:"whole_hetjob,omitempty"`
+
+	// DisableWholeHetjob Only show details on specified hetjob components
+	DisableWholeHetjob *string `form:"disable_whole_hetjob,omitempty" json:"disable_whole_hetjob,omitempty"`
+
+	// DisableWaitForResult Tell dbd not to wait for the result
+	DisableWaitForResult *string `form:"disable_wait_for_result,omitempty" json:"disable_wait_for_result,omitempty"`
+
+	// UsageTimeAsSubmitTime Use usage_time as the submit_time of the job
+	UsageTimeAsSubmitTime *string `form:"usage_time_as_submit_time,omitempty" json:"usage_time_as_submit_time,omitempty"`
+
+	// ShowBatchScript Include job script
+	ShowBatchScript *string `form:"show_batch_script,omitempty" json:"show_batch_script,omitempty"`
+
+	// ShowJobEnvironment Include job environment
+	ShowJobEnvironment *string `form:"show_job_environment,omitempty" json:"show_job_environment,omitempty"`
 
 	// Format CSV format list
 	Format *string `form:"format,omitempty" json:"format,omitempty"`
@@ -8185,12 +11317,6 @@ type SlurmdbV0040GetJobsParams struct {
 
 	// JobName CSV job name list
 	JobName *string `form:"job_name,omitempty" json:"job_name,omitempty"`
-
-	// NodesMax number of nodes high range
-	NodesMax *string `form:"nodes_max,omitempty" json:"nodes_max,omitempty"`
-
-	// NodesMin number of nodes low range
-	NodesMin *string `form:"nodes_min,omitempty" json:"nodes_min,omitempty"`
 
 	// Partition CSV partition name list
 	Partition *string `form:"partition,omitempty" json:"partition,omitempty"`
@@ -8213,22 +11339,13 @@ type SlurmdbV0040GetJobsParams struct {
 	// Step CSV step id list
 	Step *string `form:"step,omitempty" json:"step,omitempty"`
 
-	// TimelimitMax maximum timelimit (seconds)
-	TimelimitMax *string `form:"timelimit_max,omitempty" json:"timelimit_max,omitempty"`
-
-	// TimelimitMin minimum timelimit (seconds)
-	TimelimitMin *string `form:"timelimit_min,omitempty" json:"timelimit_min,omitempty"`
-
-	// EndTime usage end timestamp
+	// EndTime Usage end (UNIX timestamp)
 	EndTime *string `form:"end_time,omitempty" json:"end_time,omitempty"`
 
-	// StartTime usage start timestamp
+	// StartTime Usage start (UNIX timestamp)
 	StartTime *string `form:"start_time,omitempty" json:"start_time,omitempty"`
 
-	// SubmitTime submit time timestamp
-	SubmitTime *string `form:"submit_time,omitempty" json:"submit_time,omitempty"`
-
-	// Node ranged node string where jobs ran
+	// Node Ranged node string where jobs ran
 	Node *string `form:"node,omitempty" json:"node,omitempty"`
 
 	// Users CSV user name list
@@ -8238,8 +11355,8 @@ type SlurmdbV0040GetJobsParams struct {
 	Wckey *string `form:"wckey,omitempty" json:"wckey,omitempty"`
 }
 
-// SlurmdbV0040GetQosParams defines parameters for SlurmdbV0040GetQos.
-type SlurmdbV0040GetQosParams struct {
+// SlurmdbV0041GetQosParams defines parameters for SlurmdbV0041GetQos.
+type SlurmdbV0041GetQosParams struct {
 	// Description CSV description list
 	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
@@ -8250,28 +11367,54 @@ type SlurmdbV0040GetQosParams struct {
 	Format *string `form:"format,omitempty" json:"format,omitempty"`
 
 	// Name CSV QOS name list
-	Name        *string                              `form:"name,omitempty" json:"name,omitempty"`
-	PreemptMode *SlurmdbV0040GetQosParamsPreemptMode `form:"preempt_mode,omitempty" json:"preempt_mode,omitempty"`
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// PreemptMode PreemptMode used when jobs in this QOS are preempted
+	PreemptMode *SlurmdbV0041GetQosParamsPreemptMode `form:"preempt_mode,omitempty" json:"preempt_mode,omitempty"`
 
 	// WithDeleted Include deleted QOS
 	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
 }
 
-// SlurmdbV0040GetQosParamsPreemptMode defines parameters for SlurmdbV0040GetQos.
-type SlurmdbV0040GetQosParamsPreemptMode string
+// SlurmdbV0041GetQosParamsPreemptMode defines parameters for SlurmdbV0041GetQos.
+type SlurmdbV0041GetQosParamsPreemptMode string
 
-// SlurmdbV0040GetSingleQosParams defines parameters for SlurmdbV0040GetSingleQos.
-type SlurmdbV0040GetSingleQosParams struct {
+// SlurmdbV0041PostQosParams defines parameters for SlurmdbV0041PostQos.
+type SlurmdbV0041PostQosParams struct {
+	// Description CSV description list
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// Id CSV QOS id list
+	Id *string `form:"id,omitempty" json:"id,omitempty"`
+
+	// Format CSV format list
+	Format *string `form:"format,omitempty" json:"format,omitempty"`
+
+	// Name CSV QOS name list
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// PreemptMode PreemptMode used when jobs in this QOS are preempted
+	PreemptMode *SlurmdbV0041PostQosParamsPreemptMode `form:"preempt_mode,omitempty" json:"preempt_mode,omitempty"`
+
+	// WithDeleted Include deleted QOS
+	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
+}
+
+// SlurmdbV0041PostQosParamsPreemptMode defines parameters for SlurmdbV0041PostQos.
+type SlurmdbV0041PostQosParamsPreemptMode string
+
+// SlurmdbV0041GetSingleQosParams defines parameters for SlurmdbV0041GetSingleQos.
+type SlurmdbV0041GetSingleQosParams struct {
 	// WithDeleted Query includes deleted QOS
 	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
 }
 
-// SlurmdbV0040GetUserParams defines parameters for SlurmdbV0040GetUser.
-type SlurmdbV0040GetUserParams struct {
+// SlurmdbV0041GetUserParams defines parameters for SlurmdbV0041GetUser.
+type SlurmdbV0041GetUserParams struct {
 	// WithDeleted Include deleted users
 	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
 
-	// WithAssocs Include assocations
+	// WithAssocs Include associations
 	WithAssocs *string `form:"with_assocs,omitempty" json:"with_assocs,omitempty"`
 
 	// WithCoords Include coordinators
@@ -8281,10 +11424,10 @@ type SlurmdbV0040GetUserParams struct {
 	WithWckeys *string `form:"with_wckeys,omitempty" json:"with_wckeys,omitempty"`
 }
 
-// SlurmdbV0040GetUsersParams defines parameters for SlurmdbV0040GetUsers.
-type SlurmdbV0040GetUsersParams struct {
+// SlurmdbV0041GetUsersParams defines parameters for SlurmdbV0041GetUsers.
+type SlurmdbV0041GetUsersParams struct {
 	// AdminLevel Administrator level
-	AdminLevel *SlurmdbV0040GetUsersParamsAdminLevel `form:"admin_level,omitempty" json:"admin_level,omitempty"`
+	AdminLevel *SlurmdbV0041GetUsersParamsAdminLevel `form:"admin_level,omitempty" json:"admin_level,omitempty"`
 
 	// DefaultAccount CSV default account list
 	DefaultAccount *string `form:"default_account,omitempty" json:"default_account,omitempty"`
@@ -8308,11 +11451,373 @@ type SlurmdbV0040GetUsersParams struct {
 	WithoutDefaults *string `form:"without_defaults,omitempty" json:"without_defaults,omitempty"`
 }
 
-// SlurmdbV0040GetUsersParamsAdminLevel defines parameters for SlurmdbV0040GetUsers.
-type SlurmdbV0040GetUsersParamsAdminLevel string
+// SlurmdbV0041GetUsersParamsAdminLevel defines parameters for SlurmdbV0041GetUsers.
+type SlurmdbV0041GetUsersParamsAdminLevel string
 
-// SlurmdbV0040GetWckeysParams defines parameters for SlurmdbV0040GetWckeys.
-type SlurmdbV0040GetWckeysParams struct {
+// SlurmdbV0041PostUsersAssociationJSONBody defines parameters for SlurmdbV0041PostUsersAssociation.
+type SlurmdbV0041PostUsersAssociationJSONBody struct {
+	// AssociationCondition Filters to select associations for users
+	AssociationCondition struct {
+		// Accounts CSV accounts list
+		Accounts *[]string `json:"accounts,omitempty"`
+
+		// Association Association limits and options
+		Association *struct {
+			// Comment Arbitrary comment
+			Comment *string `json:"comment,omitempty"`
+
+			// Defaultqos Default QOS
+			Defaultqos *string `json:"defaultqos,omitempty"`
+
+			// Fairshare Allocated shares used for fairshare calculation
+			Fairshare *int32 `json:"fairshare,omitempty"`
+
+			// Grpjobs Maximum number of running jobs in this association and its children
+			Grpjobs *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"grpjobs,omitempty"`
+
+			// Grpjobsaccrue Maximum number of pending jobs able to accrue age priority in this association and its children
+			Grpjobsaccrue *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"grpjobsaccrue,omitempty"`
+
+			// Grpsubmitjobs Maximum number of jobs which can be in a pending or running state at any time in this association and its children
+			Grpsubmitjobs *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"grpsubmitjobs,omitempty"`
+
+			// Grptres Maximum number of TRES able to be allocated by running jobs in this association and its children
+			Grptres *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"grptres,omitempty"`
+
+			// Grptresmins Total number of TRES minutes that can possibly be used by past, present and future jobs in this association and its children
+			Grptresmins *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"grptresmins,omitempty"`
+
+			// Grptresrunmins Maximum number of TRES minutes able to be allocated by running jobs in this association and its children
+			Grptresrunmins *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"grptresrunmins,omitempty"`
+
+			// Grpwall Maximum wall clock time in minutes able to be allocated by running jobs in this association and its children
+			Grpwall *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"grpwall,omitempty"`
+
+			// Maxjobs Maximum number of running jobs per user in this association
+			Maxjobs *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"maxjobs,omitempty"`
+
+			// Maxjobsaccrue Maximum number of pending jobs able to accrue age priority at any given time in this association
+			Maxjobsaccrue *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"maxjobsaccrue,omitempty"`
+
+			// Maxsubmitjobs Maximum number of jobs which can be in a pending or running state at any time in this association
+			Maxsubmitjobs *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"maxsubmitjobs,omitempty"`
+
+			// Maxtresminsperjob Maximum number of TRES minutes each job is able to use in this association
+			Maxtresminsperjob *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"maxtresminsperjob,omitempty"`
+
+			// Maxtresperjob Maximum number of TRES each job is able to use in this association
+			Maxtresperjob *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"maxtresperjob,omitempty"`
+
+			// Maxtrespernode Maximum number of TRES each node is able to use
+			Maxtrespernode *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"maxtrespernode,omitempty"`
+
+			// Maxtresrunmins Maximum number of TRES minutes able to be allocated by running jobs in this association
+			Maxtresrunmins *[]struct {
+				// Count TRES count (0 if listed generically)
+				Count *int64 `json:"count,omitempty"`
+
+				// Id ID used in database
+				Id *int32 `json:"id,omitempty"`
+
+				// Name TRES name (if applicable)
+				Name *string `json:"name,omitempty"`
+
+				// Type TRES type (CPU, MEM, etc)
+				Type string `json:"type"`
+			} `json:"maxtresrunmins,omitempty"`
+
+			// Maxwalldurationperjob Maximum wall clock time each job is able to use in this association
+			Maxwalldurationperjob *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"maxwalldurationperjob,omitempty"`
+
+			// Minpriothresh Minimum priority required to reserve resources when scheduling
+			Minpriothresh *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"minpriothresh,omitempty"`
+
+			// Parent Name of parent account
+			Parent *string `json:"parent,omitempty"`
+
+			// Priority Association priority factor
+			Priority *struct {
+				// Infinite True if number has been set to infinite; "set" and "number" will be ignored
+				Infinite *bool `json:"infinite,omitempty"`
+
+				// Number If "set" is True the number will be set with value; otherwise ignore number contents
+				Number *int32 `json:"number,omitempty"`
+
+				// Set True if number has been set; False if number is unset
+				Set *bool `json:"set,omitempty"`
+			} `json:"priority,omitempty"`
+
+			// Qoslevel List of available QOS names
+			Qoslevel *[]string `json:"qoslevel,omitempty"`
+		} `json:"association,omitempty"`
+
+		// Clusters CSV clusters list
+		Clusters *[]string `json:"clusters,omitempty"`
+
+		// Partitions CSV partitions list
+		Partitions *[]string `json:"partitions,omitempty"`
+
+		// Users CSV users list
+		Users []string `json:"users"`
+
+		// Wckeys CSV WCKeys list
+		Wckeys *[]string `json:"wckeys,omitempty"`
+	} `json:"association_condition"`
+
+	// Errors Query errors
+	Errors *[]struct {
+		// Description Long form error description
+		Description *string `json:"description,omitempty"`
+
+		// Error Short form error description
+		Error *string `json:"error,omitempty"`
+
+		// ErrorNumber Slurm numeric error identifier
+		ErrorNumber *int32 `json:"error_number,omitempty"`
+
+		// Source Source of error or where error was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"errors,omitempty"`
+
+	// Meta Slurm meta values
+	Meta *struct {
+		Client *struct {
+			// Group Client group (if known)
+			Group *string `json:"group,omitempty"`
+
+			// Source Client source description
+			Source *string `json:"source,omitempty"`
+
+			// User Client user (if known)
+			User *string `json:"user,omitempty"`
+		} `json:"client,omitempty"`
+
+		// Command CLI command (if applicable)
+		Command *[]string `json:"command,omitempty"`
+		Plugin  *struct {
+			// AccountingStorage Slurm accounting plugin
+			AccountingStorage *string `json:"accounting_storage,omitempty"`
+
+			// DataParser Slurm data_parser plugin
+			DataParser *string `json:"data_parser,omitempty"`
+
+			// Name Slurm plugin name (if applicable)
+			Name *string `json:"name,omitempty"`
+
+			// Type Slurm plugin type (if applicable)
+			Type *string `json:"type,omitempty"`
+		} `json:"plugin,omitempty"`
+		Slurm *struct {
+			// Cluster Slurm cluster name
+			Cluster *string `json:"cluster,omitempty"`
+
+			// Release Slurm release string
+			Release *string `json:"release,omitempty"`
+			Version *struct {
+				// Major Slurm release major version
+				Major *string `json:"major,omitempty"`
+
+				// Micro Slurm release micro version
+				Micro *string `json:"micro,omitempty"`
+
+				// Minor Slurm release minor version
+				Minor *string `json:"minor,omitempty"`
+			} `json:"version,omitempty"`
+		} `json:"slurm,omitempty"`
+	} `json:"meta,omitempty"`
+
+	// User Admin level of user, DefaultAccount, DefaultWCKey
+	User struct {
+		// Adminlevel AdminLevel granted to the user
+		Adminlevel *[]SlurmdbV0041PostUsersAssociationJSONBodyUserAdminlevel `json:"adminlevel,omitempty"`
+
+		// Defaultaccount Default account
+		Defaultaccount *string `json:"defaultaccount,omitempty"`
+
+		// Defaultwckey Default WCKey
+		Defaultwckey *string `json:"defaultwckey,omitempty"`
+	} `json:"user"`
+
+	// Warnings Query warnings
+	Warnings *[]struct {
+		// Description Long form warning description
+		Description *string `json:"description,omitempty"`
+
+		// Source Source of warning or where warning was first detected
+		Source *string `json:"source,omitempty"`
+	} `json:"warnings,omitempty"`
+}
+
+// SlurmdbV0041PostUsersAssociationParams defines parameters for SlurmdbV0041PostUsersAssociation.
+type SlurmdbV0041PostUsersAssociationParams struct {
+	// UpdateTime Filter partitions since update timestamp
+	UpdateTime *string `form:"update_time,omitempty" json:"update_time,omitempty"`
+
+	// Flags Query flags
+	Flags *SlurmdbV0041PostUsersAssociationParamsFlags `form:"flags,omitempty" json:"flags,omitempty"`
+}
+
+// SlurmdbV0041PostUsersAssociationParamsFlags defines parameters for SlurmdbV0041PostUsersAssociation.
+type SlurmdbV0041PostUsersAssociationParamsFlags string
+
+// SlurmdbV0041PostUsersAssociationJSONBodyUserAdminlevel defines parameters for SlurmdbV0041PostUsersAssociation.
+type SlurmdbV0041PostUsersAssociationJSONBodyUserAdminlevel string
+
+// SlurmdbV0041GetWckeysParams defines parameters for SlurmdbV0041GetWckeys.
+type SlurmdbV0041GetWckeysParams struct {
 	// Cluster CSV cluster name list
 	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
 
@@ -8325,123 +11830,99 @@ type SlurmdbV0040GetWckeysParams struct {
 	// Name CSV name list
 	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
-	// OnlyDefaults only query defaults
+	// OnlyDefaults Only query defaults
 	OnlyDefaults *string `form:"only_defaults,omitempty" json:"only_defaults,omitempty"`
 
-	// UsageEnd usage end UNIX timestamp (seconds)
+	// UsageEnd Usage end (UNIX timestamp)
 	UsageEnd *string `form:"usage_end,omitempty" json:"usage_end,omitempty"`
 
-	// UsageStart usage start UNIX timestamp (seconds)
+	// UsageStart Usage start (UNIX timestamp)
 	UsageStart *string `form:"usage_start,omitempty" json:"usage_start,omitempty"`
 
 	// User CSV user list
 	User *string `form:"user,omitempty" json:"user,omitempty"`
 
-	// WithUsage include usage with query
+	// WithUsage Include usage
 	WithUsage *string `form:"with_usage,omitempty" json:"with_usage,omitempty"`
 
-	// WithDeleted include deleted wckeys with query
+	// WithDeleted Include deleted wckeys
 	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
 }
 
-// SlurmV0038SubmitJobJSONRequestBody defines body for SlurmV0038SubmitJob for application/json ContentType.
-type SlurmV0038SubmitJobJSONRequestBody = V0038JobSubmission
+// SlurmdbV0041PostWckeysParams defines parameters for SlurmdbV0041PostWckeys.
+type SlurmdbV0041PostWckeysParams struct {
+	// Cluster CSV cluster name list
+	Cluster *string `form:"cluster,omitempty" json:"cluster,omitempty"`
 
-// SlurmV0038UpdateJobJSONRequestBody defines body for SlurmV0038UpdateJob for application/json ContentType.
-type SlurmV0038UpdateJobJSONRequestBody = V0038JobProperties
+	// Format CSV format name list
+	Format *string `form:"format,omitempty" json:"format,omitempty"`
 
-// SlurmV0039SubmitJobJSONRequestBody defines body for SlurmV0039SubmitJob for application/json ContentType.
-type SlurmV0039SubmitJobJSONRequestBody = V0039JobSubmission
+	// Id CSV id list
+	Id *string `form:"id,omitempty" json:"id,omitempty"`
 
-// SlurmV0039UpdateJobJSONRequestBody defines body for SlurmV0039UpdateJob for application/json ContentType.
-type SlurmV0039UpdateJobJSONRequestBody = V0039JobDescMsg
+	// Name CSV name list
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
 
-// SlurmV0039UpdateNodeJSONRequestBody defines body for SlurmV0039UpdateNode for application/json ContentType.
-type SlurmV0039UpdateNodeJSONRequestBody = V0039UpdateNodeMsg
+	// OnlyDefaults Only query defaults
+	OnlyDefaults *string `form:"only_defaults,omitempty" json:"only_defaults,omitempty"`
 
-// SlurmV0040PostJobSubmitJSONRequestBody defines body for SlurmV0040PostJobSubmit for application/json ContentType.
-type SlurmV0040PostJobSubmitJSONRequestBody = V0040JobSubmitReq
+	// UsageEnd Usage end (UNIX timestamp)
+	UsageEnd *string `form:"usage_end,omitempty" json:"usage_end,omitempty"`
 
-// SlurmV0040PostJobJSONRequestBody defines body for SlurmV0040PostJob for application/json ContentType.
-type SlurmV0040PostJobJSONRequestBody = V0040JobDescMsg
+	// UsageStart Usage start (UNIX timestamp)
+	UsageStart *string `form:"usage_start,omitempty" json:"usage_start,omitempty"`
 
-// SlurmV0040PostNodeJSONRequestBody defines body for SlurmV0040PostNode for application/json ContentType.
-type SlurmV0040PostNodeJSONRequestBody = V0040UpdateNodeMsg
+	// User CSV user list
+	User *string `form:"user,omitempty" json:"user,omitempty"`
 
-// SlurmdbV0038UpdateAccountJSONRequestBody defines body for SlurmdbV0038UpdateAccount for application/json ContentType.
-type SlurmdbV0038UpdateAccountJSONRequestBody = Dbv0038UpdateAccount
+	// WithUsage Include usage
+	WithUsage *string `form:"with_usage,omitempty" json:"with_usage,omitempty"`
 
-// SlurmdbV0038UpdateAssociationsJSONRequestBody defines body for SlurmdbV0038UpdateAssociations for application/json ContentType.
-type SlurmdbV0038UpdateAssociationsJSONRequestBody = Dbv0038AssociationsInfo
+	// WithDeleted Include deleted wckeys
+	WithDeleted *string `form:"with_deleted,omitempty" json:"with_deleted,omitempty"`
+}
 
-// SlurmdbV0038AddClustersJSONRequestBody defines body for SlurmdbV0038AddClusters for application/json ContentType.
-type SlurmdbV0038AddClustersJSONRequestBody = Dbv0038ClustersProperties
+// SlurmV0041PostJobAllocateJSONRequestBody defines body for SlurmV0041PostJobAllocate for application/json ContentType.
+type SlurmV0041PostJobAllocateJSONRequestBody SlurmV0041PostJobAllocateJSONBody
 
-// SlurmdbV0038SetConfigJSONRequestBody defines body for SlurmdbV0038SetConfig for application/json ContentType.
-type SlurmdbV0038SetConfigJSONRequestBody = Dbv0038SetConfig
+// SlurmV0041PostJobSubmitJSONRequestBody defines body for SlurmV0041PostJobSubmit for application/json ContentType.
+type SlurmV0041PostJobSubmitJSONRequestBody SlurmV0041PostJobSubmitJSONBody
 
-// SlurmdbV0038UpdateQosJSONRequestBody defines body for SlurmdbV0038UpdateQos for application/json ContentType.
-type SlurmdbV0038UpdateQosJSONRequestBody = Dbv0038UpdateQos
+// SlurmV0041PostJobJSONRequestBody defines body for SlurmV0041PostJob for application/json ContentType.
+type SlurmV0041PostJobJSONRequestBody SlurmV0041PostJobJSONBody
 
-// SlurmdbV0038UpdateTresJSONRequestBody defines body for SlurmdbV0038UpdateTres for application/json ContentType.
-type SlurmdbV0038UpdateTresJSONRequestBody = Dbv0038TresUpdate
+// SlurmV0041DeleteJobsJSONRequestBody defines body for SlurmV0041DeleteJobs for application/json ContentType.
+type SlurmV0041DeleteJobsJSONRequestBody SlurmV0041DeleteJobsJSONBody
 
-// SlurmdbV0038UpdateUsersJSONRequestBody defines body for SlurmdbV0038UpdateUsers for application/json ContentType.
-type SlurmdbV0038UpdateUsersJSONRequestBody = Dbv0038UpdateUsers
+// SlurmV0041PostNodeJSONRequestBody defines body for SlurmV0041PostNode for application/json ContentType.
+type SlurmV0041PostNodeJSONRequestBody SlurmV0041PostNodeJSONBody
 
-// SlurmdbV0038AddWckeysJSONRequestBody defines body for SlurmdbV0038AddWckeys for application/json ContentType.
-type SlurmdbV0038AddWckeysJSONRequestBody = Dbv0038WckeyInfo
+// SlurmdbV0041PostAccountsJSONRequestBody defines body for SlurmdbV0041PostAccounts for application/json ContentType.
+type SlurmdbV0041PostAccountsJSONRequestBody = V0041OpenapiAccountsResp
 
-// SlurmdbV0039UpdateAccountsJSONRequestBody defines body for SlurmdbV0039UpdateAccounts for application/json ContentType.
-type SlurmdbV0039UpdateAccountsJSONRequestBody = Dbv0039AccountInfo
+// SlurmdbV0041PostAccountsAssociationJSONRequestBody defines body for SlurmdbV0041PostAccountsAssociation for application/json ContentType.
+type SlurmdbV0041PostAccountsAssociationJSONRequestBody SlurmdbV0041PostAccountsAssociationJSONBody
 
-// SlurmdbV0039UpdateAssociationsJSONRequestBody defines body for SlurmdbV0039UpdateAssociations for application/json ContentType.
-type SlurmdbV0039UpdateAssociationsJSONRequestBody = Dbv0039AssociationsInfo
+// SlurmdbV0041PostAssociationsJSONRequestBody defines body for SlurmdbV0041PostAssociations for application/json ContentType.
+type SlurmdbV0041PostAssociationsJSONRequestBody = V0041OpenapiAssocsResp
 
-// SlurmdbV0039AddClustersJSONRequestBody defines body for SlurmdbV0039AddClusters for application/json ContentType.
-type SlurmdbV0039AddClustersJSONRequestBody = Dbv0039ClustersInfo
+// SlurmdbV0041PostClustersJSONRequestBody defines body for SlurmdbV0041PostClusters for application/json ContentType.
+type SlurmdbV0041PostClustersJSONRequestBody = V0041OpenapiClustersResp
 
-// SlurmdbV0039SetConfigJSONRequestBody defines body for SlurmdbV0039SetConfig for application/json ContentType.
-type SlurmdbV0039SetConfigJSONRequestBody = Dbv0039SetConfig
+// SlurmdbV0041PostConfigJSONRequestBody defines body for SlurmdbV0041PostConfig for application/json ContentType.
+type SlurmdbV0041PostConfigJSONRequestBody = V0041OpenapiSlurmdbdConfigResp
 
-// SlurmdbV0039UpdateQosJSONRequestBody defines body for SlurmdbV0039UpdateQos for application/json ContentType.
-type SlurmdbV0039UpdateQosJSONRequestBody = Dbv0039UpdateQos
+// SlurmdbV0041PostQosJSONRequestBody defines body for SlurmdbV0041PostQos for application/json ContentType.
+type SlurmdbV0041PostQosJSONRequestBody = V0041OpenapiSlurmdbdQosResp
 
-// SlurmdbV0039UpdateTresJSONRequestBody defines body for SlurmdbV0039UpdateTres for application/json ContentType.
-type SlurmdbV0039UpdateTresJSONRequestBody = Dbv0039TresUpdate
+// SlurmdbV0041PostTresJSONRequestBody defines body for SlurmdbV0041PostTres for application/json ContentType.
+type SlurmdbV0041PostTresJSONRequestBody = V0041OpenapiTresResp
 
-// SlurmdbV0039UpdateUsersJSONRequestBody defines body for SlurmdbV0039UpdateUsers for application/json ContentType.
-type SlurmdbV0039UpdateUsersJSONRequestBody = Dbv0039UpdateUsers
+// SlurmdbV0041PostUsersJSONRequestBody defines body for SlurmdbV0041PostUsers for application/json ContentType.
+type SlurmdbV0041PostUsersJSONRequestBody = V0041OpenapiUsersResp
 
-// SlurmdbV0039AddWckeysJSONRequestBody defines body for SlurmdbV0039AddWckeys for application/json ContentType.
-type SlurmdbV0039AddWckeysJSONRequestBody = Dbv0039WckeyInfo
+// SlurmdbV0041PostUsersAssociationJSONRequestBody defines body for SlurmdbV0041PostUsersAssociation for application/json ContentType.
+type SlurmdbV0041PostUsersAssociationJSONRequestBody SlurmdbV0041PostUsersAssociationJSONBody
 
-// SlurmdbV0040PostAccountsJSONRequestBody defines body for SlurmdbV0040PostAccounts for application/json ContentType.
-type SlurmdbV0040PostAccountsJSONRequestBody = V0040OpenapiAccountsResp
-
-// SlurmdbV0040PostAccountsAssociationJSONRequestBody defines body for SlurmdbV0040PostAccountsAssociation for application/json ContentType.
-type SlurmdbV0040PostAccountsAssociationJSONRequestBody = V0040OpenapiAccountsAddCondResp
-
-// SlurmdbV0040PostAssociationsJSONRequestBody defines body for SlurmdbV0040PostAssociations for application/json ContentType.
-type SlurmdbV0040PostAssociationsJSONRequestBody = V0040OpenapiAssocsResp
-
-// SlurmdbV0040PostClustersJSONRequestBody defines body for SlurmdbV0040PostClusters for application/json ContentType.
-type SlurmdbV0040PostClustersJSONRequestBody = V0040OpenapiClustersResp
-
-// SlurmdbV0040PostConfigJSONRequestBody defines body for SlurmdbV0040PostConfig for application/json ContentType.
-type SlurmdbV0040PostConfigJSONRequestBody = V0040OpenapiSlurmdbdConfigResp
-
-// SlurmdbV0040PostQosJSONRequestBody defines body for SlurmdbV0040PostQos for application/json ContentType.
-type SlurmdbV0040PostQosJSONRequestBody = V0040OpenapiSlurmdbdQosResp
-
-// SlurmdbV0040PostTresJSONRequestBody defines body for SlurmdbV0040PostTres for application/json ContentType.
-type SlurmdbV0040PostTresJSONRequestBody = V0040OpenapiTresResp
-
-// SlurmdbV0040PostUsersJSONRequestBody defines body for SlurmdbV0040PostUsers for application/json ContentType.
-type SlurmdbV0040PostUsersJSONRequestBody = V0040OpenapiUsersResp
-
-// SlurmdbV0040PostUsersAssociationJSONRequestBody defines body for SlurmdbV0040PostUsersAssociation for application/json ContentType.
-type SlurmdbV0040PostUsersAssociationJSONRequestBody = V0040OpenapiUsersAddCondResp
-
-// SlurmdbV0040PostWckeysJSONRequestBody defines body for SlurmdbV0040PostWckeys for application/json ContentType.
-type SlurmdbV0040PostWckeysJSONRequestBody = V0040OpenapiWckeyResp
+// SlurmdbV0041PostWckeysJSONRequestBody defines body for SlurmdbV0041PostWckeys for application/json ContentType.
+type SlurmdbV0041PostWckeysJSONRequestBody = V0041OpenapiWckeyResp

@@ -11,4 +11,4 @@ run:
 	go run cmd/prometheus-slurm-exporter/main.go
 
 openapi:
-	oapi-codegen -config=oapi-codegen-config.yml types openapi-specs/v0.0.41.json
+	oapi-codegen -config=oapi-codegen-config.yml openapi-specs/v0.0.41.json
