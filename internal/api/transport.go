@@ -69,7 +69,7 @@ func (sr slurmRestRequest) Send() (*SlurmRestResponse, error) {
 	if err != nil {
 		fmt.Printf("failed to dump response: %v", err)
 	}
-	fmt.Printf("%+v", dump)
+	fmt.Printf("%s", string(dump))
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
