@@ -3,7 +3,6 @@ package slurm
 import (
 	"context"
 	"log/slog"
-	"strings"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/prometheus/client_golang/prometheus"
