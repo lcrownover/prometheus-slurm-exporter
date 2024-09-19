@@ -70,25 +70,24 @@ func main() {
 
 	r := prometheus.NewRegistry()
 
-	// r.MustRegister(slurm.NewAccountsCollector(ctx)) // from accounts.go
-	// r.MustRegister(slurm.NewCPUsCollector(ctx)) // from cpus.go
-	// r.MustRegister(slurm.NewGPUsCollector(ctx)) // from gpus.go
-	// r.MustRegister(slurm.NewNodesCollector(ctx))      // from nodes.go
-	// r.MustRegister(slurm.NewNodeCollector(ctx)) // from node.go
+	// r.MustRegister(slurm.NewAccountsCollector(ctx))
+	// r.MustRegister(slurm.NewCPUsCollector(ctx))
+	// r.MustRegister(slurm.NewGPUsCollector(ctx))
+	// r.MustRegister(slurm.NewNodesCollector(ctx))
+	// r.MustRegister(slurm.NewNodeCollector(ctx))
 
 	// TODO: write and test this
-	// r.MustRegister(slurm.NewPartitionsCollector(ctx)) // from partitions.go
-	// r.MustRegister(slurm.NewPartitionsCollectorOld()) // from zold_partitions.go
+	// r.MustRegister(slurm.NewPartitionsCollector(ctx))
+	// r.MustRegister(slurm.NewPartitionsCollectorOld())
 
 	// TODO: json parsing bug
-	// r.MustRegister(slurm.NewFairShareCollector(ctx)) // from sshare.go
-	// r.MustRegister(slurm.NewFairShareCollectorOld()) // from sshare.go
+	// r.MustRegister(slurm.NewFairShareCollector(ctx))
+	// r.MustRegister(slurm.NewFairShareCollectorOld())
 
-	// r.MustRegister(slurm.NewQueueCollector(ctx)) // from queue.go
-	// r.MustRegister(slurm.NewSchedulerCollector(ctx)) // from scheduler.go
+	// r.MustRegister(slurm.NewQueueCollector(ctx))
+	// r.MustRegister(slurm.NewSchedulerCollector(ctx))
 
-	// r.MustRegister(slurm.NewUsersCollector(ctx)) // from users.go
-	r.MustRegister(slurm.NewUsersCollectorOld()) // from users.go
+	r.MustRegister(slurm.NewUsersCollectorOld())
 
 	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 
