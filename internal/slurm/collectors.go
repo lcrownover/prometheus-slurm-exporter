@@ -2,9 +2,7 @@ package slurm
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
-	"os"
 	"strings"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
