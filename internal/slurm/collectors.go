@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
+	"strings"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/prometheus/client_golang/prometheus"
@@ -559,11 +560,14 @@ func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
 	sharesRespBytes, err := api.GetSlurmRestSharesResponse(fsc.ctx)
 	fmt.Printf("resp bytes: %s\n", string(sharesRespBytes))
 	os.WriteFile("/tmp/shares-api.json", sharesRespBytes, 0600)
+	sharesRespString := string(sharesRespBytes)
+	newSharesResponseString := strings.ReplaceAll(sharesRespString, "Infinity", "1.7976931348623157e+308")
 	if err != nil {
 		slog.Error("failed to get shares response for fair share metrics", "error", err)
 		return
 	}
-	sharesResp, err := api.UnmarshalSharesResponse(sharesRespBytes)
+	sharesResp, err := api.UnmarshalSharesResponse([]byte(newSharesResponseString))
+	// sharesResp, err := api.UnmarshalSharesResponse(sharesRespBytes)
 	if err != nil {
 		slog.Error("failed to unmarshal shares response for fair share metrics", "error", err)
 		return
