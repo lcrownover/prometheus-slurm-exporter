@@ -5,7 +5,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	"os"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 )
