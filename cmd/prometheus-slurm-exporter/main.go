@@ -85,8 +85,8 @@ func main() {
 	r.MustRegister(slurm.NewFairShareCollector(ctx)) // from sshare.go
 	r.MustRegister(slurm.NewFairShareCollectorOld()) // from sshare.go
 
-	// r.MustRegister(slurm.NewUsersCollector(ctx)) // from users.go
-	// r.MustRegister(slurm.NewUsersCollectorOld()) // from users.go
+	r.MustRegister(slurm.NewUsersCollector(ctx)) // from users.go
+	r.MustRegister(slurm.NewUsersCollectorOld()) // from users.go
 
 	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 
