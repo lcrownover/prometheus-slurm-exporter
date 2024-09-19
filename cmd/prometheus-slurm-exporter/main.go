@@ -87,6 +87,7 @@ func main() {
 	// r.MustRegister(slurm.NewQueueCollector(ctx))
 	// r.MustRegister(slurm.NewSchedulerCollector(ctx))
 
+	// r.MustRegister(slurm.NewUsersCollector(ctx))
 	r.MustRegister(slurm.NewUsersCollectorOld())
 
 	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
