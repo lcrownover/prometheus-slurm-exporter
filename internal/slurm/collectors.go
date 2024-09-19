@@ -615,6 +615,10 @@ func (uc *UsersCollector) Collect(ch chan<- prometheus.Metric) {
 		return
 	}
 	um, err := ParseUsersMetrics(*jobsResp)
+	if err != nil {
+		slog.Error("failed to collect user metrics", "error", err)
+		return
+	}
 	for u := range um {
 		if um[u].pending > 0 {
 			ch <- prometheus.MustNewConstMetric(uc.pending, prometheus.GaugeValue, um[u].pending, u)
