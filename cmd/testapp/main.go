@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	b, err := os.ReadFile("/tmp/shares.json")
+	b, err := os.ReadFile("/tmp/shares-api.json")
 	if err != nil {
 		fmt.Printf("failed to read file: %v\n", err)
 	}
