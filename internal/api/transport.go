@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"log/slog"
 	"net/http"
 	"strings"
 
@@ -38,6 +39,7 @@ func newSlurmRestRequest(ctx context.Context, k types.Key) (*slurmRestRequest, e
 	apiEndpoint := ctx.Value(k).(string)
 
 	url := fmt.Sprintf("http://%s/%s", apiURL, apiEndpoint)
+	slog.Info(url)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err

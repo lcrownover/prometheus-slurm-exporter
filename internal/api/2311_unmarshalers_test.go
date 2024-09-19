@@ -41,7 +41,7 @@ func TestUnmarshalPartitionsResponse(t *testing.T) {
 }
 
 func TestUnmarshalSharesResponse(t *testing.T) {
-	fb := util.ReadTestDataBytes("V0041OpenapiSharesResp.json")
+	fb := util.ReadTestDataBytes("V0040OpenapiSharesResp.json")
 	_, err := UnmarshalSharesResponse(fb)
 	if err != nil {
 		t.Fatalf("failed to unmarshal shares response: %v\n", err)
