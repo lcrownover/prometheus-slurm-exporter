@@ -44,7 +44,7 @@ func newSlurmRestRequest(ctx context.Context, k types.Key) (*slurmRestRequest, e
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Accept", "application/json")
 	req.Header.Set("X-SLURM-USER-NAME", apiUser)
 	req.Header.Set("X-SLURM-USER-TOKEN", apiToken)
 

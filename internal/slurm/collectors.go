@@ -563,7 +563,7 @@ func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
 	// this is disgusting but the response has values of "Infinity" which are 
 	// not json unmarshal-able, so I manually replace all the "Infinity"s with the correct
 	// float64 value that represents Infinity.
-	sharesRespBytes = []byte(strings.ReplaceAll(string(sharesRespBytes), "Infinity", "1.7976931348623157e+308"))
+	// sharesRespBytes = []byte(strings.ReplaceAll(string(sharesRespBytes), "Infinity", "1.7976931348623157e+308"))
 
 	sharesResp, err := api.UnmarshalSharesResponse(sharesRespBytes)
 	if err != nil {
