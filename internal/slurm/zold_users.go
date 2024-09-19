@@ -74,9 +74,9 @@ type UsersCollectorOld struct {
 	suspended    *prometheus.Desc
 }
 
-func NewUsersCollectorOld() *UsersCollector {
+func NewUsersCollectorOld() *UsersCollectorOld {
 	labels := []string{"user"}
-	return &UsersCollector{
+	return &UsersCollectorOld{
 		pending:      prometheus.NewDesc("slurm_old_user_jobs_pending", "Pending jobs for user", labels, nil),
 		pending_cpus: prometheus.NewDesc("slurm_old_user_cpus_pending", "Pending jobs for user", labels, nil),
 		running:      prometheus.NewDesc("slurm_old_user_jobs_running", "Running jobs for user", labels, nil),
