@@ -557,7 +557,7 @@ func (fsc *FairShareCollector) Describe(ch chan<- *prometheus.Desc) {
 
 func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
 	sharesRespBytes, err := api.GetSlurmRestSharesResponse(fsc.ctx)
-	fmt.Printf("resp bytes: %v\n", sharesRespBytes)
+	fmt.Printf("resp bytes: %s\n", string(sharesRespBytes))
 	os.WriteFile("/tmp/shares-api.json", sharesRespBytes, 0600)
 	if err != nil {
 		slog.Error("failed to get shares response for fair share metrics", "error", err)

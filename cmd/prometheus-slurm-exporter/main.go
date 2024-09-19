@@ -81,7 +81,6 @@ func main() {
 	// r.MustRegister(slurm.NewPartitionsCollectorOld())
 
 	// TODO: json parsing bug
-	log.Printf("registering fair share collector")
 	r.MustRegister(slurm.NewFairShareCollector(ctx))
 	// r.MustRegister(slurm.NewFairShareCollectorOld())
 
