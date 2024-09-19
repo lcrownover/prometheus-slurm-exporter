@@ -1,3 +1,5 @@
+//go:build 2311
+
 package slurm
 
 import (

@@ -25,7 +25,7 @@ func GetJobState(job types.V0040JobInfo) (*types.JobState, error) {
 		// job state is not found in the job response
 		return nil, fmt.Errorf("job state not found in job")
 	}
-	state := (*states)[0].(string)
+	state := string((*states)[0])
 	state = strings.ToLower(state)
 
 	completed := regexp.MustCompile(`^completed`)
@@ -96,7 +96,7 @@ func GetNodeStates(node types.V0040Node) (*[]types.NodeState, error) {
 	}
 
 	for _, s := range *states {
-		state := s.(string)
+		state := string(s)
 		state = strings.ToLower(state)
 
 		alloc := regexp.MustCompile(`^alloc`)

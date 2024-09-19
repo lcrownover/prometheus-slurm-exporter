@@ -1,3 +1,5 @@
+//go:build 2405
+
 package slurm
 
 import (
@@ -8,7 +10,7 @@ import (
 )
 
 func TestParseAccountMetrics(t *testing.T) {
-	fb := util.ReadTestDataBytes("V0040OpenapiJobInfoResp.json")
+	fb := util.ReadTestDataBytes("V0041OpenapiJobInfoResp.json")
 	jobsResp, _ := api.UnmarshalJobsResponse(fb)
 	_, err := ParseAccountsMetrics(jobsResp.Jobs)
 	if err != nil {
