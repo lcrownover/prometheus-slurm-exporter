@@ -1,7 +1,6 @@
 package api
 
 import (
-	"bytes"
 	"context"
 	"fmt"
 	"log/slog"
@@ -71,6 +70,5 @@ func GetSlurmRestSharesResponse(ctx context.Context) ([]byte, error) {
 		slog.Debug("incorrect status code for shares data", "code", resp.StatusCode, "body", string(resp.Body))
 		return nil, fmt.Errorf("received incorrect status code for shares data")
 	}
-	body := bytes.TrimPrefix(resp.Body, []byte("\xef\xbb\xbf"))
-	return body, nil
+	return resp.Body, nil
 }
