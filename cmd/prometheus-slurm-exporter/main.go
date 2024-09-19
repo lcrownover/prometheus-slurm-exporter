@@ -81,14 +81,12 @@ func main() {
 	// r.MustRegister(slurm.NewPartitionsCollectorOld())
 
 	// TODO: json parsing bug
-	// r.MustRegister(slurm.NewFairShareCollector(ctx))
+	r.MustRegister(slurm.NewFairShareCollector(ctx))
 	// r.MustRegister(slurm.NewFairShareCollectorOld())
 
 	// r.MustRegister(slurm.NewQueueCollector(ctx))
 	// r.MustRegister(slurm.NewSchedulerCollector(ctx))
-
-	r.MustRegister(slurm.NewUsersCollector(ctx))
-	r.MustRegister(slurm.NewUsersCollectorOld())
+	// r.MustRegister(slurm.NewUsersCollector(ctx))
 
 	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 
