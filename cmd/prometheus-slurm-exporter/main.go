@@ -80,13 +80,14 @@ func main() {
 	// r.MustRegister(slurm.NewPartitionsCollectorOld()) // from zold_partitions.go
 
 	// r.MustRegister(slurm.NewQueueCollector(ctx)) // from queue.go
-	// r.MustRegister(slurm.NewSchedulerCollector(ctx)) // from scheduler.go
+
+	r.MustRegister(slurm.NewSchedulerCollector(ctx)) // from scheduler.go
 
 	r.MustRegister(slurm.NewFairShareCollector(ctx)) // from sshare.go
 	r.MustRegister(slurm.NewFairShareCollectorOld()) // from sshare.go
 
-	r.MustRegister(slurm.NewUsersCollector(ctx)) // from users.go
-	r.MustRegister(slurm.NewUsersCollectorOld()) // from users.go
+	// r.MustRegister(slurm.NewUsersCollector(ctx)) // from users.go
+	// r.MustRegister(slurm.NewUsersCollectorOld()) // from users.go
 
 	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 
