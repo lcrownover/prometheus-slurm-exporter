@@ -559,7 +559,6 @@ func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get shares response for fair share metrics", "error", err)
 		return
 	}
-	slog.Info("sharesRespBytes", "string(sharesRespBytes)", string(sharesRespBytes))
 	sharesResp, err := api.UnmarshalSharesResponse(sharesRespBytes)
 	if err != nil {
 		slog.Error("failed to unmarshal shares response for fair share metrics", "error", err)
