@@ -6,7 +6,6 @@ import (
 	"io"
 	"log/slog"
 	"net/http"
-	"net/http/httputil"
 	"strings"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
@@ -64,12 +63,6 @@ func (sr slurmRestRequest) Send() (*SlurmRestResponse, error) {
 		return nil, fmt.Errorf("failed to send request: %v", err)
 	}
 	defer resp.Body.Close()
-
-	dump, err := httputil.DumpResponse(resp, false)
-	if err != nil {
-		fmt.Printf("failed to dump response: %v", err)
-	}
-	fmt.Printf("%s", string(dump))
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
