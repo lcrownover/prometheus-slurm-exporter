@@ -80,9 +80,8 @@ func main() {
 	// r.MustRegister(slurm.NewPartitionsCollector(ctx))
 	// r.MustRegister(slurm.NewPartitionsCollectorOld())
 
-	// TODO: json parsing bug
 	r.MustRegister(slurm.NewFairShareCollector(ctx))
-	// r.MustRegister(slurm.NewFairShareCollectorOld())
+	r.MustRegister(slurm.NewFairShareCollectorOld())
 
 	// r.MustRegister(slurm.NewQueueCollector(ctx))
 	// r.MustRegister(slurm.NewSchedulerCollector(ctx))
