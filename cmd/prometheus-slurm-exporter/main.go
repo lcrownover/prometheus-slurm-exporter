@@ -80,9 +80,7 @@ func main() {
 	// r.MustRegister(slurm.NewPartitionsCollector(ctx))
 	// r.MustRegister(slurm.NewPartitionsCollectorOld())
 
-	r.MustRegister(slurm.NewFairShareCollector(ctx))
-	r.MustRegister(slurm.NewFairShareCollectorOld())
-
+	// r.MustRegister(slurm.NewFairShareCollector(ctx))
 	// r.MustRegister(slurm.NewQueueCollector(ctx))
 	// r.MustRegister(slurm.NewSchedulerCollector(ctx))
 	// r.MustRegister(slurm.NewUsersCollector(ctx))
