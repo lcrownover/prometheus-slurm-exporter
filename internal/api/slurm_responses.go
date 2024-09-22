@@ -10,7 +10,7 @@ import (
 
 // GetSlurmRestDiagResponse retrieves the diagnostic data respose from slurm api
 func GetSlurmRestDiagResponse(ctx context.Context) ([]byte, error) {
-	cache := ctx.Value(types.ApiCacheKey).(*ApiCache)
+	cache := ctx.Value(types.ApiCacheKey).(ApiCache)
 	data, found := cache.Get("diag")
 	if !found || cache.IsExpired() {
 		resp, err := newSlurmGETRequest(ctx, types.ApiDiagEndpointKey)
