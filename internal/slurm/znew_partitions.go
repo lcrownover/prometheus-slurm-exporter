@@ -5,10 +5,10 @@ package slurm
 import (
 	"context"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"log/slog"
 	"os/exec"
-	"strings"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
@@ -172,7 +172,17 @@ func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to unmarshal jobs response for partitions metrics", "error", err)
 		return
 	}
-	pm, err := ParsePartitionsMetrics(*partitionsResp, *jobsResp)
+	nodeRespBytes, err := api.GetSlurmRestNodesResponse(pc.ctx)
+	if err != nil {
+		slog.Error("failed to get nodes response for partition metrics", "error", err)
+		return
+	}
+	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes)
+	if err != nil {
+		slog.Error("failed to unmarshal nodes response for partition metrics", "error", err)
+		return
+	}
+	pm, err := ParsePartitionsMetrics(*partitionsResp, *jobsResp, *nodesResp)
 	if err != nil {
 		slog.Error("failed to collect partitions metrics", "error", err)
 		return
