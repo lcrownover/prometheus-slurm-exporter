@@ -34,6 +34,9 @@ func MetricsHandler(r *prometheus.Registry, ctx context.Context) http.HandlerFun
 
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx = beforeCollect(ctx)
+		c := ctx.Value(types.ApiCacheKey).(*cache.Cache)
+		v, _ := c.Get("diag")
+		slog.Info("diag out", "v", v)
 		h.ServeHTTP(w, r)
 		afterCollect(ctx)
 	}
