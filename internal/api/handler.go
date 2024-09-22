@@ -4,7 +4,6 @@ import (
 	"context"
 	"log/slog"
 	"net/http"
-	"time"
 
 	"github.com/akyoto/cache"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"

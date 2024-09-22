@@ -689,6 +689,7 @@ func (pc *PartitionsCollector) Describe(ch chan<- *prometheus.Desc) {
 
 func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
 	apiCache := pc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	slog.Info("cache", "out", fmt.Sprintf("%+v", apiCache))
 	partitionRespBytes, found := apiCache.Get("partitions")
 	if !found {
 		slog.Error("failed to get partitions response for partitions metrics from cache")

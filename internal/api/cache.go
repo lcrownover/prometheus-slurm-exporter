@@ -3,7 +3,6 @@ package api
 import (
 	"context"
 	"fmt"
-	"log/slog"
 	"sync"
 
 	"github.com/akyoto/cache"
