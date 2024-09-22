@@ -61,7 +61,7 @@ func main() {
 	}
 	apiCacheTimeout, err := api.ParseCacheTimeoutSeconds(apiCacheTimeoutSecondsStr)
 	if err != nil {
-		fmt.Println("Invalid value for SLURM_EXPORTER_API_CACHE_TIMEOUT_SECONDS")
+		fmt.Printf("Invalid value for SLURM_EXPORTER_API_CACHE_TIMEOUT_SECONDS: %v", err)
 		os.Exit(1)
 	}
 

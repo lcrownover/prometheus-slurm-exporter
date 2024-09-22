@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -39,7 +40,7 @@ func (ac *ApiCache) Clear() {
 func ParseCacheTimeoutSeconds(apiCacheTimeoutSecondsStr string) (time.Duration, error) {
 	apiCacheTimeout, err := time.ParseDuration(apiCacheTimeoutSecondsStr)
 	if err != nil {
-		return 0, err
+		return 0, fmt.Errorf("failed to parse cache timeout seconds: %v", err)
 	}
 	return apiCacheTimeout, nil
 }
