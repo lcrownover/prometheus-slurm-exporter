@@ -27,7 +27,6 @@ func PopulateCache(ctx context.Context) error {
 		if err != nil {
 			errors <- fmt.Errorf("failed to get slurmrestd diagnostics response: %v", err)
 		}
-		slog.Info("setting diag cache data", "data", data)
 		cache.Set("diag", data, 0)
 	}()
 
