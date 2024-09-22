@@ -2,6 +2,7 @@ package api
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 )
 
@@ -38,9 +39,10 @@ func (ac *ApiCache) Clear() {
 }
 
 func ParseCacheTimeoutSeconds(apiCacheTimeoutSecondsStr string) (time.Duration, error) {
-	apiCacheTimeout, err := time.ParseDuration(apiCacheTimeoutSecondsStr)
+	seconds, err := strconv.Atoi(apiCacheTimeoutSecondsStr)
 	if err != nil {
-		return 0, fmt.Errorf("failed to parse cache timeout seconds: %v", err)
+		return 0, fmt.Errorf("failed to convert cache timeout seconds to integer")
 	}
-	return apiCacheTimeout, nil
+	tdur := time.Duration(seconds) * time.Second
+	return tdur, nil
 }
