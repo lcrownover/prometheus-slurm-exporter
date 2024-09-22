@@ -16,7 +16,10 @@ func beforeCollect(ctx context.Context) {
 	slog.Info("Before collecting metrics")
 	cache := cache.New(60 * time.Second)
 	ctx = context.WithValue(ctx, types.ApiCacheKey, cache)
-	PopulateCache(ctx)
+	err := PopulateCache(ctx)
+	if err != nil {
+		slog.Error("error populating request cache", "error", err)
+	}
 }
 
 func afterCollect(ctx context.Context) {
