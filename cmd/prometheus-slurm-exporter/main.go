@@ -18,6 +18,26 @@ import (
 
 var err error
 
+func beforeCollect() {
+	// Code to run before metrics are collected
+	slog.Info("Before collecting metrics")
+}
+
+func afterCollect() {
+	// Code to run after metrics are collected
+	slog.Info("After collecting metrics")
+}
+
+func metricsHandler(r *prometheus.Registry) http.HandlerFunc {
+	h := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		beforeCollect()
+		h.ServeHTTP(w, r)
+		afterCollect()
+	}
+}
+
 func main() {
 
 	// set up logging
@@ -93,9 +113,9 @@ func main() {
 	r.MustRegister(slurm.NewSchedulerCollector(ctx))
 	r.MustRegister(slurm.NewUsersCollector(ctx))
 
-	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
+	// handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 
 	log.Printf("Starting Server: %s\n", listenAddress)
-	http.Handle("/metrics", handler)
+	http.Handle("/metrics", metricsHandler(r))
 	log.Fatal(http.ListenAndServe(listenAddress, nil))
 }
