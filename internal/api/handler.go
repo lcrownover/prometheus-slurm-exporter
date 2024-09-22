@@ -11,17 +11,14 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-func beforeCollect(ctx context.Context) context.Context {
-	slog.Info("Before collecting metrics")
+func beforeCollect(ctx context.Context) {
 	err := PopulateCache(ctx)
 	if err != nil {
 		slog.Error("error populating request cache", "error", err)
 	}
-	return ctx
 }
 
 func afterCollect(ctx context.Context) {
-	slog.Info("After collecting metrics")
 	c := ctx.Value(types.ApiCacheKey).(*cache.Cache)
 	c.Close()
 }
@@ -30,7 +27,7 @@ func MetricsHandler(r *prometheus.Registry, ctx context.Context) http.HandlerFun
 	h := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 
 	return func(w http.ResponseWriter, r *http.Request) {
-		ctx = beforeCollect(ctx)
+		beforeCollect(ctx)
 		h.ServeHTTP(w, r)
 		afterCollect(ctx)
 	}
