@@ -1,7 +1,8 @@
 # Development
 
 You must have access to a slurm head node running `slurmrestd` and a valid token
-for that service.
+for that service. Take note of your slurm version, such as `24.05`, as you'll
+use this version when building.
 
 ## Install Go from source
 
@@ -21,7 +22,7 @@ Use Git to clone the source code of the exporter, run all the tests and build th
 ```bash
 git clone https://github.com/lcrownover/prometheus-slurm-exporter.git
 cd prometheus-slurm-exporter
-make
+make <slurm_version>
 ```
 
 To just run the tests:
@@ -45,3 +46,8 @@ If you wish to run the exporter on a different port, or the default port (8080) 
 # query all metrics (default port)
 curl http://localhost:8080/metrics
 ```
+
+## Generating and Saving Openapi specs using Docker
+
+Navigate to the `docker` directory and use the python script to automatically grab and store an openapi yaml spec
+from a target slurm version.
