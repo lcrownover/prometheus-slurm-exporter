@@ -2,6 +2,7 @@ package slurm
 
 import (
 	"context"
+	"fmt"
 	"log/slog"
 	"strings"
 
@@ -49,8 +50,8 @@ func (ac *AccountsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
-	cache := ac.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	jobsRespBytes, found := cache.Get("jobs")
+	apiCache := ac.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	jobsRespBytes, found := apiCache.Get("jobs")
 	if !found {
 		slog.Error("failed to get jobs response for users metrics from cache")
 		return
@@ -118,8 +119,8 @@ func (cc *CPUsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (cc *CPUsCollector) Collect(ch chan<- prometheus.Metric) {
-	cache := cc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	jobsRespBytes, found := cache.Get("jobs")
+	apiCache := cc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	jobsRespBytes, found := apiCache.Get("jobs")
 	if !found {
 		slog.Error("failed to get jobs response for users metrics from cache")
 		return
@@ -129,7 +130,7 @@ func (cc *CPUsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to unmarshal jobs response for cpu metrics", "error", err)
 		return
 	}
-	nodeRespBytes, found := cache.Get("nodes")
+	nodeRespBytes, found := apiCache.Get("nodes")
 	if !found {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
@@ -178,8 +179,8 @@ func (cc *GPUsCollector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- cc.utilization
 }
 func (cc *GPUsCollector) Collect(ch chan<- prometheus.Metric) {
-	cache := cc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	nodeRespBytes, found := cache.Get("nodes")
+	apiCache := cc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	nodeRespBytes, found := apiCache.Get("nodes")
 	if !found {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
@@ -238,8 +239,8 @@ func (nc *NodeCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (nc *NodeCollector) Collect(ch chan<- prometheus.Metric) {
-	cache := nc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	nodeRespBytes, found := cache.Get("nodes")
+	apiCache := nc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	nodeRespBytes, found := apiCache.Get("nodes")
 	if !found {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
@@ -308,8 +309,8 @@ func (nc *NodesCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (nc *NodesCollector) Collect(ch chan<- prometheus.Metric) {
-	cache := nc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	nodeRespBytes, found := cache.Get("nodes")
+	apiCache := nc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	nodeRespBytes, found := apiCache.Get("nodes")
 	if !found {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
@@ -386,8 +387,8 @@ func (qc *QueueCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (qc *QueueCollector) Collect(ch chan<- prometheus.Metric) {
-	cache := qc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	jobsRespBytes, found := cache.Get("jobs")
+	apiCache := qc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	jobsRespBytes, found := apiCache.Get("jobs")
 	if !found {
 		slog.Error("failed to get jobs response for users metrics from cache")
 		return
@@ -516,8 +517,8 @@ func (c *SchedulerCollector) Describe(ch chan<- *prometheus.Desc) {
 
 // Send the values of all metrics
 func (sc *SchedulerCollector) Collect(ch chan<- prometheus.Metric) {
-	cache := sc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	diagRespBytes, found := cache.Get("diag")
+	apiCache := sc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	diagRespBytes, found := apiCache.Get("diag")
 	if !found {
 		slog.Error("failed to get diag response for scheduler metrics from cache")
 		return
@@ -564,8 +565,8 @@ func (fsc *FairShareCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
-	cache := fsc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	sharesRespBytes, found := cache.Get("shares")
+	apiCache := fsc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	sharesRespBytes, found := apiCache.Get("shares")
 	if !found {
 		slog.Error("failed to get shares response for fair share metrics from cache")
 		return
@@ -622,8 +623,8 @@ func (uc *UsersCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (uc *UsersCollector) Collect(ch chan<- prometheus.Metric) {
-	cache := uc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	jobsRespBytes, found := cache.Get("jobs")
+	apiCache := uc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	jobsRespBytes, found := apiCache.Get("jobs")
 	if !found {
 		slog.Error("failed to get jobs response for users metrics from cache")
 		return
@@ -687,8 +688,9 @@ func (pc *PartitionsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
-	cache := pc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	partitionRespBytes, found := cache.Get("partitions")
+	apiCache := pc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	slog.Info("cache", "out", fmt.Sprintf("%+v", apiCache))
+	partitionRespBytes, found := apiCache.Get("partitions")
 	if !found {
 		slog.Error("failed to get partitions response for partitions metrics from cache")
 		return
@@ -698,7 +700,7 @@ func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to unmarshal partitions response for partitions metrics", "error", err)
 		return
 	}
-	jobsRespBytes, found := cache.Get("jobs")
+	jobsRespBytes, found := apiCache.Get("jobs")
 	if !found {
 		slog.Error("failed to get jobs response for users metrics from cache")
 		return
@@ -708,7 +710,7 @@ func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to unmarshal jobs response for partitions metrics", "error", err)
 		return
 	}
-	nodeRespBytes, found := cache.Get("nodes")
+	nodeRespBytes, found := apiCache.Get("nodes")
 	if !found {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
