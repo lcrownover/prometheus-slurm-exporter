@@ -82,7 +82,6 @@ func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
 			ch <- prometheus.MustNewConstMetric(ac.suspended, prometheus.GaugeValue, am[a].suspended, a)
 		}
 	}
-	slog.Info("done with accounts collector")
 }
 
 /*

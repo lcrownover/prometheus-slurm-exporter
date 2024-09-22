@@ -13,7 +13,7 @@ func PopulateCache(ctx context.Context) error {
 	var data []byte
 	var err error
 
-	cache := ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	apiCache := ctx.Value(types.ApiCacheKey).(*cache.Cache)
 
 	numCalls := 5
 	var wg sync.WaitGroup
@@ -26,7 +26,7 @@ func PopulateCache(ctx context.Context) error {
 		if err != nil {
 			errors <- fmt.Errorf("failed to get slurmrestd diagnostics response: %v", err)
 		}
-		cache.Set("diag", data, 0)
+		apiCache.Set("diag", data, 0)
 	}()
 
 	go func() {
@@ -35,7 +35,7 @@ func PopulateCache(ctx context.Context) error {
 		if err != nil {
 			errors <- fmt.Errorf("failed to get slurmrestd nodes response: %v", err)
 		}
-		cache.Set("nodes", data, 0)
+		apiCache.Set("nodes", data, 0)
 	}()
 
 	go func() {
@@ -44,7 +44,7 @@ func PopulateCache(ctx context.Context) error {
 		if err != nil {
 			errors <- fmt.Errorf("failed to get slurmrestd jobs response: %v", err)
 		}
-		cache.Set("jobs", data, 0)
+		apiCache.Set("jobs", data, 0)
 	}()
 
 	go func() {
@@ -53,7 +53,7 @@ func PopulateCache(ctx context.Context) error {
 		if err != nil {
 			errors <- fmt.Errorf("failed to get slurmrestd partitions response: %v", err)
 		}
-		cache.Set("partitions", data, 0)
+		apiCache.Set("partitions", data, 0)
 	}()
 
 	go func() {
@@ -62,7 +62,7 @@ func PopulateCache(ctx context.Context) error {
 		if err != nil {
 			errors <- fmt.Errorf("failed to get slurmrestd shares response: %v", err)
 		}
-		cache.Set("shares", data, 0)
+		apiCache.Set("shares", data, 0)
 	}()
 
 	wg.Wait()
@@ -74,5 +74,15 @@ func PopulateCache(ctx context.Context) error {
 		return fmt.Errorf("errors encountered calling slurm api: %v", err)
 	}
 
+	return nil
+}
+
+func WipeCache(ctx context.Context) error {
+	apiCache := ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	apiCache.Delete("diag")
+	apiCache.Delete("nodes")
+	apiCache.Delete("jobs")
+	apiCache.Delete("partitions")
+	apiCache.Delete("shares")
 	return nil
 }
