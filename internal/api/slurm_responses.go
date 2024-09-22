@@ -68,6 +68,7 @@ func PopulateCache(ctx context.Context) error {
 
 	slog.Info("waiting for workers")
 	wg.Wait()
+	slog.Info("done waiting for workers")
 
 	for err := range errors {
 		// yes i know it will only get the first error but it's almost certainly
