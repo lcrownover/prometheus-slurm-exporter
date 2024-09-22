@@ -745,3 +745,82 @@ func ParseUsersMetrics(jobsResp types.V0040OpenapiJobInfoResp) (map[string]*user
 	}
 	return users, nil
 }
+
+func NewPartitionsMetrics() *partitionMetrics {
+	return &partitionMetrics{0, 0, 0, 0, 0}
+}
+
+type partitionMetrics struct {
+	cpus_allocated float64
+	cpus_idle      float64
+	cpus_other     float64
+	cpus_total     float64
+	jobs_pending   float64
+}
+
+// ParsePartitionsMetrics returns a map where the keys are the partition names and the values are a partitionMetrics struct
+func ParsePartitionsMetrics(partitionResp types.V0040OpenapiPartitionResp, jobsResp types.V0040OpenapiJobInfoResp, nodesResp types.V0040OpenapiNodesResp) (map[string]*partitionMetrics, error) {
+	partitions := make(map[string]*partitionMetrics)
+	nodePartitions := make(map[string][]string)
+
+	// first, store all the nodes and their partitions
+	for _, n := range nodesResp.Nodes {
+		nodeName, err := GetNodeName(n)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get node name for partition metrics: %v", err)
+		}
+		nodePartitions[*nodeName] = GetNodePartitions(n)
+	}
+
+	// scan through partition data to get total cpus
+	for _, p := range partitionResp.Partitions {
+		partition, err := GetPartitionName(p)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get partition name for partition metrics: %v", err)
+		}
+		_, exists := partitions[*partition]
+		if !exists {
+			partitions[*partition] = NewPartitionsMetrics()
+		}
+
+		// cpu total
+		total, err := GetPartitionTotalCPUs(p)
+		if err != nil {
+			return nil, fmt.Errorf("failed to collect cpu total for partition metrics: %v", err)
+		}
+		partitions[*partition].cpus_total = *total
+	}
+
+	// to get used and available cpus, we need to scan through the job list and categorize
+	// each job by its partition, adding the cpus as we go
+	for _, n := range nodesResp.Nodes {
+		alloc_cpus := GetNodeAllocCPUs(n)
+		idle_cpus := GetNodeIdleCPUs(n)
+		nodePartitions := GetNodePartitions(n)
+		for _, pname := range nodePartitions {
+			partitions[pname].cpus_allocated += float64(alloc_cpus)
+			partitions[pname].cpus_idle += float64(idle_cpus)
+		}
+	}
+
+	// derive the other stat
+	for i, p := range partitions {
+		partitions[i].cpus_other = p.cpus_total - p.cpus_allocated - p.cpus_idle
+	}
+
+	// lastly, we need to get a count of pending jobs for the partition
+	for _, j := range jobsResp.Jobs {
+		pname, err := GetJobPartitionName(j)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get job partition name for partition metrics: %v", err)
+		}
+		// partition name can be comma-separated, so we iterate through it
+		pnames := strings.Split(*pname, ",")
+		for _, pname := range pnames {
+			slog.Info("job partition name", "name", pname)
+			partitions[pname].jobs_pending += 1
+		}
+	}
+
+	return partitions, nil
+}

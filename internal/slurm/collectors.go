@@ -560,7 +560,7 @@ func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get shares response for fair share metrics", "error", err)
 		return
 	}
-	// this is disgusting but the response has values of "Infinity" which are 
+	// this is disgusting but the response has values of "Infinity" which are
 	// not json unmarshal-able, so I manually replace all the "Infinity"s with the correct
 	// float64 value that represents Infinity.
 	// this will be fixed in v0.0.42
@@ -642,6 +642,90 @@ func (uc *UsersCollector) Collect(ch chan<- prometheus.Metric) {
 		}
 		if um[u].suspended > 0 {
 			ch <- prometheus.MustNewConstMetric(uc.suspended, prometheus.GaugeValue, um[u].suspended, u)
+		}
+	}
+}
+
+type PartitionsCollector struct {
+	ctx       context.Context
+	allocated *prometheus.Desc
+	idle      *prometheus.Desc
+	other     *prometheus.Desc
+	pending   *prometheus.Desc
+	total     *prometheus.Desc
+}
+
+func NewPartitionsCollector(ctx context.Context) *PartitionsCollector {
+	labels := []string{"partition"}
+	return &PartitionsCollector{
+		ctx:       ctx,
+		allocated: prometheus.NewDesc("slurm_partition_cpus_allocated", "Allocated CPUs for partition", labels, nil),
+		idle:      prometheus.NewDesc("slurm_partition_cpus_idle", "Idle CPUs for partition", labels, nil),
+		other:     prometheus.NewDesc("slurm_partition_cpus_other", "Other CPUs for partition", labels, nil),
+		pending:   prometheus.NewDesc("slurm_partition_jobs_pending", "Pending jobs for partition", labels, nil),
+		total:     prometheus.NewDesc("slurm_partition_cpus_total", "Total CPUs for partition", labels, nil),
+	}
+}
+
+func (pc *PartitionsCollector) Describe(ch chan<- *prometheus.Desc) {
+	ch <- pc.allocated
+	ch <- pc.idle
+	ch <- pc.other
+	ch <- pc.pending
+	ch <- pc.total
+}
+
+func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
+	partitionRespBytes, err := api.GetSlurmRestPartitionsResponse(pc.ctx)
+	if err != nil {
+		slog.Error("failed to get partitions response for partitions metrics", "error", err)
+		return
+	}
+	partitionsResp, err := api.UnmarshalPartitionsResponse(partitionRespBytes)
+	if err != nil {
+		slog.Error("failed to unmarshal partitions response for partitions metrics", "error", err)
+		return
+	}
+	jobRespBytes, err := api.GetSlurmRestJobsResponse(pc.ctx)
+	if err != nil {
+		slog.Error("failed to get jobs response for partitions metrics", "error", err)
+		return
+	}
+	jobsResp, err := api.UnmarshalJobsResponse(jobRespBytes)
+	if err != nil {
+		slog.Error("failed to unmarshal jobs response for partitions metrics", "error", err)
+		return
+	}
+	nodeRespBytes, err := api.GetSlurmRestNodesResponse(pc.ctx)
+	if err != nil {
+		slog.Error("failed to get nodes response for partition metrics", "error", err)
+		return
+	}
+	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes)
+	if err != nil {
+		slog.Error("failed to unmarshal nodes response for partition metrics", "error", err)
+		return
+	}
+	pm, err := ParsePartitionsMetrics(*partitionsResp, *jobsResp, *nodesResp)
+	if err != nil {
+		slog.Error("failed to collect partitions metrics", "error", err)
+		return
+	}
+	for p := range pm {
+		if pm[p].cpus_allocated > 0 {
+			ch <- prometheus.MustNewConstMetric(pc.allocated, prometheus.GaugeValue, pm[p].cpus_allocated, p)
+		}
+		if pm[p].cpus_idle > 0 {
+			ch <- prometheus.MustNewConstMetric(pc.idle, prometheus.GaugeValue, pm[p].cpus_idle, p)
+		}
+		if pm[p].cpus_other > 0 {
+			ch <- prometheus.MustNewConstMetric(pc.other, prometheus.GaugeValue, pm[p].cpus_other, p)
+		}
+		if pm[p].cpus_total > 0 {
+			ch <- prometheus.MustNewConstMetric(pc.total, prometheus.GaugeValue, pm[p].cpus_total, p)
+		}
+		if pm[p].jobs_pending > 0 {
+			ch <- prometheus.MustNewConstMetric(pc.pending, prometheus.GaugeValue, pm[p].jobs_pending, p)
 		}
 	}
 }
