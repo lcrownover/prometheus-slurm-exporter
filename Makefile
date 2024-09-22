@@ -1,15 +1,27 @@
 PROJECT_NAME = prometheus-slurm-exporter
 
-all:
+24.05: openapi_24.05
 	mkdir -p bin/
-	go build -o bin/prometheus-slurm-exporter cmd/prometheus-slurm-exporter/main.go
+	go build -tags=2405 -o bin/prometheus-slurm-exporter cmd/prometheus-slurm-exporter/main.go
 
-test:
-	go test -v ./...
+23.11: openapi_23.11
+	mkdir -p bin/
+	go build -tags=2311 -o bin/prometheus-slurm-exporter cmd/prometheus-slurm-exporter/main.go
+
+test: test_24.05 test_23.11
+
+test_24.05: openapi_24.05
+	go test -v ./... --tags=2405
+
+test_23.11: openapi_23.11
+	go test -v ./... --tags=2311
 
 run:
 	go run cmd/prometheus-slurm-exporter/main.go
 
-# You can get openapi.json from your slurmrestd at: localhost:6820/openapi.json
-openapi:
-	oapi-codegen --package=types --generate types openapi.json > internal/types/openapi.gen.go
+openapi_24.05:
+	oapi-codegen --config openapi-config.yml openapi-specs/24.05.json
+
+openapi_23.11:
+	oapi-codegen --config openapi-config.yml openapi-specs/23.11.json
+

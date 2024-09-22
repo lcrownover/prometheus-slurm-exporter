@@ -2,7 +2,10 @@ module github.com/lcrownover/prometheus-slurm-exporter
 
 go 1.22.5
 
-require github.com/prometheus/client_golang v1.19.1
+require (
+	github.com/akyoto/cache v1.0.6
+	github.com/prometheus/client_golang v1.19.1
+)
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
