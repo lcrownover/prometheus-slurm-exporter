@@ -77,8 +77,8 @@ func main() {
 	// r.MustRegister(slurm.NewNodeCollector(ctx))
 
 	// TODO: write and test this
-	// r.MustRegister(slurm.NewPartitionsCollector(ctx))
-	// r.MustRegister(slurm.NewPartitionsCollectorOld())
+	r.MustRegister(slurm.NewPartitionsCollector(ctx))
+	r.MustRegister(slurm.NewPartitionsCollectorOld())
 
 	// r.MustRegister(slurm.NewFairShareCollector(ctx))
 	// r.MustRegister(slurm.NewQueueCollector(ctx))

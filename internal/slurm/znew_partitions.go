@@ -4,11 +4,10 @@ package slurm
 
 import (
 	"context"
-	"io/ioutil"
+	"fmt"
 	"log"
 	"log/slog"
 	"os/exec"
-	"strconv"
 	"strings"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
@@ -18,6 +17,7 @@ import (
 
 func PartitionsData() []byte {
 	cmd := exec.Command("sinfo", "-h", "-o%R,%C")
+	// allocated/idle/other/total
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
 		log.Fatal(err)
@@ -60,34 +60,63 @@ type partitionMetrics struct {
 	jobs_pending   float64
 }
 
-func ParsePartitionsMetrics(partitionResp types.V0040OpenapiPartitionResp, jobsResp types.V0040OpenapiJobInfoResp) (map[string]*partitionMetrics, error) {
+// ParsePartitionsMetrics returns a map where the keys are the partition names and the values are a partitionMetrics struct
+func ParsePartitionsMetrics(partitionResp types.V0040OpenapiPartitionResp, jobsResp types.V0040OpenapiJobInfoResp, nodesResp types.V0040OpenapiNodesResp) (map[string]*partitionMetrics, error) {
 	partitions := make(map[string]*partitionMetrics)
-	for _, j := range jobsResp.Jobs {
-		partition := *j.Partition
-		_, exists := partitions[partition]
-		if !exists {
-			partitions[partition] = NewPartitionsMetrics()
-		}
+	nodePartitions := make(map[string][]string)
 
-		// cpu
-		allocated, _ := strconv.ParseFloat(strings.Split(states, "/")[0], 64)
-		idle, _ := strconv.ParseFloat(strings.Split(states, "/")[1], 64)
-		other, _ := strconv.ParseFloat(strings.Split(states, "/")[2], 64)
-		total, _ := strconv.ParseFloat(strings.Split(states, "/")[3], 64)
-		partitions[partition].cpus_allocated = allocated
-		partitions[partition].cpus_idle = idle
-		partitions[partition].cpus_other = other
-		partitions[partition].cpus_total = total
+	// first, store all the nodes and their partitions
+	for _, n := range nodesResp.Nodes {
+		nodeName, err := GetNodeName(n)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get node name for partition metrics: %v", err)
+		}
+		nodePartitions[*nodeName] = GetNodePartitions(n)
 	}
 
-	// get list of pending jobs by partition name
-	list := strings.Split(string(PartitionsPendingJobsData()), "\n")
-	for _, partition := range list {
-		// accumulate the number of pending jobs
-		_, key := partitions[partition]
-		if key {
-			partitions[partition].jobs_pending += 1
+	// scan through partition data to get total cpus
+	for _, p := range partitionResp.Partitions {
+		partition, err := GetPartitionName(p)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get partition name for partition metrics: %v", err)
 		}
+		_, exists := partitions[*partition]
+		if !exists {
+			partitions[*partition] = NewPartitionsMetrics()
+		}
+
+		// cpu total
+		total, err := GetPartitionTotalCPUs(p)
+		if err != nil {
+			return nil, fmt.Errorf("failed to collect cpu total for partition metrics: %v", err)
+		}
+		partitions[*partition].cpus_total = *total
+	}
+
+	// to get used and available cpus, we need to scan through the job list and categorize
+	// each job by its partition, adding the cpus as we go
+	for _, n := range nodesResp.Nodes {
+		alloc_cpus := GetNodeAllocCPUs(n)
+		idle_cpus := GetNodeIdleCPUs(n)
+		nodePartitions := GetNodePartitions(n)
+		for _, pname := range nodePartitions {
+			partitions[pname].cpus_allocated += float64(alloc_cpus)
+			partitions[pname].cpus_idle += float64(idle_cpus)
+		}
+	}
+
+	// derive the other stat
+	for i, p := range partitions {
+		partitions[i].cpus_other = p.cpus_total - p.cpus_allocated - p.cpus_idle
+	}
+
+	// lastly, we need to get a count of pending jobs for the partition
+	for _, j := range jobsResp.Jobs {
+		pname, err := GetJobPartitionName(j)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get job partition name for partition metrics: %v", err)
+		}
+		partitions[*pname].jobs_pending += 1
 	}
 
 	return partitions, nil
@@ -133,26 +162,36 @@ func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to unmarshal partitions response for partitions metrics", "error", err)
 		return
 	}
-	pm, err := ParsePartitionsMetrics(*partitionsResp)
+	jobRespBytes, err := api.GetSlurmRestJobsResponse(pc.ctx)
+	if err != nil {
+		slog.Error("failed to get jobs response for partitions metrics", "error", err)
+		return
+	}
+	jobsResp, err := api.UnmarshalJobsResponse(jobRespBytes)
+	if err != nil {
+		slog.Error("failed to unmarshal jobs response for partitions metrics", "error", err)
+		return
+	}
+	pm, err := ParsePartitionsMetrics(*partitionsResp, *jobsResp)
 	if err != nil {
 		slog.Error("failed to collect partitions metrics", "error", err)
 		return
 	}
 	for p := range pm {
 		if pm[p].cpus_allocated > 0 {
-			ch <- prometheus.MustNewConstMetric(pc.allocated, prometheus.GaugeValue, pm[p].allocated, p)
+			ch <- prometheus.MustNewConstMetric(pc.allocated, prometheus.GaugeValue, pm[p].cpus_allocated, p)
 		}
 		if pm[p].cpus_idle > 0 {
-			ch <- prometheus.MustNewConstMetric(pc.idle, prometheus.GaugeValue, pm[p].idle, p)
+			ch <- prometheus.MustNewConstMetric(pc.idle, prometheus.GaugeValue, pm[p].cpus_idle, p)
 		}
 		if pm[p].cpus_other > 0 {
-			ch <- prometheus.MustNewConstMetric(pc.other, prometheus.GaugeValue, pm[p].other, p)
+			ch <- prometheus.MustNewConstMetric(pc.other, prometheus.GaugeValue, pm[p].cpus_other, p)
 		}
 		if pm[p].cpus_total > 0 {
-			ch <- prometheus.MustNewConstMetric(pc.total, prometheus.GaugeValue, pm[p].total, p)
+			ch <- prometheus.MustNewConstMetric(pc.total, prometheus.GaugeValue, pm[p].cpus_total, p)
 		}
 		if pm[p].jobs_pending > 0 {
-			ch <- prometheus.MustNewConstMetric(pc.pending, prometheus.GaugeValue, pm[p].pending, p)
+			ch <- prometheus.MustNewConstMetric(pc.pending, prometheus.GaugeValue, pm[p].jobs_pending, p)
 		}
 	}
 }

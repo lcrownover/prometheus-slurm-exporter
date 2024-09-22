@@ -22,6 +22,15 @@ func GetJobAccountName(job types.V0040JobInfo) (*string, error) {
 	return name, nil
 }
 
+// GetJobPartitionName retrieves the partition name string from the JobInfo object or returns error
+func GetJobPartitionName(job types.V0040JobInfo) (*string, error) {
+	name := job.Partition
+	if name == nil {
+		return nil, fmt.Errorf("partition name not found in job")
+	}
+	return name, nil
+}
+
 // GetJobState returns a JobState unit or returns an error
 func GetJobState(job types.V0040JobInfo) (*types.JobState, error) {
 	states := job.JobState
@@ -79,6 +88,15 @@ func GetJobState(job types.V0040JobInfo) (*types.JobState, error) {
 	return &stateUnit, nil
 }
 
+// GetNodeName retrieves the node name string from the Node object or returns error
+func GetNodeName(node types.V0040Node) (*string, error) {
+	name := node.Name
+	if name == nil {
+		return nil, fmt.Errorf("node name not found in node information")
+	}
+	return name, nil
+}
+
 // GetJobCPUs retrieves the count of CPUs for the given job or returns an error
 func GetJobCPUs(job types.V0040JobInfo) (*float64, error) {
 	cn := job.Cpus.Number
@@ -87,6 +105,35 @@ func GetJobCPUs(job types.V0040JobInfo) (*float64, error) {
 	}
 	cpus := float64(*cn)
 	return &cpus, nil
+}
+
+// GetPartitionName retrieves the name for a given partition or returns an error
+func GetPartitionName(partition types.V0040PartitionInfo) (*string, error) {
+	pn := partition.Name
+	if pn == nil {
+		return nil, fmt.Errorf("failed to find name in partition")
+	}
+	return pn, nil
+}
+
+// GetPartitionTotalCPUs retrieves the count of total CPUs for a given partition or returns an error
+func GetPartitionTotalCPUs(partition types.V0040PartitionInfo) (*float64, error) {
+	pn := partition.Cpus.Total
+	if pn == nil {
+		return nil, fmt.Errorf("failed to find total cpus in partition")
+	}
+	cpus := float64(*pn)
+	return &cpus, nil
+}
+
+// GetPartitionNodeList retrieves the slurm node notation for nodes assigned to the partition
+// returns an empty string if none found, only errors on nil pointer from json
+func GetPartitionNodeList(partition types.V0040PartitionInfo) (string, error) {
+	nodeList := partition.Nodes.Configured
+	if nodeList == nil {
+		return "", fmt.Errorf("failed to find total cpus in partition")
+	}
+	return *nodeList, nil
 }
 
 // GetNodeStates returns a slice of NodeState unit or returns an error
@@ -207,6 +254,15 @@ func GetNodeGPUAllocated(node types.V0040Node) (int, error) {
 		}
 	}
 	return 0, nil
+}
+
+// GetNodePartitions returns a list of strings that are the partitions a node belongs to
+func GetNodePartitions(node types.V0040Node) []string {
+	ps := node.Partitions
+	if ps == nil {
+		return []string{}
+	}
+	return *ps
 }
 
 // GetNodeAllocMemory returns an unsigned 64bit integer
