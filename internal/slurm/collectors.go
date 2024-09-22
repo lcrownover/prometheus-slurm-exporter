@@ -2,7 +2,6 @@ package slurm
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 	"strings"
 
