@@ -82,6 +82,9 @@ func main() {
 	r.MustRegister(slurm.NewSchedulerCollector(ctx))
 	r.MustRegister(slurm.NewUsersCollector(ctx))
 
+	slog.Info("cache", "out", fmt.Sprintf("%+v", apiCache))
+
+
 	log.Printf("Starting Server: %s\n", listenAddress)
 	http.Handle("/metrics", api.MetricsHandler(r, ctx))
 	log.Fatal(http.ListenAndServe(listenAddress, nil))
