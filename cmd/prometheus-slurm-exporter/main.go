@@ -70,20 +70,16 @@ func main() {
 
 	r := prometheus.NewRegistry()
 
-	// r.MustRegister(slurm.NewAccountsCollector(ctx))
-	// r.MustRegister(slurm.NewCPUsCollector(ctx))
-	// r.MustRegister(slurm.NewGPUsCollector(ctx))
-	// r.MustRegister(slurm.NewNodesCollector(ctx))
-	// r.MustRegister(slurm.NewNodeCollector(ctx))
-
-	// TODO: write and test this
+	r.MustRegister(slurm.NewAccountsCollector(ctx))
+	r.MustRegister(slurm.NewCPUsCollector(ctx))
+	r.MustRegister(slurm.NewGPUsCollector(ctx))
+	r.MustRegister(slurm.NewNodesCollector(ctx))
+	r.MustRegister(slurm.NewNodeCollector(ctx))
 	r.MustRegister(slurm.NewPartitionsCollector(ctx))
-	r.MustRegister(slurm.NewPartitionsCollectorOld())
-
-	// r.MustRegister(slurm.NewFairShareCollector(ctx))
-	// r.MustRegister(slurm.NewQueueCollector(ctx))
-	// r.MustRegister(slurm.NewSchedulerCollector(ctx))
-	// r.MustRegister(slurm.NewUsersCollector(ctx))
+	r.MustRegister(slurm.NewFairShareCollector(ctx))
+	r.MustRegister(slurm.NewQueueCollector(ctx))
+	r.MustRegister(slurm.NewSchedulerCollector(ctx))
+	r.MustRegister(slurm.NewUsersCollector(ctx))
 
 	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 
