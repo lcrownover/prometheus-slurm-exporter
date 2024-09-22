@@ -10,15 +10,21 @@ import (
 
 // GetSlurmRestDiagResponse retrieves the diagnostic data respose from slurm api
 func GetSlurmRestDiagResponse(ctx context.Context) ([]byte, error) {
-	resp, err := newSlurmGETRequest(ctx, types.ApiDiagEndpointKey)
-	if err != nil {
-		return nil, fmt.Errorf("failed to perform get request for diag data: %v", err)
+	cache := ctx.Value(types.ApiCacheKey).(*ApiCache)
+	data, found := cache.Get("diag")
+	if !found || cache.IsExpired() {
+		resp, err := newSlurmGETRequest(ctx, types.ApiDiagEndpointKey)
+		if err != nil {
+			return nil, fmt.Errorf("failed to perform get request for diag data: %v", err)
+		}
+		if resp.StatusCode != 200 {
+			slog.Debug("incorrect status code for diag data", "code", resp.StatusCode, "body", string(resp.Body))
+			return nil, fmt.Errorf("received incorrect status code for diag data")
+		}
+		cache.Set("diag", resp.Body)
+		data = resp.Body
 	}
-	if resp.StatusCode != 200 {
-		slog.Debug("incorrect status code for diag data", "code", resp.StatusCode, "body", string(resp.Body))
-		return nil, fmt.Errorf("received incorrect status code for diag data")
-	}
-	return resp.Body, nil
+	return data.([]byte), nil
 }
 
 // GetSlurmRestJobsResponse retrieves response bytes from slurm REST api

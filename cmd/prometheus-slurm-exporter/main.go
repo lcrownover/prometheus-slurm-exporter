@@ -55,21 +55,31 @@ func main() {
 	}
 	apiURL = api.CleanseBaseURL(apiURL)
 
+	apiCacheTimeoutSecondsStr, found := os.LookupEnv("SLURM_EXPORTER_API_CACHE_TIMEOUT_SECONDS")
+	if !found {
+		apiCacheTimeoutSecondsStr = "5"
+	}
+	apiCacheTimeout, err := api.ParseCacheTimeoutSeconds(apiCacheTimeoutSecondsStr)
+	if err != nil {
+		fmt.Println("Invalid value for SLURM_EXPORTER_API_CACHE_TIMEOUT_SECONDS")
+		os.Exit(1)
+	}
+
+	// Create the API Cache
+	cache := api.NewApiCache(apiCacheTimeout)
+
 	// Set up the context to pass around
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, types.ApiUserKey, apiUser)
 	ctx = context.WithValue(ctx, types.ApiTokenKey, apiToken)
 	ctx = context.WithValue(ctx, types.ApiURLKey, apiURL)
+	ctx = context.WithValue(ctx, types.ApiCacheKey, &cache)
 
 	// Register all the endpoints
-	ctx = context.WithValue(ctx, types.ApiJobsEndpointKey, "/slurm/v0.0.40/jobs")
-	ctx = context.WithValue(ctx, types.ApiNodesEndpointKey, "/slurm/v0.0.40/nodes")
-	ctx = context.WithValue(ctx, types.ApiPartitionsEndpointKey, "/slurm/v0.0.40/partitions")
-	ctx = context.WithValue(ctx, types.ApiDiagEndpointKey, "/slurm/v0.0.40/diag")
-	ctx = context.WithValue(ctx, types.ApiSharesEndpointKey, "/slurm/v0.0.40/shares")
+	ctx = api.RegisterEndpoints(ctx)
 
+	// Register all the collectors
 	r := prometheus.NewRegistry()
-
 	r.MustRegister(slurm.NewAccountsCollector(ctx))
 	r.MustRegister(slurm.NewCPUsCollector(ctx))
 	r.MustRegister(slurm.NewGPUsCollector(ctx))

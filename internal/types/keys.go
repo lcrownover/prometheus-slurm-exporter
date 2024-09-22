@@ -3,7 +3,7 @@ package types
 type Key int
 
 const (
-	CacheTimeoutSecondsKey Key = iota
+	ApiCacheKey Key = iota
 	ApiUserKey
 	ApiTokenKey
 	ApiURLKey
