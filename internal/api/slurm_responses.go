@@ -61,6 +61,8 @@ func GetSlurmRestNodesResponse(ctx context.Context) ([]byte, error) {
 		}
 		cache.Set("nodes", resp.Body)
 		data = resp.Body
+	} else {
+		slog.Info("using cached nodes data")
 	}
 	return data.([]byte), nil
 }
