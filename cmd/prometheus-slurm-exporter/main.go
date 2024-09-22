@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/akyoto/cache"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/slurm"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
@@ -76,26 +75,11 @@ func main() {
 	}
 	apiURL = api.CleanseBaseURL(apiURL)
 
-	apiCacheTimeoutSecondsStr, found := os.LookupEnv("SLURM_EXPORTER_API_CACHE_TIMEOUT_SECONDS")
-	if !found {
-		apiCacheTimeoutSecondsStr = "5"
-	}
-	apiCacheTimeout, err := api.ParseCacheTimeoutSeconds(apiCacheTimeoutSecondsStr)
-	if err != nil {
-		fmt.Printf("Invalid value for SLURM_EXPORTER_API_CACHE_TIMEOUT_SECONDS: %v\n", err)
-		os.Exit(1)
-	}
-
-	// Create the API Cache
-	cache := cache.New(apiCacheTimeout)
-
 	// Set up the context to pass around
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, types.ApiUserKey, apiUser)
 	ctx = context.WithValue(ctx, types.ApiTokenKey, apiToken)
 	ctx = context.WithValue(ctx, types.ApiURLKey, apiURL)
-	ctx = context.WithValue(ctx, types.ApiCacheKey, cache)
-	ctx = context.WithValue(ctx, types.ApiCacheTimeoutKey, apiCacheTimeout)
 
 	// Register all the endpoints
 	ctx = api.RegisterEndpoints(ctx)
@@ -112,8 +96,6 @@ func main() {
 	r.MustRegister(slurm.NewQueueCollector(ctx))
 	r.MustRegister(slurm.NewSchedulerCollector(ctx))
 	r.MustRegister(slurm.NewUsersCollector(ctx))
-
-	// handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
 
 	log.Printf("Starting Server: %s\n", listenAddress)
 	http.Handle("/metrics", metricsHandler(r))
