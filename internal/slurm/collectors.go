@@ -5,7 +5,9 @@ import (
 	"log/slog"
 	"strings"
 
+	"github.com/akyoto/cache"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -47,17 +49,18 @@ func (ac *AccountsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
-	resp, err := api.GetSlurmRestJobsResponse(ac.ctx)
-	if err != nil {
-		slog.Error("failed to get jobs response for accounts metrics", "error", err)
+	cache := ac.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	jobsRespBytes, found := cache.Get("jobs")
+	if !found {
+		slog.Error("failed to get jobs response for users metrics from cache")
 		return
 	}
-	jobResp, err := api.UnmarshalJobsResponse(resp)
+	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal jobs response for accounts metrics", "error", err)
 		return
 	}
-	am, err := ParseAccountsMetrics(jobResp.Jobs)
+	am, err := ParseAccountsMetrics(jobsResp.Jobs)
 	if err != nil {
 		slog.Error("failed to parse accounts metrics", "error", err)
 		return
@@ -115,22 +118,23 @@ func (cc *CPUsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (cc *CPUsCollector) Collect(ch chan<- prometheus.Metric) {
-	jobsRespBytes, err := api.GetSlurmRestJobsResponse(cc.ctx)
-	if err != nil {
-		slog.Error("failed to get jobs response for cpu metrics", "error", err)
+	cache := cc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	jobsRespBytes, found := cache.Get("jobs")
+	if !found {
+		slog.Error("failed to get jobs response for users metrics from cache")
 		return
 	}
-	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes)
+	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal jobs response for cpu metrics", "error", err)
 		return
 	}
-	nodeRespBytes, err := api.GetSlurmRestNodesResponse(cc.ctx)
-	if err != nil {
-		slog.Error("failed to get nodes response for cpu metrics", "error", err)
+	nodeRespBytes, found := cache.Get("nodes")
+	if !found {
+		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes)
+	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal nodes response for cpu metrics", "error", err)
 		return
@@ -174,12 +178,13 @@ func (cc *GPUsCollector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- cc.utilization
 }
 func (cc *GPUsCollector) Collect(ch chan<- prometheus.Metric) {
-	nodeRespBytes, err := api.GetSlurmRestNodesResponse(cc.ctx)
-	if err != nil {
-		slog.Error("failed to get nodes response for cpu metrics", "error", err)
+	cache := cc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	nodeRespBytes, found := cache.Get("nodes")
+	if !found {
+		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes)
+	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal nodes response for cpu metrics", "error", err)
 		return
@@ -233,12 +238,13 @@ func (nc *NodeCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (nc *NodeCollector) Collect(ch chan<- prometheus.Metric) {
-	nodeRespBytes, err := api.GetSlurmRestNodesResponse(nc.ctx)
-	if err != nil {
-		slog.Error("failed to get nodes response for cpu metrics", "error", err)
+	cache := nc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	nodeRespBytes, found := cache.Get("nodes")
+	if !found {
+		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes)
+	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal nodes response for cpu metrics", "error", err)
 		return
@@ -302,12 +308,13 @@ func (nc *NodesCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (nc *NodesCollector) Collect(ch chan<- prometheus.Metric) {
-	nodeRespBytes, err := api.GetSlurmRestNodesResponse(nc.ctx)
-	if err != nil {
-		slog.Error("failed to get nodes response for cpu metrics", "error", err)
+	cache := nc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	nodeRespBytes, found := cache.Get("nodes")
+	if !found {
+		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes)
+	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal nodes response for cpu metrics", "error", err)
 		return
@@ -379,12 +386,13 @@ func (qc *QueueCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (qc *QueueCollector) Collect(ch chan<- prometheus.Metric) {
-	jobsRespBytes, err := api.GetSlurmRestJobsResponse(qc.ctx)
-	if err != nil {
-		slog.Error("failed to get jobs response for queue metrics", "error", err)
+	cache := qc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	jobsRespBytes, found := cache.Get("jobs")
+	if !found {
+		slog.Error("failed to get jobs response for users metrics from cache")
 		return
 	}
-	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes)
+	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal jobs response for queue metrics", "error", err)
 		return
@@ -508,12 +516,13 @@ func (c *SchedulerCollector) Describe(ch chan<- *prometheus.Desc) {
 
 // Send the values of all metrics
 func (sc *SchedulerCollector) Collect(ch chan<- prometheus.Metric) {
-	diagRespBytes, err := api.GetSlurmRestDiagResponse(sc.ctx)
-	if err != nil {
-		slog.Error("failed to get diag response for scheduler metrics", "error", err)
+	cache := sc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	diagRespBytes, found := cache.Get("diag")
+	if !found {
+		slog.Error("failed to get diag response for scheduler metrics from cache")
 		return
 	}
-	diagResp, err := api.UnmarshalDiagResponse(diagRespBytes)
+	diagResp, err := api.UnmarshalDiagResponse(diagRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal diag response for scheduler metrics", "error", err)
 		return
@@ -555,9 +564,10 @@ func (fsc *FairShareCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
-	sharesRespBytes, err := api.GetSlurmRestSharesResponse(fsc.ctx)
-	if err != nil {
-		slog.Error("failed to get shares response for fair share metrics", "error", err)
+	cache := fsc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	sharesRespBytes, found := cache.Get("shares")
+	if !found {
+		slog.Error("failed to get shares response for fair share metrics from cache")
 		return
 	}
 	// this is disgusting but the response has values of "Infinity" which are
@@ -565,9 +575,9 @@ func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
 	// float64 value that represents Infinity.
 	// this will be fixed in v0.0.42
 	// https://support.schedmd.com/show_bug.cgi?id=20817
-	sharesRespBytes = []byte(strings.ReplaceAll(string(sharesRespBytes), "Infinity", "1.7976931348623157e+308"))
+	sharesRespBytes = []byte(strings.ReplaceAll(string(sharesRespBytes.([]byte)), "Infinity", "1.7976931348623157e+308"))
 
-	sharesResp, err := api.UnmarshalSharesResponse(sharesRespBytes)
+	sharesResp, err := api.UnmarshalSharesResponse(sharesRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal shares response for fair share metrics", "error", err)
 		return
@@ -612,12 +622,13 @@ func (uc *UsersCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (uc *UsersCollector) Collect(ch chan<- prometheus.Metric) {
-	jobsRespBytes, err := api.GetSlurmRestJobsResponse(uc.ctx)
-	if err != nil {
-		slog.Error("failed to get jobs response for users metrics", "error", err)
+	cache := uc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	jobsRespBytes, found := cache.Get("jobs")
+	if !found {
+		slog.Error("failed to get jobs response for users metrics from cache")
 		return
 	}
-	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes)
+	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal jobs response for users metrics", "error", err)
 		return
@@ -676,32 +687,33 @@ func (pc *PartitionsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
-	partitionRespBytes, err := api.GetSlurmRestPartitionsResponse(pc.ctx)
-	if err != nil {
-		slog.Error("failed to get partitions response for partitions metrics", "error", err)
+	cache := pc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	partitionRespBytes, found := cache.Get("partitions")
+	if !found {
+		slog.Error("failed to get partitions response for partitions metrics from cache")
 		return
 	}
-	partitionsResp, err := api.UnmarshalPartitionsResponse(partitionRespBytes)
+	partitionsResp, err := api.UnmarshalPartitionsResponse(partitionRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal partitions response for partitions metrics", "error", err)
 		return
 	}
-	jobRespBytes, err := api.GetSlurmRestJobsResponse(pc.ctx)
-	if err != nil {
-		slog.Error("failed to get jobs response for partitions metrics", "error", err)
+	jobsRespBytes, found := cache.Get("jobs")
+	if !found {
+		slog.Error("failed to get jobs response for users metrics from cache")
 		return
 	}
-	jobsResp, err := api.UnmarshalJobsResponse(jobRespBytes)
+	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal jobs response for partitions metrics", "error", err)
 		return
 	}
-	nodeRespBytes, err := api.GetSlurmRestNodesResponse(pc.ctx)
-	if err != nil {
-		slog.Error("failed to get nodes response for partition metrics", "error", err)
+	nodeRespBytes, found := cache.Get("nodes")
+	if !found {
+		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes)
+	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes.([]byte))
 	if err != nil {
 		slog.Error("failed to unmarshal nodes response for partition metrics", "error", err)
 		return
