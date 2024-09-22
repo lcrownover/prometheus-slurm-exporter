@@ -9,6 +9,7 @@ import (
 	"log"
 	"log/slog"
 	"os/exec"
+	"strings"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
@@ -116,8 +117,12 @@ func ParsePartitionsMetrics(partitionResp types.V0040OpenapiPartitionResp, jobsR
 		if err != nil {
 			return nil, fmt.Errorf("failed to get job partition name for partition metrics: %v", err)
 		}
-		slog.Info("job partition name", "name", *pname)
-		partitions[*pname].jobs_pending += 1
+		// partition name can be comma-separated, so we iterate through it
+		pnames := strings.Split(*pname, ",")
+		for _, pname := range pnames {
+			slog.Info("job partition name", "name", pname)
+			partitions[pname].jobs_pending += 1
+		}
 	}
 
 	return partitions, nil
