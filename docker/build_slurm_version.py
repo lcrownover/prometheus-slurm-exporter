@@ -77,7 +77,7 @@ def create_container(container_version: str) -> str:
 
 
 def copy_container_file(container_id: str, oapi_version: str):
-    copy_command = f"docker cp {container_id}:/slurm/v{oapi_version}.json ./openapi-specs/{slurm_version}.json"
+    copy_command = f"docker cp {container_id}:/slurm/v{oapi_version}.json ../openapi-specs/{slurm_version}.json"
     s = subprocess.run(
         copy_command.split(),
         stdout=subprocess.PIPE,
