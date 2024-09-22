@@ -57,14 +57,14 @@ func main() {
 	apiURL = api.CleanseBaseURL(apiURL)
 
 	// API Cache
-	cache := cache.New(60 * time.Second)
+	apiCache := cache.New(60 * time.Second)
 
 	// Set up the context to pass around
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, types.ApiUserKey, apiUser)
 	ctx = context.WithValue(ctx, types.ApiTokenKey, apiToken)
 	ctx = context.WithValue(ctx, types.ApiURLKey, apiURL)
-	ctx = context.WithValue(ctx, types.ApiCacheKey, cache)
+	ctx = context.WithValue(ctx, types.ApiCacheKey, apiCache)
 
 	// Register all the endpoints
 	ctx = api.RegisterEndpoints(ctx)
