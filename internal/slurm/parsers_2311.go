@@ -817,7 +817,6 @@ func ParsePartitionsMetrics(partitionResp types.V0040OpenapiPartitionResp, jobsR
 		// partition name can be comma-separated, so we iterate through it
 		pnames := strings.Split(*pname, ",")
 		for _, pname := range pnames {
-			slog.Info("job partition name", "name", pname)
 			partitions[pname].jobs_pending += 1
 		}
 	}
