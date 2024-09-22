@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/akyoto/cache"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/slurm"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
@@ -66,14 +67,15 @@ func main() {
 	}
 
 	// Create the API Cache
-	cache := api.NewApiCache(apiCacheTimeout)
+	cache := cache.New(apiCacheTimeout)
 
 	// Set up the context to pass around
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, types.ApiUserKey, apiUser)
 	ctx = context.WithValue(ctx, types.ApiTokenKey, apiToken)
 	ctx = context.WithValue(ctx, types.ApiURLKey, apiURL)
-	ctx = context.WithValue(ctx, types.ApiCacheKey, *cache)
+	ctx = context.WithValue(ctx, types.ApiCacheKey, cache)
+	ctx = context.WithValue(ctx, types.ApiCacheTimeoutKey, apiCacheTimeout)
 
 	// Register all the endpoints
 	ctx = api.RegisterEndpoints(ctx)

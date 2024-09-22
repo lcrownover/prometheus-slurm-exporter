@@ -4,16 +4,18 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
+	"time"
 
+	"github.com/akyoto/cache"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 )
 
 // GetSlurmRestDiagResponse retrieves the diagnostic data respose from slurm api
 func GetSlurmRestDiagResponse(ctx context.Context) ([]byte, error) {
-	cache := ctx.Value(types.ApiCacheKey).(ApiCache)
+	cache := ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	ct := ctx.Value(types.ApiCacheTimeoutKey).(time.Duration)
 	data, found := cache.Get("diag")
-	if !found || cache.IsExpired() {
-		cache.SetWait("diag")
+	if !found {
 		resp, err := newSlurmGETRequest(ctx, types.ApiDiagEndpointKey)
 		if err != nil {
 			return nil, fmt.Errorf("failed to perform get request for diag data: %v", err)
@@ -22,8 +24,7 @@ func GetSlurmRestDiagResponse(ctx context.Context) ([]byte, error) {
 			slog.Debug("incorrect status code for diag data", "code", resp.StatusCode, "body", string(resp.Body))
 			return nil, fmt.Errorf("received incorrect status code for diag data")
 		}
-		cache.Set("diag", NewCacheData(resp.Body))
-		cache.EndWait("diag")
+		cache.Set("diag", resp.Body, ct)
 		data = resp.Body
 	}
 	return data.([]byte), nil
@@ -31,9 +32,10 @@ func GetSlurmRestDiagResponse(ctx context.Context) ([]byte, error) {
 
 // GetSlurmRestJobsResponse retrieves response bytes from slurm REST api
 func GetSlurmRestJobsResponse(ctx context.Context) ([]byte, error) {
-	cache := ctx.Value(types.ApiCacheKey).(ApiCache)
+	cache := ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	ct := ctx.Value(types.ApiCacheTimeoutKey).(time.Duration)
 	data, found := cache.Get("jobs")
-	if !found || cache.IsExpired() {
+	if !found {
 		resp, err := newSlurmGETRequest(ctx, types.ApiJobsEndpointKey)
 		if err != nil {
 			return nil, fmt.Errorf("failed to perform get request for job data: %v", err)
@@ -42,7 +44,7 @@ func GetSlurmRestJobsResponse(ctx context.Context) ([]byte, error) {
 			slog.Debug("incorrect status code for job data", "code", resp.StatusCode, "body", string(resp.Body))
 			return nil, fmt.Errorf("received incorrect status code for job data")
 		}
-		cache.Set("jobs", NewCacheData(resp.Body))
+		cache.Set("jobs", resp.Body, ct)
 		data = resp.Body
 	}
 	return data.([]byte), nil
@@ -50,9 +52,10 @@ func GetSlurmRestJobsResponse(ctx context.Context) ([]byte, error) {
 
 // GetSlurmRestNodesResponse retrieves the list of nodes registered to slurm
 func GetSlurmRestNodesResponse(ctx context.Context) ([]byte, error) {
-	cache := ctx.Value(types.ApiCacheKey).(ApiCache)
+	cache := ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	ct := ctx.Value(types.ApiCacheTimeoutKey).(time.Duration)
 	data, found := cache.Get("nodes")
-	if !found || cache.IsExpired() {
+	if !found {
 		resp, err := newSlurmGETRequest(ctx, types.ApiNodesEndpointKey)
 		if err != nil {
 			return nil, fmt.Errorf("failed to perform get request for node data: %v", err)
@@ -61,7 +64,7 @@ func GetSlurmRestNodesResponse(ctx context.Context) ([]byte, error) {
 			slog.Debug("incorrect status code for node data", "code", resp.StatusCode, "body", string(resp.Body))
 			return nil, fmt.Errorf("received incorrect status code for node data")
 		}
-		cache.Set("nodes", NewCacheData(resp.Body))
+		cache.Set("nodes", resp.Body, ct)
 		data = resp.Body
 	} else {
 		slog.Info("using cached nodes data")
@@ -71,9 +74,10 @@ func GetSlurmRestNodesResponse(ctx context.Context) ([]byte, error) {
 
 // GetSlurmRestPartitionsResponse retrieves response bytes from slurm REST api
 func GetSlurmRestPartitionsResponse(ctx context.Context) ([]byte, error) {
-	cache := ctx.Value(types.ApiCacheKey).(ApiCache)
+	cache := ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	ct := ctx.Value(types.ApiCacheTimeoutKey).(time.Duration)
 	data, found := cache.Get("partitions")
-	if !found || cache.IsExpired() {
+	if !found {
 		resp, err := newSlurmGETRequest(ctx, types.ApiPartitionsEndpointKey)
 		if err != nil {
 			return nil, fmt.Errorf("failed to perform get request for partition data: %v", err)
@@ -82,7 +86,7 @@ func GetSlurmRestPartitionsResponse(ctx context.Context) ([]byte, error) {
 			slog.Debug("incorrect status code for partition data", "code", resp.StatusCode, "body", string(resp.Body))
 			return nil, fmt.Errorf("received incorrect status code for partition data")
 		}
-		cache.Set("partitions", NewCacheData(resp.Body))
+		cache.Set("partitions", resp.Body, ct)
 		data = resp.Body
 	}
 	return data.([]byte), nil
@@ -90,9 +94,10 @@ func GetSlurmRestPartitionsResponse(ctx context.Context) ([]byte, error) {
 
 // GetSlurmRestSharesResponse retrieves the fair share response from slurm api
 func GetSlurmRestSharesResponse(ctx context.Context) ([]byte, error) {
-	cache := ctx.Value(types.ApiCacheKey).(ApiCache)
+	cache := ctx.Value(types.ApiCacheKey).(*cache.Cache)
+	ct := ctx.Value(types.ApiCacheTimeoutKey).(time.Duration)
 	data, found := cache.Get("shares")
-	if !found || cache.IsExpired() {
+	if !found {
 		resp, err := newSlurmGETRequest(ctx, types.ApiSharesEndpointKey)
 		if err != nil {
 			return nil, fmt.Errorf("failed to perform get request for shares data: %v", err)
@@ -101,7 +106,7 @@ func GetSlurmRestSharesResponse(ctx context.Context) ([]byte, error) {
 			slog.Debug("incorrect status code for shares data", "code", resp.StatusCode, "body", string(resp.Body))
 			return nil, fmt.Errorf("received incorrect status code for shares data")
 		}
-		cache.Set("shares", NewCacheData(resp.Body))
+		cache.Set("shares", resp.Body, ct)
 		data = resp.Body
 	}
 	return data.([]byte), nil

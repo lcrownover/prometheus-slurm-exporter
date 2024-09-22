@@ -4,6 +4,7 @@ type Key int
 
 const (
 	ApiCacheKey Key = iota
+	ApiCacheTimeoutKey
 	ApiUserKey
 	ApiTokenKey
 	ApiURLKey

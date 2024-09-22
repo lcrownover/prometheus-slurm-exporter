@@ -49,6 +49,7 @@ func (ac *ApiCache) EndWait(key string) {
 
 func (ac *ApiCache) Set(key string, val CacheData) {
 	ac.Data[key] = val
+	ac.Data[key].Wait <- struct{}{}
 	ac.LastUpdated = time.Now()
 }
 
