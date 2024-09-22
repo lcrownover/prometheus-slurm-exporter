@@ -7,35 +7,16 @@ import (
 	"log/slog"
 	"net/http"
 	"os"
+	"time"
 
+	"github.com/akyoto/cache"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/slurm"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 var err error
-
-func beforeCollect() {
-	// Code to run before metrics are collected
-	slog.Info("Before collecting metrics")
-}
-
-func afterCollect() {
-	// Code to run after metrics are collected
-	slog.Info("After collecting metrics")
-}
-
-func metricsHandler(r *prometheus.Registry) http.HandlerFunc {
-	h := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
-
-	return func(w http.ResponseWriter, r *http.Request) {
-		beforeCollect()
-		h.ServeHTTP(w, r)
-		afterCollect()
-	}
-}
 
 func main() {
 
@@ -75,11 +56,15 @@ func main() {
 	}
 	apiURL = api.CleanseBaseURL(apiURL)
 
+	// API Cache
+	cache := cache.New(60 * time.Second)
+
 	// Set up the context to pass around
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, types.ApiUserKey, apiUser)
 	ctx = context.WithValue(ctx, types.ApiTokenKey, apiToken)
 	ctx = context.WithValue(ctx, types.ApiURLKey, apiURL)
+	ctx = context.WithValue(ctx, types.ApiCacheKey, cache)
 
 	// Register all the endpoints
 	ctx = api.RegisterEndpoints(ctx)
@@ -98,6 +83,6 @@ func main() {
 	r.MustRegister(slurm.NewUsersCollector(ctx))
 
 	log.Printf("Starting Server: %s\n", listenAddress)
-	http.Handle("/metrics", metricsHandler(r))
+	http.Handle("/metrics", api.MetricsHandler(r, ctx))
 	log.Fatal(http.ListenAndServe(listenAddress, nil))
 }
