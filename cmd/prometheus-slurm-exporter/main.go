@@ -73,7 +73,7 @@ func main() {
 	ctx = context.WithValue(ctx, types.ApiUserKey, apiUser)
 	ctx = context.WithValue(ctx, types.ApiTokenKey, apiToken)
 	ctx = context.WithValue(ctx, types.ApiURLKey, apiURL)
-	ctx = context.WithValue(ctx, types.ApiCacheKey, &cache)
+	ctx = context.WithValue(ctx, types.ApiCacheKey, *cache)
 
 	// Register all the endpoints
 	ctx = api.RegisterEndpoints(ctx)
