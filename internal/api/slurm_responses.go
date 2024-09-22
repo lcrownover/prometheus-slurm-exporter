@@ -68,6 +68,7 @@ func PopulateCache(ctx context.Context) error {
 
 	slog.Info("waiting for workers")
 	wg.Wait()
+	close(errors)
 	slog.Info("done waiting for workers")
 
 	for err := range errors {
@@ -75,7 +76,6 @@ func PopulateCache(ctx context.Context) error {
 		// going to be the same error 5 times
 		return fmt.Errorf("errors encountered calling slurm api: %v", err)
 	}
-	slog.Info("no errors")
 
 	return nil
 }
