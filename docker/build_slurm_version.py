@@ -98,7 +98,7 @@ try:
     container_id = create_container(container_version)
     copy_container_file(container_id, oapi_version)
     cleanup_container(container_version)
-    print(f"Copied openapi spec {oapi_version} to ./openapi-specs/{slurm_version}.json")
+    print(f"Copied openapi spec {oapi_version} to ../openapi-specs/{slurm_version}.json")
 
 except Exception as e:
     print(f"Failed to copy openapi spec: {e}")
