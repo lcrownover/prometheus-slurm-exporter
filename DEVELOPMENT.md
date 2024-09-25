@@ -15,23 +15,49 @@ export PATH=$PWD/go/bin:$PATH
 
 _Alternatively install Go using the packaging system of your Linux distribution._
 
+## Install openapi-generator-cli and openjdk
+
+Install `openapi-generator-cli` globally with NPM:
+
+```bash
+npm install -g openapi-generator-cli`
+```
+
+This package depends on having the `java` executable in `PATH`, so install java.
+
+For mac, `brew install java`, then following the brew message, symlink the JDK,
+`sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk`
+
+For ubuntu, `sudo snap install openjdk`.
+
 ## Clone this repository and build
 
-Use Git to clone the source code of the exporter, run all the tests and build the binary:
+Use Git to clone the source code:
 
 ```bash
 git clone https://github.com/lcrownover/prometheus-slurm-exporter.git
 cd prometheus-slurm-exporter
-make <slurm_version>
 ```
 
-To just run the tests:
+Build the binary for your SLURM version, for example 24.05:
+
+```bash
+make 24.05
+```
+
+Run the tests for all SLURM versions:
 
 ```bash
 make test
 ```
 
-Start the exporter (foreground), and query all metrics:
+Run tests for a specific SLURM version:
+
+```bash
+make test_24.05
+```
+
+Start the exporter:
 
 ```bash
 ./bin/prometheus-slurm-exporter
@@ -41,9 +67,11 @@ If you wish to run the exporter on a different port, or the default port (8080) 
 
 ```bash
 ./bin/prometheus-slurm-exporter --listen-address="0.0.0.0:<port>"
-...
+```
 
-# query all metrics (default port)
+Query all metrics:
+
+```bash
 curl http://localhost:8080/metrics
 ```
 
