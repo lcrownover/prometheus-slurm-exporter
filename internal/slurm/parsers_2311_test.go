@@ -122,14 +122,14 @@ func TestParseNodesMetrics(t *testing.T) {
 	}
 }
 
-// func TestParsePartitionsMetrics(t *testing.T) {
-// 	partitionsBytes := util.ReadTestDataBytes("V0040OpenapiPartitionResp.json")
-// 	partitionResp, _ := api.UnmarshalPartitionsResponse(partitionsBytes)
-// 	_, err := ParsePartitionsMetrics(*partitionResp)
-// 	if err != nil {
-// 		t.Fatalf("failed to parse partitions metrics: %v\n", err)
-// 	}
-// }
+func TestParsePartitionsMetrics(t *testing.T) {
+	partitionsBytes := util.ReadTestDataBytes("V0040OpenapiPartitionResp.json")
+	partitionResp, _ := api.UnmarshalPartitionsResponse(partitionsBytes)
+	_, err := ParsePartitionsMetrics(*partitionResp)
+	if err != nil {
+		t.Fatalf("failed to parse partitions metrics: %v\n", err)
+	}
+}
 
 func TestParseQueueMetrics(t *testing.T) {
 	jobsBytes := util.ReadTestDataBytes("V0040OpenapiJobInfoResp.json")

@@ -14,5 +14,6 @@ const (
 	NodeStateMix           NodeState = "mix"
 	NodeStateResv          NodeState = "resv"
 	NodeStateNotResponding NodeState = "not_responding"
+	NodeStateInvalid       NodeState = "invalid"
 	NodeStateInvalidReg    NodeState = "invalid_reg"
 )

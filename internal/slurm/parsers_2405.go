@@ -9,9 +9,9 @@ import (
 	"strconv"
 	"strings"
 
+	openapi "github.com/lcrownover/openapi-slurm-24-05"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
-	openapi "github.com/lcrownover/openapi-slurm-24-05"
 )
 
 // GetJobAccountName retrieves the account name string from the JobInfo object or returns error
@@ -162,6 +162,7 @@ func GetNodeStates(node openapi.V0041OpenapiNodesRespNodesInner) (*[]types.NodeS
 		mix := regexp.MustCompile(`^mix`)
 		resv := regexp.MustCompile(`^res`)
 		notresp := regexp.MustCompile(`^not_responding`)
+		invalid := regexp.MustCompile(`^invalid`)
 		invalidreg := regexp.MustCompile(`^invalid_reg`)
 
 		var stateUnit types.NodeState
@@ -189,6 +190,8 @@ func GetNodeStates(node openapi.V0041OpenapiNodesRespNodesInner) (*[]types.NodeS
 			stateUnit = types.NodeStateResv
 		case notresp.MatchString(state):
 			stateUnit = types.NodeStateNotResponding
+		case invalid.MatchString(state):
+			stateUnit = types.NodeStateInvalid
 		case invalidreg.MatchString(state):
 			stateUnit = types.NodeStateInvalidReg
 		default:
@@ -270,6 +273,9 @@ func GetNodePartitions(node openapi.V0041OpenapiNodesRespNodesInner) []string {
 // of the allocated memory on the node
 func GetNodeAllocMemory(node openapi.V0041OpenapiNodesRespNodesInner) uint64 {
 	alloc_memory := node.AllocMemory
+	if alloc_memory == nil {
+		return 0
+	}
 	return uint64(*alloc_memory)
 }
 
@@ -277,6 +283,9 @@ func GetNodeAllocMemory(node openapi.V0041OpenapiNodesRespNodesInner) uint64 {
 // of the total memory on the node
 func GetNodeTotalMemory(node openapi.V0041OpenapiNodesRespNodesInner) uint64 {
 	total_memory := node.RealMemory
+	if total_memory == nil {
+		return 0
+	}
 	return uint64(*total_memory)
 }
 
@@ -284,6 +293,9 @@ func GetNodeTotalMemory(node openapi.V0041OpenapiNodesRespNodesInner) uint64 {
 // of the allocated cpus on the node
 func GetNodeAllocCPUs(node openapi.V0041OpenapiNodesRespNodesInner) uint64 {
 	alloc_cpus := node.AllocCpus
+	if alloc_cpus == nil {
+		return 0
+	}
 	return uint64(*alloc_cpus)
 }
 
@@ -291,6 +303,9 @@ func GetNodeAllocCPUs(node openapi.V0041OpenapiNodesRespNodesInner) uint64 {
 // of the allocated cpus on the node
 func GetNodeIdleCPUs(node openapi.V0041OpenapiNodesRespNodesInner) uint64 {
 	idle_cpus := node.AllocIdleCpus
+	if idle_cpus == nil {
+		return 0
+	}
 	return uint64(*idle_cpus)
 }
 
@@ -305,6 +320,9 @@ func GetNodeOtherCPUs(node openapi.V0041OpenapiNodesRespNodesInner) uint64 {
 // of the total cpus on the node
 func GetNodeTotalCPUs(node openapi.V0041OpenapiNodesRespNodesInner) uint64 {
 	total_cpus := node.Cpus
+	if total_cpus == nil {
+		return 0
+	}
 	return uint64(*total_cpus)
 }
 
@@ -765,7 +783,29 @@ func ParsePartitionsMetrics(partitionResp openapi.V0041OpenapiPartitionResp, job
 	partitions := make(map[string]*partitionMetrics)
 	nodePartitions := make(map[string][]string)
 
-	// first, store all the nodes and their partitions
+	// first, scan through partition data to easily get total cpus
+	for _, p := range partitionResp.Partitions {
+		partitionName, err := GetPartitionName(p)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get partition name for partition metrics: %v", err)
+		}
+		_, exists := partitions[*partitionName]
+		if !exists {
+			partitions[*partitionName] = NewPartitionsMetrics()
+		}
+
+		// cpu total
+		total, err := GetPartitionTotalCPUs(p)
+		if err != nil {
+			return nil, fmt.Errorf("failed to collect cpu total for partition metrics: %v", err)
+		}
+		partitions[*partitionName].cpus_total = *total
+	}
+
+	// we need to gather cpus from the nodes perspective because a node can
+	// be a member of multiple partitions, running a job in one partition, and
+	// we want to see that there are allocated cpus on the other partition because
+	// of the shared node.
 	for _, n := range nodesResp.Nodes {
 		nodeName, err := GetNodeName(n)
 		if err != nil {
@@ -774,34 +814,24 @@ func ParsePartitionsMetrics(partitionResp openapi.V0041OpenapiPartitionResp, job
 		nodePartitions[*nodeName] = GetNodePartitions(n)
 	}
 
-	// scan through partition data to get total cpus
-	for _, p := range partitionResp.Partitions {
-		partition, err := GetPartitionName(p)
-		if err != nil {
-			return nil, fmt.Errorf("failed to get partition name for partition metrics: %v", err)
-		}
-		_, exists := partitions[*partition]
-		if !exists {
-			partitions[*partition] = NewPartitionsMetrics()
-		}
-
-		// cpu total
-		total, err := GetPartitionTotalCPUs(p)
-		if err != nil {
-			return nil, fmt.Errorf("failed to collect cpu total for partition metrics: %v", err)
-		}
-		partitions[*partition].cpus_total = *total
-	}
-
 	// to get used and available cpus, we need to scan through the job list and categorize
 	// each job by its partition, adding the cpus as we go
 	for _, n := range nodesResp.Nodes {
 		alloc_cpus := GetNodeAllocCPUs(n)
 		idle_cpus := GetNodeIdleCPUs(n)
-		nodePartitions := GetNodePartitions(n)
-		for _, pname := range nodePartitions {
-			partitions[pname].cpus_allocated += float64(alloc_cpus)
-			partitions[pname].cpus_idle += float64(idle_cpus)
+		nodePartitionNames := GetNodePartitions(n)
+		for _, partitionName := range nodePartitionNames {
+			// this needs to exist to handle the test data provided by SLURM
+			// where the nodes response example data does not correspond to
+			// the partitions response example data. in real data, the
+			// partition names should already exist in the map
+			_, exists := partitions[partitionName]
+			if !exists {
+				partitions[partitionName] = NewPartitionsMetrics()
+			}
+
+			partitions[partitionName].cpus_allocated += float64(alloc_cpus)
+			partitions[partitionName].cpus_idle += float64(idle_cpus)
 		}
 	}
 
@@ -818,8 +848,16 @@ func ParsePartitionsMetrics(partitionResp openapi.V0041OpenapiPartitionResp, job
 		}
 		// partition name can be comma-separated, so we iterate through it
 		pnames := strings.Split(*pname, ",")
-		for _, pname := range pnames {
-			partitions[pname].jobs_pending += 1
+		for _, partitionName := range pnames {
+			// this needs to exist to handle the test data provided by SLURM
+			// where the nodes response example data does not correspond to
+			// the partitions response example data. in real data, the
+			// partition names should already exist in the map
+			_, exists := partitions[partitionName]
+			if !exists {
+				partitions[partitionName] = NewPartitionsMetrics()
+			}
+			partitions[partitionName].jobs_pending += 1
 		}
 	}
 
