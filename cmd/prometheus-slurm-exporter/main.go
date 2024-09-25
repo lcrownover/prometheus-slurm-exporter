@@ -7,11 +7,13 @@ import (
 	"log/slog"
 	"net/http"
 	"os"
+	"time"
 
+	"github.com/akyoto/cache"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/slurm"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 var err error
@@ -32,7 +34,7 @@ func main() {
 
 	listenAddress, found := os.LookupEnv("SLURM_EXPORTER_LISTEN_ADDRESS")
 	if !found {
-		listenAddress = ":8080"
+		listenAddress = "0.0.0.0:8080"
 	}
 
 	apiUser, found := os.LookupEnv("SLURM_EXPORTER_API_USER")
@@ -52,42 +54,35 @@ func main() {
 		fmt.Println("You must set SLURM_EXPORTER_API_URL. Example: localhost:6820")
 		os.Exit(1)
 	}
-	apiURL = slurm.CleanseBaseURL(apiURL)
+	apiURL = api.CleanseBaseURL(apiURL)
+
+	// API Cache
+	apiCache := cache.New(60 * time.Second)
 
 	// Set up the context to pass around
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, types.ApiUserKey, apiUser)
 	ctx = context.WithValue(ctx, types.ApiTokenKey, apiToken)
 	ctx = context.WithValue(ctx, types.ApiURLKey, apiURL)
+	ctx = context.WithValue(ctx, types.ApiCacheKey, apiCache)
 
 	// Register all the endpoints
-	ctx = context.WithValue(ctx, types.ApiJobsEndpointKey, "/slurm/v0.0.40/jobs")
-	ctx = context.WithValue(ctx, types.ApiNodesEndpointKey, "/slurm/v0.0.40/nodes")
+	ctx = api.RegisterEndpoints(ctx)
 
+	// Register all the collectors
 	r := prometheus.NewRegistry()
-
-	// r.MustRegister(slurm.NewAccountsCollector(ctx)) // from accounts.go
-	// r.MustRegister(slurm.NewOldAccountsCollector()) // from accounts.go
-
-	r.MustRegister(slurm.NewCPUsCollector(ctx)) // from cpus.go
-	r.MustRegister(slurm.NewCPUsCollectorOld()) // from cpus.go
-
-	// r.MustRegister(slurm.NewNodesCollector())      // from nodes.go
-	// r.MustRegister(slurm.NewNodeCollector())       // from node.go
-	// r.MustRegister(slurm.NewPartitionsCollector()) // from partitions.go
-	// r.MustRegister(slurm.NewQueueCollector())      // from queue.go
-	// r.MustRegister(slurm.NewSchedulerCollector())  // from scheduler.go
-	// r.MustRegister(slurm.NewFairShareCollector())  // from sshare.go
-	// r.MustRegister(slurm.NewUsersCollector())      // from users.go
-
-	// gpuAcctString := os.Getenv("SLURM_EXPORTER_GPU_ACCOUNTING")
-	// if gpuAcctString == "true" || gpuAcctString == "1" {
-	// 	r.MustRegister(slurm.NewGPUsCollector())
-	// 	log.Println("GPUs Accounting ON")
-	// }
-	handler := promhttp.HandlerFor(r, promhttp.HandlerOpts{})
+	r.MustRegister(slurm.NewAccountsCollector(ctx))
+	r.MustRegister(slurm.NewCPUsCollector(ctx))
+	r.MustRegister(slurm.NewGPUsCollector(ctx))
+	r.MustRegister(slurm.NewNodesCollector(ctx))
+	r.MustRegister(slurm.NewNodeCollector(ctx))
+	r.MustRegister(slurm.NewPartitionsCollector(ctx))
+	r.MustRegister(slurm.NewFairShareCollector(ctx))
+	r.MustRegister(slurm.NewQueueCollector(ctx))
+	r.MustRegister(slurm.NewSchedulerCollector(ctx))
+	r.MustRegister(slurm.NewUsersCollector(ctx))
 
 	log.Printf("Starting Server: %s\n", listenAddress)
-	http.Handle("/metrics", handler)
+	http.Handle("/metrics", api.MetricsHandler(r, ctx))
 	log.Fatal(http.ListenAndServe(listenAddress, nil))
 }

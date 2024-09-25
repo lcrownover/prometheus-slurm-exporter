@@ -1,0 +1,11 @@
+[Unit]
+Description=Prometheus SLURM Exporter
+
+[Service]
+ExecStart=/usr/local/sbin/prometheus-slurm-exporter
+EnvironmentFile=/etc/prometheus-slurm-exporter/env.conf
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target

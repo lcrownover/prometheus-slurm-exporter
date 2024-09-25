@@ -1,0 +1,291 @@
+{
+  "partitions" : [ {
+    "cluster" : "cluster",
+    "cpus" : {
+      "task_binding" : 6,
+      "total" : 1
+    },
+    "timeouts" : {
+      "resume" : {
+        "number" : 9,
+        "set" : true,
+        "infinite" : true
+      },
+      "suspend" : {
+        "number" : 6,
+        "set" : true,
+        "infinite" : true
+      }
+    },
+    "groups" : {
+      "allowed" : "allowed"
+    },
+    "alternate" : "alternate",
+    "select_type" : [ "CPU", "CPU" ],
+    "suspend_time" : {
+      "number" : 8,
+      "set" : true,
+      "infinite" : true
+    },
+    "priority" : {
+      "tier" : 9,
+      "job_factor" : 5
+    },
+    "node_sets" : "node_sets",
+    "maximums" : {
+      "shares" : 1,
+      "nodes" : {
+        "number" : 1,
+        "set" : true,
+        "infinite" : true
+      },
+      "over_time_limit" : {
+        "number" : 1,
+        "set" : true,
+        "infinite" : true
+      },
+      "cpus_per_node" : {
+        "number" : 3,
+        "set" : true,
+        "infinite" : true
+      },
+      "cpus_per_socket" : {
+        "number" : 2,
+        "set" : true,
+        "infinite" : true
+      },
+      "partition_memory_per_node" : {
+        "number" : 1,
+        "set" : true,
+        "infinite" : true
+      },
+      "oversubscribe" : {
+        "jobs" : 6,
+        "flags" : [ "force", "force" ]
+      },
+      "memory_per_cpu" : 4,
+      "time" : {
+        "number" : 7,
+        "set" : true,
+        "infinite" : true
+      },
+      "partition_memory_per_cpu" : {
+        "number" : 7,
+        "set" : true,
+        "infinite" : true
+      }
+    },
+    "nodes" : {
+      "configured" : "configured",
+      "total" : 0,
+      "allowed_allocation" : "allowed_allocation"
+    },
+    "partition" : {
+      "state" : [ "INACTIVE", "INACTIVE" ]
+    },
+    "qos" : {
+      "deny" : "deny",
+      "allowed" : "allowed",
+      "assigned" : "assigned"
+    },
+    "defaults" : {
+      "partition_memory_per_node" : {
+        "number" : 2,
+        "set" : true,
+        "infinite" : true
+      },
+      "memory_per_cpu" : 5,
+      "time" : {
+        "number" : 7,
+        "set" : true,
+        "infinite" : true
+      },
+      "job" : "job",
+      "partition_memory_per_cpu" : {
+        "number" : 5,
+        "set" : true,
+        "infinite" : true
+      }
+    },
+    "name" : "name",
+    "tres" : {
+      "configured" : "configured",
+      "billing_weights" : "billing_weights"
+    },
+    "accounts" : {
+      "deny" : "deny",
+      "allowed" : "allowed"
+    },
+    "minimums" : {
+      "nodes" : 4
+    },
+    "grace_time" : 9
+  }, {
+    "cluster" : "cluster",
+    "cpus" : {
+      "task_binding" : 6,
+      "total" : 1
+    },
+    "timeouts" : {
+      "resume" : {
+        "number" : 9,
+        "set" : true,
+        "infinite" : true
+      },
+      "suspend" : {
+        "number" : 6,
+        "set" : true,
+        "infinite" : true
+      }
+    },
+    "groups" : {
+      "allowed" : "allowed"
+    },
+    "alternate" : "alternate",
+    "select_type" : [ "CPU", "CPU" ],
+    "suspend_time" : {
+      "number" : 8,
+      "set" : true,
+      "infinite" : true
+    },
+    "priority" : {
+      "tier" : 9,
+      "job_factor" : 5
+    },
+    "node_sets" : "node_sets",
+    "maximums" : {
+      "shares" : 1,
+      "nodes" : {
+        "number" : 1,
+        "set" : true,
+        "infinite" : true
+      },
+      "over_time_limit" : {
+        "number" : 1,
+        "set" : true,
+        "infinite" : true
+      },
+      "cpus_per_node" : {
+        "number" : 3,
+        "set" : true,
+        "infinite" : true
+      },
+      "cpus_per_socket" : {
+        "number" : 2,
+        "set" : true,
+        "infinite" : true
+      },
+      "partition_memory_per_node" : {
+        "number" : 1,
+        "set" : true,
+        "infinite" : true
+      },
+      "oversubscribe" : {
+        "jobs" : 6,
+        "flags" : [ "force", "force" ]
+      },
+      "memory_per_cpu" : 4,
+      "time" : {
+        "number" : 7,
+        "set" : true,
+        "infinite" : true
+      },
+      "partition_memory_per_cpu" : {
+        "number" : 7,
+        "set" : true,
+        "infinite" : true
+      }
+    },
+    "nodes" : {
+      "configured" : "configured",
+      "total" : 0,
+      "allowed_allocation" : "allowed_allocation"
+    },
+    "partition" : {
+      "state" : [ "INACTIVE", "INACTIVE" ]
+    },
+    "qos" : {
+      "deny" : "deny",
+      "allowed" : "allowed",
+      "assigned" : "assigned"
+    },
+    "defaults" : {
+      "partition_memory_per_node" : {
+        "number" : 2,
+        "set" : true,
+        "infinite" : true
+      },
+      "memory_per_cpu" : 5,
+      "time" : {
+        "number" : 7,
+        "set" : true,
+        "infinite" : true
+      },
+      "job" : "job",
+      "partition_memory_per_cpu" : {
+        "number" : 5,
+        "set" : true,
+        "infinite" : true
+      }
+    },
+    "name" : "name",
+    "tres" : {
+      "configured" : "configured",
+      "billing_weights" : "billing_weights"
+    },
+    "accounts" : {
+      "deny" : "deny",
+      "allowed" : "allowed"
+    },
+    "minimums" : {
+      "nodes" : 4
+    },
+    "grace_time" : 9
+  } ],
+  "meta" : {
+    "slurm" : {
+      "cluster" : "cluster",
+      "release" : "release",
+      "version" : {
+        "major" : "major",
+        "minor" : "minor",
+        "micro" : "micro"
+      }
+    },
+    "plugin" : {
+      "accounting_storage" : "accounting_storage",
+      "name" : "name",
+      "type" : "type",
+      "data_parser" : "data_parser"
+    },
+    "client" : {
+      "source" : "source",
+      "user" : "user",
+      "group" : "group"
+    },
+    "command" : [ "command", "command" ]
+  },
+  "last_update" : {
+    "number" : 9,
+    "set" : true,
+    "infinite" : true
+  },
+  "warnings" : [ {
+    "description" : "description",
+    "source" : "source"
+  }, {
+    "description" : "description",
+    "source" : "source"
+  } ],
+  "errors" : [ {
+    "description" : "description",
+    "source" : "source",
+    "error" : "error",
+    "error_number" : 5
+  }, {
+    "description" : "description",
+    "source" : "source",
+    "error" : "error",
+    "error_number" : 5
+  } ]
+}
