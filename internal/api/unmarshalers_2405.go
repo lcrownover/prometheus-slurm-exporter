@@ -6,12 +6,12 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
+	openapi "github.com/lcrownover/openapi-slurm-24-05"
 )
 
 // UnmarshalDiagResponse converts the response bytes into a slurm type
-func UnmarshalDiagResponse(b []byte) (*types.V0041OpenapiDiagResp, error) {
-	var diagResp types.V0041OpenapiDiagResp
+func UnmarshalDiagResponse(b []byte) (*openapi.SlurmV0041GetDiag200Response, error) {
+	var diagResp openapi.SlurmV0041GetDiag200Response
 	err := json.Unmarshal(b, &diagResp)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshall diag response data: %v", err)
@@ -20,8 +20,8 @@ func UnmarshalDiagResponse(b []byte) (*types.V0041OpenapiDiagResp, error) {
 }
 
 // UnmarshalJobsResponse converts the response bytes into a slurm type
-func UnmarshalJobsResponse(b []byte) (*types.V0041OpenapiJobInfoResp, error) {
-	var jobsResp types.V0041OpenapiJobInfoResp
+func UnmarshalJobsResponse(b []byte) (*openapi.V0041OpenapiJobInfoResp, error) {
+	var jobsResp openapi.V0041OpenapiJobInfoResp
 	err := json.Unmarshal(b, &jobsResp)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshall job response data: %v", err)
@@ -30,8 +30,8 @@ func UnmarshalJobsResponse(b []byte) (*types.V0041OpenapiJobInfoResp, error) {
 }
 
 // UnmarshalNodesResponse converts the response bytes into a slurm type
-func UnmarshalNodesResponse(b []byte) (*types.V0041OpenapiNodesResp, error) {
-	var nodesResp types.V0041OpenapiNodesResp
+func UnmarshalNodesResponse(b []byte) (*openapi.V0041OpenapiNodesResp, error) {
+	var nodesResp openapi.V0041OpenapiNodesResp
 	err := json.Unmarshal(b, &nodesResp)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshall nodes response data: %v", err)
@@ -40,8 +40,8 @@ func UnmarshalNodesResponse(b []byte) (*types.V0041OpenapiNodesResp, error) {
 }
 
 // UnmarshalPartitionsResponse converts the response bytes into a slurm type
-func UnmarshalPartitionsResponse(b []byte) (*types.V0041OpenapiPartitionResp, error) {
-	var partitionsResp types.V0041OpenapiPartitionResp
+func UnmarshalPartitionsResponse(b []byte) (*openapi.V0041OpenapiPartitionResp, error) {
+	var partitionsResp openapi.V0041OpenapiPartitionResp
 	err := json.Unmarshal(b, &partitionsResp)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshall partitions response data: %v", err)
@@ -50,8 +50,8 @@ func UnmarshalPartitionsResponse(b []byte) (*types.V0041OpenapiPartitionResp, er
 }
 
 // UnmarshalSharesResponse converts the response bytes into a slurm type
-func UnmarshalSharesResponse(b []byte) (*types.V0041OpenapiSharesResp, error) {
-	var sharesResp types.V0041OpenapiSharesResp
+func UnmarshalSharesResponse(b []byte) (*openapi.SlurmV0041GetShares200Response, error) {
+	var sharesResp openapi.SlurmV0041GetShares200Response
 	err := json.Unmarshal(b, &sharesResp)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshall shares response data: %v", err)

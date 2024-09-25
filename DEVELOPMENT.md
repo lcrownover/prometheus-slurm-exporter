@@ -15,7 +15,9 @@ export PATH=$PWD/go/bin:$PATH
 
 _Alternatively install Go using the packaging system of your Linux distribution._
 
-## Install openapi-generator-cli and openjdk
+## Adding Support for New Openapi Versions
+
+### Install openapi-generator-cli and openjdk
 
 Install `openapi-generator-cli` globally with NPM:
 
@@ -30,7 +32,27 @@ For mac, `brew install java`, then following the brew message, symlink the JDK,
 
 For ubuntu, `sudo snap install openjdk`.
 
-## Clone this repository and build
+### Generating the Code
+
+I do this for every new SLURM version, so it should already be done.
+
+Assuming 24.05:
+
+```bash
+openapi-generator-cli generate \
+    -g go \
+    -i openapi-specs/23.11.json \
+    -o ../openapi-slurm-23-11 \
+    --package-name openapi_slurm_23_11 \
+    --git-user-id lcrownover \
+    --git-repo-id openapi-slurm-23-11
+```
+
+This will generate an entire git repository that you can toss up in GitHub.
+
+## Building
+
+### Clone this repository and build
 
 Use Git to clone the source code:
 

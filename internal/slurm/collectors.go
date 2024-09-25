@@ -60,7 +60,7 @@ func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to unmarshal jobs response for accounts metrics", "error", err)
 		return
 	}
-	am, err := ParseAccountsMetrics(jobsResp.Jobs)
+	am, err := ParseAccountsMetrics(*jobsResp)
 	if err != nil {
 		slog.Error("failed to parse accounts metrics", "error", err)
 		return

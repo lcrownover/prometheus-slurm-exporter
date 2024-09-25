@@ -19,12 +19,9 @@ endif
 test:
 ifeq ($(slurm_version),all)
 	# Generate and test for version 24.05
-	openapi-generator-cli generate -g go -i openapi-specs/24.05.json -o internal/openapi
 	go test -tags=2405 -v ./...
 	# Generate and test for version 23.11
-	openapi-generator-cli generate -g go -i openapi-specs/23.11.json -o internal/openapi
 	go test -tags=2311 -v ./...
 else
-	openapi-generator-cli generate -g go -i openapi-specs/$(slurm_version).json -o internal/openapi
 	go test -tags=$(subst .,,$(slurm_version)) -v ./...
 endif
