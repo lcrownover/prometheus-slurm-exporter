@@ -20,7 +20,7 @@ _Alternatively install Go using the packaging system of your Linux distribution.
 Install `openapi-generator-cli` globally with NPM:
 
 ```bash
-npm install -g openapi-generator-cli`
+npm install -g @openapitools/openapi-generator-cli`
 ```
 
 This package depends on having the `java` executable in `PATH`, so install java.
@@ -42,19 +42,19 @@ cd prometheus-slurm-exporter
 Build the binary for your SLURM version, for example 24.05:
 
 ```bash
-make 24.05
-```
-
-Run the tests for all SLURM versions:
-
-```bash
-make test
+SLURM_VERSION=24.05 make
 ```
 
 Run tests for a specific SLURM version:
 
 ```bash
-make test_24.05
+SLURM_VERSION=24.05 make test
+```
+
+Run the tests for all SLURM versions:
+
+```bash
+SLURM_VERSION=all make test
 ```
 
 Start the exporter:
