@@ -1,177 +1,80 @@
 # Prometheus Slurm Exporter
 
-> [!Warning]
-> This repository is under transition from the previous maintainers. Here's a link to the Trello board for progress: https://trello.com/b/6sUTWm7z/prometheus-slurm-exporter
-
 Prometheus collector and exporter for metrics extracted from the [Slurm](https://slurm.schedmd.com/overview.html) resource scheduling system.
 
-## Exported Metrics
-
-### State of the CPUs
-
-* **Allocated**: CPUs which have been allocated to a job.
-* **Idle**: CPUs not allocated to a job and thus available for use.
-* **Other**: CPUs which are unavailable for use at the moment.
-* **Total**: total number of CPUs.
-
-- Information extracted from the SLURM [**sinfo**](https://slurm.schedmd.com/sinfo.html) command.
-- [Slurm CPU Management User and Administrator Guide](https://slurm.schedmd.com/cpu_management.html)
-
-### State of the GPUs
-
-* **Allocated**: GPUs which have been allocated to a job.
-* **Other**: GPUs which are unavailable for use at the moment.
-* **Total**: total number of GPUs.
-* **Utilization**: total GPU utiliazation on the cluster.
-
-- Information extracted from the SLURM [**sinfo**](https://slurm.schedmd.com/sinfo.html) and [**sacct**](https://slurm.schedmd.com/sacct.html) command.
-- [Slurm GRES scheduling](https://slurm.schedmd.com/gres.html)
-
-**NOTE**: since version **0.19**, GPU accounting has to be **explicitly** enabled adding the _-gpus-acct_ option to the command line otherwise it will not be activated.
-
-Be aware that:
-
-* According to issue #38, users reported that newer version of Slurm provides slightly different output and thus GPUs accounting may not work properly.
-* Users who do not have GPUs and/or do not have accounting activated may want to keep GPUs accounting **off** (see issue #45).
-
-### State of the Nodes
-
-* **Allocated**: nodes which has been allocated to one or more jobs.
-* **Completing**: all jobs associated with these nodes are in the process of being completed.
-* **Down**: nodes which are unavailable for use.
-* **Drain**: with this metric two different states are accounted for:
-  - nodes in ``drained`` state (marked unavailable for use per system administrator request)
-  - nodes in ``draining`` state (currently executing jobs but which will not be allocated for new ones).
-* **Fail**: these nodes are expected to fail soon and are unavailable for use per system administrator request.
-* **Error**: nodes which are currently in an error state and not capable of running any jobs.
-* **Idle**: nodes not allocated to any jobs and thus available for use.
-* **Maint**: nodes which are currently marked with the __maintenance__ flag.
-* **Mixed**: nodes which have some of their CPUs ALLOCATED while others are IDLE.
-* **Resv**: these nodes are in an advanced reservation and not generally available.
-
-- Information extracted from the SLURM [**sinfo**](https://slurm.schedmd.com/sinfo.html) command.
-
-#### Additional info about node usage
-
-Since version **0.18**, the following information are also extracted and exported for **every** node known by Slurm:
-
-* CPUs: how many are _allocated_, _idle_, _other_ and in _total_.
-* Memory: _allocated_ and in _total_.
-* Labels: hostname and its Slurm status (e.g. _idle_, _mix_, _allocated_, _draining_, etc.).
-
-See the related [test data](https://github.com/vpenso/prometheus-slurm-exporter/blob/master/test_data/sinfo_mem.txt) to check the format of the information extracted from Slurm.
-
-### Status of the Jobs
-
-* **PENDING**: Jobs awaiting for resource allocation.
-* **PENDING_DEPENDENCY**: Jobs awaiting because of an unexecuted job dependency.
-* **RUNNING**: Jobs currently allocated.
-* **SUSPENDED**: Job has an allocation but execution has been suspended and CPUs have been released for other jobs.
-* **CANCELLED**: Jobs which were explicitly cancelled by the user or system administrator.
-* **COMPLETING**: Jobs which are in the process of being completed.
-* **COMPLETED**: Jobs have terminated all processes on all nodes with an exit code of zero.
-* **CONFIGURING**: Jobs have been allocated resources, but are waiting for them to become ready for use.
-* **FAILED**: Jobs terminated with a non-zero exit code or other failure condition.
-* **TIMEOUT**: Jobs terminated upon reaching their time limit.
-* **PREEMPTED**: Jobs terminated due to preemption.
-* **NODE_FAIL**: Jobs terminated due to failure of one or more allocated nodes.
-
-- Information extracted from the SLURM [**squeue**](https://slurm.schedmd.com/squeue.html) command.
-
-### State of the Partitions
-
-* Running/suspended Jobs per partitions, divided between Slurm accounts and users.
-* CPUs total/allocated/idle per partition plus used CPU per user ID.
-
-### Jobs information per Account and User
-
-The following information about jobs are also extracted via [squeue](https://slurm.schedmd.com/squeue.html):
-
-* **Running/Pending/Suspended** jobs per SLURM Account.
-* **Running/Pending** CPUs per SLURM Account.
-* **Running/Pending/Suspended** jobs per SLURM User.
-* **Running/Pending** CPUs per SLURM User.
-
-### Scheduler Information
-
-* **Server Thread count**: The number of current active ``slurmctld`` threads.
-* **Queue size**: The length of the scheduler queue.
-* **DBD Agent queue size**: The length of the message queue for _SlurmDBD_.
-* **Last cycle**: Time in microseconds for last scheduling cycle.
-* **Mean cycle**: Mean of scheduling cycles since last reset.
-* **Cycles per minute**: Counter of scheduling executions per minute.
-* **(Backfill) Last cycle**: Time in microseconds of last backfilling cycle.
-* **(Backfill) Mean cycle**: Mean of backfilling scheduling cycles in microseconds since last reset.
-* **(Backfill) Depth mean**: Mean of processed jobs during backfilling scheduling cycles since last reset.
-* **(Backfill) Total Backfilled Jobs** (since last slurm start): number of jobs started thanks to backfilling since last Slurm start.
-* **(Backfill) Total Backfilled Jobs** (since last stats cycle start): number of jobs started thanks to backfilling since last time stats where reset.
-* **(Backfill) Total backfilled heterogeneous Job components**: number of heterogeneous job components started thanks to backfilling since last Slurm start.
-
-- Information extracted from the SLURM [**sdiag**](https://slurm.schedmd.com/sdiag.html) command.
-
-*DBD Agent queue size*: it is particularly important to keep track of it, since an increasing number of messages
-counted with this parameter almost always indicates three issues:
-* the _SlurmDBD_ daemon is down;
-* the database is either down or unreachable;
-* the status of the Slurm accounting DB may be inconsistent (e.g. ``sreport`` missing data, weird utilization of the cluster, etc.).
-
-### Share Information
-
-Collect _share_ statistics for every Slurm account. Refer to the [manpage of the sshare command](https://slurm.schedmd.com/sshare.html) to get more information.
+This project was forked from [https://github.com/vpenso/prometheus-slurm-exporter](https://github.com/vpenso/prometheus-slurm-exporter) and, for now, aims to be backwards-compatible from SLURM 23.11 forward. This means the existing Grafana Dashboard should plug directly into this exporter and work roughly the same.
 
 ## Installation
 
-* Read [DEVELOPMENT.md](DEVELOPMENT.md) in order to build the Prometheus Slurm Exporter. After a successful build copy the executable
-`bin/prometheus-slurm-exporter` to a node with access to the Slurm command-line interface.
+This repository contains precompiled binaries for the three most recent major versions of SLURM. In the [releases](https://github.com/lcrownover/prometheus-slurm-exporter/releases) page, select the newest version of the exporter that matches your SLURM version. The included systemd file assumes you've saved this binary to `/usr/local/sbin/prometheus-slurm-exporter`.
 
-* A [Systemd Unit][sdu] file to run the executable as service is available in [lib/systemd/prometheus-slurm-exporter.service](lib/systemd/prometheus-slurm-exporter.service).
+## Configuration
 
-* (**optional**) Distribute the exporter as a Snap package: consult the [following document](packages/snap/README.md). **NOTE**: this method requires the use of [Snap](https://snapcraft.io), which is built by [Canonical](https://canonical.com).
+The expoter requires several environment variables to be set:
 
-[sdu]: https://www.freedesktop.org/software/systemd/man/systemd.service.html
+* `SLURM_EXPORTER_LISTEN_ADDRESS`
 
-## Prometheus Configuration for the SLURM exporter
+This should be the full address for the exporter to listen on.
 
-It is strongly advisable to configure the Prometheus server with the following parameters:
+_Default: `0.0.0.0:8080`_
+
+* `SLURM_EXPORTER_API_URL`
+
+This is the URL to your slurmrestd server.
+
+_Example: `http://head1.domain.edu:6820`_
+
+* `SLURM_EXPORTER_API_TOKEN`
+
+This is the [SLURM token to authenticate against slurmrestd](https://slurm.schedmd.com/jwt.html).
+
+The easiest way to generate this is by running the following line on your head node:
+
+```bash
+scontrol token username=myuser lifespan=someseconds
+```
+
+`myuser` should probably be the `slurm` user, or some other privileged account.
+
+`lifespan` is specified in seconds. I set mine for 1 year (`lifespan=31536000`).
+
+* `SLURM_EXPORTER_API_USER`
+
+The user specified in the token command.
+
+## Systemd
+
+A systemd unit file is [included](https://github.com/lcrownover/prometheus-slurm-exporter/blob/develop/extras/systemd/prometheus-slurm-exporter.service) for ease of deployment.
+
+This unit file assumes you've written your environment variables to `/etc/prometheus-slurm-exporter/env.conf` in the format:
+
+```
+SLURM_EXPORTER_API_URL="http://head.domain.edu:6820"
+SLURM_EXPORTER_API_USER="root"
+SLURM_EXPORTER_API_TOKEN="mytoken"
+```
+
+## Prometheus Server Scrape Config
 
 ```
 scrape_configs:
-
-#
-# SLURM resource manager:
-#
-  - job_name: 'my_slurm_exporter'
-
+  - job_name: 'slurm_exporter'
     scrape_interval:  30s
-
     scrape_timeout:   30s
-
     static_configs:
-      - targets: ['slurm_host.fqdn:8080']
-```
-
-* **scrape_interval**: a 30 seconds interval will avoid possible 'overloading' on the SLURM master due to frequent calls of sdiag/squeue/sinfo commands through the exporter.
-* **scrape_timeout**: on a busy SLURM master a too short scraping timeout will abort the communication from the Prometheus server toward the exporter, thus generating a ``context_deadline_exceeded`` error.
-
-The previous configuration file can be immediately used with a fresh installation of Prometheus. At the same time, we highly recommend to include at least the ``global`` section into the configuration. Official documentation about __configuring Prometheus__ is [available here](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
-
-**NOTE**: the Prometheus server is using __YAML__ as format for its configuration file, thus **indentation** is really important. Before reloading the Prometheus server it would be better to check the syntax:
-
-```
-$~ promtool check-config prometheus.yml
-
-Checking prometheus.yml
-  SUCCESS: 1 rule files found
-[...]
+      - targets: ['exporter_host.domain.edu:8080']
 ```
 
 ## Grafana Dashboard
 
-A [dashboard](https://grafana.com/dashboards/4323) is available in order to
-visualize the exported metrics through [Grafana](https://grafana.com):
+The [dashboard](https://grafana.com/dashboards/4323) published by the previous author should work the same with this exporter.
 
 ![Status of the Nodes](images/Node_Status.png)
 
 ![Status of the Jobs](images/Job_Status.png)
 
 ![SLURM Scheduler Information](images/Scheduler_Info.png)
+
+## Contributing
+
+Check out the [CONTRIBUTING.md](CONTRIBUTING.md) document.

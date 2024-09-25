@@ -34,7 +34,7 @@ func main() {
 
 	listenAddress, found := os.LookupEnv("SLURM_EXPORTER_LISTEN_ADDRESS")
 	if !found {
-		listenAddress = ":8080"
+		listenAddress = "0.0.0.0:8080"
 	}
 
 	apiUser, found := os.LookupEnv("SLURM_EXPORTER_API_USER")

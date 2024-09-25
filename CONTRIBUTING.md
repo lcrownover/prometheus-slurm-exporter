@@ -32,24 +32,6 @@ For mac, `brew install java`, then following the brew message, symlink the JDK,
 
 For ubuntu, `sudo snap install openjdk`.
 
-### Generating the Code
-
-I do this for every new SLURM version, so it should already be done.
-
-Assuming 24.05:
-
-```bash
-openapi-generator-cli generate \
-    -g go \
-    -i openapi-specs/23.11.json \
-    -o ../openapi-slurm-23-11 \
-    --package-name openapi_slurm_23_11 \
-    --git-user-id lcrownover \
-    --git-repo-id openapi-slurm-23-11
-```
-
-This will generate an entire git repository that you can toss up in GitHub.
-
 ## Building
 
 ### Clone this repository and build
@@ -97,7 +79,25 @@ Query all metrics:
 curl http://localhost:8080/metrics
 ```
 
-## Generating and Saving Openapi specs using Docker
+## Generating and Saving Openapi specs from SLURM using Docker
 
 Navigate to the `docker` directory and use the python script to automatically grab and store an openapi yaml spec
 from a target slurm version.
+
+### Generating the Openapi code for new SLURM versions
+
+I do this for every new SLURM version, so it should already be done.
+
+Assuming 24.05:
+
+```bash
+openapi-generator-cli generate \
+    -g go \
+    -i openapi-specs/23.11.json \
+    -o ../openapi-slurm-23-11 \
+    --package-name openapi_slurm_23_11 \
+    --git-user-id lcrownover \
+    --git-repo-id openapi-slurm-23-11
+```
+
+This will generate an entire git repository that you can toss up in GitHub.
