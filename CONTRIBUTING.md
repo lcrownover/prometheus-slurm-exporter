@@ -4,6 +4,8 @@ You must have access to a slurm head node running `slurmrestd` and a valid token
 for that service. Take note of your slurm version, such as `24.05`, as you'll
 use this version when building.
 
+`develop` is the default branch for this repository, and `main` is used for releases.
+
 ## Install Go from source
 
 ```bash
@@ -103,6 +105,9 @@ openapi-generator-cli generate \
 This will generate an entire git repository that you can toss up in GitHub.
 
 ### Cutting releases
+
+Once you're ready to cut a new release, merge `develop` into `main`, then perform
+the following steps on the `main` branch.
 
 Tag the release version:
 
