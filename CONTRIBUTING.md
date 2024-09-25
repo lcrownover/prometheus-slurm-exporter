@@ -79,7 +79,7 @@ Query all metrics:
 curl http://localhost:8080/metrics
 ```
 
-## Generating and Saving Openapi specs from SLURM using Docker
+### Generating and Saving Openapi specs from SLURM using Docker
 
 Navigate to the `docker` directory and use the python script to automatically grab and store an openapi yaml spec
 from a target slurm version.
@@ -101,3 +101,17 @@ openapi-generator-cli generate \
 ```
 
 This will generate an entire git repository that you can toss up in GitHub.
+
+### Cutting releases
+
+Tag the release version:
+
+`git tag v1.0.1`
+
+Push the tag:
+
+`git push origin v1.0.1`
+
+Use goreleaser to create releases:
+
+`goreleaser release`
