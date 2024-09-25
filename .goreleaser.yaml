@@ -24,7 +24,7 @@ changelog:
 builds:
   - id: 'slurm-23.11'
     main: ./cmd/prometheus-slurm-exporter/main.go
-    binary: prometheus-slurm-exporter-23.11_{{ .Os }}_{{ .Arch }}
+    binary: prometheus-slurm-exporter_slurm-23.11_{{ .Os }}_{{ .Arch }}
     flags:
       - -tags=2311
     env:
@@ -37,7 +37,7 @@ builds:
 
   - id: 'slurm-24.05'
     main: ./cmd/prometheus-slurm-exporter/main.go
-    binary: prometheus-slurm-exporter-24.05_{{ .Os }}_{{ .Arch }}
+    binary: prometheus-slurm-exporter_slurm-24.05_{{ .Os }}_{{ .Arch }}
     flags:
       - -tags=2405
     env:
