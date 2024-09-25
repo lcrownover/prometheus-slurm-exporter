@@ -120,3 +120,9 @@ Push the tag:
 Make sure you have `GITHUB_TOKEN` exported, then use `goreleaser` to create releases:
 
 `goreleaser release`
+
+## Ideas
+
+docker container
+
+end-to-end testing with docker slurm cluster
