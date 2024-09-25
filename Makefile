@@ -25,3 +25,6 @@ ifeq ($(slurm_version),all)
 else
 	go test -tags=$(subst .,,$(slurm_version)) -v ./...
 endif
+
+install:
+	cp bin/prometheus-slurm-exporter /usr/local/sbin/prometheus-slurm-exporter

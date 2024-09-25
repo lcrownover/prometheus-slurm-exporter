@@ -6,7 +6,9 @@ This project was forked from [https://github.com/vpenso/prometheus-slurm-exporte
 
 ## Installation
 
-This repository contains precompiled binaries for the three most recent major versions of SLURM. In the [releases](https://github.com/lcrownover/prometheus-slurm-exporter/releases) page, select the newest version of the exporter that matches your SLURM version. The included systemd file assumes you've saved this binary to `/usr/local/sbin/prometheus-slurm-exporter`.
+This repository contains precompiled binaries for the three most recent major versions of SLURM. 
+In the [releases](https://github.com/lcrownover/prometheus-slurm-exporter/releases) page, select the newest version of the exporter that matches your SLURM version. 
+The included systemd file assumes you've saved this binary to `/usr/local/sbin/prometheus-slurm-exporter`.
 
 ## Configuration
 
