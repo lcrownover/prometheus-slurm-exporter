@@ -779,7 +779,11 @@ type partitionMetrics struct {
 }
 
 // ParsePartitionsMetrics returns a map where the keys are the partition names and the values are a partitionMetrics struct
-func ParsePartitionsMetrics(partitionResp openapi.V0041OpenapiPartitionResp, jobsResp openapi.V0041OpenapiJobInfoResp, nodesResp openapi.V0041OpenapiNodesResp) (map[string]*partitionMetrics, error) {
+func ParsePartitionsMetrics(
+	partitionResp openapi.V0041OpenapiPartitionResp, 
+	jobsResp openapi.V0041OpenapiJobInfoResp, 
+	nodesResp openapi.V0041OpenapiNodesResp,
+) (map[string]*partitionMetrics, error) {
 	partitions := make(map[string]*partitionMetrics)
 	nodePartitions := make(map[string][]string)
 

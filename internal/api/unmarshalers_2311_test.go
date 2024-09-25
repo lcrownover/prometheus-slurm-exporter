@@ -33,7 +33,7 @@ func TestUnmarshalNodesResponse(t *testing.T) {
 }
 
 func TestUnmarshalPartitionsResponse(t *testing.T) {
-	fb := util.ReadTestDataBytes("V0041OpenapiPartitionResp.json")
+	fb := util.ReadTestDataBytes("V0040OpenapiPartitionResp.json")
 	_, err := UnmarshalPartitionsResponse(fb)
 	if err != nil {
 		t.Fatalf("failed to unmarshal partition response: %v\n", err)

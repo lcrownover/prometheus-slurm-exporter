@@ -9,12 +9,14 @@ import (
 	"strconv"
 	"strings"
 
+	openapi "github.com/lcrownover/openapi-slurm-23-11"
+
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
 )
 
 // GetJobAccountName retrieves the account name string from the JobInfo object or returns error
-func GetJobAccountName(job types.V0040JobInfo) (*string, error) {
+func GetJobAccountName(job openapi.V0040JobInfo) (*string, error) {
 	name := job.Account
 	if name == nil {
 		return nil, fmt.Errorf("account name not found in job")
@@ -23,7 +25,7 @@ func GetJobAccountName(job types.V0040JobInfo) (*string, error) {
 }
 
 // GetJobPartitionName retrieves the partition name string from the JobInfo object or returns error
-func GetJobPartitionName(job types.V0040JobInfo) (*string, error) {
+func GetJobPartitionName(job openapi.V0040JobInfo) (*string, error) {
 	name := job.Partition
 	if name == nil {
 		return nil, fmt.Errorf("partition name not found in job")
@@ -32,13 +34,13 @@ func GetJobPartitionName(job types.V0040JobInfo) (*string, error) {
 }
 
 // GetJobState returns a JobState unit or returns an error
-func GetJobState(job types.V0040JobInfo) (*types.JobState, error) {
+func GetJobState(job openapi.V0040JobInfo) (*types.JobState, error) {
 	states := job.JobState
 	if states == nil {
 		// job state is not found in the job response
 		return nil, fmt.Errorf("job state not found in job")
 	}
-	state := string((*states)[0])
+	state := string((states)[0])
 	state = strings.ToLower(state)
 
 	completed := regexp.MustCompile(`^completed`)
@@ -89,7 +91,7 @@ func GetJobState(job types.V0040JobInfo) (*types.JobState, error) {
 }
 
 // GetNodeName retrieves the node name string from the Node object or returns error
-func GetNodeName(node types.V0040Node) (*string, error) {
+func GetNodeName(node openapi.V0040Node) (*string, error) {
 	name := node.Name
 	if name == nil {
 		return nil, fmt.Errorf("node name not found in node information")
@@ -98,7 +100,7 @@ func GetNodeName(node types.V0040Node) (*string, error) {
 }
 
 // GetJobCPUs retrieves the count of CPUs for the given job or returns an error
-func GetJobCPUs(job types.V0040JobInfo) (*float64, error) {
+func GetJobCPUs(job openapi.V0040JobInfo) (*float64, error) {
 	cn := job.Cpus.Number
 	if cn == nil {
 		return nil, fmt.Errorf("failed to find cpu count in job")
@@ -108,7 +110,7 @@ func GetJobCPUs(job types.V0040JobInfo) (*float64, error) {
 }
 
 // GetPartitionName retrieves the name for a given partition or returns an error
-func GetPartitionName(partition types.V0040PartitionInfo) (*string, error) {
+func GetPartitionName(partition openapi.V0040PartitionInfo) (*string, error) {
 	pn := partition.Name
 	if pn == nil {
 		return nil, fmt.Errorf("failed to find name in partition")
@@ -117,7 +119,7 @@ func GetPartitionName(partition types.V0040PartitionInfo) (*string, error) {
 }
 
 // GetPartitionTotalCPUs retrieves the count of total CPUs for a given partition or returns an error
-func GetPartitionTotalCPUs(partition types.V0040PartitionInfo) (*float64, error) {
+func GetPartitionTotalCPUs(partition openapi.V0040PartitionInfo) (*float64, error) {
 	pn := partition.Cpus.Total
 	if pn == nil {
 		return nil, fmt.Errorf("failed to find total cpus in partition")
@@ -128,7 +130,7 @@ func GetPartitionTotalCPUs(partition types.V0040PartitionInfo) (*float64, error)
 
 // GetPartitionNodeList retrieves the slurm node notation for nodes assigned to the partition
 // returns an empty string if none found, only errors on nil pointer from json
-func GetPartitionNodeList(partition types.V0040PartitionInfo) (string, error) {
+func GetPartitionNodeList(partition openapi.V0040PartitionInfo) (string, error) {
 	nodeList := partition.Nodes.Configured
 	if nodeList == nil {
 		return "", fmt.Errorf("failed to find total cpus in partition")
@@ -137,7 +139,7 @@ func GetPartitionNodeList(partition types.V0040PartitionInfo) (string, error) {
 }
 
 // GetNodeStates returns a slice of NodeState unit or returns an error
-func GetNodeStates(node types.V0040Node) (*[]types.NodeState, error) {
+func GetNodeStates(node openapi.V0040Node) (*[]types.NodeState, error) {
 	var nodeStates []types.NodeState
 	states := node.State
 
@@ -146,7 +148,7 @@ func GetNodeStates(node types.V0040Node) (*[]types.NodeState, error) {
 		return nil, fmt.Errorf("node state not found in node")
 	}
 
-	for _, s := range *states {
+	for _, s := range states {
 		state := string(s)
 		state = strings.ToLower(state)
 
@@ -201,7 +203,7 @@ func GetNodeStates(node types.V0040Node) (*[]types.NodeState, error) {
 }
 
 // GetNodeStatesString returns a string of node states separated by delim
-func GetNodeStatesString(node types.V0040Node, delim string) (string, error) {
+func GetNodeStatesString(node openapi.V0040Node, delim string) (string, error) {
 	states, err := GetNodeStates(node)
 	if err != nil {
 		return "", fmt.Errorf("failed to get node states: %v", err)
@@ -215,7 +217,7 @@ func GetNodeStatesString(node types.V0040Node, delim string) (string, error) {
 }
 
 // GetGPUTotal returns the number of GPUs in the node
-func GetNodeGPUTotal(node types.V0040Node) (int, error) {
+func GetNodeGPUTotal(node openapi.V0040Node) (int, error) {
 	tres := node.Tres
 	parts := strings.Split(*tres, ",")
 	for _, p := range parts {
@@ -236,7 +238,7 @@ func GetNodeGPUTotal(node types.V0040Node) (int, error) {
 }
 
 // GetGPUAllocated returns the number of GPUs in the node
-func GetNodeGPUAllocated(node types.V0040Node) (int, error) {
+func GetNodeGPUAllocated(node openapi.V0040Node) (int, error) {
 	tres := node.TresUsed
 	parts := strings.Split(*tres, ",")
 	for _, p := range parts {
@@ -257,38 +259,38 @@ func GetNodeGPUAllocated(node types.V0040Node) (int, error) {
 }
 
 // GetNodePartitions returns a list of strings that are the partitions a node belongs to
-func GetNodePartitions(node types.V0040Node) []string {
+func GetNodePartitions(node openapi.V0040Node) []string {
 	ps := node.Partitions
 	if ps == nil {
 		return []string{}
 	}
-	return *ps
+	return ps
 }
 
 // GetNodeAllocMemory returns an unsigned 64bit integer
 // of the allocated memory on the node
-func GetNodeAllocMemory(node types.V0040Node) uint64 {
+func GetNodeAllocMemory(node openapi.V0040Node) uint64 {
 	alloc_memory := node.AllocMemory
 	return uint64(*alloc_memory)
 }
 
 // GetNodeTotalMemory returns an unsigned 64bit integer
 // of the total memory on the node
-func GetNodeTotalMemory(node types.V0040Node) uint64 {
+func GetNodeTotalMemory(node openapi.V0040Node) uint64 {
 	total_memory := node.RealMemory
 	return uint64(*total_memory)
 }
 
 // GetNodeAllocCPUs returns an unsigned 64bit integer
 // of the allocated cpus on the node
-func GetNodeAllocCPUs(node types.V0040Node) uint64 {
+func GetNodeAllocCPUs(node openapi.V0040Node) uint64 {
 	alloc_cpus := node.AllocCpus
 	return uint64(*alloc_cpus)
 }
 
 // GetNodeIdleCPUs returns an unsigned 64bit integer
 // of the allocated cpus on the node
-func GetNodeIdleCPUs(node types.V0040Node) uint64 {
+func GetNodeIdleCPUs(node openapi.V0040Node) uint64 {
 	idle_cpus := node.AllocIdleCpus
 	return uint64(*idle_cpus)
 }
@@ -296,13 +298,13 @@ func GetNodeIdleCPUs(node types.V0040Node) uint64 {
 // GetNodeOtherCPUs returns an unsigned 64bit integer
 // of the "other" cpus on the node
 // since this isn't in the API, let's just return 0 for now
-func GetNodeOtherCPUs(node types.V0040Node) uint64 {
+func GetNodeOtherCPUs(node openapi.V0040Node) uint64 {
 	return 0
 }
 
 // GetNodeTotalCPUs returns an unsigned 64bit integer
 // of the total cpus on the node
-func GetNodeTotalCPUs(node types.V0040Node) uint64 {
+func GetNodeTotalCPUs(node openapi.V0040Node) uint64 {
 	total_cpus := node.Cpus
 	return uint64(*total_cpus)
 }
@@ -321,9 +323,9 @@ func NewJobMetrics() *JobMetrics {
 
 // ParseAccountsMetrics gets the response body of jobs from SLURM and
 // parses it into a map of "accountName": *JobMetrics
-func ParseAccountsMetrics(jobs []types.V0040JobInfo) (map[string]*JobMetrics, error) {
+func ParseAccountsMetrics(jobsresp openapi.V0040OpenapiJobInfoResp) (map[string]*JobMetrics, error) {
 	accounts := make(map[string]*JobMetrics)
-	for _, j := range jobs {
+	for _, j := range jobsresp.Jobs {
 		// get the account name
 		account, err := GetJobAccountName(j)
 		if err != nil {
@@ -376,7 +378,7 @@ func NewCPUsMetrics() *cpusMetrics {
 }
 
 // ParseCPUMetrics pulls out total cluster cpu states of alloc,idle,other,total
-func ParseCPUsMetrics(nodesResp types.V0040OpenapiNodesResp, jobsResp types.V0040OpenapiJobInfoResp) (*cpusMetrics, error) {
+func ParseCPUsMetrics(nodesResp openapi.V0040OpenapiNodesResp, jobsResp openapi.V0040OpenapiJobInfoResp) (*cpusMetrics, error) {
 	cm := NewCPUsMetrics()
 	for _, j := range jobsResp.Jobs {
 		state, err := GetJobState(j)
@@ -456,7 +458,7 @@ func NewGPUsMetrics() *gpusMetrics {
 
 // ParseGPUsMetrics iterates through node response objects and tallies up the total and
 // allocated gpus, then derives idle and utilization from those numbers.
-func ParseGPUsMetrics(nodesResp types.V0040OpenapiNodesResp) (*gpusMetrics, error) {
+func ParseGPUsMetrics(nodesResp openapi.V0040OpenapiNodesResp) (*gpusMetrics, error) {
 	gm := NewGPUsMetrics()
 	nodes := nodesResp.Nodes
 	for _, n := range nodes {
@@ -496,7 +498,7 @@ func NewNodeMetrics() *nodeMetrics {
 
 // ParseNodeMetrics takes the output of sinfo with node data
 // It returns a map of metrics per node
-func ParseNodeMetrics(nodesResp types.V0040OpenapiNodesResp) (map[string]*nodeMetrics, error) {
+func ParseNodeMetrics(nodesResp openapi.V0040OpenapiNodesResp) (map[string]*nodeMetrics, error) {
 	nodeMap := make(map[string]*nodeMetrics)
 
 	for _, n := range nodesResp.Nodes {
@@ -543,7 +545,7 @@ func NewNodesMetrics() *nodesMetrics {
 
 // ParseNodesMetrics iterates through node response objects and tallies up
 // nodes based on their state
-func ParseNodesMetrics(nodesResp types.V0040OpenapiNodesResp) (*nodesMetrics, error) {
+func ParseNodesMetrics(nodesResp openapi.V0040OpenapiNodesResp) (*nodesMetrics, error) {
 	nm := NewNodesMetrics()
 
 	for _, n := range nodesResp.Nodes {
@@ -600,7 +602,7 @@ type queueMetrics struct {
 	node_fail   float64
 }
 
-func ParseQueueMetrics(jobsResp types.V0040OpenapiJobInfoResp) (*queueMetrics, error) {
+func ParseQueueMetrics(jobsResp openapi.V0040OpenapiJobInfoResp) (*queueMetrics, error) {
 	qm := NewQueueMetrics()
 	for _, j := range jobsResp.Jobs {
 		jobState, err := GetJobState(j)
@@ -659,7 +661,7 @@ type schedulerMetrics struct {
 }
 
 // Extract the relevant metrics from the sdiag output
-func ParseSchedulerMetrics(diagResp types.V0040OpenapiDiagResp) (*schedulerMetrics, error) {
+func ParseSchedulerMetrics(diagResp openapi.V0040OpenapiDiagResp) (*schedulerMetrics, error) {
 	sm := NewSchedulerMetrics()
 	s := diagResp.Statistics
 
@@ -687,9 +689,9 @@ func NewFairShareMetrics() *fairShareMetrics {
 	return &fairShareMetrics{}
 }
 
-func ParseFairShareMetrics(sharesResp types.V0040OpenapiSharesResp) (map[string]*fairShareMetrics, error) {
+func ParseFairShareMetrics(sharesResp openapi.V0040OpenapiSharesResp) (map[string]*fairShareMetrics, error) {
 	accounts := make(map[string]*fairShareMetrics)
-	for _, s := range *sharesResp.Shares.Shares {
+	for _, s := range sharesResp.Shares.Shares {
 		account := *s.Name
 		if _, exists := accounts[account]; !exists {
 			accounts[account] = NewFairShareMetrics()
@@ -714,7 +716,7 @@ type userJobMetrics struct {
 	suspended    float64
 }
 
-func ParseUsersMetrics(jobsResp types.V0040OpenapiJobInfoResp) (map[string]*userJobMetrics, error) {
+func ParseUsersMetrics(jobsResp openapi.V0040OpenapiJobInfoResp) (map[string]*userJobMetrics, error) {
 	users := make(map[string]*userJobMetrics)
 	for _, j := range jobsResp.Jobs {
 		user := *j.UserName
@@ -759,11 +761,37 @@ type partitionMetrics struct {
 }
 
 // ParsePartitionsMetrics returns a map where the keys are the partition names and the values are a partitionMetrics struct
-func ParsePartitionsMetrics(partitionResp types.V0040OpenapiPartitionResp, jobsResp types.V0040OpenapiJobInfoResp, nodesResp types.V0040OpenapiNodesResp) (map[string]*partitionMetrics, error) {
+func ParsePartitionsMetrics(
+	partitionResp openapi.V0040OpenapiPartitionResp,
+	jobsResp openapi.V0040OpenapiJobInfoResp,
+	nodesResp openapi.V0040OpenapiNodesResp,
+) (map[string]*partitionMetrics, error) {
 	partitions := make(map[string]*partitionMetrics)
 	nodePartitions := make(map[string][]string)
 
-	// first, store all the nodes and their partitions
+	// first, scan through partition data to easily get total cpus
+	for _, p := range partitionResp.Partitions {
+		partitionName, err := GetPartitionName(p)
+		if err != nil {
+			return nil, fmt.Errorf("failed to get partition name for partition metrics: %v", err)
+		}
+		_, exists := partitions[*partitionName]
+		if !exists {
+			partitions[*partitionName] = NewPartitionsMetrics()
+		}
+
+		// cpu total
+		total, err := GetPartitionTotalCPUs(p)
+		if err != nil {
+			return nil, fmt.Errorf("failed to collect cpu total for partition metrics: %v", err)
+		}
+		partitions[*partitionName].cpus_total = *total
+	}
+
+	// we need to gather cpus from the nodes perspective because a node can
+	// be a member of multiple partitions, running a job in one partition, and
+	// we want to see that there are allocated cpus on the other partition because
+	// of the shared node.
 	for _, n := range nodesResp.Nodes {
 		nodeName, err := GetNodeName(n)
 		if err != nil {
@@ -772,34 +800,24 @@ func ParsePartitionsMetrics(partitionResp types.V0040OpenapiPartitionResp, jobsR
 		nodePartitions[*nodeName] = GetNodePartitions(n)
 	}
 
-	// scan through partition data to get total cpus
-	for _, p := range partitionResp.Partitions {
-		partition, err := GetPartitionName(p)
-		if err != nil {
-			return nil, fmt.Errorf("failed to get partition name for partition metrics: %v", err)
-		}
-		_, exists := partitions[*partition]
-		if !exists {
-			partitions[*partition] = NewPartitionsMetrics()
-		}
-
-		// cpu total
-		total, err := GetPartitionTotalCPUs(p)
-		if err != nil {
-			return nil, fmt.Errorf("failed to collect cpu total for partition metrics: %v", err)
-		}
-		partitions[*partition].cpus_total = *total
-	}
-
 	// to get used and available cpus, we need to scan through the job list and categorize
 	// each job by its partition, adding the cpus as we go
 	for _, n := range nodesResp.Nodes {
 		alloc_cpus := GetNodeAllocCPUs(n)
 		idle_cpus := GetNodeIdleCPUs(n)
-		nodePartitions := GetNodePartitions(n)
-		for _, pname := range nodePartitions {
-			partitions[pname].cpus_allocated += float64(alloc_cpus)
-			partitions[pname].cpus_idle += float64(idle_cpus)
+		nodePartitionNames := GetNodePartitions(n)
+		for _, partitionName := range nodePartitionNames {
+			// this needs to exist to handle the test data provided by SLURM
+			// where the nodes response example data does not correspond to
+			// the partitions response example data. in real data, the
+			// partition names should already exist in the map
+			_, exists := partitions[partitionName]
+			if !exists {
+				partitions[partitionName] = NewPartitionsMetrics()
+			}
+
+			partitions[partitionName].cpus_allocated += float64(alloc_cpus)
+			partitions[partitionName].cpus_idle += float64(idle_cpus)
 		}
 	}
 
@@ -816,8 +834,16 @@ func ParsePartitionsMetrics(partitionResp types.V0040OpenapiPartitionResp, jobsR
 		}
 		// partition name can be comma-separated, so we iterate through it
 		pnames := strings.Split(*pname, ",")
-		for _, pname := range pnames {
-			partitions[pname].jobs_pending += 1
+		for _, partitionName := range pnames {
+			// this needs to exist to handle the test data provided by SLURM
+			// where the nodes response example data does not correspond to
+			// the partitions response example data. in real data, the
+			// partition names should already exist in the map
+			_, exists := partitions[partitionName]
+			if !exists {
+				partitions[partitionName] = NewPartitionsMetrics()
+			}
+			partitions[partitionName].jobs_pending += 1
 		}
 	}
 
