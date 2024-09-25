@@ -106,12 +106,12 @@ This will generate an entire git repository that you can toss up in GitHub.
 
 Tag the release version:
 
-`git tag v1.0.1`
+`git tag -a v1.0.1 -m 'release note'`
 
 Push the tag:
 
 `git push origin v1.0.1`
 
-Use goreleaser to create releases:
+Make sure you have `GITHUB_TOKEN` exported, then use `goreleaser` to create releases:
 
 `goreleaser release`
