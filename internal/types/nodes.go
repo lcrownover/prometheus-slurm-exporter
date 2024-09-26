@@ -13,6 +13,7 @@ const (
 	NodeStateMaint         NodeState = "maint"
 	NodeStateMix           NodeState = "mix"
 	NodeStateResv          NodeState = "resv"
+	NodeStatePlanned       NodeState = "planned"
 	NodeStateNotResponding NodeState = "not_responding"
 	NodeStateInvalid       NodeState = "invalid"
 	NodeStateInvalidReg    NodeState = "invalid_reg"
