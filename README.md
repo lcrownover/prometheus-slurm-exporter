@@ -16,21 +16,21 @@ The expoter requires several environment variables to be set:
 
 * `SLURM_EXPORTER_LISTEN_ADDRESS`
 
-This should be the full address for the exporter to listen on.
+  This should be the full address for the exporter to listen on.
 
-_Default: `0.0.0.0:8080`_
+  _Default: `0.0.0.0:8080`_
 
 * `SLURM_EXPORTER_API_URL`
 
-This is the URL to your slurmrestd server.
+  This is the URL to your slurmrestd server.
 
-_Example: `http://head1.domain.edu:6820`_
+  _Example: `http://head1.domain.edu:6820`_
 
 * `SLURM_EXPORTER_API_TOKEN`
 
-This is the [SLURM token to authenticate against slurmrestd](https://slurm.schedmd.com/jwt.html).
+  This is the [SLURM token to authenticate against slurmrestd](https://slurm.schedmd.com/jwt.html).
 
-The easiest way to generate this is by running the following line on your head node:
+  The easiest way to generate this is by running the following line on your head node:
 
 ```bash
 scontrol token username=myuser lifespan=someseconds
