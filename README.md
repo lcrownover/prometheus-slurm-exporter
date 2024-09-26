@@ -2,13 +2,18 @@
 
 Prometheus collector and exporter for metrics extracted from the [Slurm](https://slurm.schedmd.com/overview.html) resource scheduling system.
 
-This project was forked from [https://github.com/vpenso/prometheus-slurm-exporter](https://github.com/vpenso/prometheus-slurm-exporter) and, for now, aims to be backwards-compatible from SLURM 23.11 forward. This means the existing Grafana Dashboard should plug directly into this exporter and work roughly the same.
+This project was forked from [https://github.com/vpenso/prometheus-slurm-exporter](https://github.com/vpenso/prometheus-slurm-exporter) and, for now, aims to be backwards-compatible from SLURM 23.11 forward. 
+This means the existing Grafana Dashboard should plug directly into this exporter and work roughly the same.
+
+Unlike previous slurm exporters, this project leverages the SLURM REST API (`slurmrestd`) for data retreival.
+Due to that difference, you are no longer required to run this exporter on a cluster node, as the exporter does not depend on having SLURM installed or connected to the head node!
+I will be releasing containerized versions of this exporter soon.
 
 ## Installation
 
-This repository contains precompiled binaries for the three most recent major versions of SLURM. 
-In the [releases](https://github.com/lcrownover/prometheus-slurm-exporter/releases) page, select the newest version of the exporter that matches your SLURM version. 
-The included systemd file assumes you've saved this binary to `/usr/local/sbin/prometheus-slurm-exporter`.
+This repository contains precompiled binaries for the three most recent major versions of SLURM _(Note: currently only two versions, but will be three when 24.11 releases)_. 
+In the [releases](https://github.com/lcrownover/prometheus-slurm-exporter/releases) page, download the newest version of the exporter that matches your SLURM version.
+The included systemd file assumes you've saved this binary to `/usr/local/sbin/prometheus-slurm-exporter`, so drop it there or take note to change the systemd file if you choose to use it.
 
 ## Configuration
 
@@ -26,23 +31,23 @@ The expoter requires several environment variables to be set:
 
   _Example: `http://head1.domain.edu:6820`_
 
+* `SLURM_EXPORTER_API_USER`
+
+  The user specified in the token command.
+
 * `SLURM_EXPORTER_API_TOKEN`
 
   This is the [SLURM token to authenticate against slurmrestd](https://slurm.schedmd.com/jwt.html).
 
   The easiest way to generate this is by running the following line on your head node:
 
-```bash
-scontrol token username=myuser lifespan=someseconds
-```
+  ```bash
+  scontrol token username=myuser lifespan=someseconds
+  ```
 
-`myuser` should probably be the `slurm` user, or some other privileged account.
+  `myuser` should probably be the `slurm` user, or some other privileged account.
 
-`lifespan` is specified in seconds. I set mine for 1 year (`lifespan=31536000`).
-
-* `SLURM_EXPORTER_API_USER`
-
-The user specified in the token command.
+  `lifespan` is specified in seconds. I set mine for 1 year (`lifespan=31536000`).
 
 ## Systemd
 
@@ -56,7 +61,11 @@ SLURM_EXPORTER_API_USER="root"
 SLURM_EXPORTER_API_TOKEN="mytoken"
 ```
 
+_Don't forget to `chmod 600 /etc/prometheus-slurm-exporter/env.conf`!_
+
 ## Prometheus Server Scrape Config
+
+This is an example scrape config for your prometheus server:
 
 ```
 scrape_configs:
@@ -70,6 +79,7 @@ scrape_configs:
 ## Grafana Dashboard
 
 The [dashboard](https://grafana.com/dashboards/4323) published by the previous author should work the same with this exporter.
+I will be releasing a new version of the dashboard soon that will receive new features.
 
 ![Status of the Nodes](images/Node_Status.png)
 
