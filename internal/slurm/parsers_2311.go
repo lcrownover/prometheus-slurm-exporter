@@ -162,6 +162,7 @@ func GetNodeStates(node openapi.V0040Node) (*[]types.NodeState, error) {
 		maint := regexp.MustCompile(`^maint`)
 		mix := regexp.MustCompile(`^mix`)
 		resv := regexp.MustCompile(`^res`)
+		planned := regexp.MustCompile(`^planned`)
 		notresp := regexp.MustCompile(`^not_responding`)
 		invalidreg := regexp.MustCompile(`^invalid_reg`)
 
@@ -186,6 +187,8 @@ func GetNodeStates(node openapi.V0040Node) (*[]types.NodeState, error) {
 			stateUnit = types.NodeStateMaint
 		case mix.MatchString(state):
 			stateUnit = types.NodeStateMix
+		case planned.MatchString(state):
+			stateUnit = types.NodeStatePlanned
 		case resv.MatchString(state):
 			stateUnit = types.NodeStateResv
 		case notresp.MatchString(state):
