@@ -575,7 +575,11 @@ func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
 	// float64 value that represents Infinity.
 	// this will be fixed in v0.0.42
 	// https://support.schedmd.com/show_bug.cgi?id=20817
+	// 
+	// https://github.com/lcrownover/prometheus-slurm-exporter/issues/8
+	// also reported that folks are getting "inf" back, so I'll protect for that too
 	sharesRespBytes = []byte(strings.ReplaceAll(string(sharesRespBytes.([]byte)), "Infinity", "1.7976931348623157e+308"))
+	sharesRespBytes = []byte(strings.ReplaceAll(string(sharesRespBytes.([]byte)), "inf", "1.7976931348623157e+308"))
 
 	sharesResp, err := api.UnmarshalSharesResponse(sharesRespBytes.([]byte))
 	if err != nil {
