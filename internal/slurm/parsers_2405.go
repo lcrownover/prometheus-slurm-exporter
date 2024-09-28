@@ -329,6 +329,16 @@ func GetNodeTotalCPUs(node openapi.V0041OpenapiNodesRespNodesInner) uint64 {
 	return uint64(*total_cpus)
 }
 
+// GetFairShareEffectiveUsage returns a float64
+// of the effective usage of the fair share system
+func GetFairShareEffectiveUsage(share openapi.SlurmV0041GetShares200ResponseSharesSharesInner) float64 {
+	eu := share.EffectiveUsage
+	if eu == nil {
+		return 0
+	}
+	return *eu
+}
+
 type JobMetrics struct {
 	pending      float64
 	pending_cpus float64
@@ -714,13 +724,14 @@ func ParseFairShareMetrics(sharesResp openapi.SlurmV0041GetShares200Response) (m
 	accounts := make(map[string]*fairShareMetrics)
 	for _, s := range sharesResp.Shares.Shares {
 		account := *s.Name
+		if account == "root" {
+			// we don't care about the root account
+			continue
+		}
 		if _, exists := accounts[account]; !exists {
 			accounts[account] = NewFairShareMetrics()
 		}
-		// TODO: check if the level is the right value here,
-		// there might be some other property that matches the
-		// previous value from the old share info code
-		accounts[account].fairshare = *s.Fairshare.Level
+		accounts[account].fairshare = GetFairShareEffectiveUsage(s)
 	}
 	return accounts, nil
 }
@@ -783,8 +794,8 @@ type partitionMetrics struct {
 
 // ParsePartitionsMetrics returns a map where the keys are the partition names and the values are a partitionMetrics struct
 func ParsePartitionsMetrics(
-	partitionResp openapi.V0041OpenapiPartitionResp, 
-	jobsResp openapi.V0041OpenapiJobInfoResp, 
+	partitionResp openapi.V0041OpenapiPartitionResp,
+	jobsResp openapi.V0041OpenapiJobInfoResp,
 	nodesResp openapi.V0041OpenapiNodesResp,
 ) (map[string]*partitionMetrics, error) {
 	partitions := make(map[string]*partitionMetrics)
