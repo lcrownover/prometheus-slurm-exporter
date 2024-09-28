@@ -578,8 +578,16 @@ func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
 	// 
 	// https://github.com/lcrownover/prometheus-slurm-exporter/issues/8
 	// also reported that folks are getting "inf" back, so I'll protect for that too
-	sharesRespBytes = []byte(strings.ReplaceAll(string(sharesRespBytes.([]byte)), "Infinity", "1.7976931348623157e+308"))
-	sharesRespBytes = []byte(strings.ReplaceAll(string(sharesRespBytes.([]byte)), "inf", "1.7976931348623157e+308"))
+	sharesRespString := string(sharesRespBytes.([]byte))
+	maxFloatStr := "1.7976931348623157e+308"
+	// replacing the longer strings first should prevent any partial replacements
+	sharesRespString = strings.ReplaceAll(sharesRespString, "Infinity", maxFloatStr)
+	sharesRespString = strings.ReplaceAll(sharesRespString, "infinity", maxFloatStr)
+	// sometimes it'd return "inf", so let's cover for that too.
+	sharesRespString = strings.ReplaceAll(sharesRespString, "Inf", maxFloatStr)
+	sharesRespString = strings.ReplaceAll(sharesRespString, "inf", maxFloatStr)
+	sharesRespBytes = []byte(sharesRespString)
+	// end hack
 
 	sharesResp, err := api.UnmarshalSharesResponse(sharesRespBytes.([]byte))
 	if err != nil {
