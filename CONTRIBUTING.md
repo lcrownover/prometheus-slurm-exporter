@@ -90,7 +90,7 @@ from a target slurm version.
 
 I do this for every new SLURM version, so it should already be done.
 
-Assuming 24.05:
+Assuming 23.11:
 
 ```bash
 openapi-generator-cli generate \
@@ -103,6 +103,15 @@ openapi-generator-cli generate \
 ```
 
 This will generate an entire git repository that you can toss up in GitHub.
+
+Navigate to it.
+
+Now we just strip out all instances of the API version. In this case, 23.11 is API
+version 0.0.40:
+
+```bash
+find . -type f -not -path "./.git/*" -exec gsed -i 's/V0040//g' {} +
+```
 
 ### Cutting releases
 
