@@ -9,7 +9,7 @@ slurm_version := ${SLURM_VERSION}
 # If SLURM_VERSION is "all", print an error message for the default build target
 ifeq ($(slurm_version),all)
 build:
-	$(error You must unset SLURM_VERSION to build)
+	$(error You must set a specific SLURM_VERSION to build)
 else
 build:
 	mkdir -p bin/
