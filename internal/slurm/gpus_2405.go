@@ -109,7 +109,7 @@ func ParseGPUsMetrics(nodesResp openapi.V0041OpenapiNodesResp) (*gpusMetrics, er
 		gm.total += float64(totalGPUs)
 		gm.alloc += float64(allocGPUs)
 		gm.idle += float64(idleGPUs)
-	}
+  }
 	// TODO: Do we really need an "other" field?
 	// using TRES, it should be straightforward.
 	if gm.total > 0 {
