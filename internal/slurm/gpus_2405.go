@@ -112,6 +112,11 @@ func ParseGPUsMetrics(nodesResp openapi.V0041OpenapiNodesResp) (*gpusMetrics, er
 	}
 	// TODO: Do we really need an "other" field?
 	// using TRES, it should be straightforward.
-	gm.utilization = gm.alloc / gm.total
+	if gm.total > 0 {
+		// if total is 0, we get NaN, so we check here
+		gm.other = gm.total - (gm.alloc + gm.idle)
+	} else {
+		gm.other = 0
+	}
 	return gm, nil
 }
