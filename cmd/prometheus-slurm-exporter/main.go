@@ -18,7 +18,7 @@ import (
 
 var err error
 
-var version = "1.0.8"
+var version = "1.0.9"
 
 func main() {
 	log.Printf("Starting Prometheus Slurm Exporter %s\n", version)
