@@ -4,7 +4,12 @@ You must have access to a slurm head node running `slurmrestd` and a valid token
 for that service. Take note of your slurm version, such as `24.05`, as you'll
 use this version when building.
 
+<<<<<<< HEAD
 ## Requirements
+=======
+`develop` is the default branch for this repository, and `main` is used for
+releases.
+>>>>>>> bc4e557 (adding version var and cmdline flag for version)
 
 Install Go from source if you don't already have it.
 
@@ -17,6 +22,26 @@ export PATH=$PWD/go/bin:$PATH
 
 _Alternatively install Go using the packaging system of your Linux
 distribution._
+<<<<<<< HEAD
+=======
+
+## Adding Support for New Openapi Versions
+
+### Install openapi-generator-cli and openjdk
+
+Install `openapi-generator-cli` globally with NPM:
+
+```bash
+npm install -g @openapitools/openapi-generator-cli`
+```
+
+This package depends on having the `java` executable in `PATH`, so install java.
+
+For mac, `brew install java`, then following the brew message, symlink the JDK,
+`sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk`
+
+For ubuntu, `sudo snap install openjdk`.
+>>>>>>> bc4e557 (adding version var and cmdline flag for version)
 
 ## Building
 
