@@ -4,9 +4,9 @@ You must have access to a slurm head node running `slurmrestd` and a valid token
 for that service. Take note of your slurm version, such as `24.05`, as you'll
 use this version when building.
 
-`develop` is the default branch for this repository, and `main` is used for releases.
+## Requirements
 
-## Install Go from source
+Install Go from source if you don't already have it.
 
 ```bash
 export VERSION=1.22.5 OS=linux ARCH=amd64
@@ -15,24 +15,8 @@ tar -xzvf go$VERSION.$OS-$ARCH.tar.gz
 export PATH=$PWD/go/bin:$PATH
 ```
 
-_Alternatively install Go using the packaging system of your Linux distribution._
-
-## Adding Support for New Openapi Versions
-
-### Install openapi-generator-cli and openjdk
-
-Install `openapi-generator-cli` globally with NPM:
-
-```bash
-npm install -g @openapitools/openapi-generator-cli`
-```
-
-This package depends on having the `java` executable in `PATH`, so install java.
-
-For mac, `brew install java`, then following the brew message, symlink the JDK,
-`sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk`
-
-For ubuntu, `sudo snap install openjdk`.
+_Alternatively install Go using the packaging system of your Linux
+distribution._
 
 ## Building
 
@@ -69,7 +53,8 @@ Start the exporter:
 ./bin/prometheus-slurm-exporter
 ```
 
-If you wish to run the exporter on a different port, or the default port (8080) is already in use, run with the following argument:
+If you wish to run the exporter on a different port, or the default port (8080)
+is already in use, run with the following argument:
 
 ```bash
 ./bin/prometheus-slurm-exporter --listen-address="0.0.0.0:<port>"
@@ -81,10 +66,50 @@ Query all metrics:
 curl http://localhost:8080/metrics
 ```
 
+### Cutting releases
+
+Once you're ready to cut a new release, perform the following steps on the
+`main` branch.
+
+Tag the release version:
+
+`git tag -a v1.0.1 -m 'release note'`
+
+Push the tag:
+
+`git push origin v1.0.1`
+
+Make sure you have `GITHUB_TOKEN` exported, then use `goreleaser` to create
+releases:
+
+`goreleaser release`
+
+## Adding Support for New Openapi Versions
+
+### Install openapi-generator-cli and openjdk
+
+Install `openapi-generator-cli` globally with NPM:
+
+```bash
+npm install -g @openapitools/openapi-generator-cli`
+```
+
+This package depends on having the `java` executable in `PATH`, so install java.
+
+For mac, `brew install java`, then following the brew message, symlink the JDK,
+`sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk`
+
+For ubuntu, `sudo snap install openjdk`.
+
 ### Generating and Saving Openapi specs from SLURM using Docker
 
-Navigate to the `docker` directory and use the python script to automatically grab and store an openapi yaml spec
-from a target slurm version.
+Navigate to the `docker` directory and use the python script to automatically
+grab and store an openapi yaml spec from a target slurm version into the
+`openapi-specs` directory.
+
+```bash
+python build_slurm_version.py 24.11
+```
 
 ### Generating the Openapi code for new SLURM versions
 
@@ -103,35 +128,3 @@ openapi-generator-cli generate \
 ```
 
 This will generate an entire git repository that you can toss up in GitHub.
-
-Navigate to it.
-
-Now we just strip out all instances of the API version. In this case, 23.11 is API
-version 0.0.40:
-
-```bash
-find . -type f -not -path "./.git/*" -exec gsed -i 's/V0040//g' {} +
-```
-
-### Cutting releases
-
-Once you're ready to cut a new release, merge `develop` into `main`, then perform
-the following steps on the `main` branch.
-
-Tag the release version:
-
-`git tag -a v1.0.1 -m 'release note'`
-
-Push the tag:
-
-`git push origin v1.0.1`
-
-Make sure you have `GITHUB_TOKEN` exported, then use `goreleaser` to create releases:
-
-`goreleaser release`
-
-## Ideas
-
-docker container
-
-end-to-end testing with docker slurm cluster
