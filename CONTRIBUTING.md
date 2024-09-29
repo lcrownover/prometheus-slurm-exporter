@@ -4,7 +4,8 @@ You must have access to a slurm head node running `slurmrestd` and a valid token
 for that service. Take note of your slurm version, such as `24.05`, as you'll
 use this version when building.
 
-`develop` is the default branch for this repository, and `main` is used for releases.
+`develop` is the default branch for this repository, and `main` is used for
+releases.
 
 ## Install Go from source
 
@@ -15,7 +16,8 @@ tar -xzvf go$VERSION.$OS-$ARCH.tar.gz
 export PATH=$PWD/go/bin:$PATH
 ```
 
-_Alternatively install Go using the packaging system of your Linux distribution._
+_Alternatively install Go using the packaging system of your Linux
+distribution._
 
 ## Adding Support for New Openapi Versions
 
@@ -69,7 +71,8 @@ Start the exporter:
 ./bin/prometheus-slurm-exporter
 ```
 
-If you wish to run the exporter on a different port, or the default port (8080) is already in use, run with the following argument:
+If you wish to run the exporter on a different port, or the default port (8080)
+is already in use, run with the following argument:
 
 ```bash
 ./bin/prometheus-slurm-exporter --listen-address="0.0.0.0:<port>"
@@ -83,8 +86,8 @@ curl http://localhost:8080/metrics
 
 ### Generating and Saving Openapi specs from SLURM using Docker
 
-Navigate to the `docker` directory and use the python script to automatically grab and store an openapi yaml spec
-from a target slurm version.
+Navigate to the `docker` directory and use the python script to automatically
+grab and store an openapi yaml spec from a target slurm version.
 
 ### Generating the Openapi code for new SLURM versions
 
@@ -106,20 +109,22 @@ This will generate an entire git repository that you can toss up in GitHub.
 
 ### Cutting releases
 
-Once you're ready to cut a new release, merge `develop` into `main`, then perform
-the following steps on the `main` branch.
+1. Update the `version` var in `main.go`
 
-Tag the release version:
+2. Merge `develop` into `main`
 
-`git tag -a v1.0.1 -m 'release note'`
+3. Tag the release
 
-Push the tag:
+   `git tag -a v1.0.1 -m 'release note'`
 
-`git push origin v1.0.1`
+4. Push the tag
 
-Make sure you have `GITHUB_TOKEN` exported, then use `goreleaser` to create releases:
+   `git push origin v1.0.1`
 
-`goreleaser release`
+5. Make sure you have `GITHUB_TOKEN` exported, then use `goreleaser` to create
+   releases:
+
+   `goreleaser release`
 
 ## Ideas
 
