@@ -7,11 +7,10 @@ endif
 slurm_version := ${SLURM_VERSION}
 
 # If SLURM_VERSION is "all", print an error message for the default build target
-ifeq ($(slurm_version),all)
 build:
+ifeq ($(slurm_version),all)
 	$(error You must set a specific SLURM_VERSION to build)
 else
-build:
 	mkdir -p bin/
 	go build -tags=$(subst .,,$(slurm_version)) -o bin/prometheus-slurm-exporter cmd/prometheus-slurm-exporter/main.go
 endif
@@ -28,3 +27,5 @@ endif
 
 install:
 	cp bin/prometheus-slurm-exporter /usr/local/sbin/prometheus-slurm-exporter
+	cp extras/systemd/prometheus-slurm-exporter.service /etc/systemd/system/prometheus-slurm-exporter.service
+	systemctl daemon-reload

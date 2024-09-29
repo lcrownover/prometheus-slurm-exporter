@@ -22,10 +22,10 @@ func getTestDataDir() string {
 
 // GetTestDataFilePath returns the full filepath to the specified filename
 // of test data.
-// 
-// Example: GetTestDataFilePath("SomeTestData.json") ->
-//			/home/me/prometheus-slurm-exporter/testdata/SomeTestData.json
 //
+// Example: GetTestDataFilePath("SomeTestData.json") ->
+//
+//	/home/me/prometheus-slurm-exporter/testdata/SomeTestData.json
 func GetTestDataFilePath(filename string) string {
 	testDataDir := getTestDataDir()
 	return fmt.Sprintf("%s/%s", testDataDir, filename)
