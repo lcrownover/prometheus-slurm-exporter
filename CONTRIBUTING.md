@@ -73,7 +73,7 @@ Once you're ready to cut a new release, perform the following steps on the
 
 Tag the release version:
 
-`git tag -a v1.0.1 -m 'release note'`
+`git tag v1.0.1`
 
 Push the tag:
 
@@ -82,7 +82,7 @@ Push the tag:
 Make sure you have `GITHUB_TOKEN` exported, then use `goreleaser` to create
 releases:
 
-`goreleaser release`
+`goreleaser release --clean`
 
 ## Adding Support for New Openapi Versions
 
