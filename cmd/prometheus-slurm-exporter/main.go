@@ -21,13 +21,13 @@ var err error
 var version = "1.0.9"
 
 func main() {
-	log.Printf("Starting Prometheus Slurm Exporter %s\n", version)
-
 	// if -v is passed, print the version and exit
 	if len(os.Args) > 1 && os.Args[1] == "-v" {
 		fmt.Println(version)
 		os.Exit(0)
 	}
+
+	log.Printf("Starting Prometheus Slurm Exporter %s\n", version)
 
 	// set up logging
 	lvl := slog.LevelInfo
