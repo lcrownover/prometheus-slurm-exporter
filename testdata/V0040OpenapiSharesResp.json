@@ -77,7 +77,7 @@
       },
       "usage" : 9,
       "fairshare" : {
-        "level" : 2.027123023002322,
+        "level" : Infinity,
         "factor" : 3.616076749251911
       },
       "type" : [ "USER", "USER" ],
