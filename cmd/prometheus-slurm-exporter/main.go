@@ -18,17 +18,9 @@ import (
 
 var err error
 
-var version = "1.0.9"
+var version = "1.0.11"
 
 func main() {
-	// if -v is passed, print the version and exit
-	if len(os.Args) > 1 && os.Args[1] == "-v" {
-		fmt.Println(version)
-		os.Exit(0)
-	}
-
-	log.Printf("Starting Prometheus Slurm Exporter %s\n", version)
-
 	// set up logging
 	lvl := slog.LevelInfo
 	_, found := os.LookupEnv("SLURM_EXPORTER_DEBUG")
@@ -40,6 +32,14 @@ func main() {
 	}))
 	slog.SetDefault(l)
 	slog.Debug("debug logging enabled")
+
+	// if -v is passed, print the version and exit
+	if len(os.Args) > 1 && os.Args[1] == "-v" {
+		fmt.Println(version)
+		os.Exit(0)
+	}
+
+	log.Printf("Starting Prometheus Slurm Exporter %s\n", version)
 
 	listenAddress, found := os.LookupEnv("SLURM_EXPORTER_LISTEN_ADDRESS")
 	if !found {
