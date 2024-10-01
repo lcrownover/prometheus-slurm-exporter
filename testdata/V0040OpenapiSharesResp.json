@@ -67,7 +67,233 @@
         } ]
       },
       "id" : 0
-    }, {
+    },
+    {
+      "id": 104,
+      "cluster": "cluster1",
+      "name": "user1",
+      "parent": "group1",
+      "partition": "",
+      "shares_normalized": {
+        "set": true,
+        "infinite": false,
+        "number": 0.333333
+      },
+      "shares": {
+        "set": true,
+        "infinite": false,
+        "number": 1
+      },
+      "tres": {
+        "run_seconds": [
+          {
+            "name": "cpu",
+            "value": {
+              "set": true,
+              "infinite": false,
+              "number": 0
+            }
+          },
+          {
+            "name": "mem",
+            "value": {
+              "set": true,
+              "infinite": false,
+              "number": 0
+            }
+          },
+          {
+            "name": "energy",
+            "value": {
+              "set": true,
+              "infinite": false,
+              "number": 0
+            }
+          },
+          {
+            "name": "node",
+            "value": {
+              "set": true,
+              "infinite": false,
+              "number": 0
+            }
+          },
+          {
+            "name": "billing",
+            "value": {
+              "set": true,
+              "infinite": false,
+              "number": 0
+            }
+          },
+          {
+            "name": "fs\/disk",
+            "value": {
+              "set": true,
+              "infinite": false,
+              "number": 0
+            }
+          },
+          {
+            "name": "vmem",
+            "value": {
+              "set": true,
+              "infinite": false,
+              "number": 0
+            }
+          },
+          {
+            "name": "pages",
+            "value": {
+              "set": true,
+              "infinite": false,
+              "number": 0
+            }
+          },
+          {
+            "name": "gres\/gpu",
+            "value": {
+              "set": true,
+              "infinite": false,
+              "number": 0
+            }
+          },
+          {
+            "name": "gres\/gpu:a100",
+            "value": {
+              "set": true,
+              "infinite": false,
+              "number": 0
+            }
+          },
+          {
+            "name": "gres\/gpumem",
+            "value": {
+              "set": true,
+              "infinite": false,
+              "number": 0
+            }
+          },
+          {
+            "name": "gres\/gpuutil",
+            "value": {
+              "set": true,
+              "infinite": false,
+              "number": 0
+            }
+          }
+        ],
+        "group_minutes": [
+          {
+            "name": "cpu",
+            "value": {
+              "set": false,
+              "infinite": true,
+              "number": 0
+            }
+          },
+          {
+            "name": "mem",
+            "value": {
+              "set": false,
+              "infinite": true,
+              "number": 0
+            }
+          },
+          {
+            "name": "energy",
+            "value": {
+              "set": false,
+              "infinite": true,
+              "number": 0
+            }
+          },
+          {
+            "name": "node",
+            "value": {
+              "set": false,
+              "infinite": true,
+              "number": 0
+            }
+          },
+          {
+            "name": "billing",
+            "value": {
+              "set": false,
+              "infinite": true,
+              "number": 0
+            }
+          },
+          {
+            "name": "fs\/disk",
+            "value": {
+              "set": false,
+              "infinite": true,
+              "number": 0
+            }
+          },
+          {
+            "name": "vmem",
+            "value": {
+              "set": false,
+              "infinite": true,
+              "number": 0
+            }
+          },
+          {
+            "name": "pages",
+            "value": {
+              "set": false,
+              "infinite": true,
+              "number": 0
+            }
+          },
+          {
+            "name": "gres\/gpu",
+            "value": {
+              "set": false,
+              "infinite": true,
+              "number": 0
+            }
+          },
+          {
+            "name": "gres\/gpu:a100",
+            "value": {
+              "set": false,
+              "infinite": true,
+              "number": 0
+            }
+          },
+          {
+            "name": "gres\/gpumem",
+            "value": {
+              "set": false,
+              "infinite": true,
+              "number": 0
+            }
+          },
+          {
+            "name": "gres\/gpuutil",
+            "value": {
+              "set": false,
+              "infinite": true,
+              "number": 0
+            }
+          }
+        ],
+        "usage": [
+            {
+              "name" : "name",
+              "value" : 5.637376656633329
+            }, {
+              "name" : "name",
+              "value" : 5.637376656633329
+            }
+        ]
+
+        }
+    },
+    {
       "cluster" : "cluster",
       "parent" : "parent",
       "shares_normalized" : {
@@ -110,13 +336,15 @@
             "infinite" : true
           }
         } ],
-        "usage" : [ {
-          "name" : "name",
-          "value" : 5.637376656633329
-        }, {
-          "name" : "name",
-          "value" : 5.637376656633329
-        } ],
+        "usage" : [
+            {
+              "name" : "name",
+              "value" : 5.637376656633329
+            }, {
+              "name" : "name",
+              "value" : 5.637376656633329
+            }
+        ],
         "group_minutes" : [ {
           "name" : "name",
           "value" : {
