@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	openapi "github.com/lcrownover/openapi-slurm-23-11"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
 )
 
 // UnmarshalDiagResponse converts the response bytes into a slurm type
@@ -60,12 +61,12 @@ func UnmarshalSharesResponse(b []byte) (*openapi.V0040OpenapiSharesResp, error) 
 	//
 	// https://github.com/lcrownover/prometheus-slurm-exporter/issues/8
 	// also reported that folks are getting "inf" back, so I'll protect for that too
-	sharesRespString := string(b)
-	maxFloatStr := ": 1.7976931348623157e+308"
-	sharesRespString = strings.ReplaceAll(sharesRespString, ": Infinity", maxFloatStr) // replacing the longer strings first should prevent any partial replacements
-	sharesRespString = strings.ReplaceAll(sharesRespString, ": infinity", maxFloatStr)
-	sharesRespString = strings.ReplaceAll(sharesRespString, ": Inf", maxFloatStr) // sometimes it'd return "inf", so let's cover for that too.
-	sharesRespString = strings.ReplaceAll(sharesRespString, ": inf", maxFloatStr)
+	sharesRespString := util.RemoveWhitespace(string(b))
+	maxFloatStr := ":1.7976931348623157e+308"
+	sharesRespString = strings.ReplaceAll(sharesRespString, ":Infinity", maxFloatStr) // replacing the longer strings first should prevent any partial replacements
+	sharesRespString = strings.ReplaceAll(sharesRespString, ":infinity", maxFloatStr)
+	sharesRespString = strings.ReplaceAll(sharesRespString, ":Inf", maxFloatStr) // sometimes it'd return "inf", so let's cover for that too.
+	sharesRespString = strings.ReplaceAll(sharesRespString, ":inf", maxFloatStr)
 	sharesRespBytes := []byte(sharesRespString)
 	// end hack
 
