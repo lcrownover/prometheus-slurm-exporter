@@ -10,6 +10,8 @@ import (
 	openapi "github.com/lcrownover/openapi-slurm-24-05"
 )
 
+var apiVersion = "24.05"
+
 // UnmarshalDiagResponse converts the response bytes into a slurm type
 func UnmarshalDiagResponse(b []byte) (*openapi.SlurmV0041GetDiag200Response, error) {
 	var diagResp openapi.SlurmV0041GetDiag200Response

@@ -1,5 +1,3 @@
-//go:build 2405
-
 package api
 
 import "log/slog"
@@ -12,7 +10,7 @@ func ExtractDiagData(diagRespBytes []byte) (*DiagData, error) {
 	}
 
 	d := &DiagData{
-		ApiVersion: "24.05",
+		ApiVersion: apiVersion,
 	}
 
 	d.SetServerThreadCount(resp.Statistics.ServerThreadCount)
@@ -39,7 +37,7 @@ func ExtractNodesData(nodesRespBytes []byte) (*NodesData, error) {
 	}
 
 	d := &NodesData{
-		ApiVersion: "24.05",
+		ApiVersion: apiVersion,
 		Nodes:      []NodeData{},
 	}
 
@@ -75,7 +73,7 @@ func ExtractJobsData(jobsRespBytes []byte) (*JobsData, error) {
 	}
 
 	d := &JobsData{
-		ApiVersion: "24.05",
+		ApiVersion: apiVersion,
 		Jobs:       []JobData{},
 	}
 
@@ -85,8 +83,15 @@ func ExtractJobsData(jobsRespBytes []byte) (*JobsData, error) {
 		jd.SetJobUserName(j.UserName)
 		jd.SetJobPartitionName(j.Partition)
 		jd.SetJobState(j.JobState)
-		jd.SetJobCPUs(j.JobResources.Cpus)
 		jd.SetJobDependency(j.Dependency)
+
+		// 2311 handles cpus differently
+		switch apiVersion {
+		case "23.11":
+			jd.SetJobCPUs(j.Cpus.Number)
+		case "24.05":
+			jd.SetJobCPUs(&j.JobResources.Cpus)
+		}
 
 		d.Jobs = append(d.Jobs, jd)
 	}
@@ -102,7 +107,7 @@ func ExtractPartitionsData(partitionsRespBytes []byte) (*PartitionsData, error) 
 	}
 
 	d := &PartitionsData{
-		ApiVersion: "24.05",
+		ApiVersion: apiVersion,
 		Partitions: []PartitionData{},
 	}
 
@@ -127,7 +132,7 @@ func ExtractSharesData(sharesRespBytes []byte) (*SharesData, error) {
 	}
 
 	d := &SharesData{
-		ApiVersion: "24.05",
+		ApiVersion: apiVersion,
 		Shares:     []ShareData{},
 	}
 

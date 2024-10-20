@@ -458,8 +458,12 @@ func (j *JobData) SetJobState(states []string) error {
 	return nil
 }
 
-func (j *JobData) SetJobCPUs(jobcpus int32) error {
-	j.Cpus = jobcpus
+func (j *JobData) SetJobCPUs(jobcpus *int32) error {
+	if jobcpus == nil {
+		j.Cpus = 0
+		return nil
+	}
+	j.Cpus = *jobcpus
 	return nil
 }
 

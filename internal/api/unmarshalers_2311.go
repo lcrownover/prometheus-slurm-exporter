@@ -11,6 +11,8 @@ import (
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
 )
 
+var apiVersion = "23.11"
+
 // UnmarshalDiagResponse converts the response bytes into a slurm type
 func UnmarshalDiagResponse(b []byte) (*openapi.V0040OpenapiDiagResp, error) {
 	var diagResp openapi.V0040OpenapiDiagResp
