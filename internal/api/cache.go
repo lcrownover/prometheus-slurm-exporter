@@ -9,61 +9,27 @@ import (
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 )
 
+// PopulateCache is used to populate the cache with data from the slurm api
 func PopulateCache(ctx context.Context) error {
 	var data []byte
 	var err error
 
 	apiCache := ctx.Value(types.ApiCacheKey).(*cache.Cache)
 
-	numCalls := 5
 	var wg sync.WaitGroup
-	wg.Add(numCalls) // 5 different requests from slurm
-	errors := make(chan error, numCalls)
+	wg.Add(len(endpoints))
+	errors := make(chan error, len(endpoints))
 
-	go func() {
-		defer wg.Done()
-		data, err = GetSlurmRestDiagResponse(ctx)
-		if err != nil {
-			errors <- fmt.Errorf("failed to get slurmrestd diagnostics response: %v", err)
-		}
-		apiCache.Set("diag", data, 0)
-	}()
-
-	go func() {
-		defer wg.Done()
-		data, err = GetSlurmRestNodesResponse(ctx)
-		if err != nil {
-			errors <- fmt.Errorf("failed to get slurmrestd nodes response: %v", err)
-		}
-		apiCache.Set("nodes", data, 0)
-	}()
-
-	go func() {
-		defer wg.Done()
-		data, err = GetSlurmRestJobsResponse(ctx)
-		if err != nil {
-			errors <- fmt.Errorf("failed to get slurmrestd jobs response: %v", err)
-		}
-		apiCache.Set("jobs", data, 0)
-	}()
-
-	go func() {
-		defer wg.Done()
-		data, err = GetSlurmRestPartitionsResponse(ctx)
-		if err != nil {
-			errors <- fmt.Errorf("failed to get slurmrestd partitions response: %v", err)
-		}
-		apiCache.Set("partitions", data, 0)
-	}()
-
-	go func() {
-		defer wg.Done()
-		data, err = GetSlurmRestSharesResponse(ctx)
-		if err != nil {
-			errors <- fmt.Errorf("failed to get slurmrestd shares response: %v", err)
-		}
-		apiCache.Set("shares", data, 0)
-	}()
+	for _, e := range endpoints {
+		go func(e endpoint) {
+			defer wg.Done()
+			data, err = GetSlurmRestResponse(ctx, e.key)
+			if err != nil {
+				errors <- fmt.Errorf("failed to get slurmrestd %s response: %v", e.path, err)
+			}
+			apiCache.Set(e.key, data, 0)
+		}(e)
+	}
 
 	wg.Wait()
 	close(errors)

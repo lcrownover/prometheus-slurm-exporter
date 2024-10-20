@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"log/slog"
 	"net/http"
 	"strings"
 
@@ -26,6 +27,38 @@ type slurmRestRequest struct {
 type SlurmRestResponse struct {
 	StatusCode int
 	Body       []byte
+}
+
+// GetSlurmRestResponse retrieves response data from slurm api
+func GetSlurmRestResponse(ctx context.Context, endpointCtxKey types.Key) ([]byte, error) {
+	var endpointStr string
+	switch endpointCtxKey {
+	case types.ApiDiagEndpointKey:
+		endpointStr = "diag"
+	case types.ApiJobsEndpointKey:
+		endpointStr = "jobs"
+	case types.ApiNodesEndpointKey:
+		endpointStr = "nodes"
+	case types.ApiPartitionsEndpointKey:
+		endpointStr = "partitions"
+	case types.ApiSharesEndpointKey:
+		endpointStr = "shares"
+	default:
+		return nil, fmt.Errorf("invalid endpoint key")
+	}
+	nr, err := newSlurmRestRequest(ctx, endpointCtxKey)
+	if err != nil {
+		return nil, fmt.Errorf("failed to generate new slurm rest request: %v", err)
+	}
+	resp, err := nr.Send()
+	if err != nil {
+		return nil, fmt.Errorf("failed to retrieve slurm rest response: %v", err)
+	}
+	if resp.StatusCode != 200 {
+		slog.Debug("incorrect response status code", "endpoint", endpointStr, "code", resp.StatusCode, "body", string(resp.Body))
+		return nil, fmt.Errorf("received incorrect status code for %s data", endpointStr)
+	}
+	return resp.Body, nil
 }
 
 // newSlurmRestRequest returns a new slurmRestRequest object which is used to perform
@@ -72,18 +105,4 @@ func (sr slurmRestRequest) Send() (*SlurmRestResponse, error) {
 	sresp.Body = body
 
 	return &sresp, nil
-}
-
-// newGETRequest is a wrapper for net/http NewRequest so you only have to pass
-// the endpoint. This packages the headers and client.
-func newSlurmGETRequest(ctx context.Context, endpointCtxKey types.Key) (*SlurmRestResponse, error) {
-	nr, err := newSlurmRestRequest(ctx, endpointCtxKey)
-	if err != nil {
-		return nil, fmt.Errorf("failed to generate new slurm rest request: %v", err)
-	}
-	resp, err := nr.Send()
-	if err != nil {
-		return nil, fmt.Errorf("failed to retrieve slurm rest response: %v", err)
-	}
-	return resp, nil
 }

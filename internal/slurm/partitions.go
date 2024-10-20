@@ -1,15 +1,11 @@
-//go:build 2405
-
 package slurm
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 	"strings"
 
 	"github.com/akyoto/cache"
-	openapi "github.com/lcrownover/openapi-slurm-24-05"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
@@ -46,14 +42,9 @@ func (pc *PartitionsCollector) Describe(ch chan<- *prometheus.Desc) {
 
 func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
 	apiCache := pc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	partitionRespBytes, found := apiCache.Get("partitions")
+	partitionsRespBytes, found := apiCache.Get("partitions")
 	if !found {
 		slog.Error("failed to get partitions response for partitions metrics from cache")
-		return
-	}
-	partitionsResp, err := api.UnmarshalPartitionsResponse(partitionRespBytes.([]byte))
-	if err != nil {
-		slog.Error("failed to unmarshal partitions response for partitions metrics", "error", err)
 		return
 	}
 	jobsRespBytes, found := apiCache.Get("jobs")
@@ -61,22 +52,27 @@ func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get jobs response for users metrics from cache")
 		return
 	}
-	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes.([]byte))
-	if err != nil {
-		slog.Error("failed to unmarshal jobs response for partitions metrics", "error", err)
-		return
-	}
-	nodeRespBytes, found := apiCache.Get("nodes")
+	nodesRespBytes, found := apiCache.Get("nodes")
 	if !found {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes.([]byte))
+	partitionsData, err := api.ExtractPartitionsData(partitionsRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to unmarshal nodes response for partition metrics", "error", err)
+		slog.Error("failed to extract partitions data for cpu metrics", "error", err)
 		return
 	}
-	pm, err := ParsePartitionsMetrics(*partitionsResp, *jobsResp, *nodesResp)
+	jobsData, err := api.ExtractJobsData(jobsRespBytes.([]byte))
+	if err != nil {
+		slog.Error("failed to extract jobs data for cpu metrics", "error", err)
+		return
+	}
+	nodesData, err := api.ExtractNodesData(nodesRespBytes.([]byte))
+	if err != nil {
+		slog.Error("failed to extract nodes data for cpu metrics", "error", err)
+		return
+	}
+	pm, err := ParsePartitionsMetrics(partitionsData, jobsData, nodesData)
 	if err != nil {
 		slog.Error("failed to collect partitions metrics", "error", err)
 		return
@@ -113,51 +109,35 @@ type partitionMetrics struct {
 }
 
 // ParsePartitionsMetrics returns a map where the keys are the partition names and the values are a partitionMetrics struct
-func ParsePartitionsMetrics(
-	partitionResp openapi.V0041OpenapiPartitionResp,
-	jobsResp openapi.V0041OpenapiJobInfoResp,
-	nodesResp openapi.V0041OpenapiNodesResp,
-) (map[string]*partitionMetrics, error) {
+func ParsePartitionsMetrics(partitionsData *api.PartitionsData, jobsData *api.JobsData, nodesData *api.NodesData) (map[string]*partitionMetrics, error) {
 	partitions := make(map[string]*partitionMetrics)
 	nodePartitions := make(map[string][]string)
 
 	// first, scan through partition data to easily get total cpus
-	for _, p := range partitionResp.Partitions {
-		partitionName, err := GetPartitionName(p)
-		if err != nil {
-			return nil, fmt.Errorf("failed to get partition name for partition metrics: %v", err)
-		}
-		_, exists := partitions[*partitionName]
+	for _, p := range partitionsData.Partitions {
+		_, exists := partitions[p.Name]
 		if !exists {
-			partitions[*partitionName] = NewPartitionsMetrics()
+			partitions[p.Name] = NewPartitionsMetrics()
 		}
 
 		// cpu total
-		total, err := GetPartitionTotalCPUs(p)
-		if err != nil {
-			return nil, fmt.Errorf("failed to collect cpu total for partition metrics: %v", err)
-		}
-		partitions[*partitionName].cpus_total = *total
+		partitions[p.Name].cpus_total = float64(p.Cpus)
 	}
 
 	// we need to gather cpus from the nodes perspective because a node can
 	// be a member of multiple partitions, running a job in one partition, and
 	// we want to see that there are allocated cpus on the other partition because
 	// of the shared node.
-	for _, n := range nodesResp.Nodes {
-		nodeName, err := GetNodeName(n)
-		if err != nil {
-			return nil, fmt.Errorf("failed to get node name for partition metrics: %v", err)
-		}
-		nodePartitions[*nodeName] = GetNodePartitions(n)
+	for _, n := range nodesData.Nodes {
+		nodePartitions[n.Name] = n.Partitions
 	}
 
 	// to get used and available cpus, we need to scan through the job list and categorize
 	// each job by its partition, adding the cpus as we go
-	for _, n := range nodesResp.Nodes {
-		alloc_cpus := GetNodeAllocCPUs(n)
-		idle_cpus := GetNodeIdleCPUs(n)
-		nodePartitionNames := GetNodePartitions(n)
+	for _, n := range nodesData.Nodes {
+		alloc_cpus := n.AllocCpus
+		idle_cpus := n.AllocIdleCpus
+		nodePartitionNames := n.Partitions
 		for _, partitionName := range nodePartitionNames {
 			// this needs to exist to handle the test data provided by SLURM
 			// where the nodes response example data does not correspond to
@@ -179,13 +159,9 @@ func ParsePartitionsMetrics(
 	}
 
 	// lastly, we need to get a count of pending jobs for the partition
-	for _, j := range jobsResp.Jobs {
-		pname, err := GetJobPartitionName(j)
-		if err != nil {
-			return nil, fmt.Errorf("failed to get job partition name for partition metrics: %v", err)
-		}
+	for _, j := range jobsData.Jobs {
 		// partition name can be comma-separated, so we iterate through it
-		pnames := strings.Split(*pname, ",")
+		pnames := strings.Split(j.Partition, ",")
 		for _, partitionName := range pnames {
 			// this needs to exist to handle the test data provided by SLURM
 			// where the nodes response example data does not correspond to

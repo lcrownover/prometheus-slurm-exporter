@@ -1,5 +1,3 @@
-//go:build 2311
-
 package slurm
 
 import (
@@ -7,7 +5,6 @@ import (
 	"log/slog"
 
 	"github.com/akyoto/cache"
-	openapi "github.com/lcrownover/openapi-slurm-23-11"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
@@ -57,12 +54,12 @@ func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get jobs response for users metrics from cache")
 		return
 	}
-	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes.([]byte))
+	jobsData, err := api.ExtractJobsData(jobsRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to unmarshal jobs response for accounts metrics", "error", err)
+		slog.Error("failed to extract jobs response for accounts metrics", "error", err)
 		return
 	}
-	am, err := ParseAccountsMetrics(*jobsResp)
+	am, err := ParseAccountsMetrics(*jobsData)
 	if err != nil {
 		slog.Error("failed to parse accounts metrics", "error", err)
 		return
@@ -100,44 +97,26 @@ func NewJobMetrics() *JobMetrics {
 
 // ParseAccountsMetrics gets the response body of jobs from SLURM and
 // parses it into a map of "accountName": *JobMetrics
-func ParseAccountsMetrics(jobsresp openapi.V0040OpenapiJobInfoResp) (map[string]*JobMetrics, error) {
+func ParseAccountsMetrics(jobsData api.JobsData) (map[string]*JobMetrics, error) {
 	accounts := make(map[string]*JobMetrics)
-	for _, j := range jobsresp.Jobs {
-		// get the account name
-		account, err := GetJobAccountName(j)
-		if err != nil {
-			slog.Error("failed to find account name in job", "error", err)
-			continue
-		}
+	for _, j := range jobsData.Jobs {
 		// build the map with the account name as the key and job metrics as the value
-		_, key := accounts[*account]
+		_, key := accounts[j.Account]
 		if !key {
 			// initialize a new metrics object if the key isnt found
-			accounts[*account] = NewJobMetrics()
-		}
-		// get the job state
-		state, err := GetJobState(j)
-		if err != nil {
-			slog.Error("failed to parse job state", "error", err)
-			continue
-		}
-		// get the cpus for the job
-		cpus, err := GetJobCPUs(j)
-		if err != nil {
-			slog.Error("failed to parse job cpus", "error", err)
-			continue
+			accounts[j.Account] = NewJobMetrics()
 		}
 		// for each of the jobs, depending on the state,
 		// tally up the cpu count and increment the count of jobs for that state
-		switch *state {
+		switch j.JobState {
 		case types.JobStatePending:
-			accounts[*account].pending++
-			accounts[*account].pending_cpus += *cpus
+			accounts[j.Account].pending++
+			accounts[j.Account].pending_cpus += float64(j.Cpus)
 		case types.JobStateRunning:
-			accounts[*account].running++
-			accounts[*account].running_cpus += *cpus
+			accounts[j.Account].running++
+			accounts[j.Account].running_cpus += float64(j.Cpus)
 		case types.JobStateSuspended:
-			accounts[*account].suspended++
+			accounts[j.Account].suspended++
 		}
 	}
 	return accounts, nil

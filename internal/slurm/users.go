@@ -1,14 +1,10 @@
-//go:build 2311
-
 package slurm
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 
 	"github.com/akyoto/cache"
-	openapi "github.com/lcrownover/openapi-slurm-23-11"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
@@ -50,12 +46,12 @@ func (uc *UsersCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get jobs response for users metrics from cache")
 		return
 	}
-	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes.([]byte))
+	jobsData, err := api.ExtractJobsData(jobsRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to unmarshal jobs response for users metrics", "error", err)
+		slog.Error("failed to extract jobs data for users metrics", "error", err)
 		return
 	}
-	um, err := ParseUsersMetrics(*jobsResp)
+	um, err := ParseUsersMetrics(jobsData)
 	if err != nil {
 		slog.Error("failed to collect user metrics", "error", err)
 		return
@@ -91,31 +87,21 @@ type userJobMetrics struct {
 	suspended    float64
 }
 
-func ParseUsersMetrics(jobsResp openapi.V0040OpenapiJobInfoResp) (map[string]*userJobMetrics, error) {
+func ParseUsersMetrics(jobsData *api.JobsData) (map[string]*userJobMetrics, error) {
 	users := make(map[string]*userJobMetrics)
-	for _, j := range jobsResp.Jobs {
-		user := *j.UserName
+	for _, j := range jobsData.Jobs {
+		user := j.UserName
 		if _, exists := users[user]; !exists {
 			users[user] = NewUserJobMetrics()
 		}
 
-		jobState, err := GetJobState(j)
-		if err != nil {
-			return nil, fmt.Errorf("failed to get job state: %v", err)
-		}
-
-		jobCpus, err := GetJobCPUs(j)
-		if err != nil {
-			return nil, fmt.Errorf("failed to get job cpus: %v", err)
-		}
-
-		switch *jobState {
+		switch j.JobState {
 		case types.JobStatePending:
 			users[user].pending++
-			users[user].pending_cpus += *jobCpus
+			users[user].pending_cpus += float64(j.Cpus)
 		case types.JobStateRunning:
 			users[user].running++
-			users[user].running_cpus += *jobCpus
+			users[user].running_cpus += float64(j.Cpus)
 		case types.JobStateSuspended:
 			users[user].suspended++
 		}

@@ -1,14 +1,10 @@
-//go:build 2311
-
 package slurm
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 
 	"github.com/akyoto/cache"
-	openapi "github.com/lcrownover/openapi-slurm-23-11"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
@@ -48,22 +44,22 @@ func (cc *CPUsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get jobs response for users metrics from cache")
 		return
 	}
-	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes.([]byte))
+	jobsData, err := api.ExtractJobsData(jobsRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to unmarshal jobs response for cpu metrics", "error", err)
+		slog.Error("failed to extract jobs response for cpu metrics", "error", err)
 		return
 	}
-	nodeRespBytes, found := apiCache.Get("nodes")
+	nodesRespBytes, found := apiCache.Get("nodes")
 	if !found {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes.([]byte))
+	nodesData, err := api.ExtractNodesData(nodesRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to unmarshal nodes response for cpu metrics", "error", err)
+		slog.Error("failed to extract nodes response for cpu metrics", "error", err)
 		return
 	}
-	cm, err := ParseCPUsMetrics(*nodesResp, *jobsResp)
+	cm, err := ParseCPUsMetrics(nodesData, jobsData)
 	if err != nil {
 		slog.Error("failed to collect cpus metrics", "error", err)
 		return
@@ -86,28 +82,18 @@ func NewCPUsMetrics() *cpusMetrics {
 }
 
 // ParseCPUMetrics pulls out total cluster cpu states of alloc,idle,other,total
-func ParseCPUsMetrics(nodesResp openapi.V0040OpenapiNodesResp, jobsResp openapi.V0040OpenapiJobInfoResp) (*cpusMetrics, error) {
+func ParseCPUsMetrics(nodesData *api.NodesData, jobsData *api.JobsData) (*cpusMetrics, error) {
 	cm := NewCPUsMetrics()
-	for _, j := range jobsResp.Jobs {
-		state, err := GetJobState(j)
-		if err != nil {
-			slog.Error("failed to get job state", "error", err)
-			continue
-		}
-		cpus, err := GetJobCPUs(j)
-		if err != nil {
-			slog.Error("failed to get job cpus", "error", err)
-			continue
-		}
+	for _, j := range jobsData.Jobs {
 		// alloc is easy, we just add up all the cpus in the "Running" job state
-		if *state == types.JobStateRunning {
-			cm.alloc += *cpus
+		if j.JobState == types.JobStateRunning {
+			cm.alloc += float64(j.Cpus)
 		}
 	}
 	// total is just the total number of cpus in the cluster
-	nodes := nodesResp.Nodes
+	nodes := nodesData.Nodes
 	for _, n := range nodes {
-		if *n.Cpus == 1 {
+		if n.Cpus == 1 {
 			// TODO: This probably needs to be a call to partitions to get all nodes
 			// in a partition, then add the nodes CPU values up for this field.
 			// In our environment, nodes that exist (need slurm commands) get
@@ -116,19 +102,15 @@ func ParseCPUsMetrics(nodesResp openapi.V0040OpenapiNodesResp, jobsResp openapi.
 			// This isn't a problem unless your site has nodes with a single CPU.
 			continue
 		}
-		cpus := float64(*n.Cpus)
+		cpus := float64(n.Cpus)
 		cm.total += cpus
 
-		nodeStates, err := GetNodeStates(n)
-		if err != nil {
-			return nil, fmt.Errorf("failed to get node state for cpu metrics: %v", err)
-		}
-		for _, ns := range *nodeStates {
+		for _, ns := range n.States {
 			if ns == types.NodeStateMix || ns == types.NodeStateAlloc || ns == types.NodeStateIdle {
 				// TODO: This calculate is scuffed. In our 17k core environment, it's
 				// reporting ~400 more than the `sinfo -h -o '%C'` command.
 				// Gotta figure this one out.
-				idle_cpus := float64(*n.AllocIdleCpus)
+				idle_cpus := float64(n.AllocIdleCpus)
 				cm.idle += idle_cpus
 			}
 		}

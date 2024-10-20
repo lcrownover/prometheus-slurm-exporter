@@ -1,5 +1,3 @@
-//go:build 2405
-
 package slurm
 
 import (
@@ -8,7 +6,6 @@ import (
 	"log/slog"
 
 	"github.com/akyoto/cache"
-	openapi "github.com/lcrownover/openapi-slurm-24-05"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
@@ -52,17 +49,17 @@ func (nc *NodeCollector) Describe(ch chan<- *prometheus.Desc) {
 
 func (nc *NodeCollector) Collect(ch chan<- prometheus.Metric) {
 	apiCache := nc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	nodeRespBytes, found := apiCache.Get("nodes")
+	nodesRespBytes, found := apiCache.Get("nodes")
 	if !found {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes.([]byte))
+	nodesData, err := api.ExtractNodesData(nodesRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to unmarshal nodes response for cpu metrics", "error", err)
+		slog.Error("failed to extract nodes response for cpu metrics", "error", err)
 		return
 	}
-	nm, err := ParseNodeMetrics(*nodesResp)
+	nm, err := ParseNodeMetrics(nodesData)
 	if err != nil {
 		slog.Error("failed to collect nodes metrics", "error", err)
 		return
@@ -94,29 +91,29 @@ func NewNodeMetrics() *nodeMetrics {
 
 // ParseNodeMetrics takes the output of sinfo with node data
 // It returns a map of metrics per node
-func ParseNodeMetrics(nodesResp openapi.V0041OpenapiNodesResp) (map[string]*nodeMetrics, error) {
+func ParseNodeMetrics(nodesData *api.NodesData) (map[string]*nodeMetrics, error) {
 	nodeMap := make(map[string]*nodeMetrics)
 
-	for _, n := range nodesResp.Nodes {
-		nodeName := *n.Hostname
+	for _, n := range nodesData.Nodes {
+		nodeName := n.Hostname
 		nodeMap[nodeName] = &nodeMetrics{0, 0, 0, 0, 0, 0, ""}
 
 		// state
-		nodeStatesStr, err := GetNodeStatesString(n, "|")
+		nodeStatesStr, err := n.GetNodeStatesString("|")
 		if err != nil {
 			return nil, fmt.Errorf("failed to get node state: %v", err)
 		}
 		nodeMap[nodeName].nodeStatus = nodeStatesStr
 
 		// memory
-		nodeMap[nodeName].memAlloc = GetNodeAllocMemory(n)
-		nodeMap[nodeName].memTotal = GetNodeTotalMemory(n)
+		nodeMap[nodeName].memAlloc = uint64(n.AllocMemory)
+		nodeMap[nodeName].memTotal = uint64(n.RealMemory)
 
 		// cpu
-		nodeMap[nodeName].cpuAlloc = GetNodeAllocCPUs(n)
-		nodeMap[nodeName].cpuIdle = GetNodeIdleCPUs(n)
-		nodeMap[nodeName].cpuOther = GetNodeOtherCPUs(n)
-		nodeMap[nodeName].cpuTotal = GetNodeTotalCPUs(n)
+		nodeMap[nodeName].cpuAlloc = uint64(n.AllocCpus)
+		nodeMap[nodeName].cpuIdle = uint64(n.AllocIdleCpus)
+		nodeMap[nodeName].cpuOther = uint64(n.OtherCpus)
+		nodeMap[nodeName].cpuTotal = uint64(n.Cpus)
 	}
 
 	return nodeMap, nil

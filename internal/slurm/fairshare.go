@@ -1,5 +1,3 @@
-//go:build 2311
-
 package slurm
 
 import (
@@ -7,7 +5,6 @@ import (
 	"log/slog"
 
 	"github.com/akyoto/cache"
-	openapi "github.com/lcrownover/openapi-slurm-23-11"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
@@ -37,12 +34,13 @@ func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get shares response for fair share metrics from cache")
 		return
 	}
-	sharesResp, err := api.UnmarshalSharesResponse(sharesRespBytes.([]byte))
+
+	sharesData, err := api.ExtractSharesData(sharesRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to unmarshal shares response for fair share metrics", "error", err)
+		slog.Error("failed to extract shares response for fair share metrics", "error", err)
 		return
 	}
-	fsm, err := ParseFairShareMetrics(*sharesResp)
+	fsm, err := ParseFairShareMetrics(sharesData)
 	if err != nil {
 		slog.Error("failed to collect fair share metrics", "error", err)
 		return
@@ -60,10 +58,10 @@ func NewFairShareMetrics() *fairShareMetrics {
 	return &fairShareMetrics{}
 }
 
-func ParseFairShareMetrics(sharesResp openapi.V0040OpenapiSharesResp) (map[string]*fairShareMetrics, error) {
+func ParseFairShareMetrics(sharesData *api.SharesData) (map[string]*fairShareMetrics, error) {
 	accounts := make(map[string]*fairShareMetrics)
-	for _, s := range sharesResp.Shares.Shares {
-		account := *s.Name
+	for _, s := range sharesData.Shares {
+		account := s.Name
 		if account == "root" {
 			// we don't care about the root account
 			continue
@@ -71,7 +69,7 @@ func ParseFairShareMetrics(sharesResp openapi.V0040OpenapiSharesResp) (map[strin
 		if _, exists := accounts[account]; !exists {
 			accounts[account] = NewFairShareMetrics()
 		}
-		accounts[account].fairshare = GetFairShareEffectiveUsage(s)
+		accounts[account].fairshare = s.EffectiveUsage
 	}
 	return accounts, nil
 }

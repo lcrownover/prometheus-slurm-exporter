@@ -1,14 +1,10 @@
-//go:build 2405
-
 package slurm
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 
 	"github.com/akyoto/cache"
-	openapi "github.com/lcrownover/openapi-slurm-24-05"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
@@ -59,17 +55,17 @@ func (nc *NodesCollector) Describe(ch chan<- *prometheus.Desc) {
 
 func (nc *NodesCollector) Collect(ch chan<- prometheus.Metric) {
 	apiCache := nc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	nodeRespBytes, found := apiCache.Get("nodes")
+	nodesRespBytes, found := apiCache.Get("nodes")
 	if !found {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes.([]byte))
+	nodesData, err := api.ExtractNodesData(nodesRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to unmarshal nodes response for cpu metrics", "error", err)
+		slog.Error("failed to extract nodes response for cpu metrics", "error", err)
 		return
 	}
-	nm, err := ParseNodesMetrics(*nodesResp)
+	nm, err := ParseNodesMetrics(nodesData)
 	if err != nil {
 		slog.Error("failed to collect nodes metrics", "error", err)
 		return
@@ -105,16 +101,11 @@ func NewNodesMetrics() *nodesMetrics {
 
 // ParseNodesMetrics iterates through node response objects and tallies up
 // nodes based on their state
-func ParseNodesMetrics(nodesResp openapi.V0041OpenapiNodesResp) (*nodesMetrics, error) {
+func ParseNodesMetrics(nodesData *api.NodesData) (*nodesMetrics, error) {
 	nm := NewNodesMetrics()
 
-	for _, n := range nodesResp.Nodes {
-		nodeStates, err := GetNodeStates(n)
-		if err != nil {
-			return nil, fmt.Errorf("failed to get node state for nodes metrics: %v", err)
-		}
-
-		for _, ns := range *nodeStates {
+	for _, n := range nodesData.Nodes {
+		for _, ns := range n.States {
 			switch ns {
 			case types.NodeStateAlloc:
 				nm.alloc += 1

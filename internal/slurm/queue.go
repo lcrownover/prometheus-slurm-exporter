@@ -1,14 +1,10 @@
-//go:build 2405
-
 package slurm
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 
 	"github.com/akyoto/cache"
-	openapi "github.com/lcrownover/openapi-slurm-24-05"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
@@ -70,12 +66,12 @@ func (qc *QueueCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get jobs response for users metrics from cache")
 		return
 	}
-	jobsResp, err := api.UnmarshalJobsResponse(jobsRespBytes.([]byte))
+	jobsData, err := api.ExtractJobsData(jobsRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to unmarshal jobs response for queue metrics", "error", err)
+		slog.Error("failed to extract jobs data for queue metrics", "error", err)
 		return
 	}
-	qm, err := ParseQueueMetrics(*jobsResp)
+	qm, err := ParseQueueMetrics(jobsData)
 	if err != nil {
 		slog.Error("failed to collect queue metrics", "error", err)
 		return
@@ -113,16 +109,12 @@ type queueMetrics struct {
 	node_fail   float64
 }
 
-func ParseQueueMetrics(jobsResp openapi.V0041OpenapiJobInfoResp) (*queueMetrics, error) {
+func ParseQueueMetrics(jobsData *api.JobsData) (*queueMetrics, error) {
 	qm := NewQueueMetrics()
-	for _, j := range jobsResp.Jobs {
-		jobState, err := GetJobState(j)
-		if err != nil {
-			return nil, fmt.Errorf("failed to get job state: %v", err)
-		}
-		switch *jobState {
+	for _, j := range jobsData.Jobs {
+		switch j.JobState {
 		case types.JobStatePending:
-			if *j.Dependency != "" {
+			if j.Dependency != "" {
 				qm.pending_dep++
 			} else {
 				qm.pending++

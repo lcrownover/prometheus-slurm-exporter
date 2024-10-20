@@ -1,5 +1,3 @@
-//go:build 2311
-
 package slurm
 
 import (
@@ -7,10 +5,8 @@ import (
 	"log/slog"
 
 	"github.com/akyoto/cache"
-	openapi "github.com/lcrownover/openapi-slurm-23-11"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
-	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
@@ -120,12 +116,12 @@ func (sc *SchedulerCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get diag response for scheduler metrics from cache")
 		return
 	}
-	diagResp, err := api.UnmarshalDiagResponse(diagRespBytes.([]byte))
+	diagData, err := api.ExtractDiagData(diagRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to unmarshal diag response for scheduler metrics", "error", err)
+		slog.Error("failed to extract diag response for scheduler metrics", "error", err)
 		return
 	}
-	sm, err := ParseSchedulerMetrics(*diagResp)
+	sm, err := ParseSchedulerMetrics(diagData)
 	if err != nil {
 		slog.Error("failed to collect scheduler metrics", "error", err)
 		return
@@ -164,22 +160,20 @@ type schedulerMetrics struct {
 }
 
 // Extract the relevant metrics from the sdiag output
-func ParseSchedulerMetrics(diagResp openapi.V0040OpenapiDiagResp) (*schedulerMetrics, error) {
+func ParseSchedulerMetrics(diagData *api.DiagData) (*schedulerMetrics, error) {
 	sm := NewSchedulerMetrics()
-	s := diagResp.Statistics
 
-	sm.threads = util.GetValueOrZero(s.ServerThreadCount)
-	sm.queue_size = util.GetValueOrZero(s.AgentQueueSize)
-	sm.dbd_queue_size = util.GetValueOrZero(s.DbdAgentQueueSize)
-	sm.last_cycle = util.GetValueOrZero(s.ScheduleCycleLast)
-	sm.mean_cycle = util.GetValueOrZero(s.ScheduleCycleMean)
-	sm.cycle_per_minute = util.GetValueOrZero(s.ScheduleCyclePerMinute)
-	sm.backfill_depth_mean = util.GetValueOrZero(s.BfDepthMean)
-	sm.backfill_last_cycle = util.GetValueOrZero(s.BfCycleLast)
-	sm.backfill_mean_cycle = util.GetValueOrZero(s.BfCycleMean)
-	sm.total_backfilled_jobs_since_cycle = util.GetValueOrZero(s.BfBackfilledJobs)
-	// TODO: This is probably not correct, should revisit this number
-	sm.total_backfilled_jobs_since_start = util.GetValueOrZero(s.BfLastBackfilledJobs)
-	sm.total_backfilled_heterogeneous = util.GetValueOrZero(s.BfBackfilledHetJobs)
+	sm.threads = float64(diagData.ServerThreadCount)
+	sm.queue_size = float64(diagData.AgentQueueSize)
+	sm.dbd_queue_size = float64(diagData.DbdAgentQueueSize)
+	sm.last_cycle = float64(diagData.ScheduleCycleLast)
+	sm.mean_cycle = float64(diagData.ScheduleCycleMean)
+	sm.cycle_per_minute = float64(diagData.ScheduleCyclePerMinute)
+	sm.backfill_depth_mean = float64(diagData.BfDepthMean)
+	sm.backfill_last_cycle = float64(diagData.BfCycleLast)
+	sm.backfill_mean_cycle = float64(diagData.BfCycleMean)
+	sm.total_backfilled_jobs_since_cycle = float64(diagData.BfBackfilledJobs)
+	sm.total_backfilled_heterogeneous = float64(diagData.BfBackfilledHetJobs)
+	sm.total_backfilled_jobs_since_start = float64(diagData.BfLastBackfilledJobs)
 	return sm, nil
 }

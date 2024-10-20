@@ -1,14 +1,10 @@
-//go:build 2405
-
 package slurm
 
 import (
 	"context"
-	"fmt"
 	"log/slog"
 
 	"github.com/akyoto/cache"
-	openapi "github.com/lcrownover/openapi-slurm-24-05"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
@@ -43,17 +39,17 @@ func (cc *GPUsCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 func (cc *GPUsCollector) Collect(ch chan<- prometheus.Metric) {
 	apiCache := cc.ctx.Value(types.ApiCacheKey).(*cache.Cache)
-	nodeRespBytes, found := apiCache.Get("nodes")
+	nodesRespBytes, found := apiCache.Get("nodes")
 	if !found {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	nodesResp, err := api.UnmarshalNodesResponse(nodeRespBytes.([]byte))
+	nodesData, err := api.ExtractNodesData(nodesRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to unmarshal nodes response for cpu metrics", "error", err)
+		slog.Error("failed to extract nodes response for cpu metrics", "error", err)
 		return
 	}
-	gm, err := ParseGPUsMetrics(*nodesResp)
+	gm, err := ParseGPUsMetrics(nodesData)
 	if err != nil {
 		slog.Error("failed to collect gpus metrics", "error", err)
 		return
@@ -93,23 +89,14 @@ func NewGPUsMetrics() *gpusMetrics {
 
 // ParseGPUsMetrics iterates through node response objects and tallies up the total and
 // allocated gpus, then derives idle and utilization from those numbers.
-func ParseGPUsMetrics(nodesResp openapi.V0041OpenapiNodesResp) (*gpusMetrics, error) {
+func ParseGPUsMetrics(nodesData *api.NodesData) (*gpusMetrics, error) {
 	gm := NewGPUsMetrics()
-	nodes := nodesResp.Nodes
-	for _, n := range nodes {
-		totalGPUs, err := GetNodeGPUTotal(n)
-		if err != nil {
-			return nil, fmt.Errorf("failed to get total gpu count for node: %v", err)
-		}
-		allocGPUs, err := GetNodeGPUAllocated(n)
-		if err != nil {
-			return nil, fmt.Errorf("failed to get allocated gpu count for node: %v", err)
-		}
-		idleGPUs := totalGPUs - allocGPUs
-		gm.total += float64(totalGPUs)
-		gm.alloc += float64(allocGPUs)
+	for _, n := range nodesData.Nodes {
+		idleGPUs := n.GPUTotal - n.GPUAllocated
+		gm.total += float64(n.GPUTotal)
+		gm.alloc += float64(n.GPUAllocated)
 		gm.idle += float64(idleGPUs)
-  }
+	}
 	// TODO: Do we really need an "other" field?
 	// using TRES, it should be straightforward.
 	if gm.total > 0 {
