@@ -16,14 +16,16 @@ func ExtractDiagData(diagRespBytes []byte) (*DiagData, error) {
 	}
 
 	d.SetServerThreadCount(resp.Statistics.ServerThreadCount)
-	d.SetDbdAgentQueueSize(resp.Statistics.AgentQueueSize)
+	d.SetAgentQueueSize(resp.Statistics.AgentQueueSize)
+	d.SetDbdAgentQueueSize(resp.Statistics.DbdAgentQueueSize)
 	d.SetScheduleCycleLast(resp.Statistics.ScheduleCycleLast)
 	d.SetScheduleCycleMean(resp.Statistics.ScheduleCycleMean)
 	d.SetScheduleCyclePerMinute(resp.Statistics.ScheduleCyclePerMinute)
 	d.SetBfDepthMean(resp.Statistics.BfDepthMean)
 	d.SetBfCycleLast(resp.Statistics.BfCycleLast)
 	d.SetBfCycleMean(resp.Statistics.BfCycleMean)
-	d.SetBfBackfilledJobs(resp.Statistics.BfLastBackfilledJobs)
+	d.SetBfLastBackfilledJobs(resp.Statistics.BfLastBackfilledJobs)
+	d.SetBfBackfilledJobs(resp.Statistics.BfBackfilledJobs)
 	d.SetBfBackfilledHetJobs(resp.Statistics.BfBackfilledHetJobs)
 
 	return d, nil
@@ -80,6 +82,7 @@ func ExtractJobsData(jobsRespBytes []byte) (*JobsData, error) {
 	for _, j := range resp.Jobs {
 		jd := JobData{}
 		jd.SetJobAccount(j.Account)
+		jd.SetJobUserName(j.UserName)
 		jd.SetJobPartitionName(j.Partition)
 		jd.SetJobState(j.JobState)
 		jd.SetJobCPUs(j.JobResources.Cpus)

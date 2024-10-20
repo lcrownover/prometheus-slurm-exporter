@@ -44,6 +44,14 @@ func (d *DiagData) SetServerThreadCount(v *int32) error {
 	return nil
 }
 
+func (d *DiagData) SetAgentQueueSize(v *int32) error {
+	if v == nil {
+		return fmt.Errorf("agent queue size not found in diag data")
+	}
+	d.AgentQueueSize = *v
+	return nil
+}
+
 func (d *DiagData) SetDbdAgentQueueSize(v *int32) error {
 	if v == nil {
 		return fmt.Errorf("dbd agent queue size not found in diag data")
