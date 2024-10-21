@@ -29,7 +29,7 @@ func PopulateCache(ctx context.Context) error {
 			if err != nil {
 				errors <- fmt.Errorf("failed to get slurmrestd %s response: %v", e.path, err)
 			}
-			apiCache.Set(e.key, data, 0)
+			apiCache.Set(e.name, data, 0)
 		}(e)
 	}
 
@@ -41,6 +41,8 @@ func PopulateCache(ctx context.Context) error {
 		// going to be the same error 5 times
 		return fmt.Errorf("errors encountered calling slurm api: %v", err)
 	}
+
+	slog.Debug("successfully populated cache")
 
 	return nil
 }

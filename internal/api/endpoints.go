@@ -8,6 +8,7 @@ import (
 
 type endpoint struct {
 	key  types.Key
+	name string
 	path string
 }
 
