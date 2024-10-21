@@ -57,19 +57,19 @@ func (pc *PartitionsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	partitionsData, err := api.ExtractPartitionsData(partitionsRespBytes.([]byte))
+	partitionsData, err := api.ProcessPartitionsResponse(partitionsRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to extract partitions data for cpu metrics", "error", err)
+		slog.Error("failed to process partitions data for partitions metrics", "error", err)
 		return
 	}
-	jobsData, err := api.ExtractJobsData(jobsRespBytes.([]byte))
+	jobsData, err := api.ProcessJobsResponse(jobsRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to extract jobs data for cpu metrics", "error", err)
+		slog.Error("failed to process jobs data for partitions metrics", "error", err)
 		return
 	}
-	nodesData, err := api.ExtractNodesData(nodesRespBytes.([]byte))
+	nodesData, err := api.ProcessNodesResponse(nodesRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to extract nodes data for cpu metrics", "error", err)
+		slog.Error("failed to process nodes data for partitions metrics", "error", err)
 		return
 	}
 	pm, err := ParsePartitionsMetrics(partitionsData, jobsData, nodesData)

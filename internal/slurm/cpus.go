@@ -44,9 +44,9 @@ func (cc *CPUsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get jobs response for users metrics from cache")
 		return
 	}
-	jobsData, err := api.ExtractJobsData(jobsRespBytes.([]byte))
+	jobsData, err := api.ProcessJobsResponse(jobsRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to extract jobs response for cpu metrics", "error", err)
+		slog.Error("failed to process jobs response for cpu metrics", "error", err)
 		return
 	}
 	nodesRespBytes, found := apiCache.Get("nodes")
@@ -54,9 +54,9 @@ func (cc *CPUsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	nodesData, err := api.ExtractNodesData(nodesRespBytes.([]byte))
+	nodesData, err := api.ProcessNodesResponse(nodesRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to extract nodes response for cpu metrics", "error", err)
+		slog.Error("failed to process nodes response for cpu metrics", "error", err)
 		return
 	}
 	cm, err := ParseCPUsMetrics(nodesData, jobsData)

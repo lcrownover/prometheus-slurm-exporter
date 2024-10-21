@@ -11,7 +11,7 @@ import (
 
 func TestParseSchedulerMetrics(t *testing.T) {
 	diagBytes := util.ReadTestDataBytes("SlurmV0041GetDiag200Response.json")
-	diagData, _ := api.ExtractDiagData(diagBytes)
+	diagData, _ := api.ProcessDiagResponse(diagBytes)
 	data, err := ParseSchedulerMetrics(diagData)
 	if err != nil {
 		t.Fatalf("failed to parse scheduler metrics: %v", err)

@@ -60,9 +60,9 @@ func (nc *NodesCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get nodes response for cpu metrics from cache")
 		return
 	}
-	nodesData, err := api.ExtractNodesData(nodesRespBytes.([]byte))
+	nodesData, err := api.ProcessNodesResponse(nodesRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to extract nodes response for cpu metrics", "error", err)
+		slog.Error("failed to process nodes response for nodes metrics", "error", err)
 		return
 	}
 	nm, err := ParseNodesMetrics(nodesData)

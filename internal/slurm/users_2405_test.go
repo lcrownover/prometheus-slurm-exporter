@@ -11,7 +11,7 @@ import (
 
 func TestParseUsersMetrics(t *testing.T) {
 	jobsBytes := util.ReadTestDataBytes("V0041OpenapiJobInfoResp.json")
-	jobsData, _ := api.ExtractJobsData(jobsBytes)
+	jobsData, _ := api.ProcessJobsResponse(jobsBytes)
 	data, err := ParseUsersMetrics(jobsData)
 	if err != nil {
 		t.Fatalf("failed to parse users metrics: %v", err)

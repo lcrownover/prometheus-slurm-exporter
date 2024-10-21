@@ -12,8 +12,8 @@ import (
 func TestParseCPUsMetrics(t *testing.T) {
 	jobsBytes := util.ReadTestDataBytes("V0041OpenapiJobInfoResp.json")
 	nodesBytes := util.ReadTestDataBytes("V0041OpenapiNodesResp.json")
-	jobsData, _ := api.ExtractJobsData(jobsBytes)
-	nodesData, _ := api.ExtractNodesData(nodesBytes)
+	jobsData, _ := api.ProcessJobsResponse(jobsBytes)
+	nodesData, _ := api.ProcessNodesResponse(nodesBytes)
 	data, err := ParseCPUsMetrics(nodesData, jobsData)
 	if err != nil {
 		t.Fatalf("failed to parse cpu metrics: %v", err)

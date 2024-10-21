@@ -11,9 +11,9 @@ import (
 
 func TestParseAccountsMetrics(t *testing.T) {
 	fb := util.ReadTestDataBytes("V0041OpenapiJobInfoResp.json")
-	jobsData, err := api.ExtractJobsData(fb)
+	jobsData, err := api.ProcessJobsResponse(fb)
 	if err != nil {
-		t.Fatalf("failed to extract jobs data for accounts metrics: %v", err)
+		t.Fatalf("failed to process jobs data for accounts metrics: %v", err)
 	}
 	data, err := ParseAccountsMetrics(*jobsData)
 	if err != nil {

@@ -116,9 +116,9 @@ func (sc *SchedulerCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get diag response for scheduler metrics from cache")
 		return
 	}
-	diagData, err := api.ExtractDiagData(diagRespBytes.([]byte))
+	diagData, err := api.ProcessDiagResponse(diagRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to extract diag response for scheduler metrics", "error", err)
+		slog.Error("failed to process diag response for scheduler metrics", "error", err)
 		return
 	}
 	sm, err := ParseSchedulerMetrics(diagData)

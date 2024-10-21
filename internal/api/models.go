@@ -36,6 +36,12 @@ type DiagData struct {
 	BfBackfilledHetJobs    int32
 }
 
+func NewDiagData() *DiagData {
+	return &DiagData{
+		ApiVersion: apiVersion,
+	}
+}
+
 func (d *DiagData) SetServerThreadCount(v *int32) error {
 	if v == nil {
 		return fmt.Errorf("server thread count not found in diag data")
@@ -133,40 +139,73 @@ func (d *DiagData) SetBfBackfilledHetJobs(v *int32) error {
 	return nil
 }
 
+func (d *DiagData) FromResponse(r DiagResp) error {
+	var err error
+	if err = d.SetServerThreadCount(r.Statistics.ServerThreadCount); err != nil {
+		return err
+	}
+	if err = d.SetAgentQueueSize(r.Statistics.AgentQueueSize); err != nil {
+		return err
+	}
+	if err = d.SetDbdAgentQueueSize(r.Statistics.DbdAgentQueueSize); err != nil {
+		return err
+	}
+	if err = d.SetScheduleCycleLast(r.Statistics.ScheduleCycleLast); err != nil {
+		return err
+	}
+	if err = d.SetScheduleCycleMean(r.Statistics.ScheduleCycleMean); err != nil {
+		return err
+	}
+	if err = d.SetScheduleCyclePerMinute(r.Statistics.ScheduleCyclePerMinute); err != nil {
+		return err
+	}
+	if err = d.SetBfDepthMean(r.Statistics.BfDepthMean); err != nil {
+		return err
+	}
+	if err = d.SetBfCycleLast(r.Statistics.BfCycleLast); err != nil {
+		return err
+	}
+	if err = d.SetBfCycleMean(r.Statistics.BfCycleMean); err != nil {
+		return err
+	}
+	if err = d.SetBfLastBackfilledJobs(r.Statistics.BfLastBackfilledJobs); err != nil {
+		return err
+	}
+	if err = d.SetBfBackfilledJobs(r.Statistics.BfBackfilledJobs); err != nil {
+		return err
+	}
+	if err = d.SetBfBackfilledHetJobs(r.Statistics.BfBackfilledHetJobs); err != nil {
+		return err
+	}
+	return nil
+}
+
 type NodesData struct {
 	ApiVersion string
 	Nodes      []NodeData
 }
 
 type NodeData struct {
-	// Node name
-	Name string
-	// Node hostname
-	Hostname string
-	// List of states the node is in
-	States []types.NodeState
-	// Trackable Resources
-	Tres string
-	// Used TRES
-	TresUsed string
-	// List of partitions the node is a member of
-	Partitions []string
-	// Allocated Memory
-	AllocMemory int64
-	// Total Memory
-	RealMemory int64
-	// Allocated Busy CPUs
-	AllocCpus int32
-	// Idle CPUs
+	Name          string
+	Hostname      string
+	States        []types.NodeState
+	Tres          string
+	TresUsed      string
+	Partitions    []string
+	AllocMemory   int64
+	RealMemory    int64
+	AllocCpus     int32
 	AllocIdleCpus int32
-	// Other CPUs
-	OtherCpus int32
-	// Total CPUs
-	Cpus int32
-	// Total GPUs
-	GPUTotal int32
-	// Allocated GPUs
-	GPUAllocated int32
+	OtherCpus     int32
+	Cpus          int32
+	GPUTotal      int32
+	GPUAllocated  int32
+}
+
+func NewNodesData() *NodesData {
+	return &NodesData{
+		ApiVersion: apiVersion,
+	}
 }
 
 func (n *NodeData) SetName(name *string) error {
@@ -188,6 +227,18 @@ func (n *NodeData) SetHostname(name *string) error {
 func (n *NodeData) SetPartitions(partitions []string) error {
 	n.Partitions = partitions
 	return nil
+}
+
+func (n *NodeData) SetTres(tres *string) {
+	if tres != nil {
+		n.Tres = *tres
+	}
+}
+
+func (n *NodeData) SetTresUsed(tresUsed *string) {
+	if tresUsed != nil {
+		n.TresUsed = *tresUsed
+	}
 }
 
 func (n *NodeData) SetAllocMemory(allocMemory *int64) error {
@@ -358,6 +409,57 @@ func (n *NodeData) GetNodeStatesString(delim string) (string, error) {
 	return strings.Join(strStates, delim), nil
 }
 
+func (d *NodesData) FromResponse(r NodesResp) error {
+	var err error
+	for _, n := range r.Nodes {
+		nd := NodeData{}
+		if err = nd.SetName(n.Name); err != nil {
+			return err
+		}
+		if err = nd.SetHostname(n.Hostname); err != nil {
+			return err
+		}
+		if err = nd.SetNodeStates(n.State); err != nil {
+			return err
+		}
+		if err = nd.SetPartitions(n.Partitions); err != nil {
+			return err
+		}
+		nd.SetTres(n.Tres)
+		nd.SetTresUsed(n.TresUsed)
+		if err = nd.SetTotalCPUs(n.Cpus); err != nil {
+			return err
+		}
+		if err = nd.SetAllocCPUs(n.AllocCpus); err != nil {
+			return err
+		}
+		if err = nd.SetIdleCPUs(n.AllocIdleCpus); err != nil {
+			return err
+		}
+		if err = nd.SetOtherCPUs(); err != nil {
+			return err
+		}
+
+		if err = nd.SetTotalMemory(n.RealMemory); err != nil {
+			return err
+		}
+		if err = nd.SetAllocMemory(n.AllocMemory); err != nil {
+			return err
+		}
+
+		if err = nd.SetNodeGPUAllocated(n.TresUsed); err != nil {
+			return err
+		}
+		if err = nd.SetNodeGPUTotal(n.Tres); err != nil {
+			return err
+		}
+
+		d.Nodes = append(d.Nodes, nd)
+	}
+
+	return nil
+}
+
 type JobsData struct {
 	ApiVersion string
 	Jobs       []JobData
@@ -370,6 +472,12 @@ type JobData struct {
 	Cpus       int32
 	Partition  string
 	Dependency string
+}
+
+func NewJobsData() *JobsData {
+	return &JobsData{
+		ApiVersion: apiVersion,
+	}
 }
 
 func (j *JobData) SetJobAccount(name *string) error {
@@ -396,11 +504,12 @@ func (j *JobData) SetJobPartitionName(name *string) error {
 	return nil
 }
 
-func (j *JobData) SetJobDependency(dependency *string) {
+func (j *JobData) SetJobDependency(dependency *string) error {
 	if dependency == nil {
 		j.Dependency = ""
 	}
 	j.Dependency = *dependency
+	return nil
 }
 
 func (j *JobData) SetJobState(states []string) error {
@@ -467,6 +576,34 @@ func (j *JobData) SetJobCPUs(jobcpus *int32) error {
 	return nil
 }
 
+func (d *JobsData) FromResponse(r JobsResp) error {
+	var err error
+	for _, j := range r.Jobs {
+		jd := JobData{}
+		if err = jd.SetJobAccount(j.Account); err != nil {
+			return err
+		}
+		if err = jd.SetJobUserName(j.UserName); err != nil {
+			return err
+		}
+		if err = jd.SetJobPartitionName(j.Partition); err != nil {
+			return err
+		}
+		if err = jd.SetJobState(j.JobState); err != nil {
+			return err
+		}
+		if err = jd.SetJobDependency(j.Dependency); err != nil {
+			return err
+		}
+		if err = jd.SetJobCPUs(j.JobResources.Cpus); err != nil {
+			return err
+		}
+		d.Jobs = append(d.Jobs, jd)
+	}
+
+	return nil
+}
+
 type PartitionsData struct {
 	ApiVersion string
 	Partitions []PartitionData
@@ -477,6 +614,12 @@ type PartitionData struct {
 	Cpus      int32
 	OtherCpus int32
 	Nodes     string
+}
+
+func NewPartitionsData() *PartitionsData {
+	return &PartitionsData{
+		ApiVersion: apiVersion,
+	}
 }
 
 func (p *PartitionData) SetName(name *string) error {
@@ -509,6 +652,28 @@ func (p *PartitionData) SetNodeList(configuredNodes *string) error {
 	return nil
 }
 
+func (d *PartitionsData) FromResponse(r PartitionsResp) error {
+	var err error
+	for _, p := range r.Partitions {
+		pd := PartitionData{}
+		if err = pd.SetName(p.Name); err != nil {
+			return err
+		}
+		if err = pd.SetTotalCPUs(p.Cpus.Total); err != nil {
+			return err
+		}
+		if err = pd.SetOtherCPUs(); err != nil {
+			return err
+		}
+		if err = pd.SetNodeList(p.Nodes.Configured); err != nil {
+			return err
+		}
+		d.Partitions = append(d.Partitions, pd)
+	}
+
+	return nil
+}
+
 type SharesData struct {
 	ApiVersion string
 	Shares     []ShareData
@@ -517,6 +682,12 @@ type SharesData struct {
 type ShareData struct {
 	Name           string
 	EffectiveUsage float64
+}
+
+func NewSharesData() *SharesData {
+	return &SharesData{
+		ApiVersion: apiVersion,
+	}
 }
 
 func (s *ShareData) SetName(name *string) error {
@@ -532,5 +703,22 @@ func (s *ShareData) SetEffectiveUsage(effectiveUsage *float64) error {
 		s.EffectiveUsage = float64(0)
 	}
 	s.EffectiveUsage = *effectiveUsage
+	return nil
+}
+
+func (d *SharesData) FromResponse(r SharesResp) error {
+	var err error
+	for _, s := range r.Shares.Shares {
+		sd := ShareData{}
+		if err = sd.SetName(s.Name); err != nil {
+			return err
+		}
+		if err = sd.SetEffectiveUsage(s.EffectiveUsage); err != nil {
+			return err
+		}
+
+		d.Shares = append(d.Shares, sd)
+	}
+
 	return nil
 }

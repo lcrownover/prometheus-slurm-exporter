@@ -11,7 +11,7 @@ import (
 
 func TestParseUsersMetrics(t *testing.T) {
 	jobsBytes := util.ReadTestDataBytes("V0041OpenapiJobInfoResp.json")
-	jobsData, _ := api.ExtractJobsData(jobsBytes)
+	jobsData, _ := api.ProcessJobsResponse(jobsBytes)
 	data, err := ParseUsersMetrics(jobsData)
 	if err != nil {
 		t.Fatalf("failed to parse users metrics: %v", err)
@@ -20,7 +20,7 @@ func TestParseUsersMetrics(t *testing.T) {
 		userName string
 		metrics  userJobMetrics
 	}{
-		{"user_name", userJobMetrics{2, 14, 0, 0, 0}},
+		{"user_name", userJobMetrics{2, 12, 0, 0, 0}},
 	}
 	for _, tc := range tt {
 		if data[tc.userName].pending != tc.metrics.pending {

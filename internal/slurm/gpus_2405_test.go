@@ -11,7 +11,7 @@ import (
 
 func TestParseGPUsMetrics(t *testing.T) {
 	nodesBytes := util.ReadTestDataBytes("V0041OpenapiNodesResp.json")
-	nodesData, _ := api.ExtractNodesData(nodesBytes)
+	nodesData, _ := api.ProcessNodesResponse(nodesBytes)
 	data, err := ParseGPUsMetrics(nodesData)
 	if err != nil {
 		t.Fatalf("failed to parse gpu metrics: %v", err)

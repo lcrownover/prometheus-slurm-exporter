@@ -35,9 +35,9 @@ func (fsc *FairShareCollector) Collect(ch chan<- prometheus.Metric) {
 		return
 	}
 
-	sharesData, err := api.ExtractSharesData(sharesRespBytes.([]byte))
+	sharesData, err := api.ProcessSharesResponse(sharesRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to extract shares response for fair share metrics", "error", err)
+		slog.Error("failed to process shares response for fair share metrics", "error", err)
 		return
 	}
 	fsm, err := ParseFairShareMetrics(sharesData)

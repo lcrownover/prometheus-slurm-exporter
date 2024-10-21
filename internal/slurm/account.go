@@ -54,9 +54,9 @@ func (ac *AccountsCollector) Collect(ch chan<- prometheus.Metric) {
 		slog.Error("failed to get jobs response for users metrics from cache")
 		return
 	}
-	jobsData, err := api.ExtractJobsData(jobsRespBytes.([]byte))
+	jobsData, err := api.ProcessJobsResponse(jobsRespBytes.([]byte))
 	if err != nil {
-		slog.Error("failed to extract jobs response for accounts metrics", "error", err)
+		slog.Error("failed to extract jobs data for accounts metrics", "error", err)
 		return
 	}
 	am, err := ParseAccountsMetrics(*jobsData)

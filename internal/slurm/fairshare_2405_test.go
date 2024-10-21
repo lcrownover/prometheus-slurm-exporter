@@ -11,7 +11,7 @@ import (
 
 func TestParseSharesMetrics(t *testing.T) {
 	sharesBytes := util.ReadTestDataBytes("SlurmV0041GetShares200Response.json")
-	sharesData, _ := api.ExtractSharesData(sharesBytes)
+	sharesData, _ := api.ProcessSharesResponse(sharesBytes)
 	data, err := ParseFairShareMetrics(sharesData)
 	if err != nil {
 		t.Fatalf("failed to parse fair share metrics: %v", err)

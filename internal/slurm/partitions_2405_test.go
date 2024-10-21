@@ -11,17 +11,17 @@ import (
 
 func TestParsePartitionsMetrics(t *testing.T) {
 	nodesBytes := util.ReadTestDataBytes("V0041OpenapiNodesResp.json")
-	nodesData, err := api.ExtractNodesData(nodesBytes)
+	nodesData, err := api.ProcessNodesResponse(nodesBytes)
 	if err != nil {
 		t.Fatalf("failed to extract nodes response: %v", err)
 	}
 	jobsBytes := util.ReadTestDataBytes("V0041OpenapiJobInfoResp.json")
-	jobsData, _ := api.ExtractJobsData(jobsBytes)
+	jobsData, _ := api.ProcessJobsResponse(jobsBytes)
 	if err != nil {
 		t.Fatalf("failed to extract jobs response: %v", err)
 	}
 	partitionsBytes := util.ReadTestDataBytes("V0041OpenapiPartitionResp.json")
-	partitionData, _ := api.ExtractPartitionsData(partitionsBytes)
+	partitionData, _ := api.ProcessPartitionsResponse(partitionsBytes)
 	if err != nil {
 		t.Fatalf("failed to extract partitions response: %v", err)
 	}
