@@ -8,10 +8,6 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
-github.com/lcrownover/openapi-slurm-23-11 v0.0.0-20240925020426-d3520556c512 h1:YjL5xRjAU82OeXq5/Ym0LyEhAzmRUt8jdkdFAgXRKGM=
-github.com/lcrownover/openapi-slurm-23-11 v0.0.0-20240925020426-d3520556c512/go.mod h1:svq3DVr7J19YvmJxqHzbUz3UwsHzD76yIgTADWZfjuM=
-github.com/lcrownover/openapi-slurm-24-05 v0.0.0-20240925014342-6fc6567e393f h1:0AQdMW8GiabLmuzAVGgGIdnaIJFphm6RnMpxmm8n0oM=
-github.com/lcrownover/openapi-slurm-24-05 v0.0.0-20240925014342-6fc6567e393f/go.mod h1:WNnmdTBtjrOowUkKUwy5LYmN9YHrAJNGIUSxcs0iNwQ=
 github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 h1:C3w9PqII01/Oq1c1nUAm88MOHcQC9l5mIlSMApZMrHA=
 github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822/go.mod h1:+n7T8mK8HuQTcFwEeznm/DIxMOiR9yIdICNftLE1DvQ=
 github.com/prometheus/client_golang v1.19.1 h1:wZWJDwK+NameRJuPGDhlnFgx8e8HN3XHQeLaYJFJBOE=
