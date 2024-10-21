@@ -46,6 +46,7 @@ func GetSlurmRestResponse(ctx context.Context, endpointCtxKey types.Key) ([]byte
 	default:
 		return nil, fmt.Errorf("invalid endpoint key")
 	}
+	slog.Debug("performing rest request", "endpoint", endpointStr)
 	nr, err := newSlurmRestRequest(ctx, endpointCtxKey)
 	if err != nil {
 		return nil, fmt.Errorf("failed to generate new slurm rest request: %v", err)

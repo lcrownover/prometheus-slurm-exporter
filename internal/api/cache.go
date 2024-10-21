@@ -3,6 +3,7 @@ package api
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"sync"
 
 	"github.com/akyoto/cache"
@@ -11,6 +12,7 @@ import (
 
 // PopulateCache is used to populate the cache with data from the slurm api
 func PopulateCache(ctx context.Context) error {
+	slog.Debug("populating cache")
 	var data []byte
 	var err error
 
