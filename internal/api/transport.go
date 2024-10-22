@@ -60,7 +60,7 @@ func GetSlurmRestResponse(ctx context.Context, endpointCtxKey types.Key) ([]byte
 		return nil, fmt.Errorf("received incorrect status code for %s data", endpointStr)
 	}
 	slog.Debug("successfully queried slurm rest data", "endpoint", endpointStr)
-	slog.Debug("response", "statusCode", resp.StatusCode, "body", string(resp.Body))
+	// slog.Debug("response", "statusCode", resp.StatusCode, "body", string(resp.Body))
 	return resp.Body, nil
 }
 

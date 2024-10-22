@@ -3,6 +3,7 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"log/slog"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
 )
@@ -11,6 +12,7 @@ func ProcessDiagResponse(b []byte) (*DiagData, error) {
 	var r DiagResp
 	err := json.Unmarshal(b, &r)
 	if err != nil {
+		slog.Debug("failed to unmarshal diag response", "body", string(b))
 		return nil, fmt.Errorf("failed to unmarshall diag response data: %v", err)
 	}
 	d := NewDiagData()
@@ -23,6 +25,7 @@ func ProcessJobsResponse(b []byte) (*JobsData, error) {
 	var r JobsResp
 	err := json.Unmarshal(b, &r)
 	if err != nil {
+		slog.Debug("failed to unmarshal job response", "body", string(b))
 		return nil, fmt.Errorf("failed to unmarshall job response data: %v", err)
 	}
 	d := NewJobsData()
@@ -35,6 +38,7 @@ func ProcessNodesResponse(b []byte) (*NodesData, error) {
 	var r NodesResp
 	err := json.Unmarshal(b, &r)
 	if err != nil {
+		slog.Debug("failed to unmarshal nodes response", "body", string(b))
 		return nil, fmt.Errorf("failed to unmarshall nodes response data: %v", err)
 	}
 	d := NewNodesData()
@@ -48,6 +52,7 @@ func ProcessPartitionsResponse(b []byte) (*PartitionsData, error) {
 
 	err := json.Unmarshal(b, &r)
 	if err != nil {
+		slog.Debug("failed to unmarshal partitions response", "body", string(b))
 		return nil, fmt.Errorf("failed to unmarshall partitions response data: %v", err)
 	}
 	d := NewPartitionsData()
@@ -61,6 +66,7 @@ func ProcessSharesResponse(b []byte) (*SharesData, error) {
 	var r SharesResp
 	err := json.Unmarshal(b, &r)
 	if err != nil {
+		slog.Debug("failed to unmarshal shares response", "body", string(b))
 		return nil, fmt.Errorf("failed to unmarshall shares response data: %v", err)
 	}
 
