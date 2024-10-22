@@ -23,8 +23,8 @@ var version = "1.0.11"
 func main() {
 	// set up logging
 	lvl := slog.LevelInfo
-	_, found := os.LookupEnv("SLURM_EXPORTER_DEBUG")
-	if found {
+	_, debug := os.LookupEnv("SLURM_EXPORTER_DEBUG")
+	if debug {
 		lvl = slog.LevelDebug
 	}
 	l := slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
