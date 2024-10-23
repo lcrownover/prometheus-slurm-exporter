@@ -10,6 +10,9 @@ import (
 
 func ProcessDiagResponse(b []byte) (*DiagData, error) {
 	var r DiagResp
+	if len(b) == 0 {
+		return nil, fmt.Errorf("failed to unmarshal diag response, body is empty")
+	}
 	err := json.Unmarshal(b, &r)
 	if err != nil {
 		slog.Debug("failed to unmarshal diag response", "body", string(b))
@@ -23,10 +26,13 @@ func ProcessDiagResponse(b []byte) (*DiagData, error) {
 // ProcessJobsResponse converts the response bytes into a slurm type
 func ProcessJobsResponse(b []byte) (*JobsData, error) {
 	var r JobsResp
+	if len(b) == 0 {
+		return nil, fmt.Errorf("failed to unmarshal jobs response, body is empty")
+	}
 	err := json.Unmarshal(b, &r)
 	if err != nil {
-		slog.Debug("failed to unmarshal job response", "body", string(b))
-		return nil, fmt.Errorf("failed to unmarshall job response data: %v", err)
+		slog.Debug("failed to unmarshal jobs response", "body", string(b))
+		return nil, fmt.Errorf("failed to unmarshall jobs response data: %v", err)
 	}
 	d := NewJobsData()
 	d.FromResponse(r)
@@ -36,6 +42,9 @@ func ProcessJobsResponse(b []byte) (*JobsData, error) {
 // ProcessNodesResponse converts the response bytes into a slurm type
 func ProcessNodesResponse(b []byte) (*NodesData, error) {
 	var r NodesResp
+	if len(b) == 0 {
+		return nil, fmt.Errorf("failed to unmarshal nodes response, body is empty")
+	}
 	err := json.Unmarshal(b, &r)
 	if err != nil {
 		slog.Debug("failed to unmarshal nodes response", "body", string(b))
@@ -49,7 +58,9 @@ func ProcessNodesResponse(b []byte) (*NodesData, error) {
 // ProcessPartitionsResponse converts the response bytes into a slurm type
 func ProcessPartitionsResponse(b []byte) (*PartitionsData, error) {
 	var r PartitionsResp
-
+	if len(b) == 0 {
+		return nil, fmt.Errorf("failed to unmarshal partitions response, body is empty")
+	}
 	err := json.Unmarshal(b, &r)
 	if err != nil {
 		slog.Debug("failed to unmarshal partitions response", "body", string(b))
@@ -64,6 +75,9 @@ func ProcessPartitionsResponse(b []byte) (*PartitionsData, error) {
 func ProcessSharesResponse(b []byte) (*SharesData, error) {
 	b = util.CleanseInfinity(b)
 	var r SharesResp
+	if len(b) == 0 {
+		return nil, fmt.Errorf("failed to unmarshal shares response, body is empty")
+	}
 	err := json.Unmarshal(b, &r)
 	if err != nil {
 		slog.Debug("failed to unmarshal shares response", "body", string(b))

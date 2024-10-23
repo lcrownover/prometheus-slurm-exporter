@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"log/slog"
@@ -55,12 +56,26 @@ func GetSlurmRestResponse(ctx context.Context, endpointCtxKey types.Key) ([]byte
 	if err != nil {
 		return nil, fmt.Errorf("failed to retrieve slurm rest response: %v", err)
 	}
+	// sometimes slurm fails to get stuff. we want to error here
+	if resp.StatusCode == 500 {
+		slog.Debug("incorrect response status code", "endpoint", endpointStr, "code", resp.StatusCode, "body", string(resp.Body))
+
+		// try to unmarshal the api error and give a better log
+		var aed APIErrorData
+		var errStr string
+		err := json.Unmarshal(resp.Body, &aed)
+		if err != nil {
+			errStr = "tried to get more data about the error but failed. try debug mode for more information"
+		}
+		errStr = aed.ToString()
+		return nil, fmt.Errorf("internal server error (500) from slurm controller getting %s data: %s", endpointStr, errStr)
+	}
+	// otherwise, it should be status 200, so this catches unsupported status codes
 	if resp.StatusCode != 200 {
 		slog.Debug("incorrect response status code", "endpoint", endpointStr, "code", resp.StatusCode, "body", string(resp.Body))
 		return nil, fmt.Errorf("received incorrect status code for %s data", endpointStr)
 	}
 	slog.Debug("successfully queried slurm rest data", "endpoint", endpointStr)
-	// slog.Debug("response", "statusCode", resp.StatusCode, "body", string(resp.Body))
 	return resp.Body, nil
 }
 

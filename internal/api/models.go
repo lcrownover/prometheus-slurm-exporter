@@ -722,3 +722,21 @@ func (d *SharesData) FromResponse(r SharesResp) error {
 
 	return nil
 }
+
+// This is used for unmarshaling errors on 500 status codes
+type APIErrorData struct {
+	Errors []struct {
+		Description string `json:"description"`
+		ErrorNumber int    `json:"error_number"`
+		Error       string `json:"error"`
+		Source      string `json:"source"`
+	} `json:"errors"`
+}
+
+func (aed APIErrorData) ToString() string {
+	var errStrings []string
+	for _, e := range aed.Errors {
+		errStrings = append(errStrings, fmt.Sprintf("{description=%s, error_number=%d, error=%s, source=%s}", e.Description, e.ErrorNumber, e.Error, e.Source))
+	}
+	return fmt.Sprintf("slurm api errors [%s]", strings.Join(errStrings, ","))
+}
