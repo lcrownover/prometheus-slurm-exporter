@@ -580,7 +580,7 @@ func (j *JobData) SetJobCPUs(jobcpus *int32) error {
 func (d *JobsData) FromResponse(r JobsResp) error {
 	var err error
 	for _, j := range r.Jobs {
-		slog.Debug("jobsresp", "data", fmt.Sprintf("%v", j.JobResources.Cpus))
+		slog.Debug("jobsresp", "data", fmt.Sprintf("%v", *j.JobResources.Cpus))
 		jd := JobData{}
 		if err = jd.SetJobAccount(j.Account); err != nil {
 			return err
