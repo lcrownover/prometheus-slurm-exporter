@@ -70,6 +70,10 @@ func GetSlurmRestResponse(ctx context.Context, endpointCtxKey types.Key) ([]byte
 		errStr = aed.ToString()
 		return nil, fmt.Errorf("internal server error (500) from slurm controller getting %s data: %s", endpointStr, errStr)
 	}
+	// unauthorized responses should say that
+	if resp.StatusCode == 401 {
+		return nil, fmt.Errorf("unauthorized: invalid credentials")
+	}
 	// otherwise, it should be status 200, so this catches unsupported status codes
 	if resp.StatusCode != 200 {
 		slog.Debug("incorrect response status code", "endpoint", endpointStr, "code", resp.StatusCode, "body", string(resp.Body))
