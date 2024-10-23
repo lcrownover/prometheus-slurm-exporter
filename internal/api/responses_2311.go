@@ -29,7 +29,7 @@ type JobsResp struct {
 		JobState     []string `json:"job_state"`
 		Dependency   *string  `json:"dependency"`
 		JobResources struct {
-			Cpus *int32 `json:"cpus"`
+			Cpus *int32 `json:"allocated_cpus"`
 		} `json:"job_resources"`
 	} `json:"jobs"`
 }
