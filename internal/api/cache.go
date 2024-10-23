@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
+	"strings"
 	"sync"
 
 	"github.com/akyoto/cache"
@@ -36,13 +37,13 @@ func PopulateCache(ctx context.Context) error {
 	wg.Wait()
 	close(errors)
 
+	var errmsgs []string
 	for err := range errors {
-		// yes i know it will only get the first error but it's almost certainly
-		// going to be the same error 5 times
-		return fmt.Errorf("errors encountered calling slurm api: %v", err)
+		errmsgs = append(errmsgs, err.Error())
+		return fmt.Errorf("error(s) encountered calling slurm api: [%s]", strings.Join(errmsgs, ", "))
 	}
 
-	slog.Debug("successfully populated cache")
+	slog.Debug("finished populating cache")
 
 	return nil
 }
