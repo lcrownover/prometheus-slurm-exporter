@@ -573,7 +573,6 @@ func (j *JobData) SetJobCPUs(jobcpus *int32) error {
 		j.Cpus = 0
 		return nil
 	}
-	slog.Debug("jobsresp", "data", fmt.Sprintf("%v", *jobcpus))
 	j.Cpus = *jobcpus
 	return nil
 }
