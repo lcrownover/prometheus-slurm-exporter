@@ -2,6 +2,7 @@ package api
 
 import (
 	"fmt"
+	"log/slog"
 	"regexp"
 	"strconv"
 	"strings"
@@ -577,6 +578,7 @@ func (j *JobData) SetJobCPUs(jobcpus *int32) error {
 }
 
 func (d *JobsData) FromResponse(r JobsResp) error {
+	slog.Debug("jobsresp", "data", fmt.Sprintf("%+v", r))
 	var err error
 	for _, j := range r.Jobs {
 		jd := JobData{}
