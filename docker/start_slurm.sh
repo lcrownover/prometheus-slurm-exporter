@@ -15,7 +15,6 @@ fi
 
 # Output the Slurm configuration
 #cat /usr/local/etc/slurm.conf
-
 # Start the slurmctld daemon
 echo "Starting the slurmctld daemon"
 if /slurm/src/slurmctld/slurmctld; then
@@ -50,4 +49,4 @@ else
 fi
 
 # Keep the container running
-tail -f /dev/null
+#tail -f /dev/null
