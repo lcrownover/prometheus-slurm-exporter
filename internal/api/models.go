@@ -359,6 +359,7 @@ func (n *NodeData) SetNodeStates(states []string) error {
 		notresp := regexp.MustCompile(`^not_responding`)
 		invalid := regexp.MustCompile(`^invalid`)
 		invalidreg := regexp.MustCompile(`^invalid_reg`)
+		dynnorm := regexp.MustCompile(`^dynamic_norm`)
 
 		var stateUnit types.NodeState
 
@@ -391,6 +392,8 @@ func (n *NodeData) SetNodeStates(states []string) error {
 			stateUnit = types.NodeStateInvalid
 		case invalidreg.MatchString(state):
 			stateUnit = types.NodeStateInvalidReg
+		case dynnorm.MatchString(state):
+			stateUnit = types.NodeStateDynamicNorm
 		default:
 			return fmt.Errorf("failed to match cpu state against known states: %v", state)
 		}
