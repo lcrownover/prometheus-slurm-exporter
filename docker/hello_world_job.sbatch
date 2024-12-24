@@ -4,5 +4,4 @@
 #SBATCH --error=/jobs/err/hello_world.err
 #SBATCH --time=00:05:00
 #SBATCH --ntasks=1
-echo "Hello World"
-sleep 180
+printf "Hello world\n"
