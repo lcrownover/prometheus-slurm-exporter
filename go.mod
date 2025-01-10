@@ -4,8 +4,6 @@ go 1.22.5
 
 require (
 	github.com/akyoto/cache v1.0.6
-	github.com/lcrownover/openapi-slurm-23-11 v0.0.0-20240925020426-d3520556c512
-	github.com/lcrownover/openapi-slurm-24-05 v0.0.0-20240925014342-6fc6567e393f
 	github.com/prometheus/client_golang v1.19.1
 )
 

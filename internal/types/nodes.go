@@ -17,4 +17,5 @@ const (
 	NodeStateNotResponding NodeState = "not_responding"
 	NodeStateInvalid       NodeState = "invalid"
 	NodeStateInvalidReg    NodeState = "invalid_reg"
+	NodeStateDynamicNorm   NodeState = "dynamic_norm"
 )

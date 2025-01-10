@@ -2,8 +2,10 @@ package api
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
+	"log/slog"
 	"net/http"
 	"strings"
 
@@ -26,6 +28,59 @@ type slurmRestRequest struct {
 type SlurmRestResponse struct {
 	StatusCode int
 	Body       []byte
+}
+
+// GetSlurmRestResponse retrieves response data from slurm api
+func GetSlurmRestResponse(ctx context.Context, endpointCtxKey types.Key) ([]byte, error) {
+	var endpointStr string
+	switch endpointCtxKey {
+	case types.ApiDiagEndpointKey:
+		endpointStr = "diag"
+	case types.ApiJobsEndpointKey:
+		endpointStr = "jobs"
+	case types.ApiNodesEndpointKey:
+		endpointStr = "nodes"
+	case types.ApiPartitionsEndpointKey:
+		endpointStr = "partitions"
+	case types.ApiSharesEndpointKey:
+		endpointStr = "shares"
+	default:
+		return nil, fmt.Errorf("invalid endpoint key")
+	}
+	slog.Debug("performing rest request", "endpoint", endpointStr)
+	nr, err := newSlurmRestRequest(ctx, endpointCtxKey)
+	if err != nil {
+		return nil, fmt.Errorf("failed to generate new slurm rest request: %v", err)
+	}
+	resp, err := nr.Send()
+	if err != nil {
+		return nil, fmt.Errorf("failed to retrieve slurm rest response: %v", err)
+	}
+	// sometimes slurm fails to get stuff. we want to error here
+	if resp.StatusCode == 500 {
+		slog.Debug("incorrect response status code", "endpoint", endpointStr, "code", resp.StatusCode, "body", string(resp.Body))
+
+		// try to unmarshal the api error and give a better log
+		var aed APIErrorData
+		var errStr string
+		err := json.Unmarshal(resp.Body, &aed)
+		if err != nil {
+			errStr = "tried to get more data about the error but failed. try debug mode for more information"
+		}
+		errStr = aed.ToString()
+		return nil, fmt.Errorf("internal server error (500) from slurm controller getting %s data: %s", endpointStr, errStr)
+	}
+	// unauthorized responses should say that
+	if resp.StatusCode == 401 {
+		return nil, fmt.Errorf("unauthorized: invalid credentials")
+	}
+	// otherwise, it should be status 200, so this catches unsupported status codes
+	if resp.StatusCode != 200 {
+		slog.Debug("incorrect response status code", "endpoint", endpointStr, "code", resp.StatusCode, "body", string(resp.Body))
+		return nil, fmt.Errorf("received incorrect status code for %s data", endpointStr)
+	}
+	slog.Debug("successfully queried slurm rest data", "endpoint", endpointStr)
+	return resp.Body, nil
 }
 
 // newSlurmRestRequest returns a new slurmRestRequest object which is used to perform
@@ -72,18 +127,4 @@ func (sr slurmRestRequest) Send() (*SlurmRestResponse, error) {
 	sresp.Body = body
 
 	return &sresp, nil
-}
-
-// newGETRequest is a wrapper for net/http NewRequest so you only have to pass
-// the endpoint. This packages the headers and client.
-func newSlurmGETRequest(ctx context.Context, endpointCtxKey types.Key) (*SlurmRestResponse, error) {
-	nr, err := newSlurmRestRequest(ctx, endpointCtxKey)
-	if err != nil {
-		return nil, fmt.Errorf("failed to generate new slurm rest request: %v", err)
-	}
-	resp, err := nr.Send()
-	if err != nil {
-		return nil, fmt.Errorf("failed to retrieve slurm rest response: %v", err)
-	}
-	return resp, nil
 }

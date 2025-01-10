@@ -1,4 +1,4 @@
-//go:build 2405
+//go:build 2311
 
 package slurm
 
@@ -9,15 +9,17 @@ import (
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
 )
 
-func TestParseGPUsMetrics(t *testing.T) {
+func TestParseCPUsMetrics(t *testing.T) {
+	jobsBytes := util.ReadTestDataBytes("V0041OpenapiJobInfoResp.json")
 	nodesBytes := util.ReadTestDataBytes("V0041OpenapiNodesResp.json")
+	jobsData, _ := api.ProcessJobsResponse(jobsBytes)
 	nodesData, _ := api.ProcessNodesResponse(nodesBytes)
-	data, err := ParseGPUsMetrics(nodesData)
+	data, err := ParseCPUsMetrics(nodesData, jobsData)
 	if err != nil {
-		t.Fatalf("failed to parse gpu metrics: %v", err)
+		t.Fatalf("failed to parse cpu metrics: %v", err)
 	}
-	tt := []gpusMetrics{
-		{0, 0, 0, 0, 0},
+	tt := []cpusMetrics{
+		{0, 0, 18, 18},
 	}
 	for _, tc := range tt {
 		if data.alloc != tc.alloc {
@@ -31,9 +33,6 @@ func TestParseGPUsMetrics(t *testing.T) {
 		}
 		if data.total != tc.total {
 			t.Fatalf("expected %v, got %v", tc.total, data.total)
-		}
-		if data.utilization != tc.utilization {
-			t.Fatalf("expected %v, got %v", tc.utilization, data.utilization)
 		}
 	}
 }

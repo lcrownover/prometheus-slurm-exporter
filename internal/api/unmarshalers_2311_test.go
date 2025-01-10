@@ -3,46 +3,53 @@
 package api
 
 import (
+	"encoding/json"
 	"testing"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/util"
 )
 
 func TestUnmarshalDiagResponse(t *testing.T) {
+	var r DiagResp
 	fb := util.ReadTestDataBytes("V0040OpenapiDiagResp.json")
-	_, err := UnmarshalDiagResponse(fb)
+	err := json.Unmarshal(fb, &r)
 	if err != nil {
 		t.Fatalf("failed to unmarshal diag response: %v\n", err)
 	}
 }
 
 func TestUnmarshalJobsResponse(t *testing.T) {
+	var r JobsResp
 	fb := util.ReadTestDataBytes("V0040OpenapiJobInfoResp.json")
-	_, err := UnmarshalJobsResponse(fb)
+	err := json.Unmarshal(fb, &r)
 	if err != nil {
 		t.Fatalf("failed to unmarshal jobs response: %v\n", err)
 	}
 }
 
 func TestUnmarshalNodesResponse(t *testing.T) {
+	var r NodesResp
 	fb := util.ReadTestDataBytes("V0040OpenapiNodesResp.json")
-	_, err := UnmarshalNodesResponse(fb)
+	err := json.Unmarshal(fb, &r)
 	if err != nil {
 		t.Fatalf("failed to unmarshal nodes response: %v\n", err)
 	}
 }
 
 func TestUnmarshalPartitionsResponse(t *testing.T) {
+	var r PartitionsResp
 	fb := util.ReadTestDataBytes("V0040OpenapiPartitionResp.json")
-	_, err := UnmarshalPartitionsResponse(fb)
+	err := json.Unmarshal(fb, &r)
 	if err != nil {
 		t.Fatalf("failed to unmarshal partition response: %v\n", err)
 	}
 }
 
 func TestUnmarshalSharesResponse(t *testing.T) {
+	var r SharesResp
 	fb := util.ReadTestDataBytes("V0040OpenapiSharesResp.json")
-	_, err := UnmarshalSharesResponse(fb)
+	fb = util.CleanseInfinity(fb)
+	err := json.Unmarshal(fb, &r)
 	if err != nil {
 		t.Fatalf("failed to unmarshal shares response: %v\n", err)
 	}
