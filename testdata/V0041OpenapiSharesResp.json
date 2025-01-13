@@ -14,7 +14,11 @@
         "factor" : 3.616076749251911
       },
       "type" : [ "USER", "USER" ],
-      "effective_usage" : 2.3021358869347655,
+      "effective_usage" : {
+        "number" : 2.3021358869347655,
+        "set" : true,
+        "infinite" : true
+      },
       "shares" : {
         "number" : 1,
         "set" : true,
@@ -81,7 +85,11 @@
         "factor" : 3.616076749251911
       },
       "type" : [ "USER", "USER" ],
-      "effective_usage" : 2.3021358869347655,
+      "effective_usage" : {
+        "number" : 2.3021358869347655,
+        "set" : true,
+        "infinite" : true
+      },
       "shares" : {
         "number" : 1,
         "set" : true,
