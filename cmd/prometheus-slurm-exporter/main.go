@@ -3,17 +3,17 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
-	"log/slog"
-	"net/http"
-	"os"
-	"time"
-	"strconv"
 	"github.com/akyoto/cache"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/slurm"
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 	"github.com/prometheus/client_golang/prometheus"
+	"log"
+	"log/slog"
+	"net/http"
+	"os"
+	"strconv"
+	"time"
 )
 
 var err error
@@ -69,21 +69,21 @@ func main() {
 
 	var tlsEnable bool
 	if !found {
-		tlsEnable = false  // default to false, do not break existing conf files
+		tlsEnable = false // default to false, do not break existing conf files
 	} else {
 		tlsEnable, err = strconv.ParseBool(tlsString)
-		if err != nil  {
+		if err != nil {
 			fmt.Println("Failed to parse SLURM_EXPORTER_ENABLE_TLS.  Please set to 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, or False.")
 		}
 	}
-	var tlsCert,tlsKey string
+	var tlsCert, tlsKey string
 	if tlsEnable { // require tlsCert and tlsKey only if tlsEnable is true
-		tlsCert,found = os.LookupEnv("SLURM_EXPORTER_TLS_CERT_PATH")
+		tlsCert, found = os.LookupEnv("SLURM_EXPORTER_TLS_CERT_PATH")
 		if !found {
 			fmt.Println("You must set SLURM_EXPORTER_TLS_CERT_PATH to the path of your cert")
 			os.Exit(1)
 		}
-		tlsKey,found = os.LookupEnv("SLURM_EXPORTER_TLS_KEY_PATH")
+		tlsKey, found = os.LookupEnv("SLURM_EXPORTER_TLS_KEY_PATH")
 		if !found {
 			fmt.Println("You must set SLURM_EXPORTER_TLS_KEY_PATH to the path of your key")
 			os.Exit(1)
