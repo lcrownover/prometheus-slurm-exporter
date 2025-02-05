@@ -3,22 +3,23 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/akyoto/cache"
-	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
-	"github.com/lcrownover/prometheus-slurm-exporter/internal/slurm"
-	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
-	"github.com/prometheus/client_golang/prometheus"
 	"log"
 	"log/slog"
 	"net/http"
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/akyoto/cache"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/api"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/slurm"
+	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
+	"github.com/prometheus/client_golang/prometheus"
 )
 
 var err error
 
-var version = "1.0.11"
+var version = "2.0.1"
 
 func main() {
 	// set up logging
