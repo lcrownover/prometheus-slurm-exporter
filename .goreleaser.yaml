@@ -48,7 +48,7 @@ builds:
       - amd64
       - arm64
 
-  - id: 'slurm-2411'
+  - id: 'slurm-24.11'
     main: ./cmd/prometheus-slurm-exporter/main.go
     binary: prometheus-slurm-exporter_slurm-24.11_{{ .Os }}_{{ .Arch }}
     flags:
