@@ -701,13 +701,11 @@ func (s *ShareData) SetName(name *string) error {
 	return nil
 }
 
-func (s *ShareData) SetEffectiveUsage(effectiveUsage *struct {
-	Number   *float64 `json:"number"`
-}) error {
-	if effectiveUsage.Number == nil {
+func (s *ShareData) SetEffectiveUsage(effectiveUsage *float64) error {
+	if effectiveUsage == nil {
 		s.EffectiveUsage = float64(0)
 	}
-	s.EffectiveUsage = *effectiveUsage.Number
+	s.EffectiveUsage = *effectiveUsage
 	return nil
 
 }
@@ -719,7 +717,7 @@ func (d *SharesData) FromResponse(r SharesResp) error {
 		if err = sd.SetName(s.Name); err != nil {
 			return err
 		}
-		if err = sd.SetEffectiveUsage(s.EffectiveUsage); err != nil {
+		if err = sd.SetEffectiveUsage(s.EffectiveUsage.Number); err != nil {
 			return err
 		}
 
