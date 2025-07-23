@@ -30,6 +30,7 @@ The expoter requires several environment variables to be set:
   This is the URL to your slurmrestd server.
 
   _Example: `http://head1.domain.edu:6820`_
+  _Example: `unix://path/to/unix/socket`_
 
 * `SLURM_EXPORTER_API_USER`
 
