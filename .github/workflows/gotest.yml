@@ -44,3 +44,19 @@ jobs:
 
     - name: Test
       run: go test -tags=2405 -v ./...
+
+  build_2411:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.22.5'
+
+    - name: Build
+      run: go build -tags=2411 -v ./...
+
+    - name: Test
+      run: go test -tags=2411 -v ./...
