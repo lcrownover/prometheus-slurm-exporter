@@ -19,7 +19,7 @@ import (
 
 var err error
 
-var version = "2.1.0-beta"
+var version = "2.1.1"
 
 func main() {
 	// set up logging
