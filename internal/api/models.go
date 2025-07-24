@@ -701,11 +701,27 @@ func (s *ShareData) SetName(name *string) error {
 	return nil
 }
 
-func (s *ShareData) SetEffectiveUsage(effectiveUsage *float64) error {
+func (s *ShareData) SetEffectiveUsage(effectiveUsage any) error {
+	// using any here because they changed it from a float64 to a struct
 	if effectiveUsage == nil {
-		s.EffectiveUsage = float64(0)
+		s.EffectiveUsage = 0
+		return nil
 	}
-	s.EffectiveUsage = *effectiveUsage
+
+	// check if effectiveUsage is a float64
+	effectiveUsageFloat, ok := effectiveUsage.(float64)
+	if ok {
+		s.EffectiveUsage = effectiveUsageFloat
+		return nil
+	}
+	// check if effectiveUsage is a struct
+	if effectiveUsageStruct, ok := effectiveUsage.(map[string]any); ok {
+		if number, ok := effectiveUsageStruct["number"]; ok {
+			if numberFloat, ok := number.(float64); ok {
+				s.EffectiveUsage = numberFloat
+			}
+		}
+	}
 	return nil
 }
 

@@ -47,3 +47,16 @@ builds:
     goarch:
       - amd64
       - arm64
+
+  - id: 'slurm-24.11'
+    main: ./cmd/prometheus-slurm-exporter/main.go
+    binary: prometheus-slurm-exporter_slurm-24.11_{{ .Os }}_{{ .Arch }}
+    flags:
+      - -tags=2411
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64

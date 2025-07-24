@@ -1,8 +1,8 @@
-//go:build 2405
+//go:build 2411
 
 package api
 
-var apiVersion = "24.05"
+var apiVersion = "24.11"
 
 type DiagResp struct {
 	Statistics struct {
@@ -65,9 +65,9 @@ type PartitionsResp struct {
 type SharesResp struct {
 	Shares struct {
 		Shares []struct {
-			Name           *string `json:"name"`
-			EffectiveUsage struct {
-				Number *float64 `json:"number"`
+			Name           *string  `json:"name"`
+			EffectiveUsage *struct {
+				Number   *float64 `json:"number"`
 			} `json:"effective_usage"`
 		} `json:"shares"`
 	} `json:"shares"`
