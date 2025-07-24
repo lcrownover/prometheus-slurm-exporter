@@ -1,4 +1,4 @@
-//go:build 2405
+//go:build 2411
 
 package slurm
 
