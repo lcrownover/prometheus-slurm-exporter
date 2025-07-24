@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/akyoto/cache"
@@ -47,50 +48,68 @@ func main() {
 		listenAddress = "0.0.0.0:8080"
 	}
 
-	apiUser, found := os.LookupEnv("SLURM_EXPORTER_API_USER")
-	if !found {
-		fmt.Println("You must set SLURM_EXPORTER_API_USER")
-		os.Exit(1)
-	}
-
-	apiToken, found := os.LookupEnv("SLURM_EXPORTER_API_TOKEN")
-	if !found {
-		fmt.Println("You must set SLURM_EXPORTER_API_TOKEN")
-		os.Exit(1)
-	}
-
 	apiURL, found := os.LookupEnv("SLURM_EXPORTER_API_URL")
 	if !found {
 		fmt.Println("You must set SLURM_EXPORTER_API_URL. Example: localhost:6820")
 		os.Exit(1)
 	}
-	apiURL = api.CleanseBaseURL(apiURL)
 
-	tlsString, found := os.LookupEnv("SLURM_EXPORTER_ENABLE_TLS")
-
+	var apiUser string
+	var apiToken string
 	var tlsEnable bool
-	if !found {
-		tlsEnable = false // default to false, do not break existing conf files
-	} else {
-		tlsEnable, err = strconv.ParseBool(tlsString)
-		if err != nil {
-			fmt.Println("Failed to parse SLURM_EXPORTER_ENABLE_TLS.  Please set to 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, or False.")
-		}
-	}
-	var tlsCert, tlsKey string
-	if tlsEnable { // require tlsCert and tlsKey only if tlsEnable is true
-		tlsCert, found = os.LookupEnv("SLURM_EXPORTER_TLS_CERT_PATH")
-		if !found {
-			fmt.Println("You must set SLURM_EXPORTER_TLS_CERT_PATH to the path of your cert")
-			os.Exit(1)
-		}
-		tlsKey, found = os.LookupEnv("SLURM_EXPORTER_TLS_KEY_PATH")
-		if !found {
-			fmt.Println("You must set SLURM_EXPORTER_TLS_KEY_PATH to the path of your key")
-			os.Exit(1)
-		}
-	}
+	var tlsCert string
+	var tlsKey string
 
+	// we only need these values if the endpoint is not unix://
+	if strings.HasPrefix(apiURL, "http://") || strings.HasPrefix(apiURL, "https://") {
+		var found bool
+		apiUser, found = os.LookupEnv("SLURM_EXPORTER_API_USER")
+		if !found {
+			fmt.Println("You must set SLURM_EXPORTER_API_USER")
+			os.Exit(1)
+		}
+
+		apiToken, found = os.LookupEnv("SLURM_EXPORTER_API_TOKEN")
+		if !found {
+			fmt.Println("You must set SLURM_EXPORTER_API_TOKEN")
+			os.Exit(1)
+		}
+
+		tlsString, found := os.LookupEnv("SLURM_EXPORTER_ENABLE_TLS")
+
+		if !found {
+			tlsEnable = false // default to false, do not break existing conf files
+		} else {
+			tlsEnable, err = strconv.ParseBool(tlsString)
+			if err != nil {
+				fmt.Println("Failed to parse SLURM_EXPORTER_ENABLE_TLS.  Please set to 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, or False.")
+			}
+		}
+		if tlsEnable { // require tlsCert and tlsKey only if tlsEnable is true
+			tlsCert, found = os.LookupEnv("SLURM_EXPORTER_TLS_CERT_PATH")
+			if !found {
+				fmt.Println("You must set SLURM_EXPORTER_TLS_CERT_PATH to the path of your cert")
+				os.Exit(1)
+			}
+			tlsKey, found = os.LookupEnv("SLURM_EXPORTER_TLS_KEY_PATH")
+			if !found {
+				fmt.Println("You must set SLURM_EXPORTER_TLS_KEY_PATH to the path of your key")
+				os.Exit(1)
+			}
+		}
+
+	} else if strings.HasPrefix(apiURL, "unix://") {
+		apiUser = ""
+		apiToken = ""
+		tlsEnable = false
+		tlsCert = ""
+		tlsKey = ""
+
+	} else {
+		fmt.Println("SLURM_EXPORTER_API_URL must start with unix://, http://, or https://")
+		fmt.Println("Got: ", apiURL)
+		os.Exit(1)
+	}
 	// API Cache
 	apiCache := cache.New(60 * time.Second)
 

@@ -6,19 +6,12 @@ import (
 	"fmt"
 	"io"
 	"log/slog"
+	"net"
 	"net/http"
 	"strings"
 
 	"github.com/lcrownover/prometheus-slurm-exporter/internal/types"
 )
-
-// CleanseBaseURL removes any unneccessary elements from the provided url,
-// such as "http://", etc
-func CleanseBaseURL(url string) string {
-	url = strings.ReplaceAll(url, "http://", "")
-	url = strings.ReplaceAll(url, "https://", "")
-	return url
-}
 
 type slurmRestRequest struct {
 	req    *http.Request
@@ -87,12 +80,23 @@ func GetSlurmRestResponse(ctx context.Context, endpointCtxKey types.Key) ([]byte
 // http interactions with the slurmrest server. It configures everything up until
 // the request is actually sent to get data.
 func newSlurmRestRequest(ctx context.Context, k types.Key) (*slurmRestRequest, error) {
+	apiURL := ctx.Value(types.ApiURLKey).(string)
+
+	if strings.HasPrefix(apiURL, "unix://") {
+		return newSlurmUnixRestRequest(ctx, k)
+	} else if strings.HasPrefix(apiURL, "http://") || strings.HasPrefix(apiURL, "https://") {
+		return newSlurmInetRestRequest(ctx, k)
+	}
+	return nil, fmt.Errorf("invalid SLURM_EXPORTER_API_URL: %s", apiURL)
+}
+
+func newSlurmInetRestRequest(ctx context.Context, k types.Key) (*slurmRestRequest, error) {
 	apiUser := ctx.Value(types.ApiUserKey).(string)
 	apiToken := ctx.Value(types.ApiTokenKey).(string)
 	apiURL := ctx.Value(types.ApiURLKey).(string)
 	apiEndpoint := ctx.Value(k).(string)
 
-	url := fmt.Sprintf("http://%s/%s", apiURL, apiEndpoint)
+	url := fmt.Sprintf("%s/%s", apiURL, apiEndpoint)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
@@ -104,6 +108,30 @@ func newSlurmRestRequest(ctx context.Context, k types.Key) (*slurmRestRequest, e
 	return &slurmRestRequest{
 		req:    req,
 		client: &http.Client{},
+	}, nil
+}
+
+func newSlurmUnixRestRequest(ctx context.Context, k types.Key) (*slurmRestRequest, error) {
+	apiURL := ctx.Value(types.ApiURLKey).(string)
+	apiEndpoint := ctx.Value(k).(string)
+
+	socketPath := strings.TrimPrefix(apiURL, "unix:")
+	url := fmt.Sprintf("http://unix/%s", apiEndpoint)
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Accept", "application/json")
+
+	return &slurmRestRequest{
+		req: req,
+		client: &http.Client{
+			Transport: &http.Transport{
+				DialContext: func(ctx context.Context, _, _ string) (net.Conn, error) {
+					return net.Dial("unix", socketPath)
+				},
+			},
+		},
 	}, nil
 }
 
