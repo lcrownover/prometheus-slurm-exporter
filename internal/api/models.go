@@ -2,6 +2,7 @@ package api
 
 import (
 	"fmt"
+	"log/slog"
 	"reflect"
 	"regexp"
 	"strconv"
@@ -408,7 +409,7 @@ func (n *NodeData) SetNodeStates(states []string) error {
 		case poweredDown.MatchString(state):
 			stateUnit = types.NodeStatePoweredDown
 		default:
-			return fmt.Errorf("failed to match cpu state against known states: %v", state)
+			slog.Info("failed to match cpu state against known states", "state", state)
 		}
 
 		nodeStates = append(nodeStates, stateUnit)
