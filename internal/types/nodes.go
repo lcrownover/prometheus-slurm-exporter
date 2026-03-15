@@ -21,4 +21,5 @@ const (
 	NodeStateReboot        NodeState = "reboot"
 	NodeStateRebootIssued  NodeState = "reboot_issued"
 	NodeStateRebootCancel  NodeState = "reboot_cancel"
+	NodeStatePoweredDown   NodeState = "powered_down"
 )

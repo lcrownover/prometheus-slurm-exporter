@@ -364,6 +364,7 @@ func (n *NodeData) SetNodeStates(states []string) error {
 		reboot := regexp.MustCompile(`^reboot`)
 		rebootissued := regexp.MustCompile(`^reboot_issued`)
 		rebootcancel := regexp.MustCompile(`^reboot_cancel`)
+		poweredDown := regexp.MustCompile(`^powered_down`)
 
 		var stateUnit types.NodeState
 
@@ -404,6 +405,8 @@ func (n *NodeData) SetNodeStates(states []string) error {
 			stateUnit = types.NodeStateRebootCancel
 		case reboot.MatchString(state):
 			stateUnit = types.NodeStateReboot
+		case poweredDown.MatchString(state):
+			stateUnit = types.NodeStatePoweredDown
 		default:
 			return fmt.Errorf("failed to match cpu state against known states: %v", state)
 		}
