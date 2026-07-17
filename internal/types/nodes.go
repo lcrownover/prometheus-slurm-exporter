@@ -18,4 +18,7 @@ const (
 	NodeStateInvalid       NodeState = "invalid"
 	NodeStateInvalidReg    NodeState = "invalid_reg"
 	NodeStateDynamicNorm   NodeState = "dynamic_norm"
+	NodeStateReboot        NodeState = "reboot"
+	NodeStateRebootIssued  NodeState = "reboot_issued"
+	NodeStateRebootCancel  NodeState = "reboot_cancel"
 )
