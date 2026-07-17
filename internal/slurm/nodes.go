@@ -11,32 +11,34 @@ import (
 )
 
 type NodesCollector struct {
-	ctx   context.Context
-	alloc *prometheus.Desc
-	comp  *prometheus.Desc
-	down  *prometheus.Desc
-	drain *prometheus.Desc
-	err   *prometheus.Desc
-	fail  *prometheus.Desc
-	idle  *prometheus.Desc
-	maint *prometheus.Desc
-	mix   *prometheus.Desc
-	resv  *prometheus.Desc
+	ctx    context.Context
+	alloc  *prometheus.Desc
+	comp   *prometheus.Desc
+	down   *prometheus.Desc
+	drain  *prometheus.Desc
+	err    *prometheus.Desc
+	fail   *prometheus.Desc
+	idle   *prometheus.Desc
+	maint  *prometheus.Desc
+	mix    *prometheus.Desc
+	resv   *prometheus.Desc
+	reboot *prometheus.Desc
 }
 
 func NewNodesCollector(ctx context.Context) *NodesCollector {
 	return &NodesCollector{
-		ctx:   ctx,
-		alloc: prometheus.NewDesc("slurm_nodes_alloc", "Allocated nodes", nil, nil),
-		comp:  prometheus.NewDesc("slurm_nodes_comp", "Completing nodes", nil, nil),
-		down:  prometheus.NewDesc("slurm_nodes_down", "Down nodes", nil, nil),
-		drain: prometheus.NewDesc("slurm_nodes_drain", "Drain nodes", nil, nil),
-		err:   prometheus.NewDesc("slurm_nodes_err", "Error nodes", nil, nil),
-		fail:  prometheus.NewDesc("slurm_nodes_fail", "Fail nodes", nil, nil),
-		idle:  prometheus.NewDesc("slurm_nodes_idle", "Idle nodes", nil, nil),
-		maint: prometheus.NewDesc("slurm_nodes_maint", "Maint nodes", nil, nil),
-		mix:   prometheus.NewDesc("slurm_nodes_mix", "Mix nodes", nil, nil),
-		resv:  prometheus.NewDesc("slurm_nodes_resv", "Reserved nodes", nil, nil),
+		ctx:    ctx,
+		alloc:  prometheus.NewDesc("slurm_nodes_alloc", "Allocated nodes", nil, nil),
+		comp:   prometheus.NewDesc("slurm_nodes_comp", "Completing nodes", nil, nil),
+		down:   prometheus.NewDesc("slurm_nodes_down", "Down nodes", nil, nil),
+		drain:  prometheus.NewDesc("slurm_nodes_drain", "Drain nodes", nil, nil),
+		err:    prometheus.NewDesc("slurm_nodes_err", "Error nodes", nil, nil),
+		fail:   prometheus.NewDesc("slurm_nodes_fail", "Fail nodes", nil, nil),
+		idle:   prometheus.NewDesc("slurm_nodes_idle", "Idle nodes", nil, nil),
+		maint:  prometheus.NewDesc("slurm_nodes_maint", "Maint nodes", nil, nil),
+		mix:    prometheus.NewDesc("slurm_nodes_mix", "Mix nodes", nil, nil),
+		resv:   prometheus.NewDesc("slurm_nodes_resv", "Reserved nodes", nil, nil),
+		reboot: prometheus.NewDesc("slurm_nodes_reboot", "Reboot nodes", nil, nil),
 	}
 }
 
@@ -51,6 +53,7 @@ func (nc *NodesCollector) Describe(ch chan<- *prometheus.Desc) {
 	ch <- nc.maint
 	ch <- nc.mix
 	ch <- nc.resv
+	ch <- nc.reboot
 }
 
 func (nc *NodesCollector) Collect(ch chan<- prometheus.Metric) {
@@ -80,19 +83,21 @@ func (nc *NodesCollector) Collect(ch chan<- prometheus.Metric) {
 	ch <- prometheus.MustNewConstMetric(nc.maint, prometheus.GaugeValue, nm.maint)
 	ch <- prometheus.MustNewConstMetric(nc.mix, prometheus.GaugeValue, nm.mix)
 	ch <- prometheus.MustNewConstMetric(nc.resv, prometheus.GaugeValue, nm.resv)
+	ch <- prometheus.MustNewConstMetric(nc.reboot, prometheus.GaugeValue, nm.reboot)
 }
 
 type nodesMetrics struct {
-	alloc float64
-	comp  float64
-	down  float64
-	drain float64
-	err   float64
-	fail  float64
-	idle  float64
-	maint float64
-	mix   float64
-	resv  float64
+	alloc  float64
+	comp   float64
+	down   float64
+	drain  float64
+	err    float64
+	fail   float64
+	idle   float64
+	maint  float64
+	mix    float64
+	resv   float64
+	reboot float64
 }
 
 func NewNodesMetrics() *nodesMetrics {
@@ -127,6 +132,12 @@ func ParseNodesMetrics(nodesData *api.NodesData) (*nodesMetrics, error) {
 				nm.mix += 1
 			case types.NodeStateResv:
 				nm.resv += 1
+			case types.NodeStateReboot:
+				nm.reboot += 1
+			case types.NodeStateRebootIssued:
+				nm.reboot += 1
+			case types.NodeStateRebootCancel:
+				nm.reboot += 1
 			}
 		}
 	}
