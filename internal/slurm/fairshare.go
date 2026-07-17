@@ -69,7 +69,7 @@ func ParseFairShareMetrics(sharesData *api.SharesData) (map[string]*fairShareMet
 		if _, exists := accounts[account]; !exists {
 			accounts[account] = NewFairShareMetrics()
 		}
-		accounts[account].fairshare = s.EffectiveUsage
+		accounts[account].fairshare += s.EffectiveUsage
 	}
 	return accounts, nil
 }

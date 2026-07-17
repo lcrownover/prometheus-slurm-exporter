@@ -2,6 +2,7 @@ package api
 
 import (
 	"fmt"
+	"reflect"
 	"regexp"
 	"strconv"
 	"strings"
@@ -724,11 +725,18 @@ func (s *ShareData) SetEffectiveUsage(effectiveUsage any) error {
 		return nil
 	}
 	// check if effectiveUsage is a struct
-	if effectiveUsageStruct, ok := effectiveUsage.(map[string]any); ok {
-		if number, ok := effectiveUsageStruct["number"]; ok {
-			if numberFloat, ok := number.(float64); ok {
-				s.EffectiveUsage = numberFloat
-			}
+	v := reflect.ValueOf(effectiveUsage)
+	if v.Kind() == reflect.Ptr {
+		v = v.Elem()
+	}
+	if v.Kind() == reflect.Struct {
+		// field Number should be a *float64
+		number := v.FieldByName("Number")
+		if number.Kind() == reflect.Ptr {
+			number = number.Elem()
+		}
+		if number.CanFloat() {
+			s.EffectiveUsage = number.Float()
 		}
 	}
 	return nil
